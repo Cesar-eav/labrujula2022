@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
 
 Route::get('/murales', [App\Http\Controllers\HomeController::class, 'murales']);

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class MuralController extends Controller
 {
     public function murales(Request $request){
-            $murales = Mural::paginate(3);
+            $murales = Mural::paginate(15);
            //return $murales;
             return [
                 'pagination' => [
