@@ -1,47 +1,28 @@
-<template>    
-  <div style="height: 500px; width: 100%">
- 
+<template>
+  <l-map style="height: 300px" :zoom="zoom" :center="center">
+    <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+    <l-marker :lat-lng="markerLatLng"></l-marker>
+  </l-map>
+</template>
 
+<script>
+import {LMap, LTileLayer, LMarker} from 'vue2-leaflet';
 
-
-
-   </div>
- </template>
- 
- <script>
-
-import L from 'leaflet';
-
- import { latLng } from "leaflet";
- import { LMap, LTileLayer, LMarker, LPopup, LTooltip } from "vue2-leaflet";
- 
- export default {
-   name: "Example",
-   components: {
-     LMap,
-     LTileLayer,
-     LMarker,
-     LPopup,
-     LTooltip
-   },
-   data() {
-     return {
-       zoom: 18,
-       center: latLng(this.$route.params.lat, this.$route.params.lon),
-       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-       attribution:
-         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-       withPopup: latLng(this.$route.params.lat, this.$route.params.lon),
-       withTooltip: latLng(this.$route.params.lat, this.$route.params.lon),
-       currentZoom: 11.5,
-       currentCenter: latLng(this.$route.params.lat, this.$route.params.lon),
-       showParagraph: false,
-       mapOptions: {
-         zoomSnap: 0.8
-       },
-       showMap: true
-     };
-   },
-   
- };
- </script>
+export default {
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker
+  },
+  data () {
+    return {
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      zoom: 15,
+      center: [51.505, -0.159],
+      markerLatLng: [51.504, -0.159]
+    };
+  }
+}
+</script>
