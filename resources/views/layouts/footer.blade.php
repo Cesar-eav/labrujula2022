@@ -1,0 +1,2 @@
+
+<footer-component></footer-component>
