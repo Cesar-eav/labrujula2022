@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <head>
@@ -8,7 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
 
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
-    <script src="https://unpkg.com/fast-image-zoom@7.0.1/dist/fast-image-zoom.js"></script> 
+    <script src="https://unpkg.com/fast-image-zoom@7.0.1/dist/fast-image-zoom.js"></script>
 
     <link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
     <script src="//unpkg.com/leaflet/dist/leaflet.js"></script>
