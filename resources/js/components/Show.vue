@@ -85,9 +85,9 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(() => {
-        this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
-      });
+    // this.$nextTick(() => {
+    //     this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
+    //   });
 
     imageZoom();
     this.listMurales();
