@@ -6374,11 +6374,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    this.$nextTick(function () {
-      _this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
-    });
+    // this.$nextTick(() => {
+    //     this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
+    //   });
     imageZoom();
     this.listMurales();
   },
@@ -6421,12 +6419,12 @@ __webpack_require__.r(__webpack_exports__);
       this.map = this.$refs.myMap.mapObject;
     },
     listMurales: function listMurales(page) {
-      var _this2 = this;
+      var _this = this;
 
       var urlMurales = "api-murales?page=" + page;
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this2.arrayList = respuesta.data.murales.data, _this2.pagination = respuesta.data.pagination;
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
       }); //Se cargan a la variable PAGINATION los datos del controlador JSON
 
       console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
