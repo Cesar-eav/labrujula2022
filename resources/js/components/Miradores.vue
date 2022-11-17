@@ -6,10 +6,11 @@
 
 <div class="flex flex-wrap justify-center">
 
-    <div class="w-96 mx-2" v-for="miradores in arrayList" :key="miradores.id">
+    <div v-viewer class="w-96 mx-2" v-for="miradores in arrayList" :key="miradores.id">
         <img :src="'storage/'+miradores.image" /> 
-        <div class="bg-red-300">Ascensor {{ miradores.nombre }} </div>
-    </div>
+        <div class="bg-red-300">Ascensor {{ miradores.nombre }} </div>    
+        <a :href="'osm/'+miradores.lat+'/'+ miradores.lon" target="blank">MAPA</a>
+</div>
 
 </div>
 

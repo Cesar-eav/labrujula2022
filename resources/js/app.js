@@ -1,12 +1,24 @@
 require('./bootstrap');
 
-import VueRouter from 'vue-router'
-import Osm from './components/Osm.vue'
 
+
+// Import Viewer
+import Viewer from 'v-viewer'
+import "viewerjs/dist/viewer.css";
 
 
 window.Vue = require('vue').default;
-Vue.use(VueRouter)    
+
+
+Vue.use(Viewer, {
+  debug: true,
+  defaultOptions: {
+    zIndex: 9999,
+    toolbar: true,
+    zoomable: true,
+    scalable: true,
+  },
+});
 
 // OPEN STREET MAP
 import Vue from 'vue';
@@ -33,22 +45,6 @@ import 'leaflet/dist/leaflet.css';
 Vue.config.productionTip = false
 
 
-const routes = [
-  {
-    path:'/osm/:lat/:lon/:dir',
-    name:'osm',
-    component:Osm
-  },
-
-]
-
-
-const router = new VueRouter(
-  {
-    mode: 'history',
-    base: '/',
-    routes // short for `routes: routes`
-  })
 
 
 
@@ -98,6 +94,9 @@ Vue.component('mostrar-component', require('./components/crud/Mostrar.vue').defa
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+
+// VUE casi siempre se instancia al final
 
 const app = new Vue({
     el: '#app',

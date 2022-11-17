@@ -7,9 +7,11 @@
 
 <div class="flex flex-wrap justify-center">
 
-    <div class="w-96 mx-2" v-for="murales in arrayList" :key="murales.id">
+    <div v-viewer class="w-96 mx-2" v-for="murales in arrayList" :key="murales.id">
         <img :src="'storage/'+murales.image" /> 
         <div class="bg-red-300">Cerro {{ murales.title }} - {{ murales.content }} - {{ murales.artista }}</div>
+        <a :href="'osm/'+murales.lat+'/'+ murales.lon" target="blank">MAPA</a>
+
     </div>
 
 </div>

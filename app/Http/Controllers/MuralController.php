@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mural;
+
+use App\Models\MuralesAlegre;
+
 use App\Models\Escalera;
 use App\Models\Ascensor;
 use App\Models\Mirador;
@@ -14,7 +17,7 @@ use Illuminate\Http\Request;
 class MuralController extends Controller
 {
     public function murales(Request $request){
-            $murales = Mural::paginate(15);
+            $murales = Mural::paginate(12);
            //return $murales;
             return [
                 'pagination' => [
@@ -29,18 +32,42 @@ class MuralController extends Controller
             ];
     }
 
-    public function muralesCordillera(){
-        $murales = Mural::where('title', 'Cordillera')->get();
-        return $murales;    
-}
+    public function muralesAlegre(){
+        $murales = Mural::where('title', 'Alegre')->paginate(15);
+        //return $murales;    
+        return [
+            'pagination' => [
+                'total' => $murales->total(),
+                'current_page'=> $murales->currentPage(),
+                'per_page' => $murales->perPage(),
+                'last_page' => $murales->lastPage(),
+                'from' => $murales->firstItem(),
+                'to'=> $murales->lastPage()
+            ],
+            'murales' =>$murales
+        ];
+    }
 
-public function muralesAlegre(){
-    $murales = Mural::where('title', 'Alegre')->get();
-    return $murales;    
-}
+    public function muralesCordillera(){
+            $murales = Mural::where('title', 'Cordillera')->get();
+            return $murales;    
+    }
+
+
 public function muralesArtilleria(){
-    $murales = Mural::where('title', 'Artilleria')->get();
-    return $murales;    
+    $murales = Mural::where('title', 'Artilleria')->paginate(15);
+    //return $murales;    
+    return [
+        'pagination' => [
+            'total' => $murales->total(),
+            'current_page'=> $murales->currentPage(),
+            'per_page' => $murales->perPage(),
+            'last_page' => $murales->lastPage(),
+            'from' => $murales->firstItem(),
+            'to'=> $murales->lastPage()
+        ],
+        'murales' =>$murales
+    ];
 }
 public function muralesCarcel(){
     $murales = Mural::where('title', 'Carcel')->get();
@@ -51,12 +78,34 @@ public function muralesConcepcion(){
     return $murales;    
 }
 public function muralesBaron(){
-    $murales = Mural::where('title', 'Baron')->get();
-    return $murales;    
+    $murales = Mural::where('title', 'Baron')->paginate(15);
+    //return $murales;    
+    return [
+        'pagination' => [
+            'total' => $murales->total(),
+            'current_page'=> $murales->currentPage(),
+            'per_page' => $murales->perPage(),
+            'last_page' => $murales->lastPage(),
+            'from' => $murales->firstItem(),
+            'to'=> $murales->lastPage()
+        ],
+        'murales' =>$murales
+    ];
 }
 public function muralesBellavista(){
-    $murales = Mural::where('title', 'Bellavista')->get();
-    return $murales;    
+    $murales = Mural::where('title', 'Bellavista')->paginate(15);
+    //return $murales;    
+    return [
+        'pagination' => [
+            'total' => $murales->total(),
+            'current_page'=> $murales->currentPage(),
+            'per_page' => $murales->perPage(),
+            'last_page' => $murales->lastPage(),
+            'from' => $murales->firstItem(),
+            'to'=> $murales->lastPage()
+        ],
+        'murales' =>$murales
+    ];  
 }
 
 public function muralesFlorida(){

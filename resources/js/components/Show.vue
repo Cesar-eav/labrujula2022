@@ -1,17 +1,10 @@
 <template>
   <div class="justify-center">
 
-
-    <div class="bg-blue-500 btn-primary">
-      <a href="crud/create" rel="noopener noreferrer">
-        <input type="button" value="Nuevo" class="btn-primary" />
-      </a>
-    </div>
-
-    <h1>MURALES DE VALPARAÍSO</h1>
+    <h1 class="text-3xl text-center py-2">MURALES DE VALPARAÍSO</h1>
 
     <div class="flex flex-wrap justify-center">
-      <div class="w-96 mx-2" v-for="murales in arrayList" :key="murales.id">
+      <div v-viewer  class="w-96 mx-2" v-for="murales in arrayList" :key="murales.id" >
         <img :src="'storage/' + murales.image" alt="imagen" />
         <div class="bg-red-300">
           <b>{{ murales.title }}</b> - {{ murales.content }} -
@@ -21,13 +14,13 @@
       </div>
     </div>
 
-    <nav aria-label="Page navigation example" class="pt-5">
+    <nav class="flex justify-center p-5">
         <ul class="inline-flex -space-x-px">
           <li v-if="pagination.current_page > 1">
             <a
               href="#"
               @click.prevent="changePage(pagination.current_page - 1)"
-              class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white""
+              class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >Previous</a
             >
           </li>
@@ -45,7 +38,7 @@
             <a
               href="#"
               @click.prevent="changePage(pagination.current_page + 1)"
-              class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white""
+              class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >Next</a
             >
           </li>
@@ -67,9 +60,7 @@
 <script>
 import axios from "axios";
 
-
 export default {
-
   data() {
     return {
       arrayList: [],
@@ -80,17 +71,13 @@ export default {
         last_page: 0,
         from: 0,
         to: 0,
-      },
+      }
     };
   },
 
   mounted() {
-    // this.$nextTick(() => {
-    //     this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
-    //   });
-
-    imageZoom();
-    this.listMurales();
+   this.listMurales();
+ 
   },
   computed: {
     isActived: function () {

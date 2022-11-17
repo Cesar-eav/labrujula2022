@@ -6,9 +6,11 @@
 
 <div class="flex flex-wrap justify-center">
 
-    <div class="w-96 mx-2" v-for="ascensores in arrayList" :key="ascensores.id">
+    <div v-viewer class="w-96 mx-2" v-for="ascensores in arrayList" :key="ascensores.id">
         <img :src="'storage/'+ascensores.image" /> 
         <div class="bg-red-300">Ascensor {{ ascensores.nombre }} </div>
+        <a :href="'osm/'+ascensores.lat+'/'+ ascensores.lon" target="blank">MAPA</a>
+
     </div>
 
 </div>
