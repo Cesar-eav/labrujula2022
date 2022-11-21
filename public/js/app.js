@@ -5951,21 +5951,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-carcel') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-carcel?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -5973,6 +6020,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -5996,21 +6048,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-concepcion') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-concepcion?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6018,6 +6117,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6041,21 +6145,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-cordillera') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-cordillera?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6063,6 +6214,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6086,21 +6242,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-florida') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-florida?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6108,6 +6311,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6131,21 +6339,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-larrain') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-larrain?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6153,6 +6408,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6176,21 +6436,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-lecheros') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-lecheros?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6198,6 +6505,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6221,21 +6533,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-mariposas') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-mariposas?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6243,6 +6602,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6266,21 +6630,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-monjas') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-monjas?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6288,6 +6699,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6311,21 +6727,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-panteon') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-panteon?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6333,6 +6796,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6356,21 +6824,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-playa-ancha') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-playa-ancha?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6378,6 +6893,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6401,21 +6921,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-polanco') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-polanco?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6423,6 +6990,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6446,21 +7018,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-san-juan') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-san-juan?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6468,6 +7087,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6491,21 +7115,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      }
     };
   },
   mounted: function mounted() {
     this.listMurales();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; // TO DO
+      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
+
+      if (from < 1) {
+        //Si FROM es negativo o 0, haz;
+        from = 1; //setear FROM en 1;
+      }
+
+      var to = from + 2 * 2; //TO DO
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    listMurales: function listMurales() {
+    doSomethingOnReady: function doSomethingOnReady() {
+      this.map = this.$refs.myMap.mapObject;
+    },
+    listMurales: function listMurales(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api-murales-yungay') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      var urlMurales = "api-murales-yungay?page=" + page;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data;
-      }); //     console.log('arrayList', this.arrayList);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
+
+      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -6513,6 +7184,11 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    changePage: function changePage(page) {
+      console.log("PAGE:", page);
+      this.pagination.current_page = page;
+      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
     }
   }
 });
@@ -6530,23 +7206,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue2_leaflet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-leaflet */ "./node_modules/vue2-leaflet/dist/components/LMap.js");
-/* harmony import */ var vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-leaflet */ "./node_modules/vue2-leaflet/dist/components/LTileLayer.js");
-/* harmony import */ var vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-leaflet */ "./node_modules/vue2-leaflet/dist/components/LMarker.js");
+/* harmony import */ var vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-leaflet */ "./node_modules/vue2-leaflet/dist/components/LMap.js");
+/* harmony import */ var vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-leaflet */ "./node_modules/vue2-leaflet/dist/components/LTileLayer.js");
+/* harmony import */ var vue2_leaflet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue2-leaflet */ "./node_modules/vue2-leaflet/dist/components/LMarker.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_0__);
 
+
+delete leaflet__WEBPACK_IMPORTED_MODULE_0__.Icon.Default.prototype._getIconUrl;
+leaflet__WEBPACK_IMPORTED_MODULE_0__.Icon.Default.mergeOptions({
+  iconRetinaUrl: __webpack_require__(/*! leaflet/dist/images/marker-icon-2x.png */ "./node_modules/leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: __webpack_require__(/*! leaflet/dist/images/marker-icon.png */ "./node_modules/leaflet/dist/images/marker-icon.png"),
+  shadowUrl: __webpack_require__(/*! leaflet/dist/images/marker-shadow.png */ "./node_modules/leaflet/dist/images/marker-shadow.png")
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['lat', 'long'],
+  name: 'MyAwesomeMap',
   components: {
-    LMap: vue2_leaflet__WEBPACK_IMPORTED_MODULE_0__["default"],
-    LTileLayer: vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__["default"],
-    LMarker: vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__["default"]
+    LMap: vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__["default"],
+    LTileLayer: vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__["default"],
+    LMarker: vue2_leaflet__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 15,
-      center: [51.505, -0.159],
-      markerLatLng: [51.504, -0.159]
+      center: [this.lat, this["long"]],
+      markerLatLng: [this.lat, this["long"]]
     };
   }
 });
@@ -7508,9 +8195,9 @@ var render = function render() {
     staticClass: "justify-center"
   }, [_c("h1", {
     staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO CÁRCEL")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("CERRO CARCEl")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7530,7 +8217,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7561,7 +8290,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO CONCEPCIÓN")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7581,7 +8310,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7612,7 +8383,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO CORDILLERA")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7632,7 +8403,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7663,7 +8476,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO FLORIDA")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7683,7 +8496,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7714,7 +8569,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO LARRAIN")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7734,7 +8589,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7765,7 +8662,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO LECHEROS")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7785,7 +8682,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7816,7 +8755,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO MARIPOSAS")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7836,7 +8775,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7867,7 +8848,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO MONJAS")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7887,7 +8868,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7918,7 +8941,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO PANTEON")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7938,7 +8961,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -7969,7 +9034,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO PLAYA ANCHA")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -7989,7 +9054,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -8020,7 +9127,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO POLANCO")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -8040,7 +9147,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -8071,7 +9220,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO SAN JUAN DE DIOS")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -8091,7 +9240,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -8122,7 +9313,7 @@ var render = function render() {
     staticClass: "text-3xl text-center py-2"
   }, [_vm._v("CERRO YUNGAY")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, [_vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -8142,7 +9333,49 @@ var render = function render() {
         target: "blank"
       }
     }, [_vm._v("MAPA")])]);
-  }), 0)]);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "flex justify-center p-5 w-full"
+  }, [_c("ul", {
+    staticClass: "inline-flex -space-x-px"
+  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": [page == _vm.isActived ? "active" : ""]
+    }, [_c("a", {
+      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
+    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.pagination.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
 };
 
 var staticRenderFns = [];
@@ -8167,7 +9400,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("l-map", {
+  return _c("div", {
+    staticClass: "bg-red-600"
+  }, [_c("p", [_vm._v("SOY EL MAPA")]), _vm._v(" "), _c("l-map", {
     staticStyle: {
       height: "300px"
     },
@@ -8184,7 +9419,7 @@ var render = function render() {
     attrs: {
       "lat-lng": _vm.markerLatLng
     }
-  })], 1);
+  })], 1)], 1);
 };
 
 var staticRenderFns = [];
@@ -8440,7 +9675,7 @@ var render = function render() {
   return _c("div", [_c("nav", {
     staticClass: "px-2 bg-red-500 text-gray-200 shadow-lg p-3"
   }, [_c("div", {
-    staticClass: "container flex flex-wrap justify-between items-center mx-auto"
+    staticClass: "container flex flex-wrap md:justify-start justify-between items-center mx-auto"
   }, [_vm._m(0), _vm._v(" "), _c("button", {
     staticClass: "inline-flex justify-center items-center ml-3 text-white rounded-lg md:hidden hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-500",
     attrs: {
@@ -8473,12 +9708,12 @@ var render = function render() {
   }, [_c("ul", {
     staticClass: "Menu-Escritorio flex flex-col p-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
   }, [_c("li", [_c("button", {
-    staticClass: "flex justify-between items-right py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent",
+    staticClass: "CERROS flex justify-between text-sm items-left py-2 pr-4 pl-3 w-full font-medium text-white rounded hover:bg-red-600 md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 md:w-auto dark:text-red-600 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent",
     attrs: {
       id: "dropdownNavbarLink",
       "data-dropdown-toggle": "dropdownNavbar"
     }
-  }, [_vm._v("Cerros "), _c("svg", {
+  }, [_vm._v("\n             Cerros \n            "), _c("svg", {
     staticClass: "ml-1 w-5 h-5",
     attrs: {
       "aria-hidden": "true",
@@ -8505,17 +9740,17 @@ var staticRenderFns = [function () {
       href: "/"
     }
   }, [_c("span", {
-    staticClass: "self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+    staticClass: "self-center text-xl font-semibold whitespace-nowrap md:hover:text-gray-100 dark:text-white"
   }, [_vm._v("La Brújula")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "hidden z-10 w-44 font-normal bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
+    staticClass: "LISTADO hidden z-10 w-44 font-normal bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
     staticStyle: {
       position: "absolute",
-      inset: "0px auto auto 0px",
+      inset: "0px auto auto -92px!important",
       margin: "0px",
       transform: "translate(0px, 487px)"
     },
@@ -14150,7 +15385,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.menuPrincipal {\n  display: block;\n  color: white;\n  padding-top: 8px;\n  padding-bottom: 8px;\n  font-size: medium;\n}\n.menuPrincipal:hover{\n  opacity: 80;\n  color: white;\n  background-color: rgb(231, 37, 12);\n}\n.Sub-menu{\n  margin-left: 8px;\n  padding: 2px;\n  /* background-color: black; */\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.menuPrincipal {\n  display: block;\n  color: white;\n  padding-top: 8px;\n  padding-bottom: 8px;\n  font-size: medium;\n}\n.menuPrincipal:hover{\n  opacity: 80;\n  color: white;\n  background-color: rgb(231, 37, 12);\n}\n.Sub-menu{\n  margin-left: 8px;\n  padding: 2px;\n  /* background-color: black; */\n}\n.Sub-menu:hover{\n  color:  rgb(231, 37, 12);\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14297,6 +15532,16 @@ module.exports = "/images/vendor/leaflet/dist/layers.png?416d91365b44e4b4f477766
 
 /***/ }),
 
+/***/ "./node_modules/leaflet/dist/images/marker-icon-2x.png":
+/*!*************************************************************!*\
+  !*** ./node_modules/leaflet/dist/images/marker-icon-2x.png ***!
+  \*************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/vendor/leaflet/dist/marker-icon-2x.png?680f69f3c2e6b90c1812a813edf67fd7";
+
+/***/ }),
+
 /***/ "./node_modules/leaflet/dist/images/marker-icon.png":
 /*!**********************************************************!*\
   !*** ./node_modules/leaflet/dist/images/marker-icon.png ***!
@@ -14304,6 +15549,16 @@ module.exports = "/images/vendor/leaflet/dist/layers.png?416d91365b44e4b4f477766
 /***/ ((module) => {
 
 module.exports = "/images/vendor/leaflet/dist/marker-icon.png?2b3e1faf89f94a4835397e7a43b4f77d";
+
+/***/ }),
+
+/***/ "./node_modules/leaflet/dist/images/marker-shadow.png":
+/*!************************************************************!*\
+  !*** ./node_modules/leaflet/dist/images/marker-shadow.png ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/vendor/leaflet/dist/marker-shadow.png?a0c6cc1401c107b501efee6477816891";
 
 /***/ }),
 
