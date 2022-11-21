@@ -68,7 +68,7 @@ class HomeController extends Controller
     );
     }
 
-    public function osm($lat,$long){
+    public function osm($lat='',$long=''){
         return view('Osm', compact(
             'lat', 'long'
         ));

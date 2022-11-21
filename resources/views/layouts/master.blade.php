@@ -9,20 +9,16 @@
 
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 
-    <link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="//unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="//unpkg.com/vue2-leaflet"></script>
-
     <title>La Brújula</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Scripts SECURE -->
-    <script src="{{ ('js/app.js') }}" defer></script>
+    <script src="{{ ('/js/app.js') }}" defer></script>
 
     <!-- Styles SECURE-->
-    <link href="{{ ('css/app.css') }}" rel="stylesheet">
+    <link href="{{ ('/css/app.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,7 +29,7 @@
 
 <body>
 
-    <div id="app">
+    <div id="app" class="MASTER">
 
         @include('layouts.header')
 
