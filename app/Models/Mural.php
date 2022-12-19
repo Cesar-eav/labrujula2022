@@ -18,11 +18,9 @@ class Mural extends Model
         'cerro',
         'direccion',
         'artista',
-        'path_imagen',
         'descripcion',
-        'instagram',
         'lat',
-        'long',
+        'lon',
         'publicidad'
 
     ];

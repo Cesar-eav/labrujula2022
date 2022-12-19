@@ -5437,25 +5437,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Iglesias.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Iglesias.vue?vue&type=script&lang=js& ***!
@@ -5546,1655 +5527,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesAlegre.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesAlegre.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-alegre?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesArtilleria.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesArtilleria.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-artilleria?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBaron.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBaron.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-baron?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBellavista.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBellavista.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-bellavista?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCarcel.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCarcel.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-carcel?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesConcepcion.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesConcepcion.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-concepcion?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCordillera.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCordillera.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-cordillera?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesFlorida.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesFlorida.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-florida?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLarrain.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLarrain.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-larrain?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLecheros.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLecheros.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-lecheros?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMariposas.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMariposas.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-mariposas?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMonjas.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMonjas.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-monjas?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPanteon.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPanteon.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-panteon?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPlayaAncha.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPlayaAncha.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-playa-ancha?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPolanco.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPolanco.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-polanco?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesSanJuan.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesSanJuan.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-san-juan?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesYungay.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesYungay.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.listMurales();
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
-    listMurales: function listMurales(page) {
-      var _this = this;
-
-      var urlMurales = "api-murales-yungay?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
-    },
-    changePage: function changePage(page) {
-      console.log("PAGE:", page);
-      this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Osm.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Osm.vue?vue&type=script&lang=js& ***!
@@ -7220,8 +5552,8 @@ leaflet__WEBPACK_IMPORTED_MODULE_0__.Icon.Default.mergeOptions({
   shadowUrl: __webpack_require__(/*! leaflet/dist/images/marker-shadow.png */ "./node_modules/leaflet/dist/images/marker-shadow.png")
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['lat', 'long'],
-  name: 'MyAwesomeMap',
+  props: ["lat", "long"],
+  name: "MyAwesomeMap",
   components: {
     LMap: vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__["default"],
     LTileLayer: vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -7255,6 +5587,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["cerro"],
   data: function data() {
     return {
       arrayList: [],
@@ -7269,7 +5602,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.listMurales();
+    this.listMurales(); // LO PRIMERO, AL LLEGAR A LA PAGINA, ES MONTAR LISTMURALES()
   },
   computed: {
     isActived: function isActived() {
@@ -7306,16 +5639,18 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    doSomethingOnReady: function doSomethingOnReady() {
-      this.map = this.$refs.myMap.mapObject;
-    },
     listMurales: function listMurales(page) {
       var _this = this;
 
-      var urlMurales = "api-murales?page=" + page;
+      console.log("PAGE", page);
+      var urlMurales = "/api-murales/" + this.cerro + "?page=" + page;
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
-        return _this.arrayList = respuesta.data.murales.data, _this.pagination = respuesta.data.pagination;
+        return (// RESPUESTA es el JSON solicitado
+          _this.arrayList = respuesta.data.murales.data, // Se llena ARRAYLIST, que está vacío, con lo que viene del JSON
+          _this.pagination = respuesta.data.pagination // Lo mismo pero ahora con los datos de PAGINATION (es un objeto)
+
+        );
       }); //Se cargan a la variable PAGINATION los datos del controlador JSON
 
       console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
@@ -7328,6 +5663,7 @@ __webpack_require__.r(__webpack_exports__);
       //     })
     },
     changePage: function changePage(page) {
+      //PAGE AUN NO TIENE VALOR
       console.log("PAGE:", page);
       this.pagination.current_page = page;
       this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
@@ -7378,6 +5714,137 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return _this.axios.post('mural', _this.mural).then(function (response) {
+                  _this.$router.push({
+                    name: "listMurales"
+                  });
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Editar.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Editar.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+document.addEventListener("DOMContentLoaded", function (event) {
+  document.getElementById('defaultModalButton').click();
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['murales'],
+  data: function data() {
+    return {
+      formEditMural: {
+        // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
+        ubicacion: this.murales.ubicacion,
+        calle: this.murales.calle,
+        descripcion: this.murales.descripcion,
+        lat: this.murales.lat,
+        lon: this.murales.lon
+      }
+    };
+  },
+  methods: {
+    editMural: function editMural() {
+      var muralDatos = "/crud/edit"; //RUTA AL CONTROLADOR QUE GUARDA
+      //SE VA AL BACK(CONTROLADOR)
+
+      axios.post(muralDatos, {
+        id: this.murales.id,
+        ubicacion: this.formEditMural.ubicacion,
+        calle: this.formEditMural.calle,
+        descripcion: this.formEditMural.descripcion,
+        lat: this.formEditMural.lat,
+        lon: this.formEditMural.lon
+      }).then(function (response) {
+        return console.log("RESPUESTA EDICION BACK: ", response.data);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Index.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Index.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  document.getElementById('defaultModalButton').click();
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["murales"],
+  data: function data() {
+    return {
+      formEditMural: {
+        // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
+        ubicacion: this.murales.ubicacion,
+        calle: this.murales.calle,
+        descripcion: this.murales.descripcion,
+        lat: this.murales.lat,
+        lon: this.murales.lon
+      }
+    };
+  },
+  methods: {
+    editMural: function editMural() {
+      var muralDatos = "/crud/edit"; //RUTA AL CONTROLADOR QUE GUARDA
+      //SE VA AL BACK(CONTROLADOR)
+
+      axios.post(muralDatos, {
+        id: this.murales.id,
+        ubicacion: this.formEditMural.ubicacion,
+        calle: this.formEditMural.calle,
+        descripcion: this.formEditMural.descripcion,
+        lat: this.formEditMural.lat,
+        lon: this.formEditMural.lon
+      }).then(function (response) {
+        return console.log("RESPUESTA EDICION BACK: ", response.data);
+      });
+    },
+    crear: function crear() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.axios.post("mural", _this.mural).then(function (response) {
                   _this.$router.push({
                     name: "listMurales"
                   });
@@ -7593,38 +6060,6 @@ var render = function render() {
 };
 
 var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", [_c("h1", {
-    staticClass: "bg-amber-100 text-3xl"
-  }, [_vm._v("CACA CON VUE")])]);
-}];
 render._withStripped = true;
 
 
@@ -7863,7 +6298,7 @@ var staticRenderFns = [function () {
     staticClass: "px-6 py-4"
   }, [_c("div", {
     staticClass: "font-bold text-xl mb-2"
-  }, [_vm._v("The Coldest Sunset")]), _vm._v(" "), _c("p", {
+  }, [_vm._v("Escaleras")]), _vm._v(" "), _c("p", {
     staticClass: "text-gray-700 text-base"
   }, [_vm._v("\n          Los colores de Valparaíso están en todos lados, incluso en sus\n          escaleras.\n        ")])]), _vm._v(" "), _c("div", {
     staticClass: "px-6 pt-4 pb-2"
@@ -7929,1461 +6364,6 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesAlegre.vue?vue&type=template&id=24bcdde8&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesAlegre.vue?vue&type=template&id=24bcdde8& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO ALEGRE")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesArtilleria.vue?vue&type=template&id=e13ba55a&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesArtilleria.vue?vue&type=template&id=e13ba55a& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO ARTILLERIA")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), 0)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBaron.vue?vue&type=template&id=1ddede7a&":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBaron.vue?vue&type=template&id=1ddede7a& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO BARON")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), 0)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBellavista.vue?vue&type=template&id=086e46f7&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBellavista.vue?vue&type=template&id=086e46f7& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO BELLAVISTA")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), 0)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCarcel.vue?vue&type=template&id=0b68f9de&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCarcel.vue?vue&type=template&id=0b68f9de& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO CARCEl")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesConcepcion.vue?vue&type=template&id=438fd28e&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesConcepcion.vue?vue&type=template&id=438fd28e& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO CONCEPCIÓN")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCordillera.vue?vue&type=template&id=2c9f32de&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCordillera.vue?vue&type=template&id=2c9f32de& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO CORDILLERA")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesFlorida.vue?vue&type=template&id=7cdea6b6&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesFlorida.vue?vue&type=template&id=7cdea6b6& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO FLORIDA")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLarrain.vue?vue&type=template&id=42c03f0e&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLarrain.vue?vue&type=template&id=42c03f0e& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO LARRAIN")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLecheros.vue?vue&type=template&id=a21b7552&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLecheros.vue?vue&type=template&id=a21b7552& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO LECHEROS")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMariposas.vue?vue&type=template&id=e6c55b3a&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMariposas.vue?vue&type=template&id=e6c55b3a& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO MARIPOSAS")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMonjas.vue?vue&type=template&id=7e5ba478&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMonjas.vue?vue&type=template&id=7e5ba478& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO MONJAS")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPanteon.vue?vue&type=template&id=e28d6c16&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPanteon.vue?vue&type=template&id=e28d6c16& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO PANTEON")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPlayaAncha.vue?vue&type=template&id=157c7d8a&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPlayaAncha.vue?vue&type=template&id=157c7d8a& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO PLAYA ANCHA")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPolanco.vue?vue&type=template&id=57ab6724&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPolanco.vue?vue&type=template&id=57ab6724& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO POLANCO")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesSanJuan.vue?vue&type=template&id=78f5e100&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesSanJuan.vue?vue&type=template&id=78f5e100& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO SAN JUAN DE DIOS")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesYungay.vue?vue&type=template&id=65ed3196&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesYungay.vue?vue&type=template&id=65ed3196& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "justify-center"
-  }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("CERRO YUNGAY")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
-  }, [_vm._l(_vm.arrayList, function (murales) {
-    return _c("div", {
-      directives: [{
-        name: "viewer",
-        rawName: "v-viewer"
-      }],
-      key: murales.id,
-      staticClass: "w-96 mx-2"
-    }, [_c("img", {
-      attrs: {
-        src: "storage/" + murales.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(murales.title) + " - " + _vm._s(murales.content) + " - " + _vm._s(murales.artista))]), _vm._v(" "), _c("a", {
-      attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
-        target: "blank"
-      }
-    }, [_vm._v("MAPA")])]);
-  }), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5 w-full"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Osm.vue?vue&type=template&id=6018cb24&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Osm.vue?vue&type=template&id=6018cb24& ***!
@@ -9400,11 +6380,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "bg-red-600"
-  }, [_c("p", [_vm._v("SOY EL MAPA")]), _vm._v(" "), _c("l-map", {
+  return _c("div", [_c("l-map", {
     staticStyle: {
-      height: "300px"
+      height: "80%"
     },
     attrs: {
       zoom: _vm.zoom,
@@ -9447,9 +6425,9 @@ var render = function render() {
   return _c("div", {
     staticClass: "justify-center"
   }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2"
-  }, [_vm._v("MURALES DE VALPARAÍSO")]), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-wrap justify-center"
+    staticClass: "text-3xl text-center py-2 uppercase"
+  }, [_vm._v("\n    MURALES DE VALPARAÍSO CERRO " + _vm._s(_vm.cerro) + "\n  ")]), _vm._v(" "), _c("div", {
+    staticClass: "flex flex-wrap justify-center mx-5"
   }, _vm._l(_vm.arrayList, function (murales) {
     return _c("div", {
       directives: [{
@@ -9457,20 +6435,21 @@ var render = function render() {
         rawName: "v-viewer"
       }],
       key: murales.id,
-      staticClass: "w-96 mx-2"
+      staticClass: "w-96 mx-2 bg-red-800"
     }, [_c("img", {
       attrs: {
-        src: "storage/" + murales.image,
+        src: "/storage/" + murales.image,
         alt: "imagen"
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_c("b", [_vm._v(_vm._s(murales.title))]), _vm._v(" - " + _vm._s(murales.content) + " -\n          " + _vm._s(murales.artista) + "\n        ")]), _vm._v(" "), _c("a", {
+      staticClass: "bg-red-500 px-2"
+    }, [_c("b", [_vm._v(_vm._s(murales.ubicacion))]), _vm._v(" - " + _vm._s(murales.calle) + " -\n        " + _vm._s(murales.artista) + "\n      ")]), _vm._v(" "), _c("a", {
+      staticClass: "flex justify-end text-white mx-2",
       attrs: {
-        href: "osm/" + murales.lat + "/" + murales.lon,
+        href: "/osm/" + murales.lat + "/" + murales.lon,
         target: "blank"
       }
-    }, [_vm._v("MAPA")])]);
+    }, [_vm._v("Ir al mapa")])]);
   }), 0), _vm._v(" "), _c("nav", {
     staticClass: "flex justify-center p-5"
   }, [_c("ul", {
@@ -9546,6 +6525,642 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", [_c("h4", [_vm._v(" CREAR REGISTRO MURAL")])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Editar.vue?vue&type=template&id=53d9a65e&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Editar.vue?vue&type=template&id=53d9a65e& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full",
+    attrs: {
+      id: "updateProductModal",
+      tabindex: "-1",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "relative p-4 w-full max-w-2xl h-full md:h-auto"
+  }, [_c("div", {
+    staticClass: "relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
+  }, [_c("div", {
+    staticClass: "flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600"
+  }, [_c("h3", {
+    staticClass: "text-lg font-semibold text-gray-900 dark:text-white"
+  }, [_vm._v("\n                    Actualizar Mural\n                ")]), _vm._v(" "), _c("button", {
+    staticClass: "text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white",
+    attrs: {
+      type: "button",
+      "data-modal-toggle": "updateProductModal"
+    }
+  }, [_c("svg", {
+    staticClass: "w-5 h-5",
+    attrs: {
+      "aria-hidden": "true",
+      fill: "currentColor",
+      viewBox: "0 0 20 20",
+      xmlns: "http://www.w3.org/2000/svg"
+    }
+  }, [_c("path", {
+    attrs: {
+      "fill-rule": "evenodd",
+      d: "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+      "clip-rule": "evenodd"
+    }
+  })]), _vm._v(" "), _c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("Close modal")])])]), _vm._v(" "), _c("form", {
+    attrs: {
+      action: "#"
+    }
+  }, [_c("div", {
+    staticClass: "grid gap-4 mb-4 sm:grid-cols-2"
+  }, [_c("div", [_c("label", {
+    staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("Cerro")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.ubicacion,
+      expression: "formEditMural.ubicacion"
+    }],
+    staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+    attrs: {
+      type: "text",
+      placeholder: "Ex. Apple iMac 27&ldquo;"
+    },
+    domProps: {
+      value: _vm.formEditMural.ubicacion
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "ubicacion", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", [_c("label", {
+    staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+    attrs: {
+      "for": "brand"
+    }
+  }, [_vm._v("Calle")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.calle,
+      expression: "formEditMural.calle"
+    }],
+    staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.calle
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "calle", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", [_c("label", {
+    staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+    attrs: {
+      "for": "price"
+    }
+  }, [_vm._v("Latitud")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.lat,
+      expression: "formEditMural.lat"
+    }],
+    staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+    attrs: {
+      type: "number"
+    },
+    domProps: {
+      value: _vm.formEditMural.lat
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "lat", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", [_c("label", {
+    staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+    attrs: {
+      "for": "price"
+    }
+  }, [_vm._v("Latitud")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.lon,
+      expression: "formEditMural.lon"
+    }],
+    staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+    attrs: {
+      type: "number"
+    },
+    domProps: {
+      value: _vm.formEditMural.lon
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "lon", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "sm:col-span-2"
+  }, [_c("label", {
+    staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+    attrs: {
+      "for": "description"
+    }
+  }, [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.descripcion,
+      expression: "formEditMural.descripcion"
+    }],
+    staticClass: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+    attrs: {
+      rows: "5"
+    },
+    domProps: {
+      value: _vm.formEditMural.descripcion
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "descripcion", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "flex items-center space-x-4"
+  }, [_c("button", {
+    staticClass: "text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
+    attrs: {
+      type: "submit"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.editMural();
+      }
+    }
+  }, [_vm._v("\n                        Update product\n                    ")]), _vm._v(" "), _c("button", {
+    staticClass: "text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_c("svg", {
+    staticClass: "mr-1 -ml-1 w-5 h-5",
+    attrs: {
+      fill: "currentColor",
+      viewBox: "0 0 20 20",
+      xmlns: "http://www.w3.org/2000/svg"
+    }
+  }, [_c("path", {
+    attrs: {
+      "fill-rule": "evenodd",
+      d: "M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z",
+      "clip-rule": "evenodd"
+    }
+  })]), _vm._v("\n                        Delete\n                    ")])])])])])]), _vm._v(" "), _c("p", [_vm._v("\n          Cerro:\n          "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.ubicacion,
+      expression: "formEditMural.ubicacion"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.ubicacion
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "ubicacion", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("p", [_vm._v("\n          Calle:\n          "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.calle,
+      expression: "formEditMural.calle"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.calle
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "calle", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("p", [_vm._v("\n          Descripción:\n          "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.descripcion,
+      expression: "formEditMural.descripcion"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.descripcion
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "descripcion", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("p", [_vm._v("\n          Latitud:\n          "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.lat,
+      expression: "formEditMural.lat"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.lat
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "lat", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("p", [_vm._v("\n          Longitud:\n          "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.lon,
+      expression: "formEditMural.lon"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.lon
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "lon", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("input", {
+    attrs: {
+      type: "submit",
+      value: "Guardar",
+      title: "Guardar"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.editMural();
+      }
+    }
+  })]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center m-5"
+  }, [_c("button", {
+    staticClass: "block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
+    attrs: {
+      id: "updateProductButton",
+      "data-modal-toggle": "updateProductModal",
+      type: "button"
+    }
+  }, [_vm._v("\n    Update product\n    ")])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Index.vue?vue&type=template&id=24cb7aac&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Index.vue?vue&type=template&id=24cb7aac& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", [_c("h1", {
+    staticClass: "flex text-xl justify-center"
+  }, [_vm._v("MURALES DE VALPARAISO")]), _vm._v(" "), _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("table", {
+    staticClass: "bg-red-100"
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.murales, function (mural) {
+    return _c("tr", {
+      key: mural.id
+    }, [_c("td", [_c("img", {
+      attrs: {
+        src: "/storage/" + mural.image,
+        alt: "imagen",
+        width: "200"
+      }
+    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.ubicacion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.calle) + " ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.descripcion))]), _vm._v(" "), _c("td", {
+      staticClass: "bg-red-300"
+    }, [_vm._m(1, true), _vm._v(" "), _c("div", {
+      staticClass: "hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full",
+      attrs: {
+        id: "updateProductModal",
+        tabindex: "-1",
+        "aria-hidden": "true"
+      }
+    }, [_c("div", {
+      staticClass: "relative p-4 w-full max-w-2xl h-full md:h-auto"
+    }, [_c("div", {
+      staticClass: "relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
+    }, [_c("div", {
+      staticClass: "flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600"
+    }, [_c("h3", {
+      staticClass: "text-lg font-semibold text-gray-900 dark:text-white"
+    }, [_vm._v("\n                    Update Product\n                ")]), _vm._v(" "), _c("button", {
+      staticClass: "text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white",
+      attrs: {
+        type: "button",
+        "data-modal-toggle": "updateProductModal"
+      }
+    }, [_c("svg", {
+      staticClass: "w-5 h-5",
+      attrs: {
+        "aria-hidden": "true",
+        fill: "currentColor",
+        viewBox: "0 0 20 20",
+        xmlns: "http://www.w3.org/2000/svg"
+      }
+    }, [_c("path", {
+      attrs: {
+        "fill-rule": "evenodd",
+        d: "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+        "clip-rule": "evenodd"
+      }
+    })]), _vm._v(" "), _c("span", {
+      staticClass: "sr-only"
+    }, [_vm._v("Close modal")])])]), _vm._v(" "), _c("form", {
+      attrs: {
+        action: "#"
+      }
+    }, [_vm._l(_vm.murales, function (mural) {
+      return _c("div", {
+        key: mural.id,
+        staticClass: "grid gap-4 mb-4 sm:grid-cols-2"
+      }, [_c("div", [_c("label", {
+        staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+        attrs: {
+          "for": "name"
+        }
+      }, [_vm._v("Cerro")]), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: mural.ubicacion,
+          expression: "mural.ubicacion"
+        }],
+        staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+        attrs: {
+          type: "text"
+        },
+        domProps: {
+          value: mural.ubicacion
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+
+            _vm.$set(mural, "ubicacion", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", [_c("label", {
+        staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+        attrs: {
+          "for": "brand"
+        }
+      }, [_vm._v("Calle")]), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: mural.calle,
+          expression: "mural.calle"
+        }],
+        staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+        attrs: {
+          type: "text"
+        },
+        domProps: {
+          value: mural.calle
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+
+            _vm.$set(mural, "calle", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", [_c("label", {
+        staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+        attrs: {
+          "for": "price"
+        }
+      }, [_vm._v("Latitud")]), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: mural.lat,
+          expression: "mural.lat"
+        }],
+        staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+        attrs: {
+          type: "number"
+        },
+        domProps: {
+          value: mural.lat
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+
+            _vm.$set(mural, "lat", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", [_c("label", {
+        staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+        attrs: {
+          "for": "price"
+        }
+      }, [_vm._v("Latitud")]), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: mural.lon,
+          expression: "mural.lon"
+        }],
+        staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+        attrs: {
+          type: "number"
+        },
+        domProps: {
+          value: mural.lon
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+
+            _vm.$set(mural, "lon", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "sm:col-span-2"
+      }, [_c("label", {
+        staticClass: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+        attrs: {
+          "for": "description"
+        }
+      }, [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: mural.descripcion,
+          expression: "mural.descripcion"
+        }],
+        staticClass: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+        attrs: {
+          rows: "5"
+        },
+        domProps: {
+          value: mural.descripcion
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+
+            _vm.$set(mural, "descripcion", $event.target.value);
+          }
+        }
+      })])]);
+    }), _vm._v(" "), _c("div", {
+      staticClass: "flex items-center space-x-4"
+    }, [_c("button", {
+      staticClass: "text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
+      attrs: {
+        type: "submit"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.editMural();
+        }
+      }
+    }, [_vm._v("\n                       Editar\n                    ")]), _vm._v(" "), _c("button", {
+      staticClass: "text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900",
+      attrs: {
+        type: "button"
+      }
+    }, [_c("svg", {
+      staticClass: "mr-1 -ml-1 w-5 h-5",
+      attrs: {
+        fill: "currentColor",
+        viewBox: "0 0 20 20",
+        xmlns: "http://www.w3.org/2000/svg"
+      }
+    }, [_c("path", {
+      attrs: {
+        "fill-rule": "evenodd",
+        d: "M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z",
+        "clip-rule": "evenodd"
+      }
+    })]), _vm._v("\n                        Delete\n                    ")])])], 2)])])]), _vm._v(" "), _c("a", {
+      attrs: {
+        href: "/crud/show-edit/" + mural.id
+      }
+    }, [_vm._v("Editar")])]), _vm._v(" "), _c("td", {
+      staticClass: "bg-red-300"
+    }, [_vm._v("Eliminar")])]);
+  }), 0)])])]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("thead", [_c("tr", [_c("td", [_vm._v("Imagen")]), _vm._v(" "), _c("td", [_vm._v("Ubicación")]), _vm._v(" "), _c("td", [_vm._v("Calle")]), _vm._v(" "), _c("td", [_vm._v("Descripción")]), _vm._v(" "), _c("td", {
+    staticClass: "bg-red-300"
+  }, [_vm._v("Acciones")]), _vm._v(" "), _c("td", {
+    staticClass: "bg-red-300"
+  })])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center m-5"
+  }, [_c("button", {
+    staticClass: "block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
+    attrs: {
+      id: "updateProductButton",
+      "data-modal-toggle": "updateProductModal",
+      type: "button"
+    }
+  }, [_vm._v("\n    Editar/Actualizar\n    ")])]);
 }];
 render._withStripped = true;
 
@@ -9727,7 +7342,12 @@ var render = function render() {
       d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
       "clip-rule": "evenodd"
     }
-  })])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8)])])])])]);
+  })])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "),  true ? _c("li", [_c("a", {
+    staticClass: "menuPrincipal block py-2",
+    attrs: {
+      href: "/crud/index"
+    }
+  }, [_vm._v("CRUD")])]) : 0])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -9747,7 +7367,7 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "LISTADO hidden z-10 w-44 font-normal bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
+    staticClass: "LISTADO hidden w-44 font-normal bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
     staticStyle: {
       position: "absolute",
       inset: "0px auto auto -92px!important",
@@ -9768,87 +7388,87 @@ var staticRenderFns = [function () {
   }, [_c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-alegre"
+      href: "murales/alegre"
     }
   }, [_vm._v("Alegre")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-artilleria"
+      href: "/murales/artilleria"
     }
   }, [_vm._v("Artilleria")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-baron"
+      href: "/murales/baron"
     }
   }, [_vm._v("Barón")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-bellavista"
+      href: "/murales/bellavista"
     }
   }, [_vm._v("Bellavista")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-carcel"
+      href: "/murales/carcel"
     }
   }, [_vm._v("Carcel")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-cordillera"
+      href: "/murales/cordillera"
     }
   }, [_vm._v("Cordillera")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-concepcion"
+      href: "/murales/concepcion"
     }
   }, [_vm._v("Concepción")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-florida"
+      href: "/murales/florida"
     }
   }, [_vm._v("Florida")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-larrain"
+      href: "/murales/larrain"
     }
   }, [_vm._v("Larrain")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-lecheros"
+      href: "/murales/lecheros"
     }
   }, [_vm._v("Lecheros")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-mariposas"
+      href: "/murales/mariposas"
     }
   }, [_vm._v("Mariposas")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-monjas"
+      href: "/murales/monjas"
     }
   }, [_vm._v("Monjas")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-panteon"
+      href: "/murales/panteon"
     }
   }, [_vm._v("Panteón")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-playa-ancha"
+      href: "/murales/playa ancha"
     }
   }, [_vm._v("Playa Ancha")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-polanco"
+      href: "/murales/polanco"
     }
   }, [_vm._v("Polanco")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-san-juan"
+      href: "/murales/san juan de dios"
     }
   }, [_vm._v("San Juan de Dios")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales-yungay"
+      href: "/murales/yungay"
     }
   }, [_vm._v("Yungay")])])])]);
 }, function () {
@@ -9858,7 +7478,7 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal",
     attrs: {
-      href: "murales"
+      href: "/murales"
     }
   }, [_vm._v("Street Art")])]);
 }, function () {
@@ -9878,7 +7498,7 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal",
     attrs: {
-      href: "ascensores"
+      href: "/ascensores"
     }
   }, [_vm._v("Ascensores")])]);
 }, function () {
@@ -9888,7 +7508,7 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal",
     attrs: {
-      href: "escaleras"
+      href: "/escaleras"
     }
   }, [_vm._v("Escaleras")])]);
 }, function () {
@@ -9898,7 +7518,7 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal",
     attrs: {
-      href: "miradores"
+      href: "/miradores"
     }
   }, [_vm._v("Miradores")])]);
 }, function () {
@@ -9908,7 +7528,7 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal block py-2",
     attrs: {
-      href: "iglesias#"
+      href: "/iglesias#"
     }
   }, [_vm._v("Iglesias")])]);
 }, function () {
@@ -9918,7 +7538,7 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal block py-2",
     attrs: {
-      href: "arquitecturas"
+      href: "/arquitecturas"
     }
   }, [_vm._v("Arquitectura")])]);
 }];
@@ -9957,37 +7577,9 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use((v_viewer__WEBPACK_IMPORTED_MODU
 }); // OPEN STREET MAP
 
 
- //Vue.component('l-map', LMap);
-//Vue.component('l-tile-layer', LTileLayer);
-//Vue.component('l-marker', LMarker);
-// import { Icon } from 'leaflet';
-// delete Icon.Default.prototype._getIconUrl;
-// Icon.Default.mergeOptions({
-//   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
-//   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-// });
 
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].config.productionTip = false;
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('show-murales', (__webpack_require__(/*! ./components/Show.vue */ "./resources/js/components/Show.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-cordillera', (__webpack_require__(/*! ./components/MuralesCordillera.vue */ "./resources/js/components/MuralesCordillera.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-alegre', (__webpack_require__(/*! ./components/MuralesAlegre.vue */ "./resources/js/components/MuralesAlegre.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-artilleria', (__webpack_require__(/*! ./components/MuralesArtilleria.vue */ "./resources/js/components/MuralesArtilleria.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-concepcion', (__webpack_require__(/*! ./components/MuralesConcepcion.vue */ "./resources/js/components/MuralesConcepcion.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-baron', (__webpack_require__(/*! ./components/MuralesBaron.vue */ "./resources/js/components/MuralesBaron.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-bellavista', (__webpack_require__(/*! ./components/MuralesBellavista.vue */ "./resources/js/components/MuralesBellavista.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-carcel', (__webpack_require__(/*! ./components/MuralesCarcel.vue */ "./resources/js/components/MuralesCarcel.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-florida', (__webpack_require__(/*! ./components/MuralesFlorida.vue */ "./resources/js/components/MuralesFlorida.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-larrain', (__webpack_require__(/*! ./components/MuralesLarrain.vue */ "./resources/js/components/MuralesLarrain.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-lecheros', (__webpack_require__(/*! ./components/MuralesLecheros.vue */ "./resources/js/components/MuralesLecheros.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-mariposas', (__webpack_require__(/*! ./components/MuralesMariposas.vue */ "./resources/js/components/MuralesMariposas.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-monjas', (__webpack_require__(/*! ./components/MuralesMonjas.vue */ "./resources/js/components/MuralesMonjas.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-panteon', (__webpack_require__(/*! ./components/MuralesPanteon.vue */ "./resources/js/components/MuralesPanteon.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-playa-ancha', (__webpack_require__(/*! ./components/MuralesPlayaAncha.vue */ "./resources/js/components/MuralesPlayaAncha.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-polanco', (__webpack_require__(/*! ./components/MuralesPolanco.vue */ "./resources/js/components/MuralesPolanco.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-san-juan', (__webpack_require__(/*! ./components/MuralesSanJuan.vue */ "./resources/js/components/MuralesSanJuan.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('murales-yungay', (__webpack_require__(/*! ./components/MuralesYungay.vue */ "./resources/js/components/MuralesYungay.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('mapa-osm', (__webpack_require__(/*! ./components/Osm.vue */ "./resources/js/components/Osm.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('ascensores', (__webpack_require__(/*! ./components/Ascensores.vue */ "./resources/js/components/Ascensores.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('escaleras', (__webpack_require__(/*! ./components/Escaleras.vue */ "./resources/js/components/Escaleras.vue")["default"]));
@@ -9998,7 +7590,9 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('inicio-component', (__web
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('header-component', (__webpack_require__(/*! ./views/Header.vue */ "./resources/js/views/Header.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('footer-component', (__webpack_require__(/*! ./views/Footer.vue */ "./resources/js/views/Footer.vue")["default"])); //  CRUD
 
+vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('index-component', (__webpack_require__(/*! ./components/crud/Index.vue */ "./resources/js/components/crud/Index.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('crear-component', (__webpack_require__(/*! ./components/crud/Crear.vue */ "./resources/js/components/crud/Crear.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('edit-component', (__webpack_require__(/*! ./components/crud/Editar.vue */ "./resources/js/components/crud/Editar.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('mostrar-component', (__webpack_require__(/*! ./components/crud/Mostrar.vue */ "./resources/js/components/crud/Mostrar.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15385,7 +12979,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.menuPrincipal {\n  display: block;\n  color: white;\n  padding-top: 8px;\n  padding-bottom: 8px;\n  font-size: medium;\n}\n.menuPrincipal:hover{\n  opacity: 80;\n  color: white;\n  background-color: rgb(231, 37, 12);\n}\n.Sub-menu{\n  margin-left: 8px;\n  padding: 2px;\n  /* background-color: black; */\n}\n.Sub-menu:hover{\n  color:  rgb(231, 37, 12);\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.menuPrincipal {\n  display: block;\n  color: white;\n  padding-top: 8px;\n  padding-bottom: 8px;\n  font-size: medium;\n}\n.menuPrincipal:hover{\n  opacity: 80;\n  color: white;\n  background-color: rgb(231, 37, 12);\n}\n.Sub-menu{\n  margin-left: 8px;\n  padding: 2px;\n  /* background-color: black; */\n}\n.Sub-menu:hover{\n  color:  rgb(231, 37, 12);\n}\n.LISTADO {\n  z-index: 10000;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51857,45 +49451,6 @@ component.options.__file = "resources/js/components/Escaleras.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.render,
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/components/Iglesias.vue":
 /*!**********************************************!*\
   !*** ./resources/js/components/Iglesias.vue ***!
@@ -52007,669 +49562,6 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/Miradores.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesAlegre.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/MuralesAlegre.vue ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesAlegre_vue_vue_type_template_id_24bcdde8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesAlegre.vue?vue&type=template&id=24bcdde8& */ "./resources/js/components/MuralesAlegre.vue?vue&type=template&id=24bcdde8&");
-/* harmony import */ var _MuralesAlegre_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesAlegre.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesAlegre.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesAlegre_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesAlegre_vue_vue_type_template_id_24bcdde8___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesAlegre_vue_vue_type_template_id_24bcdde8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesAlegre.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesArtilleria.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/MuralesArtilleria.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesArtilleria_vue_vue_type_template_id_e13ba55a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesArtilleria.vue?vue&type=template&id=e13ba55a& */ "./resources/js/components/MuralesArtilleria.vue?vue&type=template&id=e13ba55a&");
-/* harmony import */ var _MuralesArtilleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesArtilleria.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesArtilleria.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesArtilleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesArtilleria_vue_vue_type_template_id_e13ba55a___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesArtilleria_vue_vue_type_template_id_e13ba55a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesArtilleria.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesBaron.vue":
-/*!**************************************************!*\
-  !*** ./resources/js/components/MuralesBaron.vue ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesBaron_vue_vue_type_template_id_1ddede7a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesBaron.vue?vue&type=template&id=1ddede7a& */ "./resources/js/components/MuralesBaron.vue?vue&type=template&id=1ddede7a&");
-/* harmony import */ var _MuralesBaron_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesBaron.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesBaron.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesBaron_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesBaron_vue_vue_type_template_id_1ddede7a___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesBaron_vue_vue_type_template_id_1ddede7a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesBaron.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesBellavista.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/MuralesBellavista.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesBellavista_vue_vue_type_template_id_086e46f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesBellavista.vue?vue&type=template&id=086e46f7& */ "./resources/js/components/MuralesBellavista.vue?vue&type=template&id=086e46f7&");
-/* harmony import */ var _MuralesBellavista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesBellavista.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesBellavista.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesBellavista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesBellavista_vue_vue_type_template_id_086e46f7___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesBellavista_vue_vue_type_template_id_086e46f7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesBellavista.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesCarcel.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/MuralesCarcel.vue ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesCarcel_vue_vue_type_template_id_0b68f9de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesCarcel.vue?vue&type=template&id=0b68f9de& */ "./resources/js/components/MuralesCarcel.vue?vue&type=template&id=0b68f9de&");
-/* harmony import */ var _MuralesCarcel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesCarcel.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesCarcel.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesCarcel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesCarcel_vue_vue_type_template_id_0b68f9de___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesCarcel_vue_vue_type_template_id_0b68f9de___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesCarcel.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesConcepcion.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/MuralesConcepcion.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesConcepcion_vue_vue_type_template_id_438fd28e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesConcepcion.vue?vue&type=template&id=438fd28e& */ "./resources/js/components/MuralesConcepcion.vue?vue&type=template&id=438fd28e&");
-/* harmony import */ var _MuralesConcepcion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesConcepcion.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesConcepcion.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesConcepcion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesConcepcion_vue_vue_type_template_id_438fd28e___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesConcepcion_vue_vue_type_template_id_438fd28e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesConcepcion.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesCordillera.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/MuralesCordillera.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesCordillera_vue_vue_type_template_id_2c9f32de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesCordillera.vue?vue&type=template&id=2c9f32de& */ "./resources/js/components/MuralesCordillera.vue?vue&type=template&id=2c9f32de&");
-/* harmony import */ var _MuralesCordillera_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesCordillera.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesCordillera.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesCordillera_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesCordillera_vue_vue_type_template_id_2c9f32de___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesCordillera_vue_vue_type_template_id_2c9f32de___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesCordillera.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesFlorida.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/MuralesFlorida.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesFlorida_vue_vue_type_template_id_7cdea6b6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesFlorida.vue?vue&type=template&id=7cdea6b6& */ "./resources/js/components/MuralesFlorida.vue?vue&type=template&id=7cdea6b6&");
-/* harmony import */ var _MuralesFlorida_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesFlorida.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesFlorida.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesFlorida_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesFlorida_vue_vue_type_template_id_7cdea6b6___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesFlorida_vue_vue_type_template_id_7cdea6b6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesFlorida.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesLarrain.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/MuralesLarrain.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesLarrain_vue_vue_type_template_id_42c03f0e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesLarrain.vue?vue&type=template&id=42c03f0e& */ "./resources/js/components/MuralesLarrain.vue?vue&type=template&id=42c03f0e&");
-/* harmony import */ var _MuralesLarrain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesLarrain.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesLarrain.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesLarrain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesLarrain_vue_vue_type_template_id_42c03f0e___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesLarrain_vue_vue_type_template_id_42c03f0e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesLarrain.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesLecheros.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/MuralesLecheros.vue ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesLecheros_vue_vue_type_template_id_a21b7552___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesLecheros.vue?vue&type=template&id=a21b7552& */ "./resources/js/components/MuralesLecheros.vue?vue&type=template&id=a21b7552&");
-/* harmony import */ var _MuralesLecheros_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesLecheros.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesLecheros.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesLecheros_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesLecheros_vue_vue_type_template_id_a21b7552___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesLecheros_vue_vue_type_template_id_a21b7552___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesLecheros.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesMariposas.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/MuralesMariposas.vue ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesMariposas_vue_vue_type_template_id_e6c55b3a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesMariposas.vue?vue&type=template&id=e6c55b3a& */ "./resources/js/components/MuralesMariposas.vue?vue&type=template&id=e6c55b3a&");
-/* harmony import */ var _MuralesMariposas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesMariposas.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesMariposas.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesMariposas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesMariposas_vue_vue_type_template_id_e6c55b3a___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesMariposas_vue_vue_type_template_id_e6c55b3a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesMariposas.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesMonjas.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/MuralesMonjas.vue ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesMonjas_vue_vue_type_template_id_7e5ba478___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesMonjas.vue?vue&type=template&id=7e5ba478& */ "./resources/js/components/MuralesMonjas.vue?vue&type=template&id=7e5ba478&");
-/* harmony import */ var _MuralesMonjas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesMonjas.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesMonjas.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesMonjas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesMonjas_vue_vue_type_template_id_7e5ba478___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesMonjas_vue_vue_type_template_id_7e5ba478___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesMonjas.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPanteon.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/MuralesPanteon.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesPanteon_vue_vue_type_template_id_e28d6c16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesPanteon.vue?vue&type=template&id=e28d6c16& */ "./resources/js/components/MuralesPanteon.vue?vue&type=template&id=e28d6c16&");
-/* harmony import */ var _MuralesPanteon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesPanteon.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesPanteon.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesPanteon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesPanteon_vue_vue_type_template_id_e28d6c16___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesPanteon_vue_vue_type_template_id_e28d6c16___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesPanteon.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPlayaAncha.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/MuralesPlayaAncha.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesPlayaAncha_vue_vue_type_template_id_157c7d8a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesPlayaAncha.vue?vue&type=template&id=157c7d8a& */ "./resources/js/components/MuralesPlayaAncha.vue?vue&type=template&id=157c7d8a&");
-/* harmony import */ var _MuralesPlayaAncha_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesPlayaAncha.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesPlayaAncha.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesPlayaAncha_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesPlayaAncha_vue_vue_type_template_id_157c7d8a___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesPlayaAncha_vue_vue_type_template_id_157c7d8a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesPlayaAncha.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPolanco.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/MuralesPolanco.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesPolanco_vue_vue_type_template_id_57ab6724___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesPolanco.vue?vue&type=template&id=57ab6724& */ "./resources/js/components/MuralesPolanco.vue?vue&type=template&id=57ab6724&");
-/* harmony import */ var _MuralesPolanco_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesPolanco.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesPolanco.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesPolanco_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesPolanco_vue_vue_type_template_id_57ab6724___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesPolanco_vue_vue_type_template_id_57ab6724___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesPolanco.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesSanJuan.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/MuralesSanJuan.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesSanJuan_vue_vue_type_template_id_78f5e100___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesSanJuan.vue?vue&type=template&id=78f5e100& */ "./resources/js/components/MuralesSanJuan.vue?vue&type=template&id=78f5e100&");
-/* harmony import */ var _MuralesSanJuan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesSanJuan.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesSanJuan.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesSanJuan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesSanJuan_vue_vue_type_template_id_78f5e100___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesSanJuan_vue_vue_type_template_id_78f5e100___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesSanJuan.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesYungay.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/MuralesYungay.vue ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _MuralesYungay_vue_vue_type_template_id_65ed3196___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MuralesYungay.vue?vue&type=template&id=65ed3196& */ "./resources/js/components/MuralesYungay.vue?vue&type=template&id=65ed3196&");
-/* harmony import */ var _MuralesYungay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MuralesYungay.vue?vue&type=script&lang=js& */ "./resources/js/components/MuralesYungay.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MuralesYungay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MuralesYungay_vue_vue_type_template_id_65ed3196___WEBPACK_IMPORTED_MODULE_0__.render,
-  _MuralesYungay_vue_vue_type_template_id_65ed3196___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MuralesYungay.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -52789,6 +49681,84 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/crud/Crear.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/crud/Editar.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/crud/Editar.vue ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Editar_vue_vue_type_template_id_53d9a65e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Editar.vue?vue&type=template&id=53d9a65e& */ "./resources/js/components/crud/Editar.vue?vue&type=template&id=53d9a65e&");
+/* harmony import */ var _Editar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Editar.vue?vue&type=script&lang=js& */ "./resources/js/components/crud/Editar.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Editar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Editar_vue_vue_type_template_id_53d9a65e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Editar_vue_vue_type_template_id_53d9a65e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/crud/Editar.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/crud/Index.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/crud/Index.vue ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Index_vue_vue_type_template_id_24cb7aac___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=24cb7aac& */ "./resources/js/components/crud/Index.vue?vue&type=template&id=24cb7aac&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/js/components/crud/Index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_24cb7aac___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Index_vue_vue_type_template_id_24cb7aac___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/crud/Index.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -52956,22 +49926,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/components/Iglesias.vue?vue&type=script&lang=js&":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Iglesias.vue?vue&type=script&lang=js& ***!
@@ -53001,278 +49955,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Miradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Miradores.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Miradores.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Miradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesAlegre.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/MuralesAlegre.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesAlegre_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesAlegre.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesAlegre.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesAlegre_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesArtilleria.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/MuralesArtilleria.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesArtilleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesArtilleria.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesArtilleria.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesArtilleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesBaron.vue?vue&type=script&lang=js&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/MuralesBaron.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBaron_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesBaron.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBaron.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBaron_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesBellavista.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/MuralesBellavista.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBellavista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesBellavista.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBellavista.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBellavista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesCarcel.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/MuralesCarcel.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCarcel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesCarcel.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCarcel.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCarcel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesConcepcion.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/MuralesConcepcion.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesConcepcion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesConcepcion.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesConcepcion.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesConcepcion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesCordillera.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/MuralesCordillera.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCordillera_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesCordillera.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCordillera.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCordillera_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesFlorida.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/components/MuralesFlorida.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesFlorida_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesFlorida.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesFlorida.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesFlorida_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesLarrain.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/components/MuralesLarrain.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLarrain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesLarrain.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLarrain.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLarrain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesLecheros.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/MuralesLecheros.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLecheros_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesLecheros.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLecheros.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLecheros_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesMariposas.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/MuralesMariposas.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMariposas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesMariposas.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMariposas.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMariposas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesMonjas.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/MuralesMonjas.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMonjas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesMonjas.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMonjas.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMonjas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPanteon.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/components/MuralesPanteon.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPanteon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesPanteon.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPanteon.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPanteon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPlayaAncha.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/MuralesPlayaAncha.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPlayaAncha_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesPlayaAncha.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPlayaAncha.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPlayaAncha_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPolanco.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/components/MuralesPolanco.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPolanco_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesPolanco.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPolanco.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPolanco_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesSanJuan.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/components/MuralesSanJuan.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesSanJuan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesSanJuan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesSanJuan.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesSanJuan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesYungay.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/MuralesYungay.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesYungay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesYungay.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesYungay.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesYungay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -53321,6 +50003,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Crear_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Crear.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Crear.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Crear_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/crud/Editar.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/crud/Editar.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Editar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Editar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Editar.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Editar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/crud/Index.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/crud/Index.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Index.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -53391,23 +50105,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/Iglesias.vue?vue&type=template&id=7eb91aec&":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/Iglesias.vue?vue&type=template&id=7eb91aec& ***!
@@ -53459,295 +50156,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/MuralesAlegre.vue?vue&type=template&id=24bcdde8&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/MuralesAlegre.vue?vue&type=template&id=24bcdde8& ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesAlegre_vue_vue_type_template_id_24bcdde8___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesAlegre_vue_vue_type_template_id_24bcdde8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesAlegre_vue_vue_type_template_id_24bcdde8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesAlegre.vue?vue&type=template&id=24bcdde8& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesAlegre.vue?vue&type=template&id=24bcdde8&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesArtilleria.vue?vue&type=template&id=e13ba55a&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/MuralesArtilleria.vue?vue&type=template&id=e13ba55a& ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesArtilleria_vue_vue_type_template_id_e13ba55a___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesArtilleria_vue_vue_type_template_id_e13ba55a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesArtilleria_vue_vue_type_template_id_e13ba55a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesArtilleria.vue?vue&type=template&id=e13ba55a& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesArtilleria.vue?vue&type=template&id=e13ba55a&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesBaron.vue?vue&type=template&id=1ddede7a&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/MuralesBaron.vue?vue&type=template&id=1ddede7a& ***!
-  \*********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBaron_vue_vue_type_template_id_1ddede7a___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBaron_vue_vue_type_template_id_1ddede7a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBaron_vue_vue_type_template_id_1ddede7a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesBaron.vue?vue&type=template&id=1ddede7a& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBaron.vue?vue&type=template&id=1ddede7a&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesBellavista.vue?vue&type=template&id=086e46f7&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/MuralesBellavista.vue?vue&type=template&id=086e46f7& ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBellavista_vue_vue_type_template_id_086e46f7___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBellavista_vue_vue_type_template_id_086e46f7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesBellavista_vue_vue_type_template_id_086e46f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesBellavista.vue?vue&type=template&id=086e46f7& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesBellavista.vue?vue&type=template&id=086e46f7&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesCarcel.vue?vue&type=template&id=0b68f9de&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/MuralesCarcel.vue?vue&type=template&id=0b68f9de& ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCarcel_vue_vue_type_template_id_0b68f9de___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCarcel_vue_vue_type_template_id_0b68f9de___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCarcel_vue_vue_type_template_id_0b68f9de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesCarcel.vue?vue&type=template&id=0b68f9de& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCarcel.vue?vue&type=template&id=0b68f9de&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesConcepcion.vue?vue&type=template&id=438fd28e&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/MuralesConcepcion.vue?vue&type=template&id=438fd28e& ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesConcepcion_vue_vue_type_template_id_438fd28e___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesConcepcion_vue_vue_type_template_id_438fd28e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesConcepcion_vue_vue_type_template_id_438fd28e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesConcepcion.vue?vue&type=template&id=438fd28e& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesConcepcion.vue?vue&type=template&id=438fd28e&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesCordillera.vue?vue&type=template&id=2c9f32de&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/MuralesCordillera.vue?vue&type=template&id=2c9f32de& ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCordillera_vue_vue_type_template_id_2c9f32de___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCordillera_vue_vue_type_template_id_2c9f32de___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesCordillera_vue_vue_type_template_id_2c9f32de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesCordillera.vue?vue&type=template&id=2c9f32de& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesCordillera.vue?vue&type=template&id=2c9f32de&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesFlorida.vue?vue&type=template&id=7cdea6b6&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/MuralesFlorida.vue?vue&type=template&id=7cdea6b6& ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesFlorida_vue_vue_type_template_id_7cdea6b6___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesFlorida_vue_vue_type_template_id_7cdea6b6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesFlorida_vue_vue_type_template_id_7cdea6b6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesFlorida.vue?vue&type=template&id=7cdea6b6& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesFlorida.vue?vue&type=template&id=7cdea6b6&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesLarrain.vue?vue&type=template&id=42c03f0e&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/MuralesLarrain.vue?vue&type=template&id=42c03f0e& ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLarrain_vue_vue_type_template_id_42c03f0e___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLarrain_vue_vue_type_template_id_42c03f0e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLarrain_vue_vue_type_template_id_42c03f0e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesLarrain.vue?vue&type=template&id=42c03f0e& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLarrain.vue?vue&type=template&id=42c03f0e&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesLecheros.vue?vue&type=template&id=a21b7552&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/MuralesLecheros.vue?vue&type=template&id=a21b7552& ***!
-  \************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLecheros_vue_vue_type_template_id_a21b7552___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLecheros_vue_vue_type_template_id_a21b7552___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesLecheros_vue_vue_type_template_id_a21b7552___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesLecheros.vue?vue&type=template&id=a21b7552& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesLecheros.vue?vue&type=template&id=a21b7552&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesMariposas.vue?vue&type=template&id=e6c55b3a&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/MuralesMariposas.vue?vue&type=template&id=e6c55b3a& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMariposas_vue_vue_type_template_id_e6c55b3a___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMariposas_vue_vue_type_template_id_e6c55b3a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMariposas_vue_vue_type_template_id_e6c55b3a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesMariposas.vue?vue&type=template&id=e6c55b3a& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMariposas.vue?vue&type=template&id=e6c55b3a&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesMonjas.vue?vue&type=template&id=7e5ba478&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/MuralesMonjas.vue?vue&type=template&id=7e5ba478& ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMonjas_vue_vue_type_template_id_7e5ba478___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMonjas_vue_vue_type_template_id_7e5ba478___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesMonjas_vue_vue_type_template_id_7e5ba478___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesMonjas.vue?vue&type=template&id=7e5ba478& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesMonjas.vue?vue&type=template&id=7e5ba478&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPanteon.vue?vue&type=template&id=e28d6c16&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/MuralesPanteon.vue?vue&type=template&id=e28d6c16& ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPanteon_vue_vue_type_template_id_e28d6c16___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPanteon_vue_vue_type_template_id_e28d6c16___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPanteon_vue_vue_type_template_id_e28d6c16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesPanteon.vue?vue&type=template&id=e28d6c16& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPanteon.vue?vue&type=template&id=e28d6c16&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPlayaAncha.vue?vue&type=template&id=157c7d8a&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/MuralesPlayaAncha.vue?vue&type=template&id=157c7d8a& ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPlayaAncha_vue_vue_type_template_id_157c7d8a___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPlayaAncha_vue_vue_type_template_id_157c7d8a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPlayaAncha_vue_vue_type_template_id_157c7d8a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesPlayaAncha.vue?vue&type=template&id=157c7d8a& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPlayaAncha.vue?vue&type=template&id=157c7d8a&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesPolanco.vue?vue&type=template&id=57ab6724&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/MuralesPolanco.vue?vue&type=template&id=57ab6724& ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPolanco_vue_vue_type_template_id_57ab6724___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPolanco_vue_vue_type_template_id_57ab6724___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesPolanco_vue_vue_type_template_id_57ab6724___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesPolanco.vue?vue&type=template&id=57ab6724& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesPolanco.vue?vue&type=template&id=57ab6724&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesSanJuan.vue?vue&type=template&id=78f5e100&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/MuralesSanJuan.vue?vue&type=template&id=78f5e100& ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesSanJuan_vue_vue_type_template_id_78f5e100___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesSanJuan_vue_vue_type_template_id_78f5e100___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesSanJuan_vue_vue_type_template_id_78f5e100___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesSanJuan.vue?vue&type=template&id=78f5e100& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesSanJuan.vue?vue&type=template&id=78f5e100&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MuralesYungay.vue?vue&type=template&id=65ed3196&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/MuralesYungay.vue?vue&type=template&id=65ed3196& ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesYungay_vue_vue_type_template_id_65ed3196___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesYungay_vue_vue_type_template_id_65ed3196___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MuralesYungay_vue_vue_type_template_id_65ed3196___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MuralesYungay.vue?vue&type=template&id=65ed3196& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MuralesYungay.vue?vue&type=template&id=65ed3196&");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/Osm.vue?vue&type=template&id=6018cb24&":
 /*!************************************************************************!*\
   !*** ./resources/js/components/Osm.vue?vue&type=template&id=6018cb24& ***!
@@ -53795,6 +50203,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Crear_vue_vue_type_template_id_7873dfe1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Crear_vue_vue_type_template_id_7873dfe1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Crear.vue?vue&type=template&id=7873dfe1& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Crear.vue?vue&type=template&id=7873dfe1&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/crud/Editar.vue?vue&type=template&id=53d9a65e&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/crud/Editar.vue?vue&type=template&id=53d9a65e& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Editar_vue_vue_type_template_id_53d9a65e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Editar_vue_vue_type_template_id_53d9a65e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Editar_vue_vue_type_template_id_53d9a65e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Editar.vue?vue&type=template&id=53d9a65e& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Editar.vue?vue&type=template&id=53d9a65e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/crud/Index.vue?vue&type=template&id=24cb7aac&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/crud/Index.vue?vue&type=template&id=24cb7aac& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_24cb7aac___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_24cb7aac___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_24cb7aac___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=template&id=24cb7aac& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/Index.vue?vue&type=template&id=24cb7aac&");
 
 
 /***/ }),

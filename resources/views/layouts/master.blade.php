@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <head>
@@ -15,10 +14,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Scripts SECURE -->
-    <script src="{{ ('/js/app.js') }}" defer></script>
+    <script src="{{ '/js/app.js' }}" defer></script>
 
     <!-- Styles SECURE-->
-    <link href="{{ ('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ '/css/app.css' }}" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

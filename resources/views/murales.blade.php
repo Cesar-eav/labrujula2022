@@ -2,6 +2,8 @@
 
 @section('content')
     <div id="app">
-        <show-murales></show-murales>
+        <show-murales cerro="{{$cerro}}" ></show-murales>
     </div>
 @endsection
+
+

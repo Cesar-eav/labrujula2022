@@ -252,7 +252,7 @@
       <div class="max-w-sm rounded overflow-hidden shadow-lg">
         <img class="w-full" src="/storage/img/3.jpg" alt="Escaleras" />
         <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+          <div class="font-bold text-xl mb-2">Escaleras</div>
           <p class="text-gray-700 text-base">
             Los colores de Valparaíso están en todos lados, incluso en sus
             escaleras.
