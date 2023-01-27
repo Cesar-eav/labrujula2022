@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="app">
-<crear-component></crear-component>
+<create-component></create-component>
 
 </div>
 @endsection

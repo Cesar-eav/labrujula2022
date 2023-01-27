@@ -31,8 +31,13 @@ Route::get('/api-iglesias', [App\Http\Controllers\MuralController::class, 'igles
 Route::get('/api-arquitecturas', [App\Http\Controllers\MuralController::class, 'arquitecturas']);
 
 
-//CRUD VUE
+//CRUD VUEs
 Route::post('/crud/edit', [App\Http\Controllers\CrudController::class, 'editmural']);
+
+
+Route::get('/crud/create-view', [App\Http\Controllers\CrudController::class, 'createView']);
+Route::post('/crud/post', [App\Http\Controllers\CrudController::class, 'createMural']);
+
 
 Route::get('/crud/index', [App\Http\Controllers\CrudController::class, 'index']);
 Route::get('/crud/show-edit/{id}', [App\Http\Controllers\CrudController::class, 'showedit']);

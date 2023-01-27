@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mural;
-
-
 use App\Models\Escalera;
 use App\Models\Ascensor;
 use App\Models\Mirador;
@@ -35,7 +33,6 @@ class MuralController extends Controller
                 ],
                 'murales' =>$murales
             ];
-     
     }
 
 
@@ -64,9 +61,8 @@ class MuralController extends Controller
 
     public function store(Request $request)
     {
-        Log::info(json_encode($request->all()));
         
-        $murales = miapp_article::create([
+        $murales = Mural::create([
             'publicidad' => $request->has('publicidad'),
             'title' => $request->title,
             'artista' => $request->artista,

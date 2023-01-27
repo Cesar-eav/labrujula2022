@@ -7,12 +7,7 @@
           <tr>
             <td>Cerro:</td>
             <td><input type="text" v-model="formEditMural.ubicacion" /></td>
-            <select id="mySelect">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <option value="option4">Option 4</option>
-            </select>
+
             <td rowspan="3"></td>
           </tr>
           <tr>
@@ -95,12 +90,12 @@ export default {
       //SE VA AL BACK(CONTROLADOR)
       axios
         .post(muralDatos, {
-          id: this.murales.id,
-          ubicacion: this.formEditMural.ubicacion,
-          calle: this.formEditMural.calle,
-          descripcion: this.formEditMural.descripcion,
-          lat: this.formEditMural.lat,
-          lon: this.formEditMural.lon,
+          id:           this.murales.id,
+          ubicacion:    this.formEditMural.ubicacion,
+          calle:        this.formEditMural.calle,
+          descripcion:  this.formEditMural.descripcion,
+          lat:          this.formEditMural.lat,
+          lon:          this.formEditMural.lon,
         })
         .then((response) =>
           console.log("RESPUESTA EDICION BACK: ", response.data)
