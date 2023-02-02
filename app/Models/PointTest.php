@@ -18,7 +18,9 @@ class PointTest extends Model
         'publicity',
         'ubication_id',
         'description',
-        'artist_id'
+        'artist_id',
+        'punto_id',
+        'tipo_mural'
         ];
 
 }

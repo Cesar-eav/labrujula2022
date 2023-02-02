@@ -29,7 +29,7 @@ class UbicationController extends Controller
      }
    
      public function selectUbication(){
-        $ubication = Ubication::all();
+        $ubication = Ubication::orderBy('name', 'asc')->get();
         return $ubication;
      }
 

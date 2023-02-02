@@ -5735,16 +5735,30 @@ __webpack_require__.r(__webpack_exports__);
       muralDatos: {
         direction: "",
         description: "",
-        image: "asdqwdw",
-        lat: 123,
+        image: "",
+        lat: 0,
         publicity: false,
-        "long": 456,
+        "long": 0,
         artista: "",
-        selectedUbicationId: null
+        selectedUbicationId: null,
+        selectedAtractivoName: null
       },
       loading: false,
       ubications: [],
-      artistas: []
+      artistas: [],
+      tipo_atractivos: [{
+        nombre: 'Mural'
+      }, {
+        nombre: 'Ascensor'
+      }, {
+        nombre: 'Escalera'
+      }, {
+        nombre: 'Arquitectura'
+      }, {
+        nombre: 'Miradores'
+      }, {
+        nombre: 'Museos'
+      }]
     };
   },
   methods: {
@@ -5772,7 +5786,7 @@ __webpack_require__.r(__webpack_exports__);
     selectUbication: function selectUbication() {
       var _this2 = this;
 
-      axios.get("/select-ubication").then(function (response) {
+      axios.get("/crud-ubication/list-ubications").then(function (response) {
         _this2.ubications = response.data;
         console.log("FUNCION LLAMADA");
       })["catch"](function (error) {
@@ -5842,13 +5856,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       ubicationData: {
         name: ""
       },
-      loading: false
+      loading: false,
+      listUbications: []
     };
   },
   methods: {
@@ -5856,19 +5874,31 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      axios.post("/crud-ubication/post", this.ubicationData).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/crud-ubication/post", this.ubicationData).then(function (response) {
         console.log("Archivo", response.data);
 
         if (response.data.ubication_db === true) {
           _this.loading = false;
-          window.location.href = "/crud/index";
+          window.location.href = "/crud/create-ubication";
         } else {
           _this.loading = false; //alert("FRACASO");
         }
       })["catch"](function (error) {
         return console.log("Error", error);
       });
+    },
+    listarUbications: function listarUbications() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/crud-ubication/list-ubications", this.listUbications).then(function (response) {
+        // const {response} = respuesta
+        _this2.listUbications = response.data;
+        console.log("UBICACIONES", response.data);
+      });
     }
+  },
+  mounted: function mounted() {
+    this.listarUbications();
   }
 });
 
@@ -6803,7 +6833,33 @@ var render = function render() {
     attrs: {
       rowspan: "3"
     }
-  })]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("input", {
+  })]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.selectedAtractivoName,
+      expression: "muralDatos.selectedAtractivoName"
+    }],
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.muralDatos, "selectedAtractivoName", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(this.tipo_atractivos, function (atractivo) {
+    return _c("option", {
+      key: atractivo.id,
+      domProps: {
+        value: atractivo.nombre
+      }
+    }, [_vm._v("\n          " + _vm._s(atractivo.nombre) + "\n        ")]);
+  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6926,7 +6982,7 @@ var render = function render() {
     }
   })])]), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-col"
-  }, [_c("p", [_vm._v("Descripciónss")]), _vm._v(" "), _c("textarea", {
+  }, [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6976,7 +7032,7 @@ var render = function render() {
       d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
       fill: "currentColor"
     }
-  })]) : _vm._e(), _vm._v("\n    Subiendo...\n  ")])]);
+  })]) : _vm._e(), _vm._v("\n    Guardar\n  ")])]);
 };
 
 var staticRenderFns = [function () {
@@ -7087,8 +7143,10 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "flex justify-center"
-  }, [_c("h4", [_vm._v("CREAR NUEVA UBICACION")]), _vm._v(" "), _c("table", [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nombre nueva Ubicacion:")]), _vm._v(" "), _c("td", [_c("input", {
+    staticClass: "flex flex-col justify-center"
+  }, [_c("h4", [_vm._v("CREAR NUEVA UBICACION")]), _vm._v(" "), _c("div", [_c("table", {
+    staticClass: "m-5"
+  }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nombre nueva Ubicacion:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7102,13 +7160,17 @@ var render = function render() {
       value: _vm.ubicationData.name
     },
     on: {
+      keyup: function keyup($event) {
+        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
+        return _vm.upUbication();
+      },
       input: function input($event) {
         if ($event.target.composing) return;
 
         _vm.$set(_vm.ubicationData, "name", $event.target.value);
       }
     }
-  })])])])]), _vm._v(" "), _c("button", {
+  })]), _vm._v(" "), _c("td", [_c("button", {
     staticClass: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center",
     attrs: {
       type: "button"
@@ -7137,7 +7199,11 @@ var render = function render() {
       d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
       fill: "currentColor"
     }
-  })]) : _vm._e(), _vm._v("\n  Creando...\n\n  ")])]);
+  })]) : _vm._e(), _vm._v("\n      Guardar\n    ")])])])])])]), _vm._v(" "), _vm._l(this.listUbications, function (ubication) {
+    return _c("div", {
+      key: ubication.id
+    }, [_vm._v("\n    " + _vm._s(ubication.name) + "\n  ")]);
+  })], 2);
 };
 
 var staticRenderFns = [];

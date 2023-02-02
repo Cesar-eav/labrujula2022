@@ -39,6 +39,25 @@
           <td rowspan="3"></td>
         </tr>
         <tr>
+          <td>Tipo atractivo:</td>
+          <td>
+            
+            <!-- <input type="text" v-model="muralDatos.tipo_atractivo" /> -->
+          <select v-model="muralDatos.selectedAtractivoName">
+            <option 
+            v-for="atractivo in this.tipo_atractivos"
+            :key="atractivo.id"
+            :value="atractivo.nombre"
+            >
+            {{ atractivo.nombre }}
+          </option>
+
+        </select>
+
+          </td>
+        </tr>
+
+        <tr>
           <td>Artista:</td>
           <td><input type="text" v-model="muralDatos.artista" /></td>
         </tr>
@@ -78,7 +97,7 @@
     </table>
 
     <div class="flex flex-col">
-      <p>Descripciónss</p>
+      <p>Descripción</p>
       <textarea cols="40" rows="5" v-model="muralDatos.description"></textarea>
 
       <!-- <input
@@ -129,7 +148,7 @@
           fill="currentColor"
         />
       </svg>
-      Subiendo...
+      Guardar
     </button>
   </div>
 </template>
@@ -142,16 +161,26 @@ export default {
       muralDatos: {
         direction: "",
         description: "",
-        image: "asdqwdw",
-        lat: 123,
+        image: "",
+        lat: 0,
         publicity: false,
-        long: 456,
+        long: 0,
         artista: "",
         selectedUbicationId: null,
+        selectedAtractivoName: null
+       
       },
       loading: false,
       ubications: [],
-      artistas: []
+      artistas: [],
+      tipo_atractivos: [
+          {nombre: 'Mural'}, 
+          {nombre: 'Ascensor'}, 
+          {nombre: 'Escalera'}, 
+          {nombre: 'Arquitectura'}, 
+          {nombre: 'Miradores'}, 
+          {nombre: 'Museos'}
+        ] 
     };
   },
 
@@ -180,7 +209,7 @@ export default {
 
     selectUbication() {
       axios
-        .get("/select-ubication")
+        .get("/crud-ubication/list-ubications")
         .then((response) => {
           this.ubications = response.data;
           console.log("FUNCION LLAMADA");

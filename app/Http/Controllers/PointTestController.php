@@ -31,6 +31,7 @@ class PointTestController extends Controller
         $point->ubication_id = $request->selectedUbicationId;
         $point->description = $request->description;
         $point->artist_id = $request->artist_id;
+        $point->tipo_mural = $request->selectedAtractivoName;
         $point->save();
 
 
@@ -43,7 +44,11 @@ class PointTestController extends Controller
      }
 
 
-
+    public function selectAtractivo()
+    {
+        $atractivoSeleccionado = PointTest::where('tipo_mural', 'tipo_mural');
+        return $atractivoSeleccionado;
+    }
 
     public function index()
     {
