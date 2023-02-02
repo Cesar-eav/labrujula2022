@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mural;
+use App\Models\Point;
 use App\Models\Escalera;
 use App\Models\Ascensor;
 use App\Models\Mirador;
@@ -16,10 +16,10 @@ class MuralController extends Controller
     public function murales(Request $request, $cerro =''){
             
         if ($cerro == ''){
-        $murales = Mural::paginate(12);
+        $murales = Point::paginate(12);
         }else{
             //return $cerro;
-            $murales = Mural::where('ubicacion', $cerro)->paginate(15);
+            $murales = Point::where('ubicacion', $cerro)->paginate(15);
         }
 
             return [
@@ -62,7 +62,7 @@ class MuralController extends Controller
     public function store(Request $request)
     {
         
-        $murales = Mural::create([
+        $murales = Point::create([
             'publicidad' => $request->has('publicidad'),
             'title' => $request->title,
             'artista' => $request->artista,
@@ -78,24 +78,24 @@ class MuralController extends Controller
     }
 
 
-    public function show(miapp_article $mural)
-    {
-        $murales = miapp_article::find($mural);
+    // public function show(miapp_article $mural)
+    // {
+    //     $murales = miapp_article::find($mural);
 
-        return view('murales.show', compact('murales'));
-    }
-
-
-    public function edit(miapp_article $mural)
-    {
-        //
-    }
+    //     return view('murales.show', compact('murales'));
+    // }
 
 
-    public function update(Request $request, miapp_article $mural)
-    {
-        $murales->update($request->all());
-    }
+    // public function edit(miapp_article $mural)
+    // {
+    //     //
+    // }
+
+
+    // public function update(Request $request, miapp_article $mural)
+    // {
+    //     $murales->update($request->all());
+    // }
 
 
     public function destroy($id)

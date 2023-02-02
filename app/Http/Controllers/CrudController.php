@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mural;
+use App\Models\PointTest;
 use Illuminate\Http\Request;
 
 class CrudController extends Controller
@@ -11,21 +11,24 @@ class CrudController extends Controller
 
     public function index()
     {
-        $murales = Mural::paginate(10)->all();
+        $murales = PointTest::paginate(10)->all();
         return view('crud.index', compact('murales'));
     }
 
 
     public function createView()
     {
-        $murales = new Mural();
+        $murales = new PointTest();
         return view('crud.create', compact('murales'));
     }
 
 
+
+
+
     public function showedit($id)
     {
-        $murales = Mural::where('id', $id)->first();
+        $murales = PointTest::where('id', $id)->first();
         //return $murales;
         return view('crud/edit', compact(
             'murales',
@@ -36,7 +39,7 @@ class CrudController extends Controller
     public function editMural(Request $request)
     {
         //return $request;
-        $murales = Mural::findOrFail($request->id);
+        $murales = PointTest::findOrFail($request->id);
         //return $murales;
         $murales->ubicacion = $request->ubicacion;
         $murales->calle = $request->calle;
@@ -49,30 +52,17 @@ class CrudController extends Controller
 
     public function createMural(Request $request)
     {
-
-
-        //return $request;
-
-        // Mural::create([
-        //     'ubicacion' => $request->ubicacion,
-            // $mural->artista = $request->artista;
-            // $mural->calle = $request->calle;
-            // $mural->descripcion = $request->descripcion;
-            // $mural->lat = $request->lat;
-            // $mural->lon = $request->lon;
-            // $mural->image = null
-
-
-            $mural = new Mural;
+            $mural = new PointTest;
             $mural->ubicacion = $request->ubicacion;
             $mural->artista = $request->artista;
             $mural->calle = $request->calle;
             $mural->descripcion = $request->descripcion;
             $mural->lat = $request->lat;
-            //$mural->lon = $request->lon;
+            $mural->lon = $request->lon;
+            $mural->ubication_id = $request->selectedUbication;
             $mural->save();
-
-
-
+            return response()->json([
+                'db'=>$mural->save()
+            ]);
     }
 }
