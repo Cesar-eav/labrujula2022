@@ -5735,49 +5735,64 @@ __webpack_require__.r(__webpack_exports__);
       muralDatos: {
         direction: "",
         description: "",
-        image: "",
+        image_name: "",
+        file: "",
         lat: 0,
-        publicity: false,
+        publicity: '',
         "long": 0,
-        artista: "",
+        selectedArtista: null,
         selectedUbicationId: null,
         selectedAtractivoName: null
       },
       loading: false,
       ubications: [],
-      artistas: [],
+      artists: [],
       tipo_atractivos: [{
-        nombre: 'Mural'
+        nombre: "Mural"
       }, {
-        nombre: 'Ascensor'
+        nombre: "Ascensor"
       }, {
-        nombre: 'Escalera'
+        nombre: "Escalera"
       }, {
-        nombre: 'Arquitectura'
+        nombre: "Arquitectura"
       }, {
-        nombre: 'Miradores'
+        nombre: "Miradores"
       }, {
-        nombre: 'Museos'
-      }]
+        nombre: "Museos"
+      }] //file: "",
+
     };
   },
   methods: {
-    // handleFileUpload(e) {
-    //   this.file =  e.target.files[0];
-    //   console.log("HANDLE", file)
-    // },
+    handleFileUpload: function handleFileUpload(event) {
+      this.muralDatos.file = event.target.files[0];
+      this.muralDatos.image_name = event.target.files[0].name;
+    },
     upMural: function upMural() {
       var _this = this;
 
       this.loading = true;
-      axios.post("/crud/post-point", this.muralDatos).then(function (response) {
-        console.log("Archivo", response.data);
+      var formData = new FormData();
+      formData.append("file", this.muralDatos.file);
+      formData.append("direction", this.muralDatos.direction);
+      formData.append("description", this.muralDatos.description);
+      formData.append("image_name", this.muralDatos.image_name);
+      formData.append("lat", this.muralDatos.lat);
+      formData.append("publicity", this.muralDatos.publicity);
+      formData.append("long", this.muralDatos["long"]);
+      formData.append("selectedArtista", this.muralDatos.selectedArtista);
+      formData.append("selectedUbicationId", this.muralDatos.selectedUbicationId);
+      formData.append("selectedAtractivoName", this.muralDatos.selectedAtractivoName);
+      axios.post("/crud/post-point", formData).then(function (response) {
+        console.log(response.data);
 
         if (response.data.db === true) {
           _this.loading = false;
-          window.location.href = "/crud/index";
+          window.location.href = "/crud/create-point/";
+          console.log("Cargado con éxito", response.data);
         } else {
-          _this.loading = false; //alert("FRACASO");
+          _this.loading = false;
+          alert("FRACASO");
         }
       })["catch"](function (error) {
         return console.log("Error", error);
@@ -5787,8 +5802,19 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get("/crud-ubication/list-ubications").then(function (response) {
-        _this2.ubications = response.data;
-        console.log("FUNCION LLAMADA");
+        _this2.ubications = response.data; //console.log("FUNCION UBICACION", response.data);
+      })["catch"](function (error) {
+        return console.log("Error", error);
+      });
+    },
+    selectArtist: function selectArtist() {
+      var _this3 = this;
+
+      axios.get("/list-artist") // PATH CON END POINT QUE VA A LA FUNCION DEL CONTROLADOR Y DEVUELVE UN JSON
+      .then(function (response) {
+        //RESPUESTA DEL API; LISTA DATOS ARTISTAS
+        _this3.artists = response.data; // INSERTO EN VARIABLE ARTIST LA RESPUESTA
+        //console.log("FUNCION ARTISTA", response);
       })["catch"](function (error) {
         return console.log("Error", error);
       });
@@ -5797,6 +5823,7 @@ __webpack_require__.r(__webpack_exports__);
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted: function mounted() {
     this.selectUbication();
+    this.selectArtist();
   }
 });
 
@@ -6858,28 +6885,34 @@ var render = function render() {
       domProps: {
         value: atractivo.nombre
       }
-    }, [_vm._v("\n          " + _vm._s(atractivo.nombre) + "\n        ")]);
-  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("input", {
+    }, [_vm._v("\n              " + _vm._s(atractivo.nombre) + "\n            ")]);
+  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.muralDatos.artista,
-      expression: "muralDatos.artista"
+      value: _vm.muralDatos.selectedArtista,
+      expression: "muralDatos.selectedArtista"
     }],
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.muralDatos.artista
-    },
     on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
 
-        _vm.$set(_vm.muralDatos, "artista", $event.target.value);
+        _vm.$set(_vm.muralDatos, "selectedArtista", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Dirección:")]), _vm._v(" "), _c("td", [_c("input", {
+  }, _vm._l(this.artists, function (artist) {
+    return _c("option", {
+      key: artist.id,
+      domProps: {
+        value: artist.name
+      }
+    }, [_vm._v("\n              " + _vm._s(artist.name) + "\n            ")]);
+  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Dirección:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6899,26 +6932,6 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "direction", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Imagen:")]), _vm._v(" "), _c("td", [_c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.muralDatos.image,
-      expression: "muralDatos.image"
-    }],
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.muralDatos.image
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.muralDatos, "image", $event.target.value);
-      }
-    }
   })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
@@ -6927,16 +6940,31 @@ var render = function render() {
       expression: "muralDatos.publicity"
     }],
     attrs: {
-      type: "text"
+      type: "checkbox",
+      "true-value": 1,
+      "false-value": 0
     },
     domProps: {
-      value: _vm.muralDatos.publicity
+      checked: Array.isArray(_vm.muralDatos.publicity) ? _vm._i(_vm.muralDatos.publicity, null) > -1 : _vm._q(_vm.muralDatos.publicity, 1)
     },
     on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
+      change: function change($event) {
+        var $$a = _vm.muralDatos.publicity,
+            $$el = $event.target,
+            $$c = $$el.checked ? 1 : 0;
 
-        _vm.$set(_vm.muralDatos, "publicity", $event.target.value);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+              $$i = _vm._i($$a, $$v);
+
+          if ($$el.checked) {
+            $$i < 0 && _vm.$set(_vm.muralDatos, "publicity", $$a.concat([$$v]));
+          } else {
+            $$i > -1 && _vm.$set(_vm.muralDatos, "publicity", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.$set(_vm.muralDatos, "publicity", $$c);
+        }
       }
     }
   })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Latitud:")]), _vm._v(" "), _c("td", [_c("input", {
@@ -7001,6 +7029,18 @@ var render = function render() {
         if ($event.target.composing) return;
 
         _vm.$set(_vm.muralDatos, "description", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("input", {
+    attrs: {
+      accept: "image/png,image/jpeg",
+      type: "file",
+      name: "image",
+      value: "image"
+    },
+    on: {
+      change: function change($event) {
+        return _vm.handleFileUpload($event);
       }
     }
   })]), _vm._v(" "), _c("button", {
@@ -7417,11 +7457,11 @@ var render = function render() {
       key: mural.id
     }, [_c("td", [_c("img", {
       attrs: {
-        src: "/storage/" + mural.image,
+        src: "/storage/prueba2/" + mural.image,
         alt: "imagen",
         width: "200"
       }
-    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.ubicacion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.calle) + " ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.descripcion))]), _vm._v(" "), _c("td", {
+    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.ubicacion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.calle) + " ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.descripcion))]), _vm._v(" "), _c("td", {
       staticClass: "bg-red-300"
     }, [_c("a", {
       attrs: {

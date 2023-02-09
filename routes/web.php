@@ -50,6 +50,8 @@ Route::post('/crud-ubication/post', [App\Http\Controllers\UbicationController::c
 Route::get('/crud-ubication/list-ubications', [App\Http\Controllers\UbicationController::class, 'selectUbication']);
 
 
+
+
 Route::get('/crud/create-type-point', [App\Http\Controllers\TypePointController::class, 'pointTypeView']);
 Route::post('/crud/type-point-post', [App\Http\Controllers\TypePointController::class, 'createTypePoint']);
 
@@ -57,6 +59,8 @@ Route::post('/crud/type-point-post', [App\Http\Controllers\TypePointController::
 
 Route::get('/crud/artista-view', [App\Http\Controllers\ArtistaController::class, 'artistaView']);
 Route::post('/crud/artista-post', [App\Http\Controllers\ArtistaController::class, 'artistaCreate']);
+Route::get('/list-artist', [App\Http\Controllers\ArtistaController::class, 'selectArtist']);
+
 
 
 Route::get('/crud/index', [App\Http\Controllers\CrudController::class, 'index']);

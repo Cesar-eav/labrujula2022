@@ -41,38 +41,49 @@
         <tr>
           <td>Tipo atractivo:</td>
           <td>
-            
             <!-- <input type="text" v-model="muralDatos.tipo_atractivo" /> -->
-          <select v-model="muralDatos.selectedAtractivoName">
-            <option 
-            v-for="atractivo in this.tipo_atractivos"
-            :key="atractivo.id"
-            :value="atractivo.nombre"
-            >
-            {{ atractivo.nombre }}
-          </option>
-
-        </select>
-
+            <select v-model="muralDatos.selectedAtractivoName">
+              <option
+                v-for="atractivo in this.tipo_atractivos"
+                :key="atractivo.id"
+                :value="atractivo.nombre"
+              >
+                {{ atractivo.nombre }}
+              </option>
+            </select>
           </td>
         </tr>
 
         <tr>
           <td>Artista:</td>
-          <td><input type="text" v-model="muralDatos.artista" /></td>
+          <td>
+            <!--
+              V-MODEL -> Comunicacion del INPUT al DATA( ç)
+              Con V-MODEL pasamos datos al objeto muraldatos que iran a BD
+              Con :value enviamos el valor a guardar, que será artist.name en ete caso
+            -->
+            
+            <select v-model="muralDatos.selectedArtista">
+              <option
+                v-for="artist in this.artists"
+                :key="artist.id"
+                :value="artist.name"
+              >
+                {{ artist.name }}
+              </option>
+
+            </select>
+
+            
+          </td>
         </tr>
         <tr>
           <td>Dirección:</td>
           <td><input type="text" v-model="muralDatos.direction" /></td>
         </tr>
-
-        <tr>
-          <td>Imagen:</td>
-          <td><input type="text" v-model="muralDatos.image" /></td>
-        </tr>
         <tr>
           <td>Publicidad:</td>
-          <td><input type="text" v-model="muralDatos.publicity" /></td>
+          <td><input type="checkbox" v-model="muralDatos.publicity" :true-value="1" :false-value="0" /></td>
         </tr>
         <tr>
           <td>Latitud:</td>
@@ -98,16 +109,15 @@
 
     <div class="flex flex-col">
       <p>Descripción</p>
-      <textarea cols="40" rows="5" v-model="muralDatos.description"></textarea>
+      <textarea cols="40" rows="5" v-model="muralDatos.description"> </textarea>
 
-      <!-- <input
+      <input
         accept="image/png,image/jpeg"
         type="file"
-        @change="handleFileUpload"
-        
-        name="file"
-        value="img"
-      /> -->
+        @change="handleFileUpload($event)"
+        name="image"
+        value="image"
+      />
     </div>
 
     <button
@@ -161,47 +171,65 @@ export default {
       muralDatos: {
         direction: "",
         description: "",
-        image: "",
+        image_name: "",
+        file:"",
         lat: 0,
-        publicity: false,
+        publicity: '',
         long: 0,
-        artista: "",
+        selectedArtista: null,
         selectedUbicationId: null,
-        selectedAtractivoName: null
-       
+        selectedAtractivoName: null,
       },
       loading: false,
       ubications: [],
-      artistas: [],
+      artists: [],
       tipo_atractivos: [
-          {nombre: 'Mural'}, 
-          {nombre: 'Ascensor'}, 
-          {nombre: 'Escalera'}, 
-          {nombre: 'Arquitectura'}, 
-          {nombre: 'Miradores'}, 
-          {nombre: 'Museos'}
-        ] 
+        { nombre: "Mural" },
+        { nombre: "Ascensor" },
+        { nombre: "Escalera" },
+        { nombre: "Arquitectura" },
+        { nombre: "Miradores" },
+        { nombre: "Museos" },
+      ]
+      //file: "",
     };
   },
 
   methods: {
-    // handleFileUpload(e) {
-    //   this.file =  e.target.files[0];
-    //   console.log("HANDLE", file)
-    // },
+    handleFileUpload(event) {
+      this.muralDatos.file= event.target.files[0];
+      this.muralDatos.image_name= event.target.files[0].name;
+    },
 
     upMural() {
       this.loading = true;
+
+      let formData = new FormData();
+
+      formData.append("file", this.muralDatos.file);
+      formData.append("direction", this.muralDatos.direction);
+      formData.append("description", this.muralDatos.description);
+      formData.append("image_name", this.muralDatos.image_name);
+      formData.append("lat", this.muralDatos.lat);
+      formData.append("publicity", this.muralDatos.publicity);
+      formData.append("long", this.muralDatos.long);
+      formData.append("selectedArtista", this.muralDatos.selectedArtista);
+      formData.append("selectedUbicationId", this.muralDatos.selectedUbicationId);
+      formData.append("selectedAtractivoName", this.muralDatos.selectedAtractivoName);
+      
+
       axios
-        .post("/crud/post-point", this.muralDatos)
+        .post("/crud/post-point", formData)
         .then((response) => {
-          console.log("Archivo", response.data);
+          console.log(response.data);
+
           if (response.data.db === true) {
             this.loading = false;
-            window.location.href = "/crud/index";
+            window.location.href = "/crud/create-point/";
+            console.log("Cargado con éxito", response.data);
           } else {
             this.loading = false;
-            //alert("FRACASO");
+            alert("FRACASO");
           }
         })
         .catch((error) => console.log("Error", error));
@@ -212,7 +240,18 @@ export default {
         .get("/crud-ubication/list-ubications")
         .then((response) => {
           this.ubications = response.data;
-          console.log("FUNCION LLAMADA");
+          //console.log("FUNCION UBICACION", response.data);
+        })
+        .catch((error) => console.log("Error", error));
+    },
+
+    selectArtist() {
+      axios
+        .get("/list-artist") // PATH CON END POINT QUE VA A LA FUNCION DEL CONTROLADOR Y DEVUELVE UN JSON
+        .then((response) => {
+          //RESPUESTA DEL API; LISTA DATOS ARTISTAS
+          this.artists = response.data; // INSERTO EN VARIABLE ARTIST LA RESPUESTA
+          //console.log("FUNCION ARTISTA", response);
         })
         .catch((error) => console.log("Error", error));
     },
@@ -221,6 +260,8 @@ export default {
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted() {
     this.selectUbication();
+    this.selectArtist();
   },
 };
+
 </script>

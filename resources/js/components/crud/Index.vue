@@ -42,8 +42,9 @@
         <tbody>
           <tr v-for="mural of murales" :key="mural.id">
             <td>
-              <img :src="'/storage/' + mural.image" alt="imagen" width="200" />
+              <img :src="'/storage/prueba2/' + mural.image" alt="imagen" width="200" />
             </td>
+            <td>{{mural.id}}</td>
             <td>{{mural.ubicacion}}</td>
             <td>{{mural.calle}} </td>
             <td>{{mural.descripcion}}</td>
