@@ -40,6 +40,11 @@ Route::post('/crud/post', [App\Http\Controllers\CrudController::class, 'createMu
 
 
 //CRUD POINTS
+Route::get('/crud/index', [App\Http\Controllers\CrudController::class, 'index']);
+Route::get('/crud/show-edit/{id}', [App\Http\Controllers\CrudController::class, 'showedit']);
+
+
+
 Route::get('/crud/create-point', [App\Http\Controllers\PointTestController::class, 'pointsView']);
 Route::post('/crud/post-point', [App\Http\Controllers\PointTestController::class, 'createPoint']);
 Route::get('/select-tipo-atractivo', [App\Http\Controllers\PointTestController::class, 'selectAtractivo']);
@@ -63,6 +68,5 @@ Route::get('/list-artist', [App\Http\Controllers\ArtistaController::class, 'sele
 
 
 
-Route::get('/crud/index', [App\Http\Controllers\CrudController::class, 'index']);
-Route::get('/crud/show-edit/{id}', [App\Http\Controllers\CrudController::class, 'showedit']);
+
 

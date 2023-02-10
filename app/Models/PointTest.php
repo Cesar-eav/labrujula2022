@@ -23,4 +23,14 @@ class PointTest extends Model
         'tipo_mural'
         ];
 
+        public function ubication()
+            {
+            return $this->belongsTo(Ubication::class, 'ubication_id');
+            }
+
+        public function artist()
+            {
+            return $this->belongsTo(Artista::class, 'artist_id');
+            }
+
 }

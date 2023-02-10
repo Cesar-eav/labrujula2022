@@ -17,8 +17,7 @@ class PointTestController extends Controller
 
      public function pointsView()
      {
-         $point = new PointTest();
-         return view('crud.create-point', compact('point'));
+         return view('crud.create-point');
      }
  
      public function createPoint(Request $request)
@@ -34,7 +33,7 @@ class PointTestController extends Controller
             $point->publicity = $request->publicity;
             $point->ubication_id = $request->selectedUbicationId;
             $point->description = $request->description;
-            $point->artist_id = $request->artist_id;         
+            $point->artist_id = $request->selectedArtista;         
             $point->tipo_mural = $request->selectedAtractivoName;
             $point->save();
 
@@ -49,10 +48,6 @@ class PointTestController extends Controller
         ]);
      }
 
-     public function saveImage(Request $request)
-     {
-        return $request->file('imagen')->store('images');
-     }
 
 
     public function selectAtractivo()

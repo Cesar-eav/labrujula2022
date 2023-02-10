@@ -58,7 +58,7 @@
           <td>Artista:</td>
           <td>
             <!--
-              V-MODEL -> Comunicacion del INPUT al DATA( ç)
+              V-MODEL -> Comunicacion del INPUT al DATA( )
               Con V-MODEL pasamos datos al objeto muraldatos que iran a BD
               Con :value enviamos el valor a guardar, que será artist.name en ete caso
             -->
@@ -67,7 +67,7 @@
               <option
                 v-for="artist in this.artists"
                 :key="artist.id"
-                :value="artist.name"
+                :value="artist.id"
               >
                 {{ artist.name }}
               </option>
@@ -205,19 +205,19 @@ export default {
       this.loading = true;
 
       let formData = new FormData();
-
-      formData.append("file", this.muralDatos.file);
-      formData.append("direction", this.muralDatos.direction);
-      formData.append("description", this.muralDatos.description);
-      formData.append("image_name", this.muralDatos.image_name);
-      formData.append("lat", this.muralDatos.lat);
-      formData.append("publicity", this.muralDatos.publicity);
-      formData.append("long", this.muralDatos.long);
-      formData.append("selectedArtista", this.muralDatos.selectedArtista);
-      formData.append("selectedUbicationId", this.muralDatos.selectedUbicationId);
-      formData.append("selectedAtractivoName", this.muralDatos.selectedAtractivoName);
+      // 1er Parámetro, nombre del campo del formulario.
+      // 2do parámetro, de dónde vienen los datos.
+      formData.append("file",                   this.muralDatos.file);
+      formData.append("direction",              this.muralDatos.direction);
+      formData.append("description",            this.muralDatos.description);
+      formData.append("image_name",             this.muralDatos.image_name);
+      formData.append("lat",                    this.muralDatos.lat);
+      formData.append("publicity",              this.muralDatos.publicity);
+      formData.append("long",                   this.muralDatos.long);
+      formData.append("selectedArtista",        this.muralDatos.selectedArtista);
+      formData.append("selectedUbicationId",    this.muralDatos.selectedUbicationId);
+      formData.append("selectedAtractivoName",  this.muralDatos.selectedAtractivoName);
       
-
       axios
         .post("/crud/post-point", formData)
         .then((response) => {

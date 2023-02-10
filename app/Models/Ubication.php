@@ -12,4 +12,14 @@ class Ubication extends Model
     protected $fillable=[
     'name'
     ];
+
+
+    public function point()
+        {
+        return $this->hasMany(PointTest::class, 'ubication_id');
+        }
+
+    
 }
+
+

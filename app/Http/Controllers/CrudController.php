@@ -11,8 +11,12 @@ class CrudController extends Controller
 
     public function index()
     {
-        $murales = PointTest::paginate(10)->all();
-        return view('crud.index', compact('murales'));
+
+        $murales = PointTest::with('ubication')->get();
+        return view('crud.index', compact(
+            'murales',
+
+        ));
     }
 
 
@@ -24,13 +28,13 @@ class CrudController extends Controller
 
 
 
-
-
     public function showedit($id)
     {
-        $murales = PointTest::where('id', $id)->first();
-        //return $murales;
-        return view('crud/edit', compact(
+        $murales = PointTest::where('id', $id)
+            ->with('artist', 'ubication')
+            ->first();
+
+            return view('crud/edit', compact(
             'murales',
             'id'
         ));
@@ -38,14 +42,14 @@ class CrudController extends Controller
 
     public function editMural(Request $request)
     {
-        //return $request;
+        //return $request->id;
         $murales = PointTest::findOrFail($request->id);
         //return $murales;
-        $murales->ubicacion = $request->ubicacion;
-        $murales->calle = $request->calle;
-        $murales->descripcion = $request->descripcion;
+        //$murales->ubication = $request->ubication;
+        $murales->direction = $request->direction;
+        $murales->description = $request->description;
         $murales->lat = $request->lat;
-        $murales->lon = $request->lon;
+        $murales->long = $request->long;
         $response = $murales->save();
         return $response;
     }
