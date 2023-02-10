@@ -17,6 +17,9 @@ class PointTestController extends Controller
 
      public function pointsView()
      {
+
+        $ubicacion = PointTest::with('ubication')->all();
+         $point = new PointTest();
          return view('crud.create-point');
      }
  
