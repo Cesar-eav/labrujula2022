@@ -69,4 +69,13 @@ class CrudController extends Controller
                 'db'=>$mural->save()
             ]);
     }
+
+    public function deleteMural ($id) {
+        $mural = PointTest::find($id);
+        $response = $mural->delete();
+
+        return $response;
+
+
+    }
 }

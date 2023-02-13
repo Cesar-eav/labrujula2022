@@ -33,10 +33,9 @@ Route::get('/api-arquitecturas', [App\Http\Controllers\MuralController::class, '
 
 //CRUD VUEs
 Route::post('/crud/edit', [App\Http\Controllers\CrudController::class, 'editmural']);
-
-
 Route::get('/crud/create-view', [App\Http\Controllers\CrudController::class, 'createView']);
 Route::post('/crud/post', [App\Http\Controllers\CrudController::class, 'createMural']);
+Route::delete('/crud/delete/{id}', [App\Http\Controllers\CrudController::class, 'deleteMural']);
 
 
 //CRUD POINTS
