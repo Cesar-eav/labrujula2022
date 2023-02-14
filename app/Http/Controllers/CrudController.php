@@ -12,9 +12,10 @@ class CrudController extends Controller
     public function index()
     {
 
-        $murales = PointTest::with('ubication')->get();
+        $murales = PointTest::with('ubication', 'artist')->get();
         return view('crud.index', compact(
             'murales',
+            
 
         ));
     }

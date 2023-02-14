@@ -160,8 +160,20 @@
         </table>
       </div>
     </div>
+
+    <div id="people">
+      <v-client-table :data="murales" :columns="columns" :options="options" />
+
+      
+ 
+      
+
+      </div>
+     
+    
   </div>
 </template>
+
 
 
 <script>
@@ -170,24 +182,46 @@ export default {
 
   data() {
     return {
-
-    }
+      //NOMBRE EXACTO COLUMNAS BD
+      columns: [
+        "id",
+        "ubication.name",
+        //"artist.name",
+        "direction",
+        'image',
+        "lat",
+        "long",
+        "publicity",
+        "tipo_mural",
+      ],
+      options: {
+        perPage: 5,
+        perPagesValues: [5, 10, 15, 20],
+        headings: {
+          id: "ID",
+          direction: "Dirección",
+          publicity: "Publicidad",
+          "ubication.name": "Ubicación",
+          tipo_mural: "Atractivo",
+          "artist.name": "Artista",
+          '__slot':'image'
+        },
+        sortable: ["id", "ubication_id", "tipo_mural", "artist.name"],
+        filterable: ["ubication.name", "tipo_mural", "artist.name"],
+        filterByColumn: true,
+        editableColumns:['ubication.name']
+      },
+    };
   },
 
   methods: {
     deleteMural(id) {
-      console.log(id,'INTENTANDO' );
-      axios
-       .delete('/crud/delete/'+id)
-       .then((response) => {
-          console.log("ELIMINADO: ", response.data);
-          window.location.href = "/crud/index/";
-
-    });
+      console.log(id, "INTENTANDO");
+      axios.delete("/crud/delete/" + id).then((response) => {
+        console.log("ELIMINADO: ", response.data);
+        window.location.href = "/crud/index/";
+      });
+    },
   },
-}
-
 };
-
-
 </script>
