@@ -132,7 +132,7 @@
               </td>
               <td class="bg-red-300">
                 <button
-                  @click="deleteMural(mural.id)"
+                 @click="deleteMural(mural.id)"
                   type="button"
                   class="
                     focus:outline-none
@@ -162,38 +162,87 @@
     </div>
 
     <div id="people">
-      <v-client-table :data="murales" :columns="columns" :options="options" />
+      <v-client-table 
+        :data="murales"  
+        :columns="columns" 
+        :options="options">
 
-      
- 
-      
+        <button type="button" slot="edit" slot-scope="props" @click="edit(props.row)">Editar</button>
+        <button type="button" slot="remove" slot-scope="props" @click="deleteMural(props.row.id)">Eliminar</button>
+        <img :src="'/storage/prueba2/'+murales.row.image" slot="image" slot-scope="murales" width="200"/> 
 
+        
+      </v-client-table>
+    </div>
+
+    <!-- <v-client-table
+      :options="optionsModalApp"
+      :columns="columnsModalApp"
+      v-model="arrayModalUser"
+    >
+      <div
+        slot="app_name"
+        slot-scope="{ row, update, setEditing, isEditing, revertValue }"
+      >
+        <span @click="setEditing(true)" v-if="!isEditing()">
+          <a>{{ row.app_name }}</a>
+        </span>
+        <span v-else>
+          <input type="text" v-model="row.app_name" />
+          <button
+            type="button"
+            class="btn btn-info btn-xs"
+            @click="
+              update(row.app_name);
+              updateApp(row.app_name, row.id, 'app_name', row.id_user);
+              setEditing(false);
+            "
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-default btn-xs"
+            @click="
+              revertValue();
+              setEditing(false);
+            "
+          >
+            Cancel
+          </button>
+        </span>
       </div>
-     
-    
+    </v-client-table> -->
+
+
   </div>
 </template>
 
 
-
 <script>
+
 export default {
+  name: "datos-tabla",
   props: ["murales"],
 
   data() {
-    return {
+
+        return {
       //NOMBRE EXACTO COLUMNAS BD
       columns: [
         "id",
         "ubication.name",
         //"artist.name",
         "direction",
-        'image',
+        "image",
         "lat",
         "long",
         "publicity",
         "tipo_mural",
+        "edit",
+        "remove"
       ],
+      //Objeto Option
       options: {
         perPage: 5,
         perPagesValues: [5, 10, 15, 20],
@@ -203,13 +252,12 @@ export default {
           publicity: "Publicidad",
           "ubication.name": "Ubicación",
           tipo_mural: "Atractivo",
-          "artist.name": "Artista",
-          '__slot':'image'
+          //"artist.name": "Artista"
         },
-        sortable: ["id", "ubication_id", "tipo_mural", "artist.name"],
-        filterable: ["ubication.name", "tipo_mural", "artist.name"],
+        sortable: ["id", "ubication_id", "tipo_mural"],
+        filterable: ["ubication.name", "tipo_mural"],
         filterByColumn: true,
-        editableColumns:['ubication.name']
+        editableColumns: ["direction"],
       },
     };
   },
@@ -222,6 +270,13 @@ export default {
         window.location.href = "/crud/index/";
       });
     },
+    edit(row) {
+      console.log(row);
+    },
+    remove(row) {
+      console.log(row);
+    }
   },
+
 };
 </script>
