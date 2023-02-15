@@ -167,7 +167,10 @@
         :columns="columns" 
         :options="options">
 
-        <button type="button" slot="edit" slot-scope="props" @click="edit(props.row)">Editar</button>
+        <button type="button" slot="edit" slot-scope="props" @click="edit(props.row)">
+          <a :href="'/crud/show-edit/' + props.row.id">Editar</a>
+
+        </button>
         <button type="button" slot="remove" slot-scope="props" @click="deleteMural(props.row.id)">Eliminar</button>
         <img :src="'/storage/prueba2/'+murales.row.image" slot="image" slot-scope="murales" width="200"/> 
 
