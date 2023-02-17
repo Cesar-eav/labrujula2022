@@ -1,17 +1,19 @@
 <template>
     <div class="justify-center">
 
-
-<h1>Escaleras DE VALPARAÍSO</h1>
+    <h1 class="text-2xl text-center py-2 uppercase font-bold">
+      Escaleras
+    </h1>
 
 <div class="flex flex-wrap justify-center">
 
-    <div v-viewer class="w-96 mx-2" v-for="escaleras in arrayList" :key="escaleras.id">
+    <div v-viewer class="w-96 mx-1 mb-2" v-for="escaleras in arrayList" :key="escaleras.id">
         <img :src="'storage/'+escaleras.image" /> 
-        <div class="bg-red-300"> {{ escaleras.descripcion }} </div>
-        <div class="bg-red-300">Cerro {{ escaleras.lugar }} </div>
-        <a :href="'osm/'+escaleras.lat+'/'+ escaleras.lon" target="blank">MAPA</a>
-
+        <div class="bg-red-400 pl-2 text-lg font-bold"> {{ escaleras.descripcion }} </div>
+        <div class="bg-red-400 pl-2">Cerro {{ escaleras.lugar }} </div>
+        <div class="border-2 border-red-400 text-end pr-2">
+        <a :href="'osm/'+escaleras.lat+'/'+ escaleras.lon" target="blank">Ir al mapa</a>
+        </div>
     </div>
 
 </div>

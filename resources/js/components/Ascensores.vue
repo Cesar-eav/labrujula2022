@@ -1,15 +1,17 @@
 <template>
     <div class="justify-center">
-
-
-<h1>ASCENSORES DE VALPARAÍSO</h1>
+     <h1 class="text-2xl text-center py-2 uppercase font-bold">
+      ASCENSORES
+    </h1>
 
 <div class="flex flex-wrap justify-center">
 
-    <div v-viewer class="w-96 mx-2" v-for="ascensores in arrayList" :key="ascensores.id">
+    <div v-viewer class="w-96 mx-1 mb-2" v-for="ascensores in arrayList" :key="ascensores.id">
         <img :src="'storage/'+ascensores.image" /> 
-        <div class="bg-red-300">Ascensor {{ ascensores.nombre }} </div>
-        <a :href="'osm/'+ascensores.lat+'/'+ ascensores.lon" target="blank">MAPA</a>
+        <div class="bg-red-400 pl-2 text-lg font-bold">Ascensor {{ ascensores.nombre }} </div>
+        <div class="border-2 border-red-400 text-end pr-2">
+        <a :href="'osm/'+ascensores.lat+'/'+ ascensores.lon" target="blank">Ir al mapa</a>
+        </div>
 
     </div>
 

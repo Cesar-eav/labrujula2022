@@ -1,16 +1,17 @@
 <template>
     <div class="justify-center">
-
-
-<h1>IGLESIAS DE VALPARAÍSO</h1>
+        <h1 class="text-2xl text-center py-2 uppercase font-bold">
+      Iglesias
+    </h1>
 
 <div class="flex flex-wrap justify-center">
 
-    <div v-viewer class="w-96 mx-2" v-for="iglesias in arrayList" :key="iglesias.id">
+    <div v-viewer class="w-96 mx-1 mb-2" v-for="iglesias in arrayList" :key="iglesias.id">
         <img :src="'storage/'+iglesias.image" /> 
-        <div class="bg-red-300">Iglesia {{ iglesias.nombre }} </div>
-        <a :href="'osm/'+iglesias.lat+'/'+ iglesias.lon" target="blank">MAPA</a>
-
+        <div class="bg-red-400 pl-2 text-lg font-bold"> Iglesia {{ iglesias.nombre }} </div>
+        <div class="border-2 border-red-400 text-end pr-2">
+        <a :href="'osm/'+iglesias.lat+'/'+ iglesias.lon" target="blank">Ir al mapa</a>
+            </div>
     </div>
 
 </div>
