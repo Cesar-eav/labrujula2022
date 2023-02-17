@@ -43,22 +43,21 @@
         <div class="carousel-item active relative float-left w-full">
           <img src="/storage/img/portada.png" class="block w-full" alt="..." />
           <div class="carousel-caption hidden md:block absolute text-center">
-            <h5 class="text-xl">First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
+
           </div>
         </div>
         <div class="carousel-item relative float-left w-full">
           <img src="/storage/img/2.png" class="block w-full" alt="..." />
           <div class="carousel-caption hidden md:block absolute text-center">
-            <h5 class="text-xl">Second slide label</h5>
-            <p>Some representative placeholder content for the second slide.</p>
+            <h2 class="text-3xl">Cerro Alegre</h2>
+            <p>Avenida Alemania, artista Anais.</p>
           </div>
         </div>
         <div class="carousel-item relative float-left w-full">
           <img src="/storage/img/1.png" class="block w-full" alt="..." />
           <div class="carousel-caption hidden md:block absolute text-center">
-            <h5 class="text-xl">Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
+            <h3 class="text-3xl">Cerro Larraín</h3>
+            <p>Calle Heramnos Clark, artista Un JotaPe.</p>
           </div>
         </div>
       </div>
@@ -119,7 +118,7 @@
     <div class="flex flex-col justify-center text-center mb-5 mt-2">
       <p class="text-3xl mb-4"><strong>¿Qué es La Brújula?</strong></p>
       <p class="mb-5 lead text-xl">
-        La Brújula es la guía indefinitiva que te ayudará a encontrar todos los
+        La Brújula es la guía <span class="text-red-600 font-bold">indefinitiva</span> que te ayudará a encontrar todos los
         tesoros de Valparaíso.
       </p>
     </div>
@@ -132,7 +131,9 @@
           alt="Sunset in the mountains"
         />
         <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">Murales</div>
+          <div class="font-bold text-xl mb-2">
+            <a href="/ascensores">Murales</a>
+          </div>
           <p class="text-gray-700 text-base">
             Con cerca de 400 murales, Valparaíso es la capital del arte urbano
             de Chile.
@@ -194,7 +195,9 @@
           alt="Sunset in the mountains"
         />
         <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">Ascensores</div>
+          <div class="font-bold text-xl mb-2">
+            <a href="/ascensores">Ascensores</a>
+          </div>
           <p class="text-gray-700 text-base">
             Valparaíso es la ciudad con mayor cantidad de funiculares o
             ascensores del mundo.
@@ -252,7 +255,9 @@
       <div class="max-w-sm rounded overflow-hidden shadow-lg">
         <img class="w-full" src="/storage/img/3.jpg" alt="Escaleras" />
         <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">Escaleras</div>
+          <div class="font-bold text-xl mb-2">
+            <a href="/ascensores">Escaleras</a>
+          </div>
           <p class="text-gray-700 text-base">
             Los colores de Valparaíso están en todos lados, incluso en sus
             escaleras.
