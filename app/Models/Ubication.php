@@ -16,7 +16,7 @@ class Ubication extends Model
 
     public function point()
         {
-        return $this->hasMany(PointTest::class, 'ubication_id');
+        return $this->hasMany(Atractivos::class, 'ubication_id');
         }
 
     

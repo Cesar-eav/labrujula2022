@@ -2,6 +2,11 @@ require('./bootstrap');
 
 
 
+import {ClientTable, Event} from 'vue-tables-2-premium';
+
+Vue.use(ClientTable, {}, false, 'tailwind')
+
+
 // Import Viewer
 import Viewer from 'v-viewer'
 import "viewerjs/dist/viewer.css";

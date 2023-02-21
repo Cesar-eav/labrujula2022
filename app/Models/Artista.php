@@ -13,6 +13,6 @@ class Artista extends Model
 
 public function artist()
     {
-    return $this->hasMany(PointTest::class, 'artist_id');
+    return $this->hasMany(Atractivos::class, 'artist_id');
     }
 }

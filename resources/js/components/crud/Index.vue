@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="CUERPO flex flex-col my-3">
-      <h1 class="text-2xl text-center mb-3">ATRACTIVOS DE VALPARAISO INDEX.VUE</h1>
+      <h1 class="text-2xl text-center mb-3">CRUDATRACTIVOS DE VALPARAISO INDEX.VUE</h1>
 
       <!-- PUNTOS CRUD -->
       <div class="flex justify-center">
@@ -97,11 +97,10 @@
           </button>
         </a>
       </div>
-
-   
     </div>
 
-    <div id="people" class="mx-8">
+
+    <div id="datos-tabla" class="mx-8">
       <v-client-table 
         :data="murales"  
         :columns="columns" 
@@ -137,7 +136,7 @@ export default {
       //NOMBRE EXACTO COLUMNAS BD
       columns: [
         "id",
-        "ubicacion",
+        "ubication",
         "artista",
         "direction",
         "image",
@@ -146,7 +145,7 @@ export default {
         "edit",
         "remove"
       ],
-      //Objeto Option
+      //Objeto Options, son las cabeceras de la tabla
       options: {
         perPage: 10,
         perPagesValues: [10, 15, 20],
@@ -154,7 +153,7 @@ export default {
           id: "ID",
           direction: "Dirección",
           publicity: "Publicidad",
-          "ubication.name": "Ubicación",
+          //"ubication.name": "Ubicación",
           tipo_mural: "Atractivo",
           //"artist.name": "Artista"
         },

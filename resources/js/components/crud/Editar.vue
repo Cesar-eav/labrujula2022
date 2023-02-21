@@ -1,11 +1,7 @@
 <template>
   <div class="flex justify-center flex-col my-5">
-    <!-- <div v-for="mural in murales" :key="mural.id" class="mx-5">
-        {{ mural }}
-      </div> -->
-
-
-    <div class="grid grid-cols-3 gap-2 mx-5 justify-items-start">
+   
+   <div class="grid grid-cols-3 gap-2 mx-5 justify-items-start">
 
       <table>
         <tbody>
@@ -19,7 +15,7 @@
           </tr>
           <tr>
             <td>Tipo atractivo:</td>
-            <td><input type="text" v-model="formEditMural.tipo_mural" /></td>
+            <td><input type="text" v-model="formEditMural.type_attractive" /></td>
           </tr>
           <tr>
             <td>Artista:</td>
@@ -38,7 +34,7 @@
           </tr>
           <tr>
             <td>Longitud:</td>
-            <td><input type="text" v-model="formEditMural.long" /></td>
+            <td><input type="text" v-model="formEditMural.lon" /></td>
           
       
           </tr>     
@@ -85,11 +81,13 @@
         ></textarea>
       </div> 
 
-      <div>
+      <!-- <div>
         <img :src="'/storage/' + formEditMural.img" />
-      </div>
-    
-    </div>
+      </div> -->
+
+
+    </div> 
+
   </div>
 </template>
 
@@ -102,33 +100,37 @@ export default {
       // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
       // Los datos vienen del PROPS
       // La LLAVE debe corresponderse con el V-MODEL
+      //this.murales[0],
 
       formEditMural: {
-        //id:    this.murales.id,  
-        ubication:    this.murales.ubication.name,
-        direction:    this.murales.direction,
-        tipo_mural:   this.murales.tipo_mural,
-        description:  this.murales.description,
-        lat:          this.murales.lat,
-        long:         this.murales.long,
-        img:          this.murales.image,
-        artist:       this.murales.artist.name,
+    
+        ubication:          this.murales.ubication,
+        direction:          this.murales.direction,
+        type_attractive:    this.murales.type_attractive,
+        description:        this.murales.description,
+        lat:                this.murales.lat,
+        lon:                this.murales.lon,
+        //img:                this.murales[0].image,
+        artist:             this.murales.artista,
       },
     };
   },
 
   methods: {
     editMural() {
-     const id =  this.formEditMural.id;
+
       //SE VA AL BACK(CONTROLADOR).
       axios
         .post("/crud/edit/", {
-          id:    this.murales.id,  
-          //ubication:    this.formEditMural.ubication,
-          direction:    this.formEditMural.direction,
-          description:  this.formEditMural.description,
-          lat:          this.formEditMural.lat,
-          long:         this.formEditMural.long,
+          //id:               this.formEditMural.id,  
+          ubication:        this.formEditMural.ubication,
+          direction:        this.formEditMural.direction,
+          description:      this.formEditMural.description,
+          artist:           this.formEditMural.artist,
+          lat:              this.formEditMural.lat,
+          lon:              this.formEditMural.lon,
+          type_attractive:  this.formEditMural.type_attractive
+
         })
         .then((response) => {
           console.log("RESPUESTA EDICION BACK: ", response.data)

@@ -7,20 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class PointTest extends Model
 {
-    protected $table="point_tests";
+    protected $table="points";
 
 
     protected $fillable=[
         'direction',
+        'ubication',
         'image',
         'lat',
-        'long',
+        'lon',
         'publicity',
         'ubication_id',
         'description',
         'artist_id',
         'punto_id',
-        'tipo_mural'
+        'type_attractive'
         ];
 
         public function ubication()
