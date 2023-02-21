@@ -8,60 +8,73 @@ use App\Models\Ascensor;
 use App\Models\Mirador;
 use App\Models\Iglesia;
 use App\Models\Arquitectura;
+use App\Models\Atractivos;
 
 use Illuminate\Http\Request;
 
 class MuralController extends Controller
 {
-    public function murales(Request $request, $cerro =''){
-            
-        if ($cerro == ''){
-        $murales = Point::paginate(12);
-        }else{
+    public function murales(Request $request, $cerro = '')
+    {
+
+        if ($cerro == '') {
+            $murales = Point::paginate(12);
+            return view('murales', compact('murales'));
+        } else {
             //return $cerro;
             $murales = Point::where('ubicacion', $cerro)->paginate(15);
         }
 
-            return [
-                'pagination' => [
-                    'total' => $murales->total(),
-                    'current_page'=> $murales->currentPage(),
-                    'per_page' => $murales->perPage(),
-                    'last_page' => $murales->lastPage(),
-                    'from' => $murales->firstItem(),
-                    'to'=> $murales->lastPage()
-                ],
-                'murales' =>$murales
-            ];
+        return view('murales', [
+            'pagination' => [
+                'total'         =>  $murales->total(),
+                'current_page'  => $murales->currentPage(),
+                'per_page'      => $murales->perPage(),
+                'last_page'     => $murales->lastPage(),
+                'from'          => $murales->firstItem(),
+                'to'            => $murales->lastPage()
+            ],
+            'murales' => $murales
+        ]);
     }
 
 
+    public function atractivos()
+    {
+        $atractivos = Atractivos::all();
+        return $atractivos;
+    }
 
-    public function ascensores(){
+    public function ascensores()
+    {
         $ascensores = Ascensor::all();
-        return $ascensores;        
+        return $ascensores;
     }
-    public function escaleras(){
+    public function escaleras()
+    {
         $escaleras = Escalera::all();
-        return $escaleras;        
+        return $escaleras;
     }
-    public function miradores(){
+    public function miradores()
+    {
         $miradores = Mirador::all();
-        return $miradores;        
+        return $miradores;
     }
-    public function iglesias(){
+    public function iglesias()
+    {
         $iglesias = Iglesia::all();
-        return $iglesias;        
+        return $iglesias;
     }
-    public function arquitecturas(){
+    public function arquitecturas()
+    {
         $arquitecturas = Arquitectura::all();
-        return $arquitecturas;        
+        return $arquitecturas;
     }
 
 
     public function store(Request $request)
     {
-        
+
         $murales = Point::create([
             'publicidad' => $request->has('publicidad'),
             'title' => $request->title,
@@ -72,7 +85,7 @@ class MuralController extends Controller
             'imagen' => $request->imagen,
 
         ]);
-        
+
         return redirect()->route('murales.index')
             ->with('success', 'Murale created successfully.');
     }

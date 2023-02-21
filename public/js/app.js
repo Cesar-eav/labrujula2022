@@ -5587,73 +5587,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["cerro"],
   data: function data() {
     return {
-      arrayList: [],
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      }
+      listadoAtractivos: []
     };
   },
   mounted: function mounted() {
-    this.listMurales(); // LO PRIMERO, AL LLEGAR A LA PAGINA, ES MONTAR LISTMURALES()
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        //Si no hay nada en la propiedad TO (null o vacio), retornamos un array vacio
-        return [];
-      }
-
-      var from = this.pagination.current_page - 2; // TO DO
-      // Esta linea tiene el problema que FROM puede dar valor negativo o 0.
-
-      if (from < 1) {
-        //Si FROM es negativo o 0, haz;
-        from = 1; //setear FROM en 1;
-      }
-
-      var to = from + 2 * 2; //TO DO
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
+    this.listAtractivos(); // LO PRIMERO, AL LLEGAR A LA PAGINA, ES MONTAR LISTatractivo()
   },
   methods: {
-    listMurales: function listMurales(page) {
+    listAtractivos: function listAtractivos() {
       var _this = this;
 
-      console.log("PAGE", page);
-      var urlMurales = "/api-murales/" + this.cerro + "?page=" + page;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlMurales) // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
-      .then(function (respuesta) {
-        return (// RESPUESTA es el JSON solicitado
-          _this.arrayList = respuesta.data.murales.data, // Se llena ARRAYLIST, que está vacío, con lo que viene del JSON
-          _this.pagination = respuesta.data.pagination // Lo mismo pero ahora con los datos de PAGINATION (es un objeto)
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api-atractivos').then(function (respuesta) {
+        return _this.listadoAtractivos = respuesta.data;
+      }); // Se llena ARRAYLIST, que está vacío, con lo que viene del JSON
 
-        );
-      }); //Se cargan a la variable PAGINATION los datos del controlador JSON
-
-      console.log("arrayList", this.arrayList); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
+      console.log("RESPUESTA: ", respuesta.data); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
@@ -5666,7 +5616,7 @@ __webpack_require__.r(__webpack_exports__);
       //PAGE AUN NO TIENE VALOR
       console.log("PAGE:", page);
       this.pagination.current_page = page;
-      this.listMurales(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST MURALES?
+      this.listatractivo(page); //¿AQUÍ PASO LA VARIABLE PAGE COMO PARAMETRO AL ARRAY LIST atractivo?
     }
   }
 });
@@ -5772,7 +5722,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      var formData = new FormData();
+      var formData = new FormData(); // 1er Parámetro, nombre del campo del formulario.
+      // 2do parámetro, de dónde vienen los datos.
+
       formData.append("file", this.muralDatos.file);
       formData.append("direction", this.muralDatos.direction);
       formData.append("description", this.muralDatos.description);
@@ -5946,34 +5898,42 @@ __webpack_require__.r(__webpack_exports__);
   props: ["murales"],
   data: function data() {
     return {
+      // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
+      // Los datos vienen del PROPS
+      // La LLAVE debe corresponderse con el V-MODEL
       formEditMural: {
-        // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
-        ubicacion: this.murales.ubicacion,
-        calle: this.murales.calle,
-        descripcion: this.murales.descripcion,
+        //id:    this.murales.id,  
+        ubication: this.murales.ubication.name,
+        direction: this.murales.direction,
+        tipo_mural: this.murales.tipo_mural,
+        description: this.murales.description,
         lat: this.murales.lat,
-        lon: this.murales.lon,
+        "long": this.murales["long"],
         img: this.murales.image,
-        artista: this.murales.artista
+        artist: this.murales.artist.name
       }
     };
   },
   methods: {
     editMural: function editMural() {
-      var muralDatos = "/crud/edit"; //RUTA AL CONTROLADOR QUE GUARDA
-      //SE VA AL BACK(CONTROLADOR)
+      var id = this.formEditMural.id; //SE VA AL BACK(CONTROLADOR).
 
-      axios.post(muralDatos, {
+      axios.post("/crud/edit/", {
         id: this.murales.id,
-        ubicacion: this.formEditMural.ubicacion,
-        calle: this.formEditMural.calle,
-        descripcion: this.formEditMural.descripcion,
+        //ubication:    this.formEditMural.ubication,
+        direction: this.formEditMural.direction,
+        description: this.formEditMural.description,
         lat: this.formEditMural.lat,
-        lon: this.formEditMural.lon
+        "long": this.formEditMural["long"]
       }).then(function (response) {
-        return console.log("RESPUESTA EDICION BACK: ", response.data);
-      });
-      window.location.href = "/crud/index";
+        console.log("RESPUESTA EDICION BACK: ", response.data);
+
+        if (response.data) {
+          alert("WENA"); //window.location.href = "/crud/create-point/";
+        } else {
+          console.log("NO FUNIONA, DATA VACIO");
+        }
+      }); //window.location.href = "/crud/index";
     }
   }
 });
@@ -5991,68 +5951,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "datos-tabla",
   props: ["murales"],
   data: function data() {
     return {
-      formEditMural: {
-        // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
-        ubicacion: this.murales.ubicacion,
-        calle: this.murales.calle,
-        descripcion: this.murales.descripcion,
-        lat: this.murales.lat,
-        lon: this.murales.lon
+      //NOMBRE EXACTO COLUMNAS BD
+      columns: ["id", "ubicacion", "artista", "direction", "image", //"publicity",
+      "tipo_mural", "edit", "remove"],
+      //Objeto Option
+      options: {
+        perPage: 10,
+        perPagesValues: [10, 15, 20],
+        headings: {
+          id: "ID",
+          direction: "Dirección",
+          publicity: "Publicidad",
+          "ubication.name": "Ubicación",
+          tipo_mural: "Atractivo" //"artist.name": "Artista"
+
+        },
+        sortable: ["id", "ubication_id", "tipo_mural"],
+        filterable: ["ubication.name", "tipo_mural"],
+        filterByColumn: true,
+        editableColumns: ["direction"]
       }
     };
   },
   methods: {
-    editMural: function editMural() {
-      var muralDatos = "/crud/edit"; //RUTA AL CONTROLADOR QUE GUARDA
-      //SE VA AL BACK(CONTROLADOR)
-
-      axios.post(muralDatos, {
-        id: this.murales.id,
-        ubicacion: this.formEditMural.ubicacion,
-        calle: this.formEditMural.calle,
-        descripcion: this.formEditMural.descripcion,
-        lat: this.formEditMural.lat,
-        lon: this.formEditMural.lon
-      }).then(function (response) {
-        return console.log("RESPUESTA EDICION BACK: ", response.data);
+    deleteMural: function deleteMural(id) {
+      console.log(id, "INTENTANDO");
+      axios["delete"]("/crud/delete/" + id).then(function (response) {
+        console.log("ELIMINADO: ", response.data);
+        window.location.href = "/crud/index/";
       });
     },
-    crear: function crear() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.axios.post("mural", _this.mural).then(function (response) {
-                  _this.$router.push({
-                    name: "listMurales"
-                  });
-                })["catch"](function (error) {
-                  console.log(error);
-                });
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
+    edit: function edit(row) {
+      console.log(row);
+    },
+    remove: function remove(row) {
+      console.log(row);
     }
   }
 });
@@ -6128,7 +6066,9 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "justify-center"
-  }, [_c("h1", [_vm._v("ARQUITECTURA DE VALPARAÍSO")]), _vm._v(" "), _c("div", {
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center py-2 uppercase font-bold"
+  }, [_vm._v("\n        ARQUITECTURA DE VALPARAÍSO\n    ")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
   }, _vm._l(_vm.arrayList, function (arquitecturas) {
     return _c("div", {
@@ -6137,19 +6077,21 @@ var render = function render() {
         rawName: "v-viewer"
       }],
       key: arquitecturas.id,
-      staticClass: "w-96 mx-2"
+      staticClass: "w-96 mx-1 mb-2"
     }, [_c("img", {
       attrs: {
         src: "storage/" + arquitecturas.image
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v(" " + _vm._s(arquitecturas.descripcion) + " ")]), _vm._v(" "), _c("a", {
+      staticClass: "bg-red-400 pl-2 text-lg font-bold"
+    }, [_vm._v(" " + _vm._s(arquitecturas.descripcion) + " ")]), _vm._v(" "), _c("div", {
+      staticClass: "border-2 border-red-400 text-end pr-2"
+    }, [_c("a", {
       attrs: {
         href: "osm/" + arquitecturas.lat + "/" + arquitecturas.lon,
         target: "blank"
       }
-    }, [_vm._v("MAPA")])]);
+    }, [_vm._v("Ir al mapa")])])]);
   }), 0)]);
 };
 
@@ -6177,7 +6119,9 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "justify-center"
-  }, [_c("h1", [_vm._v("ASCENSORES DE VALPARAÍSO")]), _vm._v(" "), _c("div", {
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center py-2 uppercase font-bold"
+  }, [_vm._v("\n      ASCENSORES\n    ")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
   }, _vm._l(_vm.arrayList, function (ascensores) {
     return _c("div", {
@@ -6186,19 +6130,21 @@ var render = function render() {
         rawName: "v-viewer"
       }],
       key: ascensores.id,
-      staticClass: "w-96 mx-2"
+      staticClass: "w-96 mx-1 mb-2"
     }, [_c("img", {
       attrs: {
         src: "storage/" + ascensores.image
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Ascensor " + _vm._s(ascensores.nombre) + " ")]), _vm._v(" "), _c("a", {
+      staticClass: "bg-red-400 pl-2 text-lg font-bold"
+    }, [_vm._v("Ascensor " + _vm._s(ascensores.nombre) + " ")]), _vm._v(" "), _c("div", {
+      staticClass: "border-2 border-red-400 text-end pr-2"
+    }, [_c("a", {
       attrs: {
         href: "osm/" + ascensores.lat + "/" + ascensores.lon,
         target: "blank"
       }
-    }, [_vm._v("MAPA")])]);
+    }, [_vm._v("Ir al mapa")])])]);
   }), 0)]);
 };
 
@@ -6226,7 +6172,9 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "justify-center"
-  }, [_c("h1", [_vm._v("Escaleras DE VALPARAÍSO")]), _vm._v(" "), _c("div", {
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center py-2 uppercase font-bold"
+  }, [_vm._v("\n      Escaleras\n    ")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
   }, _vm._l(_vm.arrayList, function (escaleras) {
     return _c("div", {
@@ -6235,21 +6183,23 @@ var render = function render() {
         rawName: "v-viewer"
       }],
       key: escaleras.id,
-      staticClass: "w-96 mx-2"
+      staticClass: "w-96 mx-1 mb-2"
     }, [_c("img", {
       attrs: {
         src: "storage/" + escaleras.image
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
+      staticClass: "bg-red-400 pl-2 text-lg font-bold"
     }, [_vm._v(" " + _vm._s(escaleras.descripcion) + " ")]), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Cerro " + _vm._s(escaleras.lugar) + " ")]), _vm._v(" "), _c("a", {
+      staticClass: "bg-red-400 pl-2"
+    }, [_vm._v("Cerro " + _vm._s(escaleras.lugar) + " ")]), _vm._v(" "), _c("div", {
+      staticClass: "border-2 border-red-400 text-end pr-2"
+    }, [_c("a", {
       attrs: {
         href: "osm/" + escaleras.lat + "/" + escaleras.lon,
         target: "blank"
       }
-    }, [_vm._v("MAPA")])]);
+    }, [_vm._v("Ir al mapa")])])]);
   }), 0)]);
 };
 
@@ -6277,7 +6227,9 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "justify-center"
-  }, [_c("h1", [_vm._v("IGLESIAS DE VALPARAÍSO")]), _vm._v(" "), _c("div", {
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center py-2 uppercase font-bold"
+  }, [_vm._v("\n      Iglesias\n    ")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
   }, _vm._l(_vm.arrayList, function (iglesias) {
     return _c("div", {
@@ -6286,19 +6238,21 @@ var render = function render() {
         rawName: "v-viewer"
       }],
       key: iglesias.id,
-      staticClass: "w-96 mx-2"
+      staticClass: "w-96 mx-1 mb-2"
     }, [_c("img", {
       attrs: {
         src: "storage/" + iglesias.image
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Iglesia " + _vm._s(iglesias.nombre) + " ")]), _vm._v(" "), _c("a", {
+      staticClass: "bg-red-400 pl-2 text-lg font-bold"
+    }, [_vm._v(" Iglesia " + _vm._s(iglesias.nombre) + " ")]), _vm._v(" "), _c("div", {
+      staticClass: "border-2 border-red-400 text-end pr-2"
+    }, [_c("a", {
       attrs: {
         href: "osm/" + iglesias.lat + "/" + iglesias.lon,
         target: "blank"
       }
-    }, [_vm._v("MAPA")])]);
+    }, [_vm._v("Ir al mapa")])])]);
   }), 0)]);
 };
 
@@ -6374,9 +6328,7 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "carousel-caption hidden md:block absolute text-center"
-  }, [_c("h5", {
-    staticClass: "text-xl"
-  }, [_vm._v("First slide label")]), _vm._v(" "), _c("p", [_vm._v("Some representative placeholder content for the first slide.")])])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "carousel-item relative float-left w-full"
   }, [_c("img", {
     staticClass: "block w-full",
@@ -6386,9 +6338,9 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "carousel-caption hidden md:block absolute text-center"
-  }, [_c("h5", {
-    staticClass: "text-xl"
-  }, [_vm._v("Second slide label")]), _vm._v(" "), _c("p", [_vm._v("Some representative placeholder content for the second slide.")])])]), _vm._v(" "), _c("div", {
+  }, [_c("h2", {
+    staticClass: "text-3xl"
+  }, [_vm._v("Cerro Alegre")]), _vm._v(" "), _c("p", [_vm._v("Avenida Alemania, artista Anais.")])])]), _vm._v(" "), _c("div", {
     staticClass: "carousel-item relative float-left w-full"
   }, [_c("img", {
     staticClass: "block w-full",
@@ -6398,9 +6350,9 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "carousel-caption hidden md:block absolute text-center"
-  }, [_c("h5", {
-    staticClass: "text-xl"
-  }, [_vm._v("Third slide label")]), _vm._v(" "), _c("p", [_vm._v("Some representative placeholder content for the third slide.")])])])]), _vm._v(" "), _c("button", {
+  }, [_c("h3", {
+    staticClass: "text-3xl"
+  }, [_vm._v("Cerro Larraín")]), _vm._v(" "), _c("p", [_vm._v("Calle Heramnos Clark, artista Un JotaPe.")])])])]), _vm._v(" "), _c("button", {
     staticClass: "carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0",
     attrs: {
       type: "button",
@@ -6434,7 +6386,9 @@ var staticRenderFns = [function () {
     staticClass: "text-3xl mb-4"
   }, [_c("strong", [_vm._v("¿Qué es La Brújula?")])]), _vm._v(" "), _c("p", {
     staticClass: "mb-5 lead text-xl"
-  }, [_vm._v("\n      La Brújula es la guía indefinitiva que te ayudará a encontrar todos los\n      tesoros de Valparaíso.\n    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n      La Brújula es la guía "), _c("span", {
+    staticClass: "text-red-600 font-bold"
+  }, [_vm._v("indefinitiva")]), _vm._v(" que te ayudará a encontrar todos los\n      tesoros de Valparaíso.\n    ")])]), _vm._v(" "), _c("div", {
     staticClass: "flex justify-center flex-wrap"
   }, [_c("div", {
     staticClass: "max-w-sm rounded overflow-hidden shadow-lg"
@@ -6448,7 +6402,11 @@ var staticRenderFns = [function () {
     staticClass: "px-6 py-4"
   }, [_c("div", {
     staticClass: "font-bold text-xl mb-2"
-  }, [_vm._v("Murales")]), _vm._v(" "), _c("p", {
+  }, [_c("a", {
+    attrs: {
+      href: "/ascensores"
+    }
+  }, [_vm._v("Murales")])]), _vm._v(" "), _c("p", {
     staticClass: "text-gray-700 text-base"
   }, [_vm._v("\n          Con cerca de 400 murales, Valparaíso es la capital del arte urbano\n          de Chile.\n        ")])]), _vm._v(" "), _c("div", {
     staticClass: "px-6 pt-4 pb-2"
@@ -6470,7 +6428,11 @@ var staticRenderFns = [function () {
     staticClass: "px-6 py-4"
   }, [_c("div", {
     staticClass: "font-bold text-xl mb-2"
-  }, [_vm._v("Ascensores")]), _vm._v(" "), _c("p", {
+  }, [_c("a", {
+    attrs: {
+      href: "/ascensores"
+    }
+  }, [_vm._v("Ascensores")])]), _vm._v(" "), _c("p", {
     staticClass: "text-gray-700 text-base"
   }, [_vm._v("\n          Valparaíso es la ciudad con mayor cantidad de funiculares o\n          ascensores del mundo.\n        ")])]), _vm._v(" "), _c("div", {
     staticClass: "px-6 pt-4 pb-2"
@@ -6492,7 +6454,11 @@ var staticRenderFns = [function () {
     staticClass: "px-6 py-4"
   }, [_c("div", {
     staticClass: "font-bold text-xl mb-2"
-  }, [_vm._v("Escaleras")]), _vm._v(" "), _c("p", {
+  }, [_c("a", {
+    attrs: {
+      href: "/ascensores"
+    }
+  }, [_vm._v("Escaleras")])]), _vm._v(" "), _c("p", {
     staticClass: "text-gray-700 text-base"
   }, [_vm._v("\n          Los colores de Valparaíso están en todos lados, incluso en sus\n          escaleras.\n        ")])]), _vm._v(" "), _c("div", {
     staticClass: "px-6 pt-4 pb-2"
@@ -6527,7 +6493,9 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "justify-center"
-  }, [_c("h1", [_vm._v("MIRADORES DE VALPARAÍSO")]), _vm._v(" "), _c("div", {
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center py-2 uppercase font-bold"
+  }, [_vm._v("\n      Miradores\n    ")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center"
   }, _vm._l(_vm.arrayList, function (miradores) {
     return _c("div", {
@@ -6536,19 +6504,21 @@ var render = function render() {
         rawName: "v-viewer"
       }],
       key: miradores.id,
-      staticClass: "w-96 mx-2"
+      staticClass: "w-96 mx-1 mb-2"
     }, [_c("img", {
       attrs: {
         src: "storage/" + miradores.image
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Ascensor " + _vm._s(miradores.nombre) + " ")]), _vm._v(" "), _c("a", {
+      staticClass: "bg-red-400 pl-2 text-lg font-bold"
+    }, [_vm._v("Mirador " + _vm._s(miradores.cerro) + " ")]), _vm._v(" "), _c("div", {
+      staticClass: "border-2 border-red-400 text-end pr-2"
+    }, [_c("a", {
       attrs: {
         href: "osm/" + miradores.lat + "/" + miradores.lon,
         target: "blank"
       }
-    }, [_vm._v("MAPA")])]);
+    }, [_vm._v("Ir al Mapa")])])]);
   }), 0)]);
 };
 
@@ -6619,74 +6589,32 @@ var render = function render() {
   return _c("div", {
     staticClass: "justify-center"
   }, [_c("h1", {
-    staticClass: "text-3xl text-center py-2 uppercase"
-  }, [_vm._v("\n    MURALES DE VALPARAÍSO CERRO " + _vm._s(_vm.cerro) + "\n  ")]), _vm._v(" "), _c("div", {
+    staticClass: "text-2xl text-center py-2 uppercase font-bold"
+  }, [_vm._v("\n    ATRACTIVOS DE VALPARAÍSO\n  ")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center mx-5"
-  }, _vm._l(_vm.arrayList, function (murales) {
+  }, _vm._l(_vm.listadoAtractivos, function (atractivo) {
     return _c("div", {
       directives: [{
         name: "viewer",
         rawName: "v-viewer"
       }],
-      key: murales.id,
+      key: atractivo.id,
       staticClass: "w-96 mx-2 bg-red-800"
     }, [_c("img", {
       attrs: {
-        src: "/storage/" + murales.image,
+        src: "/storage/" + atractivo.image,
         alt: "imagen"
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "bg-red-500 px-2"
-    }, [_c("b", [_vm._v(_vm._s(murales.ubicacion))]), _vm._v(" - " + _vm._s(murales.calle) + " -\n        " + _vm._s(murales.artista) + "\n      ")]), _vm._v(" "), _c("a", {
+    }, [_c("b", [_vm._v(_vm._s(atractivo.ubicacion))]), _vm._v(" - " + _vm._s(atractivo.calle) + " -\n        " + _vm._s(atractivo.artista) + "\n      ")]), _vm._v(" "), _c("a", {
       staticClass: "flex justify-end text-white mx-2",
       attrs: {
-        href: "/osm/" + murales.lat + "/" + murales.lon,
+        href: "/osm/" + atractivo.lat + "/" + atractivo.lon,
         target: "blank"
       }
     }, [_vm._v("Ir al mapa")])]);
-  }), 0), _vm._v(" "), _c("nav", {
-    staticClass: "flex justify-center p-5"
-  }, [_c("ul", {
-    staticClass: "inline-flex -space-x-px"
-  }, [_vm.pagination.current_page > 1 ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.pagesNumber, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": [page == _vm.isActived ? "active" : ""]
-    }, [_c("a", {
-      staticClass: "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.changePage(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.pagination.current_page < _vm.pagination.last_page ? _c("li", [_c("a", {
-    staticClass: "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.changePage(_vm.pagination.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])]);
+  }), 0)]);
 };
 
 var staticRenderFns = [];
@@ -6712,8 +6640,12 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "flex justify-center"
-  }, [_c("h4", [_vm._v("Ingresar nuevo artista")]), _vm._v(" "), _c("table", [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nombre:")]), _vm._v(" "), _c("td", [_c("input", {
+    staticClass: "flex flex-col justify-center m-3"
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center mb-3"
+  }, [_vm._v("AGREGAR ARTISTA")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
+    staticClass: "border-2 border-red-500 ml-56 w-96"
+  }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nombre:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6773,7 +6705,7 @@ var render = function render() {
         _vm.$set(_vm.artistaData, "description", $event.target.value);
       }
     }
-  })])])])]), _vm._v(" "), _c("button", {
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_c("button", {
     staticClass: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center",
     attrs: {
       type: "button"
@@ -6802,10 +6734,53 @@ var render = function render() {
       d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
       fill: "currentColor"
     }
-  })]) : _vm._e(), _vm._v("\n  Guardar\n\n  ")])]);
+  })]) : _vm._e(), _vm._v("\n            Guardar\n          ")])])])])])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("a", {
+    attrs: {
+      href: "/crud/create-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n        Agregar Punto\n      ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-ubication/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n        Agregar Ubicacion\n      ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-type-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n        Agregar Tipo de atractivo\n      ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/artista-view"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n        Agregar Artista\n      ")])])]);
+}];
 render._withStripped = true;
 
 
@@ -6828,8 +6803,12 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "flex justify-center"
-  }, [_c("h4", [_vm._v("CREAR REGISTRO MURAL")]), _vm._v(" "), _c("table", [_c("tbody", [_c("tr", [_c("td", [_vm._v("Selecciona ubicación:")]), _vm._v(" "), _c("td", [_c("select", {
+    staticClass: "flex flex-col justify-center m-3"
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center mb-3"
+  }, [_vm._v("AGREGAR PUNTO")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
+    staticClass: "bg-red-400"
+  }, [_c("tbody", [_c("th", [_c("tr", [_c("td", [_vm._v("Selecciona ubicación:")]), _vm._v(" "), _c("td", [_c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6855,7 +6834,7 @@ var render = function render() {
       domProps: {
         value: ubication.id
       }
-    }, [_vm._v("\n              " + _vm._s(ubication.name) + "\n            ")]);
+    }, [_vm._v("\n                " + _vm._s(ubication.name) + "\n              ")]);
   }), 0)]), _vm._v(" "), _c("td", {
     attrs: {
       rowspan: "3"
@@ -6885,7 +6864,7 @@ var render = function render() {
       domProps: {
         value: atractivo.nombre
       }
-    }, [_vm._v("\n              " + _vm._s(atractivo.nombre) + "\n            ")]);
+    }, [_vm._v("\n                " + _vm._s(atractivo.nombre) + "\n              ")]);
   }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("select", {
     directives: [{
       name: "model",
@@ -6909,9 +6888,9 @@ var render = function render() {
     return _c("option", {
       key: artist.id,
       domProps: {
-        value: artist.name
+        value: artist.id
       }
-    }, [_vm._v("\n              " + _vm._s(artist.name) + "\n            ")]);
+    }, [_vm._v("\n                " + _vm._s(artist.name) + "\n              ")]);
   }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Dirección:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
@@ -6932,7 +6911,7 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "direction", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
+  })])])]), _vm._v(" "), _c("th", [_c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7008,7 +6987,7 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "long", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-col"
   }, [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
     directives: [{
@@ -7072,10 +7051,53 @@ var render = function render() {
       d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
       fill: "currentColor"
     }
-  })]) : _vm._e(), _vm._v("\n    Guardar\n  ")])]);
+  })]) : _vm._e(), _vm._v("\n      Guardar\n    ")])]);
 };
 
 var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("a", {
+    attrs: {
+      href: "/crud/create-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Punto\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-ubication/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Ubicacion\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-type-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Tipo de atractivo\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/artista-view"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Artista\n    ")])])]);
+}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -7107,8 +7129,12 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "flex justify-center"
-  }, [_c("h4", [_vm._v("CREAR NUEVA CATEGORIA DE ATRACTIVO")]), _vm._v(" "), _c("table", [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nombre:")]), _vm._v(" "), _c("td", [_c("input", {
+    staticClass: "flex flex-col justify-center m-3"
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center mb-3"
+  }, [_vm._v("AGREGAR NUEVO TIPO DE ATRACTIVO")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
+    staticClass: "border-2 border-red-500 ml-56 w-96"
+  }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nuevo atractivo:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7128,7 +7154,7 @@ var render = function render() {
         _vm.$set(_vm.typeData, "type_point", $event.target.value);
       }
     }
-  })])])])]), _vm._v(" "), _c("button", {
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_c("button", {
     staticClass: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center",
     attrs: {
       type: "button"
@@ -7157,10 +7183,53 @@ var render = function render() {
       d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
       fill: "currentColor"
     }
-  })]) : _vm._e(), _vm._v("\n    Guardar\n  ")])]);
+  })]) : _vm._e(), _vm._v("\n            Guardar\n          ")])])])])])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("a", {
+    attrs: {
+      href: "/crud/create-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n        Agregar Punto\n      ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-ubication/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n        Agregar Ubicacion\n      ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-type-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n        Agregar Tipo de atractivo\n      ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/artista-view"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n        Agregar Artista\n      ")])])]);
+}];
 render._withStripped = true;
 
 
@@ -7183,10 +7252,14 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "flex flex-col justify-center"
-  }, [_c("h4", [_vm._v("CREAR NUEVA UBICACION")]), _vm._v(" "), _c("div", [_c("table", {
+    staticClass: "flex flex-col justify-center m-3"
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center mb-3"
+  }, [_vm._v("AGREGAR NUEVA UBICACIÓN")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "flex justify-start"
+  }, [_c("table", {
     staticClass: "m-5"
-  }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nombre nueva Ubicacion:")]), _vm._v(" "), _c("td", [_c("input", {
+  }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nueva Ubicacion:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7239,14 +7312,60 @@ var render = function render() {
       d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
       fill: "currentColor"
     }
-  })]) : _vm._e(), _vm._v("\n      Guardar\n    ")])])])])])]), _vm._v(" "), _vm._l(this.listUbications, function (ubication) {
+  })]) : _vm._e(), _vm._v("\n        Guardar\n      ")])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "flex flex-wrap"
+  }, _vm._l(this.listUbications, function (ubication) {
     return _c("div", {
-      key: ubication.id
-    }, [_vm._v("\n    " + _vm._s(ubication.name) + "\n  ")]);
-  })], 2);
+      key: ubication.id,
+      staticClass: "border-2 border-red-500 p-2 m-2"
+    }, [_vm._v("\n        " + _vm._s(ubication.name) + "\n    ")]);
+  }), 0)]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("a", {
+    attrs: {
+      href: "/crud/create-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Punto\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-ubication/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Ubicacion\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-type-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Tipo de atractivo\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/artista-view"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Artista\n    ")])])]);
+}];
 render._withStripped = true;
 
 
@@ -7272,71 +7391,91 @@ var render = function render() {
     staticClass: "flex justify-center flex-col my-5"
   }, [_c("div", {
     staticClass: "grid grid-cols-3 gap-2 mx-5 justify-items-start"
-  }, [_c("table", [_c("tbody", [_c("tr", [_c("td", [_vm._v("Cerro:")]), _vm._v(" "), _c("td", [_c("input", {
+  }, [_c("table", [_c("tbody", [_c("tr", [_c("td", [_vm._v("Ubicación/Cerro:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.formEditMural.ubicacion,
-      expression: "formEditMural.ubicacion"
+      value: _vm.formEditMural.ubication,
+      expression: "formEditMural.ubication"
     }],
     attrs: {
       type: "text"
     },
     domProps: {
-      value: _vm.formEditMural.ubicacion
+      value: _vm.formEditMural.ubication
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.formEditMural, "ubicacion", $event.target.value);
+        _vm.$set(_vm.formEditMural, "ubication", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("td", {
     attrs: {
       rowspan: "3"
     }
-  })]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("input", {
+  })]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.formEditMural.artista,
-      expression: "formEditMural.artista"
+      value: _vm.formEditMural.tipo_mural,
+      expression: "formEditMural.tipo_mural"
     }],
     attrs: {
       type: "text"
     },
     domProps: {
-      value: _vm.formEditMural.artista
+      value: _vm.formEditMural.tipo_mural
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.formEditMural, "artista", $event.target.value);
+        _vm.$set(_vm.formEditMural, "tipo_mural", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Calle:")]), _vm._v(" "), _c("td", [_c("input", {
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.formEditMural.calle,
-      expression: "formEditMural.calle"
+      value: _vm.formEditMural.artist,
+      expression: "formEditMural.artist"
     }],
     attrs: {
       type: "text"
     },
     domProps: {
-      value: _vm.formEditMural.calle
+      value: _vm.formEditMural.artist
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.formEditMural, "calle", $event.target.value);
+        _vm.$set(_vm.formEditMural, "artist", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Latitud:")]), _vm._v(" "), _c("td", [_c("input", {
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Dirección:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.direction,
+      expression: "formEditMural.direction"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.direction
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "direction", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("td", [_vm._v(" ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Latitud:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7360,20 +7499,20 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.formEditMural.lon,
-      expression: "formEditMural.lon"
+      value: _vm.formEditMural["long"],
+      expression: "formEditMural.long"
     }],
     attrs: {
       type: "text"
     },
     domProps: {
-      value: _vm.formEditMural.lon
+      value: _vm.formEditMural["long"]
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.formEditMural, "lon", $event.target.value);
+        _vm.$set(_vm.formEditMural, "long", $event.target.value);
       }
     }
   })])]), _vm._v(" "), _c("tr", [_c("td", {
@@ -7396,25 +7535,25 @@ var render = function render() {
         return _vm.editMural();
       }
     }
-  })])])])])]), _vm._v(" "), _c("div", [_c("p", [_vm._v(" Descripción")]), _vm._v(" "), _c("textarea", {
+  })])])])])]), _vm._v(" "), _c("div", [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.formEditMural.descripcion,
-      expression: "formEditMural.descripcion"
+      value: _vm.formEditMural.description,
+      expression: "formEditMural.description"
     }],
     attrs: {
       cols: "40",
       rows: "5"
     },
     domProps: {
-      value: _vm.formEditMural.descripcion
+      value: _vm.formEditMural.description
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.formEditMural, "descripcion", $event.target.value);
+        _vm.$set(_vm.formEditMural, "description", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("div", [_c("img", {
@@ -7446,38 +7585,74 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {}, [_c("h1", {
-    staticClass: "flex text-xl justify-center"
-  }, [_vm._v("MURALES DE VALPARAISO")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("div", {
-    staticClass: "flex mx-32"
-  }, [_c("table", {
-    staticClass: "bg-red-100"
-  }, [_vm._m(4), _vm._v(" "), _c("tbody", _vm._l(_vm.murales, function (mural) {
-    return _c("tr", {
-      key: mural.id
-    }, [_c("td", [_c("img", {
-      attrs: {
-        src: "/storage/prueba2/" + mural.image,
-        alt: "imagen",
-        width: "200"
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "mx-8",
+    attrs: {
+      id: "people"
+    }
+  }, [_c("v-client-table", {
+    attrs: {
+      data: _vm.murales,
+      columns: _vm.columns,
+      options: _vm.options
+    },
+    scopedSlots: _vm._u([{
+      key: "edit",
+      fn: function fn(props) {
+        return _c("button", {
+          attrs: {
+            type: "button"
+          },
+          on: {
+            click: function click($event) {
+              return _vm.edit(props.row);
+            }
+          }
+        }, [_c("a", {
+          attrs: {
+            href: "/crud/show-edit/" + props.row.id
+          }
+        }, [_vm._v("Editar")])]);
       }
-    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.ubicacion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.calle) + " ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(mural.descripcion))]), _vm._v(" "), _c("td", {
-      staticClass: "bg-red-300"
-    }, [_c("a", {
-      attrs: {
-        href: "/crud/show-edit/" + mural.id
+    }, {
+      key: "remove",
+      fn: function fn(props) {
+        return _c("button", {
+          attrs: {
+            type: "button"
+          },
+          on: {
+            click: function click($event) {
+              return _vm.deleteMural(props.row.id);
+            }
+          }
+        }, [_vm._v("Eliminar")]);
       }
-    }, [_vm._v("Editar")])]), _vm._v(" "), _c("td", {
-      staticClass: "bg-red-300"
-    }, [_vm._v("Eliminar")])]);
-  }), 0)])])]);
+    }, {
+      key: "image",
+      fn: function fn(murales) {
+        return _c("img", {
+          attrs: {
+            src: "/storage/" + murales.row.image,
+            width: "200"
+          }
+        });
+      }
+    }])
+  })], 1)]);
 };
 
 var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("a", {
+  return _c("div", {
+    staticClass: "CUERPO flex flex-col my-3"
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center mb-3"
+  }, [_vm._v("ATRACTIVOS DE VALPARAISO INDEX.VUE")]), _vm._v(" "), _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("a", {
     attrs: {
       href: "/crud/create-point/"
     }
@@ -7486,12 +7661,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n        Agregar Punto\n    ")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("a", {
+  }, [_vm._v("\n          Agregar Punto\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-ubication/"
     }
@@ -7500,12 +7670,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n        Agregar Ubicacion\n    ")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("a", {
+  }, [_vm._v("\n          Agregar Ubicacion\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-type-point/"
     }
@@ -7514,12 +7679,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n        Agregar Tipo de atractivo\n    ")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("a", {
+  }, [_vm._v("\n          Agregar Tipo de atractivo\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/artista-view"
     }
@@ -7528,20 +7688,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n        Agregar Artista\n    ")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("thead", [_c("tr", [_c("td", [_vm._v("Imagen")]), _vm._v(" "), _c("td", [_vm._v("Ubicación")]), _vm._v(" "), _c("td", [_vm._v("Calle")]), _vm._v(" "), _c("td", {
-    attrs: {
-      width: "30%"
-    }
-  }, [_vm._v("Descripción")]), _vm._v(" "), _c("td", {
-    staticClass: "bg-red-300"
-  }, [_vm._v("Acciones")]), _vm._v(" "), _c("td", {
-    staticClass: "bg-red-300"
-  })])]);
+  }, [_vm._v("\n          Agregar Artista\n        ")])])])]);
 }];
 render._withStripped = true;
 
@@ -7769,7 +7916,7 @@ var staticRenderFns = [function () {
   }, [_c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
     attrs: {
-      href: "murales/alegre"
+      href: "/murales/alegre"
     }
   }, [_vm._v("Alegre")])]), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",

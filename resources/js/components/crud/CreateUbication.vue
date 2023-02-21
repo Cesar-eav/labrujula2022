@@ -1,11 +1,109 @@
 <template>
-  <div class="flex flex-col justify-center">
-    <h4>CREAR NUEVA UBICACION</h4>
-    <div>
+  <div class="flex flex-col justify-center m-3">
+    <h1 class="text-2xl text-center mb-3">AGREGAR NUEVA UBICACIÓN</h1>
+
+<!-- PUNTOS CRUD -->
+<div class="flex justify-center">
+  <a href="/crud/create-point/">
+    <button
+      type="button"
+      class="
+        focus:outline-none
+        text-white
+        bg-red-700
+        hover:bg-red-800
+        focus:ring-4 focus:ring-red-300
+        font-medium
+        rounded-lg
+        text-sm
+        px-5
+        py-2.5
+        mr-2
+        mb-2
+        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
+      "
+    >
+      Agregar Punto
+    </button>
+  </a>
+
+  <a href="/crud/create-ubication/">
+    <button
+      type="button"
+      class="
+        focus:outline-none
+        text-white
+        bg-red-700
+        hover:bg-red-800
+        focus:ring-4 focus:ring-red-300
+        font-medium
+        rounded-lg
+        text-sm
+        px-5
+        py-2.5
+        mr-2
+        mb-2
+        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
+      "
+    >
+      Agregar Ubicacion
+    </button>
+  </a>
+
+  <a href="/crud/create-type-point/">
+    <button
+      type="button"
+      class="
+        focus:outline-none
+        text-white
+        bg-red-700
+        hover:bg-red-800
+        focus:ring-4 focus:ring-red-300
+        font-medium
+        rounded-lg
+        text-sm
+        px-5
+        py-2.5
+        mr-2
+        mb-2
+        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
+      "
+    >
+      Agregar Tipo de atractivo
+    </button>
+  </a>
+
+  <a href="/crud/artista-view">
+    <button
+      type="button"
+      class="
+        focus:outline-none
+        text-white
+        bg-red-700
+        hover:bg-red-800
+        focus:ring-4 focus:ring-red-300
+        font-medium
+        rounded-lg
+        text-sm
+        px-5
+        py-2.5
+        mr-2
+        mb-2
+        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
+      "
+    >
+      Agregar Artista
+    </button>
+  </a>
+</div>
+
+
+
+    <div class="flex justify-start">
       <table class="m-5">
         <tbody>
           <tr>
-            <td>Nombre nueva Ubicacion:</td>
+            <td>Nueva Ubicacion:</td>
             <td>
               <input
                 @keyup.enter="upUbication()"
@@ -58,13 +156,15 @@
           </tr>
         </tbody>
       </table>
-
-    
     </div>
 
-    <div v-for="ubication in this.listUbications" :key="ubication.id">
-      {{ ubication.name }}
+<div class="flex flex-wrap">
+    <div class="border-2 border-red-500 p-2 m-2"  
+      v-for="ubication in this.listUbications" :key="ubication.id">
+        {{ ubication.name }}
     </div>
+</div>
+
   </div>
 </template>
 

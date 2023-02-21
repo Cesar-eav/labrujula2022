@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PointTest;
+use App\Models\Atractivos;
 use Illuminate\Http\Request;
 
 class CrudController extends Controller
@@ -11,8 +12,8 @@ class CrudController extends Controller
 
     public function index()
     {
-
-        $murales = PointTest::with('ubication', 'artist')->get();
+        //with('ubication', 'artist')->
+        $murales = Atractivos::get();
         return view('crud.index', compact(
             'murales',
             
