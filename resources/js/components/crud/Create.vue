@@ -133,8 +133,6 @@
               </option>
             </select>
           </td>
-
-          <td rowspan="3"></td>
         </tr>
         <tr>
           <td>Tipo atractivo:</td>

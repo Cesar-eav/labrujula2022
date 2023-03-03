@@ -14,20 +14,21 @@ use Illuminate\Http\Request;
 
 class MuralController extends Controller
 {
+    //NO ESTÄ EN USO!!!!!!!!!!!!1
     public function murales(Request $request, $cerro = '')
     {
 
         if ($cerro == '') {
-            $murales = Point::paginate(12);
+            $murales = Atractivos::paginate(12);
             return view('murales', compact('murales'));
         } else {
             //return $cerro;
-            $murales = Point::where('ubicacion', $cerro)->paginate(15);
+            $murales = Atractivos::where('ubicacion', $cerro)->paginate(15);
         }
 
         return view('murales', [
             'pagination' => [
-                'total'         =>  $murales->total(),
+                'total'         => $murales->total(),
                 'current_page'  => $murales->currentPage(),
                 'per_page'      => $murales->perPage(),
                 'last_page'     => $murales->lastPage(),
@@ -39,11 +40,15 @@ class MuralController extends Controller
     }
 
 
-    public function atractivos()
-    {
-        $atractivos = Atractivos::all();
-        return $atractivos;
-    }
+    // public function atractivos()
+    // {
+    //     $atractivos = Atractivos::all();
+    //     return compact([
+    //         'atractivos'
+    
+    //     ]);
+        
+    // }
 
     public function ascensores()
     {
@@ -91,27 +96,7 @@ class MuralController extends Controller
     }
 
 
-    // public function show(miapp_article $mural)
-    // {
-    //     $murales = miapp_article::find($mural);
-
-    //     return view('murales.show', compact('murales'));
-    // }
-
-
-    // public function edit(miapp_article $mural)
-    // {
-    //     //
-    // }
-
-
-    // public function update(Request $request, miapp_article $mural)
-    // {
-    //     $murales->update($request->all());
-    // }
-
-
-    public function destroy($id)
+      public function destroy($id)
     {
         $murales = miapp_article::find($id)->delete();
     }

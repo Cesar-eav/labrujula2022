@@ -132,7 +132,7 @@
         />
         <div class="px-6 py-4">
           <div class="font-bold text-xl mb-2">
-            <a href="/ascensores">Murales</a>
+            <a href="/murales">Murales</a>
           </div>
           <p class="text-gray-700 text-base">
             Con cerca de 400 murales, Valparaíso es la capital del arte urbano
@@ -256,7 +256,7 @@
         <img class="w-full" src="/storage/img/3.jpg" alt="Escaleras" />
         <div class="px-6 py-4">
           <div class="font-bold text-xl mb-2">
-            <a href="/ascensores">Escaleras</a>
+            <a href="/escaleras">Escaleras</a>
           </div>
           <p class="text-gray-700 text-base">
             Los colores de Valparaíso están en todos lados, incluso en sus

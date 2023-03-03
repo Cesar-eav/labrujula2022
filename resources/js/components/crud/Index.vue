@@ -141,7 +141,7 @@ export default {
         "direction",
         "image",
         //"publicity",
-        "tipo_mural",
+        "type_attractive",
         "edit",
         "remove"
       ],
@@ -157,8 +157,8 @@ export default {
           tipo_mural: "Atractivo",
           //"artist.name": "Artista"
         },
-        sortable: ["id", "ubication_id", "tipo_mural"],
-        filterable: ["ubication.name", "tipo_mural"],
+        sortable: ["id", "ubication_id", "type_attractive"],
+        filterable: ["type_attractive"],
         filterByColumn: true,
         editableColumns: ["direction"],
       },

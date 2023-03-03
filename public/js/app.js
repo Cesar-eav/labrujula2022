@@ -5675,24 +5675,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["murales"],
   data: function data() {
-    return {
-      listadoAtractivos: []
-    };
-  },
-  mounted: function mounted() {
-    this.listAtractivos(); // LO PRIMERO, AL LLEGAR A LA PAGINA, ES MONTAR LISTatractivo()
+    return {};
   },
   methods: {
-    listAtractivos: function listAtractivos() {
-      var _this = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api-atractivos').then(function (respuesta) {
-        return _this.listadoAtractivos = respuesta.data;
-      }); // Se llena ARRAYLIST, que está vacío, con lo que viene del JSON
-
-      console.log("RESPUESTA: ", respuesta.data); // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
     deleteMural: function deleteMural() {
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
         console.log(response);
@@ -5991,23 +5978,28 @@ __webpack_require__.r(__webpack_exports__);
       // La LLAVE debe corresponderse con el V-MODEL
       //this.murales[0],
       formEditMural: {
+        id: this.murales.id,
         ubication: this.murales.ubication,
+        ubication_id: this.murales.ubication_id,
+        selectedUbicationId: null,
         direction: this.murales.direction,
         type_attractive: this.murales.type_attractive,
         description: this.murales.description,
         lat: this.murales.lat,
         lon: this.murales.lon,
-        //img:                this.murales[0].image,
+        img: this.murales.image,
         artist: this.murales.artista
-      }
+      },
+      ubications: []
     };
   },
   methods: {
     editMural: function editMural() {
       //SE VA AL BACK(CONTROLADOR).
       axios.post("/crud/edit/", {
-        //id:               this.formEditMural.id,  
+        id: this.formEditMural.id,
         ubication: this.formEditMural.ubication,
+        ubication_id: this.formEditMural.ubication_id,
         direction: this.formEditMural.direction,
         description: this.formEditMural.description,
         artist: this.formEditMural.artist,
@@ -6018,12 +6010,27 @@ __webpack_require__.r(__webpack_exports__);
         console.log("RESPUESTA EDICION BACK: ", response.data);
 
         if (response.data) {
-          alert("WENA"); //window.location.href = "/crud/create-point/";
+          alert('Guardado');
+          console.log("DATOS BACK: ", response.data); //window.location.href = "/crud/index/";
         } else {
           console.log("NO FUNIONA, DATA VACIO");
         }
       }); //window.location.href = "/crud/index";
+    },
+    selectUbication: function selectUbication() {
+      var _this = this;
+
+      axios.get("/crud-ubication/list-ubications").then(function (response) {
+        _this.ubications = response.data;
+        console.log("FUNCION UBICACION", response.data);
+      })["catch"](function (error) {
+        return console.log("Error", error);
+      });
     }
+  },
+  //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
+  mounted: function mounted() {
+    this.selectUbication(); //this.selectArtist();
   }
 });
 
@@ -6047,7 +6054,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       //NOMBRE EXACTO COLUMNAS BD
       columns: ["id", "ubication", "artista", "direction", "image", //"publicity",
-      "tipo_mural", "edit", "remove"],
+      "type_attractive", "edit", "remove"],
       //Objeto Options, son las cabeceras de la tabla
       options: {
         perPage: 10,
@@ -6060,8 +6067,8 @@ __webpack_require__.r(__webpack_exports__);
           tipo_mural: "Atractivo" //"artist.name": "Artista"
 
         },
-        sortable: ["id", "ubication_id", "tipo_mural"],
-        filterable: ["ubication.name", "tipo_mural"],
+        sortable: ["id", "ubication_id", "type_attractive"],
+        filterable: ["type_attractive"],
         filterByColumn: true,
         editableColumns: ["direction"]
       }
@@ -6493,7 +6500,7 @@ var staticRenderFns = [function () {
     staticClass: "font-bold text-xl mb-2"
   }, [_c("a", {
     attrs: {
-      href: "/ascensores"
+      href: "/murales"
     }
   }, [_vm._v("Murales")])]), _vm._v(" "), _c("p", {
     staticClass: "text-gray-700 text-base"
@@ -6545,7 +6552,7 @@ var staticRenderFns = [function () {
     staticClass: "font-bold text-xl mb-2"
   }, [_c("a", {
     attrs: {
-      href: "/ascensores"
+      href: "/escaleras"
     }
   }, [_vm._v("Escaleras")])]), _vm._v(" "), _c("p", {
     staticClass: "text-gray-700 text-base"
@@ -6681,7 +6688,7 @@ var render = function render() {
     staticClass: "text-2xl text-center py-2 uppercase font-bold"
   }, [_vm._v("\n    ATRACTIVOS DE VALPARAÍSO\n  ")]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-wrap justify-center mx-5"
-  }, _vm._l(_vm.listadoAtractivos, function (atractivo) {
+  }, _vm._l(this.murales, function (atractivo) {
     return _c("div", {
       directives: [{
         name: "viewer",
@@ -6696,7 +6703,7 @@ var render = function render() {
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "bg-red-500 px-2"
-    }, [_c("b", [_vm._v(_vm._s(atractivo.ubicacion))]), _vm._v(" - " + _vm._s(atractivo.calle) + " -\n        " + _vm._s(atractivo.artista) + "\n      ")]), _vm._v(" "), _c("a", {
+    }, [_c("b", [_vm._v(_vm._s(atractivo.ubication))]), _vm._v(" - " + _vm._s(atractivo.direction) + " -\n        " + _vm._s(atractivo.artista) + "\n      ")]), _vm._v(" "), _c("a", {
       staticClass: "flex justify-end text-white mx-2",
       attrs: {
         href: "/osm/" + atractivo.lat + "/" + atractivo.lon,
@@ -6924,11 +6931,7 @@ var render = function render() {
         value: ubication.id
       }
     }, [_vm._v("\n                " + _vm._s(ubication.name) + "\n              ")]);
-  }), 0)]), _vm._v(" "), _c("td", {
-    attrs: {
-      rowspan: "3"
-    }
-  })]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("select", {
+  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7407,7 +7410,7 @@ var render = function render() {
     return _c("div", {
       key: ubication.id,
       staticClass: "border-2 border-red-500 p-2 m-2"
-    }, [_vm._v("\n        " + _vm._s(ubication.name) + "\n    ")]);
+    }, [_vm._v("\n      " + _vm._s(ubication.name) + " id: " + _vm._s(ubication.id) + "\n    ")]);
   }), 0)]);
 };
 
@@ -7477,10 +7480,12 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "flex justify-center flex-col my-5"
-  }, [_c("div", {
-    staticClass: "grid grid-cols-3 gap-2 mx-5 justify-items-start"
-  }, [_c("table", [_c("tbody", [_c("tr", [_c("td", [_vm._v("Ubicación/Cerro:")]), _vm._v(" "), _c("td", [_c("input", {
+    staticClass: "flex justify-center flex-col my-3"
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center mb-3"
+  }, [_vm._v("EDITAR PUNTO")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
+    staticClass: "bg-red-400 mx-10"
+  }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Ubicación/Cerro:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7501,10 +7506,65 @@ var render = function render() {
       }
     }
   })]), _vm._v(" "), _c("td", {
+    staticClass: "align-top",
     attrs: {
-      rowspan: "3"
+      rowspan: "7"
     }
-  })]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("input", {
+  }, [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.description,
+      expression: "formEditMural.description"
+    }],
+    attrs: {
+      cols: "40",
+      rows: "5"
+    },
+    domProps: {
+      value: _vm.formEditMural.description
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "description", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("img", {
+    staticClass: "mt-2",
+    attrs: {
+      src: "/storage/" + _vm.formEditMural.img,
+      width: "500"
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Selecciona ubicación:")]), _vm._v(" "), _c("td", [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.ubication_id,
+      expression: "formEditMural.ubication_id"
+    }],
+    staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.formEditMural, "ubication_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(this.ubications, function (ubication) {
+    return _c("option", {
+      key: ubication.id,
+      domProps: {
+        value: ubication.id
+      }
+    }, [_vm._v("\n                  " + _vm._s(ubication.name) + "\n                ")]);
+  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7624,31 +7684,53 @@ var render = function render() {
         return _vm.editMural();
       }
     }
-  })])])])])]), _vm._v(" "), _c("div", [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.formEditMural.description,
-      expression: "formEditMural.description"
-    }],
-    attrs: {
-      cols: "40",
-      rows: "5"
-    },
-    domProps: {
-      value: _vm.formEditMural.description
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.formEditMural, "description", $event.target.value);
-      }
-    }
-  })])])]);
+  })])])])])])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("a", {
+    attrs: {
+      href: "/crud/create-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Punto\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-ubication/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Ubicacion\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-type-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Tipo de atractivo\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/artista-view"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Artista\n    ")])])]);
+}];
 render._withStripped = true;
 
 
@@ -7955,12 +8037,7 @@ var render = function render() {
       d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
       "clip-rule": "evenodd"
     }
-  })])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "),  true ? _c("li", [_c("a", {
-    staticClass: "menuPrincipal block py-2",
-    attrs: {
-      href: "/crud/index"
-    }
-  }, [_vm._v("CRUD")])]) : 0])])])])]);
+  })])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "),  false ? 0 : _vm._e()])])])])]);
 };
 
 var staticRenderFns = [function () {

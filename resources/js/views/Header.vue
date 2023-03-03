@@ -109,7 +109,7 @@
           <a href="/arquitecturas" class="menuPrincipal block py-2">Arquitectura</a>
         </li>
 
-        <li v-if="true">
+        <li v-if="false">
           <a href="/crud/index" class="menuPrincipal block py-2">CRUD</a>
         </li>
 

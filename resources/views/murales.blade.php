@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="app">
-        <show-murales></show-murales>
+        <show-murales  :murales="{{json_encode($murales)}}"></show-murales>
     </div>
 @endsection
 

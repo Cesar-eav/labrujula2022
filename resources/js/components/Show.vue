@@ -11,11 +11,11 @@
       <div
         v-viewer
         class="w-96 mx-2 bg-red-800"
-         v-for="atractivo in listadoAtractivos" :key="atractivo.id">
+         v-for="atractivo in this.murales" :key="atractivo.id">
         
         <img :src="'/storage/' + atractivo.image" alt="imagen" />
         <div class="bg-red-500 px-2">
-          <b>{{ atractivo.ubicacion }}</b> - {{ atractivo.calle }} -
+          <b>{{ atractivo.ubication }}</b> - {{ atractivo.direction }} -
           {{ atractivo.artista }}
         </div>
 
@@ -47,25 +47,16 @@ import axios from "axios";
 
 export default {
 
+  props: ["murales"],
+
   data() {
     return {
-      listadoAtractivos: []
+
     };
   },
 
-  mounted() {
-    this.listAtractivos(); // LO PRIMERO, AL LLEGAR A LA PAGINA, ES MONTAR LISTatractivo()
-  },
   
   methods: {
-    listAtractivos() {
-
-      axios
-        .get('api-atractivos').then(respuesta => this.listadoAtractivos = respuesta.data); // Se llena ARRAYLIST, que está vacío, con lo que viene del JSON
-   
-        console.log("RESPUESTA: ",respuesta.data);
-      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
-    },
 
     deleteMural() {
       axios.delete("mural.destroy").then((response) => {

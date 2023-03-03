@@ -158,10 +158,10 @@
       </table>
     </div>
 
-<div class="flex flex-wrap">
+<div class="flex flex-wrap ">
     <div class="border-2 border-red-500 p-2 m-2"  
       v-for="ubication in this.listUbications" :key="ubication.id">
-        {{ ubication.name }}
+      {{ ubication.name }} id: {{ ubication.id }}
     </div>
 </div>
 

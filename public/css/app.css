@@ -11849,13 +11849,13 @@ input[type="range"]::-ms-fill-lower {
   margin-left: auto;
   margin-right: auto;
 }
-.my-5 {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-}
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 .mx-8 {
   margin-left: 2rem;
@@ -11912,9 +11912,6 @@ input[type="range"]::-ms-fill-lower {
 .table {
   display: table;
 }
-.grid {
-  display: grid;
-}
 .hidden {
   display: none;
 }
@@ -11967,8 +11964,8 @@ input[type="range"]::-ms-fill-lower {
   -webkit-animation: spin 1s linear infinite;
           animation: spin 1s linear infinite;
 }
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.flex-row {
+  flex-direction: row;
 }
 .flex-col {
   flex-direction: column;
@@ -11990,12 +11987,6 @@ input[type="range"]::-ms-fill-lower {
 }
 .justify-between {
   justify-content: space-between;
-}
-.justify-items-start {
-  justify-items: start;
-}
-.gap-2 {
-  gap: 0.5rem;
 }
 .divide-y > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
@@ -12157,6 +12148,9 @@ input[type="range"]::-ms-fill-lower {
 }
 .align-baseline {
   vertical-align: baseline;
+}
+.align-top {
+  vertical-align: top;
 }
 .text-2xl {
   font-size: 1.5rem;

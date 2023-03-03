@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Atractivos;
+
 
 class HomeController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     public function murales($cerro = ''){
-        return view('murales', compact(
-            'cerro'
-        ));
+
+        if ($cerro == '') {
+            $murales = Atractivos::all();
+        } else {
+            //return $cerro;
+            $murales = Atractivos::where('ubication', $cerro)->get();
+        }
+
+        return view('murales')->with('murales', $murales);
     }
 
     public function osm($lat='',$long=''){

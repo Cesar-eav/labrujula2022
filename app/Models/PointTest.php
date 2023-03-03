@@ -11,15 +11,17 @@ class PointTest extends Model
 
 
     protected $fillable=[
+        'id',
         'direction',
         'ubication',
+        'artista',
+        'artist_id',
+        'ubication_id',
         'image',
         'lat',
         'lon',
         'publicity',
-        'ubication_id',
         'description',
-        'artist_id',
         'punto_id',
         'type_attractive'
         ];
