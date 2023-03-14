@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="CUERPO flex flex-col my-3">
-      <h1 class="text-2xl text-center mb-3">CRUDATRACTIVOS DE VALPARAISO INDEX.VUE</h1>
+      <h1 class="text-2xl text-center mb-3">CRUD ATRACTIVOS DE VALPARAISO INDEX.VUE</h1>
 
       <!-- PUNTOS CRUD -->
       <div class="flex justify-center">

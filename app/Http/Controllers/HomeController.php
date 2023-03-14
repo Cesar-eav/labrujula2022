@@ -9,16 +9,19 @@ use App\Models\Atractivos;
 class HomeController extends Controller
 {
 
-    public function murales($cerro = ''){
+    public function muralesHome($ubicacion = ''){
 
-        if ($cerro == '') {
-            $murales = Atractivos::all();
+        if ($ubicacion == '') {
+            $murales = Atractivos::paginate(5)->all();
         } else {
             //return $cerro;
-            $murales = Atractivos::where('ubication', $cerro)->get();
+            $murales = Atractivos::where('ubication', $ubicacion)->get();
         }
 
-        return view('murales')->with('murales', $murales);
+        return view('murales', compact(
+            'murales',
+            'ubicacion'
+        ));
     }
 
     public function osm($lat='',$long=''){

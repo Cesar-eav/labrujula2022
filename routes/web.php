@@ -12,8 +12,8 @@ Route::get('/', function () {
 // Auth::routes(['register' => false]);
 
 
-Route::get('/murales/{cerro?}', [App\Http\Controllers\HomeController::class, 'murales']);
-Route::get('/api-murales/{cerro?}', [App\Http\Controllers\MuralController::class, 'murales']);
+Route::get('/murales/{ubicacion?}', [App\Http\Controllers\HomeController::class, 'muralesHome']);
+
 
 
 Route::get('/osm/{lat?}/{long?}', [App\Http\Controllers\HomeController::class, 'osm']);
@@ -23,6 +23,8 @@ Route::get('/escaleras', [App\Http\Controllers\HomeController::class, 'escaleras
 Route::get('/miradores', [App\Http\Controllers\HomeController::class, 'miradores']);
 Route::get('/iglesias', [App\Http\Controllers\HomeController::class, 'iglesias']);
 Route::get('/arquitecturas', [App\Http\Controllers\HomeController::class, 'arquitecturas']);
+
+Route::get('/api-murales/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'murales']);
 
 Route::get('/api-atractivos/{ubication?}', [App\Http\Controllers\MuralController::class, 'atractivos']);
 Route::get('/api-ascensores', [App\Http\Controllers\MuralController::class, 'ascensores']);

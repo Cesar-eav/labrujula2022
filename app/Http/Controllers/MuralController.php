@@ -14,20 +14,20 @@ use Illuminate\Http\Request;
 
 class MuralController extends Controller
 {
-    //NO ESTÄ EN USO!!!!!!!!!!!!1
-    public function murales(Request $request, $cerro = '')
+
+    public function murales($cerro = '')
     {
 
         if ($cerro == '') {
-            $murales = Atractivos::paginate(12);
-            return view('murales', compact('murales'));
+            $murales = Atractivos::paginate(100);
+            //return view('murales', compact('murales'));
         } else {
             //return $cerro;
-            $murales = Atractivos::where('ubicacion', $cerro)->paginate(15);
+            $murales = Atractivos::where('ubication', $cerro)->paginate(100);
         }
 
-        return view('murales', [
-            'pagination' => [
+        return [
+            'pagination'  => [
                 'total'         => $murales->total(),
                 'current_page'  => $murales->currentPage(),
                 'per_page'      => $murales->perPage(),
@@ -35,20 +35,12 @@ class MuralController extends Controller
                 'from'          => $murales->firstItem(),
                 'to'            => $murales->lastPage()
             ],
-            'murales' => $murales
-        ]);
-    }
-
-
-    // public function atractivos()
-    // {
-    //     $atractivos = Atractivos::all();
-    //     return compact([
-    //         'atractivos'
-    
-    //     ]);
+            
+            'cerro'     => $cerro,
+            'murales'   => $murales
+        ];
         
-    // }
+    }
 
     public function ascensores()
     {

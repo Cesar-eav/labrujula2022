@@ -6,7 +6,8 @@ module.exports = {
     "./resources/**/*.js",
     "./resources/**/*.vue",
     "./resources/**/*.jsx",
-    "./resources/**/*.tsx"
+    "./resources/**/*.tsx",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},

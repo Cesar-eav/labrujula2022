@@ -2,8 +2,11 @@
 
 @section('content')
     <div id="app">
-        <show-murales  :murales="{{json_encode($murales)}}"></show-murales>
+        <show-murales  :ubicacion="{{json_encode($ubicacion)}}" ></show-murales>
     </div>
+
 @endsection
+
+
 
 
