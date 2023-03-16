@@ -19,11 +19,11 @@ class MuralController extends Controller
     {
 
         if ($cerro == '') {
-            $murales = Atractivos::paginate(100);
+            $murales = Atractivos::paginate();
             //return view('murales', compact('murales'));
         } else {
             //return $cerro;
-            $murales = Atractivos::where('ubication', $cerro)->paginate(100);
+            $murales = Atractivos::where('ubication', $cerro)->paginate();
         }
 
         return [
