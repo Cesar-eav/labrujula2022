@@ -19,11 +19,11 @@ class MuralController extends Controller
     {
 
         if ($cerro == '') {
-            $murales = Atractivos::paginate();
+            $murales = Atractivos::paginate(1);
             //return view('murales', compact('murales'));
         } else {
             //return $cerro;
-            $murales = Atractivos::where('ubication', $cerro)->paginate();
+            $murales = Atractivos::where('ubication', $cerro)->paginate(1);
         }
 
         return [
@@ -37,6 +37,25 @@ class MuralController extends Controller
             ],
             
             'cerro'     => $cerro,
+            'murales'   => $murales
+        ];
+        
+    }
+
+    public function muralesModal($ubicacion = '')
+    {
+
+        if ($ubicacion == '') {
+            $murales = Atractivos::paginate(1);
+            //return view('murales', compact('murales'));
+        } else {
+            //return $cerro;
+            $murales = Atractivos::where('ubication', $ubicacion)->paginate(1);
+        }
+        //return $murales;
+        return [
+           
+            'ubicacion' => $ubicacion,
             'murales'   => $murales
         ];
         

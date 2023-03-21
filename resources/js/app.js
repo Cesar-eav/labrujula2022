@@ -34,7 +34,9 @@ import 'leaflet/dist/leaflet.css';
 
 Vue.config.productionTip = false
 
+Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 
+Vue.component('ModalComponent', require('./components/Modal.vue'));
 
 Vue.component('show-murales', require('./components/Show.vue').default);
 Vue.component('mapa-osm', require('./components/Osm.vue').default);

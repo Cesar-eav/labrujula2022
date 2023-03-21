@@ -12,13 +12,28 @@ class HomeController extends Controller
     public function muralesHome($ubicacion = ''){
 
         if ($ubicacion == '') {
-            $murales = Atractivos::paginate(5)->all();
+            $murales = Atractivos::paginate(1)->all();
         } else {
             //return $cerro;
             $murales = Atractivos::where('ubication', $ubicacion)->get();
         }
 
         return view('murales', compact(
+            'murales',
+            'ubicacion'
+        ));
+    }
+
+    public function modalHome($ubicacion = ''){
+
+        if ($ubicacion == '') {
+            $murales = Atractivos::paginate(1)->all();
+        } else {
+            //return $cerro;
+            $murales = Atractivos::where('ubication', $ubicacion)->get();
+        }
+
+        return view('modal', compact(
             'murales',
             'ubicacion'
         ));
