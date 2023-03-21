@@ -8,6 +8,13 @@
       :atractivo_modal = "atractivo_modal"
       @clicked="closeModal"/>
 
+<div class="flex justify-between my-4 mx-10">
+  <p class="font-bold text-2xl text-red-600"> Atractivos</p>  
+<p class="text-uppercase text-3xl font-bold text-red-400"> {{ ubicacion }}</p>
+
+</div>
+
+
     <div
       class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
     >
@@ -99,7 +106,7 @@ export default {
           this.arrayList = this.arrayList.concat(posts);
           setTimeout(() => {
             $state.loaded();
-          }, 100);
+          }, 10);
         } else {
           $state.complete();
         }

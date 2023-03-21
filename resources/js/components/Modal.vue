@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- MODAL -->
-    <div v-viewer class="mx-0 md:mx-2 sm:mx-0 bg-red-800">
+    <div v-viewer class="mx-0 md:mx-2 sm:mx-0 ">
       <transition
         enter-active-class="ease-out duration-300"
         enter-class="opacity-0"
@@ -23,7 +23,10 @@
 
           <div class="fixed inset-0 z-10 overflow-y-auto">
             <div
-              class="flex min-h-fit sm:min-h-min items-end justify-center text-center sm:items-center sm:p-0"
+              class="MODAL-SCREEN flex min-h-0 sm:min-h-screen md:min-h-full
+               
+               py-2 sm:py-3 sm:px-3 sm:p-0 
+               items-end justify-center text-center sm:items-center "
             >
               <transition
                 enter-active-class="ease-out duration-300"
@@ -37,16 +40,18 @@
 
               <div
                 v-if="modal"
-                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+                class="relative transform overflow-hidden 
+                        rounded-lg bg-white text-left shadow-xl transition-all 
+                        my-8 mx-4 w-full
+                        sm:my-8 sm:w-full sm:max-w-lg"
               >
-                <div class="p-6 space-y-6">
+                <div class="p-2 space-y-2" >
                   <p class="text-2xl font-bold">
                     {{ atractivo_modal.ubication }}
-                  </p>
-                  <p>
-                    <b>Calle:</b> {{ atractivo_modal.direction }} -
-                    <b>Artista: </b>{{ atractivo_modal.artista }}
-                  </p>
+                
+                  <p><b>Calle:</b> {{ atractivo_modal.direction }}</p> 
+                  <p> <b>Artista: </b>{{ atractivo_modal.artista }}</p>
+                
                   <img
                     :src="'/storage/' + atractivo_modal.image"
                     alt="imagen"

@@ -19,11 +19,11 @@ class MuralController extends Controller
     {
 
         if ($cerro == '') {
-            $murales = Atractivos::paginate(1);
+            $murales = Atractivos::paginate(10);
             //return view('murales', compact('murales'));
         } else {
             //return $cerro;
-            $murales = Atractivos::where('ubication', $cerro)->paginate(1);
+            $murales = Atractivos::where('ubication', $cerro)->paginate(10);
         }
 
         return [
@@ -46,11 +46,11 @@ class MuralController extends Controller
     {
 
         if ($ubicacion == '') {
-            $murales = Atractivos::paginate(1);
+            $murales = Atractivos::paginate(10);
             //return view('murales', compact('murales'));
         } else {
             //return $cerro;
-            $murales = Atractivos::where('ubication', $ubicacion)->paginate(1);
+            $murales = Atractivos::where('ubication', $ubicacion)->paginate(10);
         }
         //return $murales;
         return [

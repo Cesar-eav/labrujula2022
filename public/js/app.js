@@ -5754,7 +5754,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.arrayList = _this.arrayList.concat(posts);
           setTimeout(function () {
             $state.loaded();
-          }, 100);
+          }, 10);
         } else {
           $state.complete();
         }
@@ -6721,7 +6721,7 @@ var render = function render() {
       name: "viewer",
       rawName: "v-viewer"
     }],
-    staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800"
+    staticClass: "mx-0 md:mx-2 sm:mx-0"
   }, [_c("transition", {
     attrs: {
       "enter-active-class": "ease-out duration-300",
@@ -6743,7 +6743,7 @@ var render = function render() {
   }), _vm._v(" "), _c("div", {
     staticClass: "fixed inset-0 z-10 overflow-y-auto"
   }, [_c("div", {
-    staticClass: "flex min-h-fit sm:min-h-min items-end justify-center text-center sm:items-center sm:p-0"
+    staticClass: "MODAL-SCREEN flex min-h-0 sm:min-h-screen md:min-h-full py-2 sm:py-3 sm:px-3 sm:p-0 items-end justify-center text-center sm:items-center"
   }, [_c("transition", {
     attrs: {
       "enter-active-class": "ease-out duration-300",
@@ -6754,12 +6754,12 @@ var render = function render() {
       "leave-to-class": "opacity-5 translate-y-4 sm:translate-y-0 sm:scale-95"
     }
   }), _vm._v(" "), _vm.modal ? _c("div", {
-    staticClass: "relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+    staticClass: "relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 mx-4 w-full sm:my-8 sm:w-full sm:max-w-lg"
   }, [_c("div", {
-    staticClass: "p-6 space-y-6"
+    staticClass: "p-2 space-y-2"
   }, [_c("p", {
     staticClass: "text-2xl font-bold"
-  }, [_vm._v("\n                  " + _vm._s(_vm.atractivo_modal.ubication) + "\n                ")]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Calle:")]), _vm._v(" " + _vm._s(_vm.atractivo_modal.direction) + " -\n                  "), _c("b", [_vm._v("Artista: ")]), _vm._v(_vm._s(_vm.atractivo_modal.artista) + "\n                ")]), _vm._v(" "), _c("img", {
+  }, [_vm._v("\n                  " + _vm._s(_vm.atractivo_modal.ubication) + "\n              \n                ")]), _c("p", [_c("b", [_vm._v("Calle:")]), _vm._v(" " + _vm._s(_vm.atractivo_modal.direction))]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Artista: ")]), _vm._v(_vm._s(_vm.atractivo_modal.artista))]), _vm._v(" "), _c("img", {
     attrs: {
       src: "/storage/" + _vm.atractivo_modal.image,
       alt: "imagen"
@@ -6853,6 +6853,12 @@ var render = function render() {
       clicked: _vm.closeModal
     }
   }), _vm._v(" "), _c("div", {
+    staticClass: "flex justify-between my-4 mx-10"
+  }, [_c("p", {
+    staticClass: "font-bold text-2xl text-red-600"
+  }, [_vm._v(" Atractivos")]), _vm._v(" "), _c("p", {
+    staticClass: "text-uppercase text-3xl font-bold text-red-400"
+  }, [_vm._v(" " + _vm._s(_vm.ubicacion))])]), _vm._v(" "), _c("div", {
     staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
   }, _vm._l(this.arrayList, function (atractivo) {
     return _c("div", {

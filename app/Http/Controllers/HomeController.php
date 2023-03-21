@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function modalHome($ubicacion = ''){
 
         if ($ubicacion == '') {
-            $murales = Atractivos::paginate(1)->all();
+            $murales = Atractivos::paginate(10)->all();
         } else {
             //return $cerro;
             $murales = Atractivos::where('ubication', $ubicacion)->get();
