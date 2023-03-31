@@ -60,6 +60,9 @@ class HomeController extends Controller
     public function arquitecturas(){
         return view('arquitecturas');
     }
+    public function artistas(){
+        return view('artistas');
+    }
 
     public function create()
     {

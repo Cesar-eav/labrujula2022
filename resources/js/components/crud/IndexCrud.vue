@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="CUERPO flex flex-col my-3">
-      <h1 class="text-2xl text-center mb-3">CRUD ATRACTIVOS DE VALPARAISO INDEX.VUE</h1>
+      <h1 class="text-2xl text-center mb-3">CRUD ATRACTIVOS DE VALPARAISO</h1>
 
       <!-- PUNTOS CRUD -->
       <div class="flex justify-center">
@@ -9,6 +9,7 @@
           <button
             type="button"
             class="
+              boton-crud
               focus:outline-none
               text-white
               bg-red-700
@@ -101,7 +102,9 @@
 
 
     <div id="datos-tabla" class="mx-8">
-      <v-client-table 
+      <v-client-table
+       
+        v-viewer  
         :data="murales"  
         :columns="columns" 
         :options="options">
@@ -113,8 +116,10 @@
         <button type="button" slot="remove" slot-scope="props" @click="deleteMural(props.row.id)">Eliminar</button>
         <img :src="'/storage/'+murales.row.image" slot="image" slot-scope="murales" width="200"/> 
 
-        
+
       </v-client-table>
+
+  
     </div>
 
 
@@ -122,6 +127,13 @@
 
   </div>
 </template>
+
+<style>
+.boton-crud {
+  
+}
+
+</style>
 
 
 <script>
@@ -133,17 +145,19 @@ export default {
   data() {
 
         return {
-      //NOMBRE EXACTO COLUMNAS BD
+      //NOMBRE EXACTO COLUMNAS BD ¿O EL JSON?
       columns: [
-        "id",
-        "ubication",
+         "id",
+        "image",
+        'ubication.name',
         "artista",
         "direction",
-        "image",
-        //"publicity",
+
+        "publicity",
         "type_attractive",
         "edit",
-        "remove"
+        "remove",
+    
       ],
       //Objeto Options, son las cabeceras de la tabla
       options: {
@@ -153,12 +167,12 @@ export default {
           id: "ID",
           direction: "Dirección",
           publicity: "Publicidad",
-          //"ubication.name": "Ubicación",
+          "ubication.name": "Ubicación",
           tipo_mural: "Atractivo",
-          //"artist.name": "Artista"
+          "type_attractive": "Atractivo"
         },
         sortable: ["id", "ubication_id", "type_attractive"],
-        filterable: ["type_attractive"],
+        filterable: ["type_attractive", "ubication.name", "artista"],
         filterByColumn: true,
         editableColumns: ["direction"],
       },

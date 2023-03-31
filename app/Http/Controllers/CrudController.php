@@ -12,31 +12,31 @@ class CrudController extends Controller
 
     public function index()
     {
-        //with('ubication', 'artist')->
-        $murales = Atractivos::get();
+        $murales = Atractivos::with('ubication')->with('artist')->get();
+        
         return view('crud.index', compact(
             'murales'
         ));
     }
 
 
-    public function createView()
-    {
-        $murales = new PointTest();
-        return view('crud.create', compact('murales'));
-    }
+    // public function createView()
+    // {
+    //     $murales = new PointTest();
+    //     return view('crud.create', compact('murales'));
+    // }
 
+    public function pointsView()
+    {
+       return view('crud.create-point');
+    }
 
 
     public function showedit($id)
     {
        
-        $murales = Atractivos::where('id', $id)
-            ->with('artist')
-            ->first();
-
-            //return $murales;
-
+        $murales = Atractivos::where('id', $id)->with('artist')->first();
+            
             return view('crud/edit', compact(
             'murales',
             'id'
@@ -45,17 +45,18 @@ class CrudController extends Controller
 
     public function editMural(Request $request)
     {
-        //return $request;
+        
         $murales = Atractivos::findOrFail($request->id);
-        //return $murales;
         $murales->ubication =       $request->ubication;
         $murales->ubication_id =    $request->ubication_id;
+        $murales->artist_id =       $request->artist_id;
         $murales->direction =       $request->direction;
         $murales->description =     $request->description;
         $murales->artista =         $request->artist;
         $murales->lat =             $request->lat;
         $murales->lon =             $request->lon;
         $murales->type_attractive = $request->type_attractive;
+        $murales->estado=           $request->estado;
 
         $response = $murales->save();
         return $response;
@@ -84,6 +85,19 @@ class CrudController extends Controller
         return $response;
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function traspasarUbicacion() {
 

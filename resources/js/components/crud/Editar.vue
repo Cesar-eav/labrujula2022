@@ -145,9 +145,24 @@
             </td>
           </tr>
           <tr>
-            <td>Artista:</td>
-            <td><input type="text" v-model="formEditMural.artist" /></td>
-          </tr>
+          <td>Selecciona artista:</td>
+            <td>
+              <select
+                v-model="formEditMural.artist_id"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+              <!-- <option disabled value="">Seleccione un elemento</option> -->
+
+                <option
+                  v-for="artist in this.artists"
+                  :key="artist.id"
+                  :value="artist.id"
+                >
+                  {{ artist.name }}
+                </option>
+              </select>
+            </td>
+            </tr>
           <tr>
             <td>Dirección:</td>
             <td><input type="text" v-model="formEditMural.direction" /></td>
@@ -163,6 +178,12 @@
             <td>Longitud:</td>
             <td><input type="text" v-model="formEditMural.lon" /></td>
           </tr>
+          <tr>
+            <td>Estado Mural:</td>
+            <td><input type="checkbox" v-model="formEditMural.estado" /> Activo/Inactivo</td>
+          </tr>
+
+          
           <tr>
             <td colspan="2">
               <button
@@ -213,8 +234,12 @@ export default {
         lon:                  this.murales.lon,
         img:                  this.murales.image,
         artist:               this.murales.artista,
+        artist_id:            this.murales.artist_id,
+        selectArtist:         null,
+        estado:               this.murales.estado
       },
-      ubications: []
+      ubications: [],
+      artists: []
     };
   },
 
@@ -224,20 +249,20 @@ export default {
       axios
         .post("/crud/edit/", {
           id:                   this.formEditMural.id,
-          ubication:            this.formEditMural.ubication,
+          ubication:            this.murales.ubication,
           ubication_id:         this.formEditMural.ubication_id, 
           direction:            this.formEditMural.direction,
           description:          this.formEditMural.description,
-          artist:               this.formEditMural.artist,
+          artist_id:            this.formEditMural.artist_id,
           lat:                  this.formEditMural.lat,
           lon:                  this.formEditMural.lon,
           type_attractive:      this.formEditMural.type_attractive,
+          estado:               this.formEditMural.estado
         })
         .then((response) => {
           console.log("RESPUESTA EDICION BACK: ", response.data);
 
           if (response.data) {
-            alert('Guardado') ;
             console.log("DATOS BACK: ", response.data);
             //window.location.href = "/crud/index/";
           } else {
@@ -251,8 +276,18 @@ export default {
       axios
         .get("/crud-ubication/list-ubications")
         .then((response) => {
+          
           this.ubications = response.data;
-          console.log("FUNCION UBICACION", response.data);
+        })
+        .catch((error) => console.log("Error", error));
+    },
+
+    selectArtist() {
+      axios
+        .get("/list-artist")
+        .then((response) => {
+          console.log(response.data)
+          this.artists = response.data;
         })
         .catch((error) => console.log("Error", error));
     },
@@ -260,7 +295,7 @@ export default {
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted() {
     this.selectUbication();
-    //this.selectArtist();
+    this.selectArtist();
   },
 };
 </script>

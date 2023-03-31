@@ -46,16 +46,17 @@ Vue.component('escaleras', require('./components/Escaleras.vue').default);
 Vue.component('miradores', require('./components/Miradores.vue').default);
 Vue.component('iglesias', require('./components/Iglesias.vue').default);
 Vue.component('arquitecturas', require('./components/Arquitectura.vue').default);
+Vue.component('artistas', require('./components/Artistas.vue').default);
 
 Vue.component('inicio-component', require('./components/Inicio.vue').default);
 Vue.component('header-component', require('./views/Header.vue').default);
 Vue.component('footer-component', require('./views/Footer.vue').default);
 
 //  CRUD
-Vue.component('index-component', require('./components/crud/Index.vue').default);
+Vue.component('index-component', require('./components/crud/IndexCrud.vue').default);
 Vue.component('create-point-component', require('./components/crud/Create.vue').default);
 Vue.component('edit-component', require('./components/crud/Editar.vue').default);
-Vue.component('mostrar-component', require('./components/crud/Mostrar.vue').default);
+
 
 // CRUD TYPE POINT
 Vue.component('create-ubication-component', require('./components/crud/CreateUbication.vue').default);

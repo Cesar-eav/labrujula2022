@@ -96,7 +96,7 @@ class MuralController extends Controller
             'title' => $request->title,
             'artista' => $request->artista,
             'lat' => $request->lat,
-            'long' => $request->long,
+            'lon' => $request->lon,
             'direccion' => $request->direccion,
             'imagen' => $request->imagen,
 

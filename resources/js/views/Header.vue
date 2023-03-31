@@ -91,7 +91,7 @@
           <a href="/murales" class="menuPrincipal">Street Art</a>
         </li>
         <li>
-          <a href="#" class="menuPrincipal">Artistas</a>
+          <a href="/artistas" class="menuPrincipal">Artistas</a>
         </li>
         <li>
           <a href="/ascensores" class="menuPrincipal">Ascensores</a>

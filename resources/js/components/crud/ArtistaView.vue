@@ -100,16 +100,24 @@
     <table class="border-2 border-red-500 ml-56 w-96">
       <tbody>
         <tr>
-          <td>Nombre:</td>
+          <td>Nombre*:</td>
           <td><input type="text" v-model="artistaData.name" /></td>
         </tr>
         <tr>
-          <td>Instagram:</td>
+          <td>Instagram*:</td>
           <td><input type="text" v-model="artistaData.instagram_address" /></td>
         </tr>
         <tr>
-          <td>Descripción:</td>
+          <td>Descripción*:</td>
           <td><input type="text" v-model="artistaData.description" /></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="text" v-model="artistaData.email" /></td>
+        </tr>
+        <tr>
+          <td>Web:</td>
+          <td><input type="text" v-model="artistaData.direction" /></td>
         </tr>
         <tr>
           <td>
@@ -169,6 +177,8 @@ export default {
         name: "",
         instagram_address: "",
         description: "",
+        email: "",
+        web_direction: "",
       },
       loading: false,
     };

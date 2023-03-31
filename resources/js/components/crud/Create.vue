@@ -128,12 +128,27 @@
                 v-for="ubication in this.ubications"
                 :key="ubication.id"
                 :value="ubication.id"
+                
               >
                 {{ ubication.name }}
               </option>
             </select>
           </td>
         </tr>
+
+        <tr>
+          <td>Ubicacion:</td>
+          <td><input type="text" v-model="muralDatos.ubication" />
+
+    
+
+          </td>
+        </tr>
+
+
+
+
+
         <tr>
           <td>Tipo atractivo:</td>
           <td>
@@ -189,11 +204,11 @@
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td>Longitud:</td>
+          <td>lonitud:</td>
           <td>
             <input
               type="text"
-              v-model="muralDatos.long"
+              v-model="muralDatos.lon"
               placeholder="edit me"
             />
           </td>
@@ -267,17 +282,21 @@
 export default {
   data() {
     return {
+
+    // La LLAVE debe corresponderse con el V-MODEL
+    
       muralDatos: {
         direction: "",
         description: "",
         image_name: "",
         file:"",
         lat: 0,
-        publicity: '',
-        long: 0,
+        publicity: 0,
+        lon: 0,
         selectedArtista: null,
         selectedUbicationId: null,
         selectedAtractivoName: null,
+        ubication: ""
       },
       loading: false,
       ubications: [],
@@ -288,7 +307,7 @@ export default {
         { nombre: "Escalera" },
         { nombre: "Arquitectura" },
         { nombre: "Miradores" },
-        { nombre: "Museos" },
+        { nombre: "Museo" },
       ]
       //file: "",
     };
@@ -307,12 +326,13 @@ export default {
       // 1er Parámetro, nombre del campo del formulario.
       // 2do parámetro, de dónde vienen los datos.
       formData.append("file",                   this.muralDatos.file);
+      formData.append("ubication",              this.muralDatos.selectedUbicationId);
       formData.append("direction",              this.muralDatos.direction);
       formData.append("description",            this.muralDatos.description);
       formData.append("image_name",             this.muralDatos.image_name);
       formData.append("lat",                    this.muralDatos.lat);
       formData.append("publicity",              this.muralDatos.publicity);
-      formData.append("long",                   this.muralDatos.long);
+      formData.append("lon",                    this.muralDatos.lon);
       formData.append("selectedArtista",        this.muralDatos.selectedArtista);
       formData.append("selectedUbicationId",    this.muralDatos.selectedUbicationId);
       formData.append("selectedAtractivoName",  this.muralDatos.selectedAtractivoName);
@@ -328,7 +348,7 @@ export default {
             console.log("Cargado con éxito", response.data);
           } else {
             this.loading = false;
-            alert("FRACASO");
+            console.log("FRACASO", response.data);
           }
         })
         .catch((error) => console.log("Error", error));

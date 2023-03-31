@@ -16,9 +16,9 @@ class ArtistaController extends Controller
     public function artistaCreate(Request $request)
     {
         $artista = new Artista();
-        $artista->name = $request->name;
-        $artista->instagram_address = $request->instagram_address;
-        $artista->description = $request->description;
+        $artista->name =                $request->name;
+        $artista->instagram_address =   $request->instagram_address;
+        $artista->description =         $request->description;
         $artista->save();
 
         return response()->json([
@@ -29,7 +29,8 @@ class ArtistaController extends Controller
 
     public function selectArtist(){
         $artist = Artista::orderBy('name', 'asc')->get();
-        return $artist = Artista::orderBy('name', 'asc')->get();
+        
+        return $artist;
      }
 
 
