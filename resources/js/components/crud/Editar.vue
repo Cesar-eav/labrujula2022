@@ -6,7 +6,7 @@
 
 <!-- PUNTOS CRUD -->
 <div class="flex justify-center">
-  <a href="/crud/create-point/">
+  <a href="/crud/view-create-point/">
     <button
       type="button"
       class="
@@ -264,7 +264,7 @@ export default {
 
           if (response.data) {
             console.log("DATOS BACK: ", response.data);
-            //window.location.href = "/crud/index/";
+            window.history.back()
           } else {
             console.log("NO FUNIONA, DATA VACIO");
           }

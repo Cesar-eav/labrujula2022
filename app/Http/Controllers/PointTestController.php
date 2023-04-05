@@ -16,10 +16,7 @@ class PointTestController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function pointsView()
-     {
-        return view('crud.create-point');
-     }
+
  
      public function createPoint(Request $request)
      {
@@ -40,8 +37,6 @@ class PointTestController extends Controller
             $point->artist_id = $request->selectedArtista;         
             $point->type_attractive = $request->selectedAtractivoName;
             $point->save();
-
-            
             
             //EL BUENO
             $request->file('file')->storeAs('articles', $request->image_name, 'public');

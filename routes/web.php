@@ -42,37 +42,31 @@ Route::get('/traspasar', [App\Http\Controllers\CrudController::class, 'traspasar
 //CRUD *******************************
 
 Route::get('/crud/index', [App\Http\Controllers\CrudController::class, 'index']);
-Route::get('/crud/create-point', [App\Http\Controllers\PointTestController::class, 'pointsView']);
 
-
-
-
-Route::get('/crud/show-edit/{id}', [App\Http\Controllers\CrudController::class, 'showedit']);
-Route::get('/crud/create-ubication', [App\Http\Controllers\UbicationController::class, 'createUbicationView']);
-
-
-Route::post('/crud/edit', [App\Http\Controllers\CrudController::class, 'editmural']);
-Route::get('/crud/create-view', [App\Http\Controllers\CrudController::class, 'createView']);
-Route::post('/crud/post', [App\Http\Controllers\CrudController::class, 'createMural']);
+//POINT
+Route::get('/crud/view-create-point', [App\Http\Controllers\CrudController::class, 'createPointView']);
+Route::post('/crud/post-point', [App\Http\Controllers\CrudController::class, 'postPoint']);
+Route::get('/select-tipo-atractivo', [App\Http\Controllers\PointTestController::class, 'selectAtractivo']);
+Route::get('/crud/show-edit/{id}', [App\Http\Controllers\CrudController::class, 'viewEdit']);
+Route::post('/crud/edit', [App\Http\Controllers\CrudController::class, 'editPoint']);
 Route::delete('/crud/delete/{id}', [App\Http\Controllers\CrudController::class, 'deleteMural']);
 
-
-//CRUD POINTS
-
-
-Route::post('/crud/post-point', [App\Http\Controllers\PointTestController::class, 'createPoint']);
-Route::get('/select-tipo-atractivo', [App\Http\Controllers\PointTestController::class, 'selectAtractivo']);
-
-
-Route::post('/crud-ubication/post', [App\Http\Controllers\UbicationController::class, 'createUbication']);
-Route::get('/crud-ubication/list-ubications', [App\Http\Controllers\UbicationController::class, 'selectUbication']);
-
-Route::get('/crud/create-type-point', [App\Http\Controllers\TypePointController::class, 'pointTypeView']);
-Route::post('/crud/type-point-post', [App\Http\Controllers\TypePointController::class, 'createTypePoint']);
-
+//CRUD ARTISTA
 Route::get('/crud/artista-view', [App\Http\Controllers\ArtistaController::class, 'artistaView']);
 Route::post('/crud/artista-post', [App\Http\Controllers\ArtistaController::class, 'artistaCreate']);
 Route::get('/list-artist', [App\Http\Controllers\ArtistaController::class, 'selectArtist']);
+
+//UBICACION
+Route::get('/crud/create-ubication', [App\Http\Controllers\UbicationController::class, 'createUbicationView']);
+Route::post('/crud-ubication/post', [App\Http\Controllers\UbicationController::class, 'createUbication']);
+Route::get('/crud-ubication/list-ubications', [App\Http\Controllers\UbicationController::class, 'selectUbication']);
+
+
+//ATRACTIVO
+Route::get('/crud/create-type-point', [App\Http\Controllers\TypePointController::class, 'pointTypeView']);
+Route::post('/crud/type-point-post', [App\Http\Controllers\TypePointController::class, 'createTypePoint']);
+
+
 
 
 

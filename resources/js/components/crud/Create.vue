@@ -4,7 +4,7 @@
 
 <!-- PUNTOS CRUD -->
 <div class="flex justify-center">
-  <a href="/crud/create-point/">
+  <a href="/crud/view-create-point/">
     <button
       type="button"
       class="
@@ -344,7 +344,7 @@ export default {
 
           if (response.data.db === true) {
             this.loading = false;
-            window.location.href = "/crud/create-point/";
+            window.location.href = "/crud/view-create-point";
             console.log("Cargado con éxito", response.data);
           } else {
             this.loading = false;

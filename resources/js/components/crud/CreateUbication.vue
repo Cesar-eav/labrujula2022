@@ -4,7 +4,7 @@
 
 <!-- PUNTOS CRUD -->
 <div class="flex justify-center">
-  <a href="/crud/create-point/">
+  <a href="/crud/view-create-point/">
     <button
       type="button"
       class="
