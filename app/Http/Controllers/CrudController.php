@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PointTest;
 use App\Models\Atractivos;
+use App\Models\Artista;
 use App\Models\Ubication;
 use Illuminate\Http\Request;
 
@@ -65,6 +66,17 @@ class CrudController extends Controller
         ));
     }
 
+    public function viewEditArtist($id)
+    {
+       
+        $artista = Artista::where('id', $id)->first();
+            
+            return view('crud/edit-artist', compact(
+            'artista',
+            'id'
+        ));
+    }
+
     public function editPoint(Request $request)
     {
         
@@ -83,6 +95,25 @@ class CrudController extends Controller
         $response = $murales->save();
         return $response;
     }
+
+    public function editArtist(Request $request)
+    {
+        //return "HOLA";
+        
+        $artista = Artista::find($request->id);
+
+        $artista->name=                 $request->name;
+        $artista->description=          $request->description;
+        $artista->instagram_address=    $request->instagram_address;
+        $artista->email=                $request->email;
+        $artista->mobile=               $request->mobile;
+        $artista->web_direction=        $request->web_direction;
+
+
+        $response = $artista->save();
+        return $response;
+    }
+
 
 
 
@@ -134,6 +165,14 @@ class CrudController extends Controller
     public function deleteMural ($id) {
         $mural = PointTest::find($id);
         $response = $mural->delete();
+
+        return $response;
+
+    }
+
+    public function deleteArtista ($id) {
+        $artista = Artista::find($id);
+        $response = $artista->delete();
 
         return $response;
 

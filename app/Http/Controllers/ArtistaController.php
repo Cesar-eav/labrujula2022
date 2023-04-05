@@ -10,7 +10,12 @@ class ArtistaController extends Controller
 
     public function artistaView()
     {
-        return view('/crud/artista-view');
+        $artistas = Artista::get();
+        
+        return view('/crud/artista-view', compact(
+            'artistas'
+        )
+    );
     }
     
     public function artistaCreate(Request $request)

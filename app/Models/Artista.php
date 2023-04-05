@@ -9,7 +9,17 @@ class Artista extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'name',
+        'instagram_address',
+        'description',
+        'email',
+        'mobile',
+        'web_direction'
 
+
+    ];
 
 public function artist()
     {

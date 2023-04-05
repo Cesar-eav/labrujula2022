@@ -128,12 +128,6 @@
   </div>
 </template>
 
-<style>
-.boton-crud {
-  
-}
-
-</style>
 
 
 <script>

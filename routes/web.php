@@ -56,6 +56,11 @@ Route::get('/crud/artista-view', [App\Http\Controllers\ArtistaController::class,
 Route::post('/crud/artista-post', [App\Http\Controllers\ArtistaController::class, 'artistaCreate']);
 Route::get('/list-artist', [App\Http\Controllers\ArtistaController::class, 'selectArtist']);
 
+Route::get('/crud/show-edit-artist/{id}', [App\Http\Controllers\CrudController::class, 'viewEditArtist']);
+Route::post('/crud/edit-artist', [App\Http\Controllers\CrudController::class, 'editArtist']);
+Route::delete('/crud/delete-artista/{id}', [App\Http\Controllers\CrudController::class, 'deleteArtista']);
+
+
 //UBICACION
 Route::get('/crud/create-ubication', [App\Http\Controllers\UbicationController::class, 'createUbicationView']);
 Route::post('/crud-ubication/post', [App\Http\Controllers\UbicationController::class, 'createUbication']);
