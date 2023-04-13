@@ -56,12 +56,17 @@ Vue.component('footer-component', require('./views/Footer.vue').default);
 Vue.component('index-component', require('./components/crud/IndexCrud.vue').default);
 Vue.component('create-point-component', require('./components/crud/Create.vue').default);
 Vue.component('edit-component', require('./components/crud/Editar.vue').default);
+Vue.component('relaciones-component', require('./components/crud/RelacionesCrud.vue').default);
 
 
 // CRUD TYPE POINT
 Vue.component('create-ubication-component', require('./components/crud/CreateUbication.vue').default);
 Vue.component('create-point-type-component', require('./components/crud/CreatePointType.vue').default);
+
+//CRUD ARTIST
 Vue.component('artista-view-component', require('./components/crud/ArtistaView.vue').default);
+Vue.component('artista-edit-component', require('./components/crud/EditarArtista.vue').default);
+
 
 
 

@@ -132,7 +132,7 @@
 
 <script>
 export default {
-  props: ["artistas"],
+  props: ["artistas", "mezcla"],
 
   data() {
     return {
@@ -150,17 +150,14 @@ export default {
         "id",
         "name",
         "instagram_address",
-        "description",
-        "email",
-        "mobile",
         "web_direction",
         "edit",
         "remove",
       ],
       //Objeto Options, son las cabeceras de la tabla
       options: {
-        perPage: 10,
-        perPagesValues: [10, 15, 20],
+        perPage: 20,
+        perPagesValues: [20,30],
         headings: {
           id: "ID",
           direction: "Dirección",
@@ -170,7 +167,7 @@ export default {
           type_attractive: "Atractivo",
         },
         sortable: [],
-        filterable: [],
+        filterable: ["name","instagram_address", "id"],
         filterByColumn: true,
         editableColumns: [],
       },
@@ -186,7 +183,7 @@ export default {
           console.log("Archivo", response.data);
           if (response.data.artista === true) {
             this.loading = false;
-            window.location.href = "/crud/index";
+            window.location.href = "/crud/artista-view";
           } else {
             this.loading = false;
             //alert("FRACASO");

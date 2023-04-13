@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PointTest;
 use App\Models\Atractivos;
 use App\Models\Artista;
+use App\Models\ArtistaPoint;
 use App\Models\Ubication;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,12 @@ class CrudController extends Controller
         return view('crud.index', compact(
             'murales'
         ));
+    }
+
+
+    public function mezcla(){
+
+        $mezcla = ArtistaPoint::get();
     }
 
     public function createPointView()
@@ -84,6 +91,7 @@ class CrudController extends Controller
         $murales->ubication =       $request->ubication;
         $murales->ubication_id =    $request->ubication_id;
         $murales->artist_id =       $request->artist_id;
+        $murales->artista =         $request->artist_id;
         $murales->direction =       $request->direction;
         $murales->description =     $request->description;
         $murales->artista =         $request->artist;

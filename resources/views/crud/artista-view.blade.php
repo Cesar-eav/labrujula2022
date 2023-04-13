@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="app">
-<artista-view-component :artistas="{{json_encode($artistas)}}"></artista-view-component>
+<artista-view-component :artistas="{{json_encode($artistas)}}" :mezcla="{{json_encode($mezcla)}}"></artista-view-component>
 
 </div>
 @endsection

@@ -163,12 +163,18 @@
               </select>
             </td>
             </tr>
+
+            <tr>
+            <td>Campo TEXT Artista:</td>
+            <td><input type="text" v-model="formEditMural.artista" /></td>
+            <td>&nbsp;</td>
+          </tr>
+
           <tr>
             <td>Dirección:</td>
             <td><input type="text" v-model="formEditMural.direction" /></td>
             <td>&nbsp;</td>
           </tr>
-
           <tr>
             <td>Latitud:</td>
             <td><input type="text" v-model="formEditMural.lat" /></td>
@@ -233,7 +239,7 @@ export default {
         lat:                  this.murales.lat,
         lon:                  this.murales.lon,
         img:                  this.murales.image,
-        artist:               this.murales.artista,
+        artista:               this.murales.artista,
         artist_id:            this.murales.artist_id,
         selectArtist:         null,
         estado:               this.murales.estado
@@ -254,17 +260,16 @@ export default {
           direction:            this.formEditMural.direction,
           description:          this.formEditMural.description,
           artist_id:            this.formEditMural.artist_id,
+          artista:              this.formEditMural.artista,
           lat:                  this.formEditMural.lat,
           lon:                  this.formEditMural.lon,
           type_attractive:      this.formEditMural.type_attractive,
           estado:               this.formEditMural.estado
         })
         .then((response) => {
-          console.log("RESPUESTA EDICION BACK: ", response.data);
+          window.location.href = "/crud/index";
 
           if (response.data) {
-            console.log("DATOS BACK: ", response.data);
-            window.history.back()
           } else {
             console.log("NO FUNIONA, DATA VACIO");
           }

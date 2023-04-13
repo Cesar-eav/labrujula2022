@@ -20,7 +20,7 @@
 
 
 
-$image_path = './storage/miradores/ASD.jpg';
+$image_path = './storage/miradores/IMG_20230404_144444.jpg';
 $exif = exif_read_data($image_path);
 
 // Check if the Exif data was successfully read

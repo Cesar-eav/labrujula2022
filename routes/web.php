@@ -23,7 +23,7 @@ Route::get('/escaleras', [App\Http\Controllers\HomeController::class, 'escaleras
 Route::get('/miradores', [App\Http\Controllers\HomeController::class, 'miradores']);
 Route::get('/iglesias', [App\Http\Controllers\HomeController::class, 'iglesias']);
 Route::get('/arquitecturas', [App\Http\Controllers\HomeController::class, 'arquitecturas']);
-Route::get('/artistas', [App\Http\Controllers\HomeController::class, 'artistas']);
+Route::get('/artistas',[App\Http\Controllers\RelacionController::class, 'relacion']);
 
 Route::get('/api-murales/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'murales']);
 Route::get('/api-murales-modal/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'muralesModal']);
@@ -42,6 +42,8 @@ Route::get('/traspasar', [App\Http\Controllers\CrudController::class, 'traspasar
 //CRUD *******************************
 
 Route::get('/crud/index', [App\Http\Controllers\CrudController::class, 'index']);
+
+Route::get('/crud/relaciones-crud', [App\Http\Controllers\RelacionController::class, 'relacion']);
 
 //POINT
 Route::get('/crud/view-create-point', [App\Http\Controllers\CrudController::class, 'createPointView']);

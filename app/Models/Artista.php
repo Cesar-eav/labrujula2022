@@ -9,6 +9,9 @@ class Artista extends Model
 {
     use HasFactory;
 
+    protected $table = 'artistas';
+
+
     protected $fillable = [
         'id',
         'name',
@@ -17,12 +20,17 @@ class Artista extends Model
         'email',
         'mobile',
         'web_direction'
-
-
     ];
 
-public function artist()
+public function atractivo()
     {
-    return $this->hasMany(Atractivos::class, 'artist_id');
+    return $this->belongsTo(Atractivos::class, 'artist_id');
     }
+
+
+public function hm_points()
+    {
+    return $this->belongsToMany(Atractivos::class, 'artist_point', 'artist_id', 'point_id' ); 
+    }   
+
 }

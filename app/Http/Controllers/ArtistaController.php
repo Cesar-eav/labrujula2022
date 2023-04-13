@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artista;
+use App\Models\ArtistaPoint;
 use Illuminate\Http\Request;
 
 class ArtistaController extends Controller
@@ -10,10 +11,15 @@ class ArtistaController extends Controller
 
     public function artistaView()
     {
+        
         $artistas = Artista::get();
+        $mezcla = ArtistaPoint::with('artista:id,name')->with('points:id')
+        ->get()->groupBy('artist_id');
+        
+        //return $artistas;
         
         return view('/crud/artista-view', compact(
-            'artistas'
+            'artistas','mezcla'
         )
     );
     }

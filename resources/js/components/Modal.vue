@@ -82,12 +82,8 @@
 
 <script>
 export default {
-  props:
-    //  {
-    //    modal: Boolean,
-    //  }
-
-    ["modal", "ubicacion", "atractivo_modal"],
+  props: ["modal", "ubicacion", "atractivo_modal"],
+  
   data() {
     return {
       arrayList: [],

@@ -1,8 +1,8 @@
 <template>
   <div class="justify-center">
+    
 
     <modal-component 
-      
       :modal="modal" 
       :ubicacion="ubicacion"  
       :atractivo_modal = "atractivo_modal"

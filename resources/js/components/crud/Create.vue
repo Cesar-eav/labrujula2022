@@ -185,8 +185,7 @@
 
             </select>
 
-            
-          </td>
+            </td>
         </tr>
         <tr>
           <td>Dirección:</td>
@@ -294,6 +293,7 @@ export default {
         publicity: 0,
         lon: 0,
         selectedArtista: null,
+        artista:'',
         selectedUbicationId: null,
         selectedAtractivoName: null,
         ubication: ""

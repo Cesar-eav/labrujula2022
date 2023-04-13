@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,4 +37,15 @@ class Atractivos extends Model
             {
             return $this->belongsTo(Artista::class, 'artist_id');
             }
+
+        public function artpoint()
+            {
+            return $this->belongsTo(ArtistaPoint::class, 'point_id');
+            }
+
+        public function artists()
+            {
+            return $this->belongsToMany(Artista::class, 'artist_point', 'point_id','artist_id'); 
+            }   
+    
 }
