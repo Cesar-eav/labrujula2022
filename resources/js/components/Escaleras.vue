@@ -1,6 +1,5 @@
 <template>
   <div class="justify-center">
-
     <modal-component 
       :modal="modal" 
       :ubicacion="ubicacion"  
@@ -9,10 +8,9 @@
 
     <h1 class="text-2xl text-center py-2 uppercase font-bold">Escaleras</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center">
+    <div  v-viewer class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center">
       <div
-        v-viewer
-        class="mx-0 md:mx-2 sm:mx-0 bg-red-800 " 
+         class="mx-0 md:mx-2 sm:mx-0 bg-red-800 " 
       
         v-for="atractivo in arrayList"
         :key="atractivo.id"

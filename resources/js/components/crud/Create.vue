@@ -137,18 +137,10 @@
         </tr>
 
         <tr>
-          <td>Ubicacion:</td>
-          <td><input type="text" v-model="muralDatos.ubication" />
-
-    
-
+          <td>Artista:</td>
+          <td><input type="text" v-model="muralDatos.artista" />
           </td>
         </tr>
-
-
-
-
-
         <tr>
           <td>Tipo atractivo:</td>
           <td>
@@ -164,17 +156,17 @@
             </select>
           </td>
         </tr>
-
+<!-- 
         <tr>
           <td>Artista:</td>
-          <td>
-            <!--
+          <td> 
+            
               V-MODEL -> Comunicacion del INPUT al DATA( )
               Con V-MODEL pasamos datos al objeto muraldatos que iran a BD
               Con :value enviamos el valor a guardar, que será artist.name en ete caso
-            -->
             
-            <select v-model="muralDatos.selectedArtista">
+            
+            <select v-model="muralDatos.selectedArtista" multiple>
               <option
                 v-for="artist in this.artists"
                 :key="artist.id"
@@ -184,9 +176,9 @@
               </option>
 
             </select>
-
+            <span>Seleccionados: {{ muralDatos.selectedArtista }}</span>
             </td>
-        </tr>
+        </tr>     -->
         <tr>
           <td>Dirección:</td>
           <td><input type="text" v-model="muralDatos.direction" /></td>
@@ -292,11 +284,11 @@ export default {
         lat: 0,
         publicity: 0,
         lon: 0,
-        selectedArtista: null,
+        //selectedArtista: null,
         artista:'',
         selectedUbicationId: null,
         selectedAtractivoName: null,
-        ubication: ""
+        //ubication: ""
       },
       loading: false,
       ubications: [],
@@ -308,6 +300,7 @@ export default {
         { nombre: "Arquitectura" },
         { nombre: "Miradores" },
         { nombre: "Museo" },
+        { nombre: "Otro" },
       ]
       //file: "",
     };
@@ -326,14 +319,15 @@ export default {
       // 1er Parámetro, nombre del campo del formulario.
       // 2do parámetro, de dónde vienen los datos.
       formData.append("file",                   this.muralDatos.file);
-      formData.append("ubication",              this.muralDatos.selectedUbicationId);
+      //formData.append("ubication",              this.muralDatos.selectedUbicationId);
       formData.append("direction",              this.muralDatos.direction);
       formData.append("description",            this.muralDatos.description);
+      formData.append("artista",                this.muralDatos.artista);
       formData.append("image_name",             this.muralDatos.image_name);
       formData.append("lat",                    this.muralDatos.lat);
-      formData.append("publicity",              this.muralDatos.publicity);
       formData.append("lon",                    this.muralDatos.lon);
-      formData.append("selectedArtista",        this.muralDatos.selectedArtista);
+      formData.append("publicity",              this.muralDatos.publicity);
+      //formData.append("selectedArtista",        this.muralDatos.selectedArtista);
       formData.append("selectedUbicationId",    this.muralDatos.selectedUbicationId);
       formData.append("selectedAtractivoName",  this.muralDatos.selectedAtractivoName);
       
@@ -379,7 +373,7 @@ export default {
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted() {
     this.selectUbication();
-    this.selectArtist();
+    //this.selectArtist();
   },
 };
 

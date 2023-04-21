@@ -31,58 +31,11 @@
             margin: 0px; 
             transform: translate(0px, 487px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                  <li>
-                    <a href="/murales/alegre" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Alegre</a>
-                  </li>
-                  <li>
-                    <a href="/murales/artilleria" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Artilleria</a>
-                  </li>
-                  <li>
-                    <a href="/murales/baron" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Barón</a>
-                  </li>
-                  <li>
-                    <a href="/murales/bellavista" class="Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bellavista</a>
-                  </li>
-                  <li>
-                    <a href="/murales/carcel" class="Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Carcel</a>
-                  </li>
-                  <li>
-                    <a href="/murales/cordillera" class="Sub-menu block  over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cordillera</a>
-                  </li>
-                  <li>
-                    <a href="/murales/concepcion" class="Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Concepción</a>
-                  </li>
-                  <li>
-                    <a href="/murales/florida" class="Sub-menu block over:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Florida</a>
-                  </li>
-                  <li>
-                    <a href="/murales/larrain" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Larrain</a>
-                  </li>
-                  <li>
-                    <a href="/murales/lecheros" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lecheros</a>
-                  </li>
-                  <li>
-                    <a href="/murales/mariposas" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mariposas</a>
-                  </li>
-                  <li>
-                    <a href="/murales/monjas" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Monjas</a>
-                  </li>
-                  <li>
-                    <a href="/murales/panteon" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panteón</a>
-                  </li>
-                  <li>
-                    <a href="/murales/playa ancha" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Playa Ancha</a>
-                  </li>
-                  <li>
-                    <a href="/murales/polanco" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Polanco</a>
-                  </li>
-                  <li>
-                    <a href="/murales/san juan de dios" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">San Juan de Dios</a>
-                  </li>
-                  <li>
-                    <a href="/murales/yungay" class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yungay</a>
-                  </li>
-
+                 
+                  <li v-for="ubication in ubications" :key="ubication.id">
+                    <a :href="'/murales/'+ubication.name " class="Sub-menu block hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ ubication.name }}</a>
+                    </li>
+              
                 </ul>
 
             </div>
@@ -149,3 +102,11 @@
 
 </style>
 
+<script>
+
+export default {
+  
+ props: ["ubications"]
+  
+}
+</script>

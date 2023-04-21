@@ -2,7 +2,7 @@
   <div class="flex justify-center flex-col my-3">
     
 
-    <h1 class="text-2xl text-center mb-3">EDITAR PUNTO</h1>
+    <h1 class="text-2xl text-center mb-3">EDITAR PUNTO d</h1>
 
 <!-- PUNTOS CRUD -->
 <div class="flex justify-center">
@@ -184,10 +184,10 @@
             <td>Longitud:</td>
             <td><input type="text" v-model="formEditMural.lon" /></td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>Estado Mural:</td>
             <td><input type="checkbox" v-model="formEditMural.estado" /> Activo/Inactivo</td>
-          </tr>
+          </tr> -->
 
           
           <tr>
@@ -239,10 +239,10 @@ export default {
         lat:                  this.murales.lat,
         lon:                  this.murales.lon,
         img:                  this.murales.image,
-        artista:               this.murales.artista,
+        artista:              this.murales.artista,
         artist_id:            this.murales.artist_id,
         selectArtist:         null,
-        estado:               this.murales.estado
+        //estado:               this.murales.estado
       },
       ubications: [],
       artists: []
@@ -253,7 +253,7 @@ export default {
     editMural() {
       //SE VA AL BACK(CONTROLADOR).
       axios
-        .post("/crud/edit/", {
+        .post("/crud/edit", {
           id:                   this.formEditMural.id,
           ubication:            this.murales.ubication,
           ubication_id:         this.formEditMural.ubication_id, 
@@ -264,10 +264,11 @@ export default {
           lat:                  this.formEditMural.lat,
           lon:                  this.formEditMural.lon,
           type_attractive:      this.formEditMural.type_attractive,
-          estado:               this.formEditMural.estado
+          //estado:               this.formEditMural.estado
         })
         .then((response) => {
-          window.location.href = "/crud/index";
+          //window.location.href = "/crud/index";
+          console.log("GUARDADO");
 
           if (response.data) {
           } else {
@@ -291,7 +292,6 @@ export default {
       axios
         .get("/list-artist")
         .then((response) => {
-          console.log(response.data)
           this.artists = response.data;
         })
         .catch((error) => console.log("Error", error));

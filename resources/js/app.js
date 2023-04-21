@@ -37,6 +37,7 @@ Vue.config.productionTip = false
 Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 
 Vue.component('ModalComponent', require('./components/Modal.vue'));
+Vue.component('ModalAscensores', require('./components/ModalAscensores.vue'));
 
 Vue.component('show-murales', require('./components/Show.vue').default);
 Vue.component('mapa-osm', require('./components/Osm.vue').default);
@@ -57,6 +58,7 @@ Vue.component('index-component', require('./components/crud/IndexCrud.vue').defa
 Vue.component('create-point-component', require('./components/crud/Create.vue').default);
 Vue.component('edit-component', require('./components/crud/Editar.vue').default);
 Vue.component('relaciones-component', require('./components/crud/RelacionesCrud.vue').default);
+Vue.component('prueba-component', require('./components/crud/PruebaCrud.vue').default);
 
 
 // CRUD TYPE POINT
@@ -66,6 +68,10 @@ Vue.component('create-point-type-component', require('./components/crud/CreatePo
 //CRUD ARTIST
 Vue.component('artista-view-component', require('./components/crud/ArtistaView.vue').default);
 Vue.component('artista-edit-component', require('./components/crud/EditarArtista.vue').default);
+
+//CRUS ASCENSORES
+Vue.component('ascensores-view-component', require('./components/crud/AscensoresView.vue').default);
+Vue.component('ascensor-edit-component', require('./components/crud/EditarAscensor.vue').default);
 
 
 

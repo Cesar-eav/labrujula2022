@@ -13,17 +13,14 @@ class Ascensor extends Model
 
     protected $perPage = 10;
 
+    public $timestamps = false;
+
+
     protected $fillable = [
         'id',
-        'cerro',
+        'nombre',
         'direccion',
-        'artista',
-        'path_imagen',
-        'descripcion',
-        'instagram',
-        'lat',
-        'long',
-        'publicidad'
+        'content'
 
     ];
 

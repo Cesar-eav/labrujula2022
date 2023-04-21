@@ -7,6 +7,7 @@ use App\Models\Atractivos;
 use App\Models\Artista;
 use App\Models\ArtistaPoint;
 use App\Models\Ubication;
+use App\Models\Ascensor;
 use Illuminate\Http\Request;
 
 class CrudController extends Controller
@@ -40,7 +41,6 @@ class CrudController extends Controller
 
        $point = new PointTest;
            $point->direction = $request->direction;
-           $point->image = 'articles/'.$request->image_name;
            $point->lat = $request->lat;                                                                                                                                                                                        
            $point->lon = $request->lon;
            $point->publicity = $request->publicity;
@@ -49,6 +49,8 @@ class CrudController extends Controller
            $point->description = $request->description;
            $point->artist_id = $request->selectedArtista;         
            $point->type_attractive = $request->selectedAtractivoName;
+
+           $point->image = 'articles/'.$request->image_name;
            $point->save();
            
            //EL BUENO
@@ -64,9 +66,7 @@ class CrudController extends Controller
 
     public function viewEdit($id)
     {
-       
         $murales = Atractivos::where('id', $id)->with('artist')->first();
-            
             return view('crud/edit', compact(
             'murales',
             'id'
@@ -75,30 +75,48 @@ class CrudController extends Controller
 
     public function viewEditArtist($id)
     {
-       
         $artista = Artista::where('id', $id)->first();
-            
             return view('crud/edit-artist', compact(
             'artista',
             'id'
         ));
     }
 
+    public function ascensoresView()
+    {
+        $ascensores = Ascensor::get();
+            return view('crud/ascensores-view', compact(
+            'ascensores',
+        ));
+    }
+
+    public function ViewEditAscensor($id)
+    {
+        $ascensor = Ascensor::where('id', $id)->first();
+            return view('crud/edit-ascensor', compact(
+            'ascensor',
+            'id'
+        ));
+    }
+
+
+
+
     public function editPoint(Request $request)
     {
         
         $murales = Atractivos::findOrFail($request->id);
+        //return $murales;
         $murales->ubication =       $request->ubication;
         $murales->ubication_id =    $request->ubication_id;
         $murales->artist_id =       $request->artist_id;
-        $murales->artista =         $request->artist_id;
+        $murales->artista =         $request->artista;
         $murales->direction =       $request->direction;
         $murales->description =     $request->description;
-        $murales->artista =         $request->artist;
         $murales->lat =             $request->lat;
         $murales->lon =             $request->lon;
         $murales->type_attractive = $request->type_attractive;
-        $murales->estado=           $request->estado;
+        //$murales->estado=           $request->estado;
 
         $response = $murales->save();
         return $response;
@@ -119,6 +137,19 @@ class CrudController extends Controller
 
 
         $response = $artista->save();
+        return $response;
+    }
+
+    public function editAscensor(Request $request)
+    {
+        //return "HOLA";
+        
+        $ascensor = Ascensor::find($request->id);
+        $ascensor->nombre=      $request->nombre;
+        $ascensor->direccion=   $request->direccion;
+        $ascensor->content=     $request->content;
+
+        $response = $ascensor->save();
         return $response;
     }
 

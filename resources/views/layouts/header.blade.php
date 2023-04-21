@@ -1,3 +1,1 @@
-
-<header-component></header-component>
-
+<header-component :ubications="{{json_encode($ubications)}}"  ></header-component>
