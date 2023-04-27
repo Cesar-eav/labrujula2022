@@ -6047,7 +6047,7 @@ __webpack_require__.r(__webpack_exports__);
         lat: 0,
         publicity: 0,
         lon: 0,
-        selectedArtista: null,
+        //selectedArtista: null,
         artista: '',
         selectedUbicationId: null,
         selectedAtractivoName: null //ubication: ""
@@ -6094,8 +6094,8 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("image_name", this.muralDatos.image_name);
       formData.append("lat", this.muralDatos.lat);
       formData.append("lon", this.muralDatos.lon);
-      formData.append("publicity", this.muralDatos.publicity);
-      formData.append("selectedArtista", this.muralDatos.selectedArtista);
+      formData.append("publicity", this.muralDatos.publicity); //formData.append("selectedArtista",        this.muralDatos.selectedArtista);
+
       formData.append("selectedUbicationId", this.muralDatos.selectedUbicationId);
       formData.append("selectedAtractivoName", this.muralDatos.selectedAtractivoName);
       axios.post("/crud/post-point", formData).then(function (response) {
@@ -6137,8 +6137,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted: function mounted() {
-    this.selectUbication();
-    this.selectArtist();
+    this.selectUbication(); //this.selectArtist();
   }
 });
 
@@ -8087,7 +8086,27 @@ var render = function render() {
         value: ubication.id
       }
     }, [_vm._v("\n                " + _vm._s(ubication.name) + "\n              ")]);
-  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("select", {
+  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.artista,
+      expression: "muralDatos.artista"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.muralDatos.artista
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.muralDatos, "artista", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -8133,7 +8152,7 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "direction", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
+  })])])]), _vm._v(" "), _c("th", [_c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -8209,36 +8228,7 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "lon", $event.target.value);
       }
     }
-  })])])]), _vm._v(" "), _c("th", [_c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.muralDatos.selectedArtista,
-      expression: "muralDatos.selectedArtista"
-    }],
-    attrs: {
-      multiple: ""
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-
-        _vm.$set(_vm.muralDatos, "selectedArtista", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, _vm._l(this.artists, function (artista) {
-    return _c("option", {
-      key: artista.id,
-      domProps: {
-        value: artista.name
-      }
-    }, [_vm._v("\n                " + _vm._s(artista.name) + "\n              ")]);
-  }), 0), _vm._v("\n            " + _vm._s(_vm.muralDatos.selectedArtista) + " \n          ")])]), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-col"
   }, [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
     directives: [{

@@ -137,6 +137,11 @@
         </tr>
 
         <tr>
+          <td>Artista:</td>
+          <td><input type="text" v-model="muralDatos.artista" />
+          </td>
+        </tr>
+        <tr>
           <td>Tipo atractivo:</td>
           <td>
             <!-- <input type="text" v-model="muralDatos.tipo_atractivo" /> -->
@@ -149,9 +154,6 @@
                 {{ atractivo.nombre }}
               </option>
             </select>
-
-
-
           </td>
         </tr>
 <!-- 
@@ -181,7 +183,8 @@
           <td>Dirección:</td>
           <td><input type="text" v-model="muralDatos.direction" /></td>
         </tr>
-
+      </th>
+      <th>
         <tr>
           <td>Publicidad:</td>
           <td><input type="checkbox" v-model="muralDatos.publicity" :true-value="1" :false-value="0" /></td>
@@ -201,27 +204,6 @@
             />
           </td>
         </tr>
-      </th>
-      <th>
-
-
-        <tr>
-          <td>Artista:</td>
-          <td>
-            <select  v-model="muralDatos.selectedArtista" multiple>
-            <option
-                v-for="artista in this.artists"
-                :key="artista.id"
-                :value="artista.name"
-              >
-                {{ artista.name }}
-              </option>
-            </select>
-            {{ muralDatos.selectedArtista }} 
-          </td>
-        </tr>
-
-        
 
         <tr>
           <td colspan="2"></td>
@@ -302,7 +284,7 @@ export default {
         lat: 0,
         publicity: 0,
         lon: 0,
-        selectedArtista: null,
+        //selectedArtista: null,
         artista:'',
         selectedUbicationId: null,
         selectedAtractivoName: null,
@@ -345,7 +327,7 @@ export default {
       formData.append("lat",                    this.muralDatos.lat);
       formData.append("lon",                    this.muralDatos.lon);
       formData.append("publicity",              this.muralDatos.publicity);
-      formData.append("selectedArtista",        this.muralDatos.selectedArtista);
+      //formData.append("selectedArtista",        this.muralDatos.selectedArtista);
       formData.append("selectedUbicationId",    this.muralDatos.selectedUbicationId);
       formData.append("selectedAtractivoName",  this.muralDatos.selectedAtractivoName);
       
@@ -391,7 +373,7 @@ export default {
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted() {
     this.selectUbication();
-    this.selectArtist();
+    //this.selectArtist();
   },
 };
 
