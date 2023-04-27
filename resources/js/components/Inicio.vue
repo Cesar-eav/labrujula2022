@@ -135,7 +135,7 @@
             <a href="/murales">Murales</a>
           </div>
           <p class="text-gray-700 text-base">
-            Con cerca de 400 murales, Valparaíso es la capital del arte urbano
+            Con más de 400 murales, Valparaíso es la capital del arte urbano
             de Chile.
           </p>
         </div>
@@ -315,3 +315,8 @@
   </div>
 </template>
 
+
+<script>
+
+
+</script>

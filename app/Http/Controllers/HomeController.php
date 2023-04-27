@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Atractivos;
+use App\Models\Ubication;
 
 
 class HomeController extends Controller
 {
+
+    public function inicio(){
+
+            $ubications = Ubication::orderBy('name')->get();
+            return view('inicio', compact(
+                'ubications'
+            ));
+    }
 
     public function muralesHome($ubicacion = ''){
 
         if ($ubicacion == '') {
             $murales = Atractivos::paginate(1)->all();
         } else {
-            //return $cerro;
             $murales = Atractivos::where('ubication', $ubicacion)->get();
         }
 

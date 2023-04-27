@@ -4,9 +4,9 @@
       Iglesias
     </h1>
 
-<div class="flex flex-wrap justify-center">
+<div v-viewer class="flex flex-wrap justify-center">
 
-    <div v-viewer class="w-96 mx-1 mb-2" v-for="iglesias in arrayList" :key="iglesias.id">
+    <div class="w-96 mx-1 mb-2" v-for="iglesias in arrayList" :key="iglesias.id">
         <img :src="'storage/'+iglesias.image" /> 
         <div class="bg-red-400 pl-2 text-lg font-bold"> Iglesia {{ iglesias.nombre }} </div>
         <div class="border-2 border-red-400 text-end pr-2">

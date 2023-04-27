@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="CUERPO flex flex-col my-3">
-      <h1 class="text-2xl text-center mb-3">CRUD ATRACTIVOS DE VALPARAISO</h1>
+      <h1 class="text-2xl text-center mb-3">EL CRUD TRANSVERSAL</h1>
 
       <!-- PUNTOS CRUD -->
       <div class="flex justify-center">
         
-        <a href="/crud/relaciones-crud/">
+        <a href="">
           <button
             type="button"
             class="
@@ -125,37 +125,24 @@
             Agregar Artista
           </button>
         </a>
-
-
-        <a href="/crud/ascensores-view">
-          <button
-            type="button"
-            class="
-              focus:outline-none
-              text-white
-              bg-red-700
-              hover:bg-red-800
-              focus:ring-4 focus:ring-red-300
-              font-medium
-              rounded-lg
-              text-sm
-              px-5
-              py-2.5
-              mr-2
-              mb-2
-              dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
-            "
-          >
-            Ascensores
-          </button>
-        </a>
-
-
       </div>
     </div>
 
+DATOS
+  <div class="flex flex-col">
+    <div v-for="artista in artists" :key="artista.id">
+     
 
-    <div id="datos-tabla" class="mx-8">
+      {{artista.name}} 
+      
+      <span v-for="atractivo in artista.hm_points" :key="atractivo.id">
+
+        <img :src="'/storage/' + atractivo.image" width="100" class="m-5" > 
+
+      </span>
+    </div> 
+  </div>
+    <!-- <div id="datos-tabla" class="mx-8">
       <v-client-table
        
         v-viewer  
@@ -174,7 +161,7 @@
       </v-client-table>
 
   
-    </div>
+    </div> -->
 
 
 
@@ -188,7 +175,7 @@
 
 export default {
   name: "datos-tabla",
-  props: ["murales"],
+  props: ["point", "artists"],
 
   data() {
 

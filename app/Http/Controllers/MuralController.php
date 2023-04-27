@@ -68,7 +68,7 @@ class MuralController extends Controller
     }
     public function escaleras()
     {
-        $escaleras = Atractivos::where('type_attractive', 'Escalera')->get();
+        $escaleras = Escalera::all();
         return $escaleras;
     }
     public function miradores()

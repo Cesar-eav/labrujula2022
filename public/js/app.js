@@ -7469,6 +7469,7 @@ var render = function render() {
       key: atractivo.id,
       staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800"
     }, [_c("img", {
+      staticClass: "w-full h-60",
       attrs: {
         src: "/storage/" + atractivo.image,
         alt: "imagen"

@@ -3,18 +3,12 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'inicio']);
 
 // Auth::routes();
-
 // Auth::routes(['register' => false]);
 
-
 Route::get('/murales/{ubicacion?}', [App\Http\Controllers\HomeController::class, 'muralesHome']);
-
-
 
 Route::get('/osm/{lat?}/{long?}', [App\Http\Controllers\HomeController::class, 'osm']);
 
@@ -42,7 +36,6 @@ Route::get('/traspasar', [App\Http\Controllers\CrudController::class, 'traspasar
 //CRUD *******************************
 
 Route::get('/crud/index', [App\Http\Controllers\CrudController::class, 'index']);
-
 Route::get('/crud/relaciones-crud', [App\Http\Controllers\RelacionController::class, 'relacion']);
 
 //POINT
@@ -62,12 +55,15 @@ Route::get('/crud/show-edit-artist/{id}', [App\Http\Controllers\CrudController::
 Route::post('/crud/edit-artist', [App\Http\Controllers\CrudController::class, 'editArtist']);
 Route::delete('/crud/delete-artista/{id}', [App\Http\Controllers\CrudController::class, 'deleteArtista']);
 
+//CRUD ASCENSORES
+Route::get('/crud/ascensores-view', [App\Http\Controllers\CrudController::class, 'ascensoresView']);
+Route::post('/crud/edit-ascensor', [App\Http\Controllers\CrudController::class, 'editAscensor']);
+Route::get('/crud/edit-ascensor/{id}', [App\Http\Controllers\CrudController::class, 'ViewEditAscensor']);
 
 //UBICACION
 Route::get('/crud/create-ubication', [App\Http\Controllers\UbicationController::class, 'createUbicationView']);
 Route::post('/crud-ubication/post', [App\Http\Controllers\UbicationController::class, 'createUbication']);
 Route::get('/crud-ubication/list-ubications', [App\Http\Controllers\UbicationController::class, 'selectUbication']);
-
 
 //ATRACTIVO
 Route::get('/crud/create-type-point', [App\Http\Controllers\TypePointController::class, 'pointTypeView']);
