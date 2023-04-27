@@ -18,7 +18,7 @@
           v-if="modal"
         >
           <div
-            class="fixed inset-0 bg-gray-500 bg-opacity-15 transition-opacity"
+            class="fixed inset-0 bg-gray-500 bg-opacity-50 transition-opacity"
           ></div>
 
           <div class="fixed inset-0 z-10 overflow-y-auto">
@@ -46,17 +46,18 @@
                         sm:my-8 sm:w-full sm:max-w-lg"
               >
                 <div class="p-2 space-y-2" >
-                  <p class="text-2xl font-bold">
-                    {{ atractivo_modal.ubication }}
+                  <p class="text-3xl font-bold">
+                    Ascensor {{ atractivo_modal.nombre }}
+                    </p>
                 
                   <p><b>Dirección:</b> {{ atractivo_modal.direccion }}</p> 
-                  <p> <b>Reseña: </b>{{ atractivo_modal.content }}</p>
+                  
                 
                   <img
                     :src="'/storage/' + atractivo_modal.image"
                     alt="imagen"
                   />
-                  {{ atractivo_modal.description }}
+                  <p> <b>Reseña: </b>{{ atractivo_modal.content }}</p>
                 </div>
 
                 <div
