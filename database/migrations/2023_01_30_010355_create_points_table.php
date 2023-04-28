@@ -13,7 +13,7 @@ class CreatePointTestTable extends Migration
      */
     public function up()
     {
-        Schema::create('point_tests', function (Blueprint $table) {
+        Schema::create('points', function (Blueprint $table) {
             $table->id();
             $table->string('direction');
             $table->string('image');
@@ -37,6 +37,6 @@ class CreatePointTestTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('point_tests');
+        Schema::dropIfExists('points');
     }
 }
