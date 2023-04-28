@@ -156,36 +156,10 @@
             </select>
           </td>
         </tr>
-<!-- 
-        <tr>
-          <td>Artista:</td>
-          <td> 
-            
-              V-MODEL -> Comunicacion del INPUT al DATA( )
-              Con V-MODEL pasamos datos al objeto muraldatos que iran a BD
-              Con :value enviamos el valor a guardar, que será artist.name en ete caso
-            
-            
-            <select v-model="muralDatos.selectedArtista" multiple>
-              <option
-                v-for="artist in this.artists"
-                :key="artist.id"
-                :value="artist.id"
-              >
-                {{ artist.name }}
-              </option>
-
-            </select>
-            <span>Seleccionados: {{ muralDatos.selectedArtista }}</span>
-            </td>
-        </tr>     -->
         <tr>
           <td>Dirección:</td>
           <td><input type="text" v-model="muralDatos.direction" /></td>
-        </tr>
-      </th>
-      <th>
-        <tr>
+        </tr> <tr>
           <td>Publicidad:</td>
           <td><input type="checkbox" v-model="muralDatos.publicity" :true-value="1" :false-value="0" /></td>
         </tr>
@@ -204,6 +178,30 @@
             />
           </td>
         </tr>
+      </th>
+      <th>
+        <tr>
+          <td>Artista:</td>
+          <td> 
+            
+              <!-- V-MODEL -> Comunicacion del INPUT al DATA( )
+              Con V-MODEL pasamos datos al objeto muraldatos que iran a BD
+              Con :value enviamos el valor a guardar, que será artist.name en ete caso -->
+            
+            
+            <select v-model="muralDatos.selectedArtista" multiple  size="12">
+              <option
+                v-for="artist in this.artists"
+                :key="artist.id"
+                :value="artist.id"
+              >
+                {{ artist.name }}
+              </option>
+
+            </select>
+            <span>Seleccionados: {{ muralDatos.selectedArtista }}</span>
+            </td>
+        </tr>   
 
         <tr>
           <td colspan="2"></td>
@@ -373,7 +371,7 @@ export default {
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted() {
     this.selectUbication();
-    //this.selectArtist();
+    this.selectArtist();
   },
 };
 

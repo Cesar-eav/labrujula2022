@@ -31,8 +31,6 @@
         </a>
 
 
-
-
         <a href="/crud/view-create-point/">
           <button
             type="button"
@@ -128,44 +126,26 @@
       </div>
     </div>
 
-DATOS
-  <div class="flex flex-col">
-    <div v-for="artista in artists" :key="artista.id">
+
+  <div class="flex flex-row m-5 bg-primary-600" >
+    <select v-model="artists"  multiple>
      
 
       {{artista.name}} 
-      
-      <span v-for="atractivo in artista.hm_points" :key="atractivo.id">
 
-        <img :src="'/storage/' + atractivo.image" width="100" class="m-5" > 
+      </select>
 
-      </span>
+
+<!--       
+      <span v-for="atractivo in artista.hm_points" :key="atractivo.id"  class="flex flex-col bg-primary-500">
+
+        {{atractivo.id}}
+
+      </span> -->
     </div> 
-  </div>
-    <!-- <div id="datos-tabla" class="mx-8">
-      <v-client-table
-       
-        v-viewer  
-        :data="murales"  
-        :columns="columns" 
-        :options="options">
+  </div> 
 
-        <button type="button" slot="edit" slot-scope="props" @click="edit(props.row)">
-          <a :href="'/crud/show-edit/' + props.row.id">Editar</a>
-
-        </button>
-        <button type="button" slot="remove" slot-scope="props" @click="deleteMural(props.row.id)">Eliminar</button>
-        <img :src="'/storage/'+murales.row.image" slot="image" slot-scope="murales" width="200"/> 
-
-
-      </v-client-table>
-
-  
-    </div> -->
-
-
-
-
+   
   </div>
 </template>
 
@@ -173,60 +153,8 @@ DATOS
 
 <script>
 
-export default {
-  name: "datos-tabla",
-  props: ["point", "artists"],
-
-  data() {
-
-        return {
-      //NOMBRE EXACTO COLUMNAS BD ¿O EL JSON?
-      columns: [
-         "id",
-        "image",
-        'ubication.name',
-        "artista",
-        "direction",
-        "publicity",
-        "type_attractive",
-        "edit",
-        "remove"
-      ],
-      //Objeto Options, son las cabeceras de la tabla
-      options: {
-        perPage: 10,
-        perPagesValues: [10, 15, 20],
-        headings: {
-          id: "ID",
-          direction: "Dirección",
-          publicity: "Publicidad",
-          "ubication.name": "Ubicación",
-          tipo_mural: "Atractivo",
-          "type_attractive": "Atractivo"
-        },
-        sortable: ["id", "ubication_id", "type_attractive"],
-        filterable: ["type_attractive", "ubication.name", "artista"],
-        filterByColumn: true,
-        editableColumns: ["direction"],
-      },
-    };
-  },
-
-  methods: {
-    deleteMural(id) {
-      console.log(id, "INTENTANDO");
-      axios.delete("/crud/delete/" + id).then((response) => {
-        console.log("ELIMINADO: ", response.data);
-        window.location.href = "/crud/index/";
-      });
-    },
-    edit(row) {
-      console.log(row);
-    },
-    remove(row) {
-      console.log(row);
-    }
-  },
-
-};
+  export default {
+    props: ["points", "artists"],
+  }
+  
 </script>

@@ -100,8 +100,6 @@ class CrudController extends Controller
     }
 
 
-
-
     public function editPoint(Request $request)
     {
         

@@ -20,4 +20,15 @@ class RelacionController extends Controller
     return view('artistas', compact('points', 'artists'));
 
     }
+
+    public function relacionCrud(){
+
+        $points = Atractivos::all();
+        
+        $artists = Artista::with('hm_points')->has('hm_points')->orderBy('name')->get();
+        //return $artists;
+
+    return view('crud.relaciones-crud', compact('points', 'artists'));
+
+    }
 }

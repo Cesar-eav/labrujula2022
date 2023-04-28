@@ -6137,7 +6137,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted: function mounted() {
-    this.selectUbication(); //this.selectArtist();
+    this.selectUbication();
+    this.selectArtist();
   }
 });
 
@@ -6568,46 +6569,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "datos-tabla",
-  props: ["point", "artists"],
-  data: function data() {
-    return {
-      //NOMBRE EXACTO COLUMNAS BD ¿O EL JSON?
-      columns: ["id", "image", 'ubication.name', "artista", "direction", "publicity", "type_attractive", "edit", "remove"],
-      //Objeto Options, son las cabeceras de la tabla
-      options: {
-        perPage: 10,
-        perPagesValues: [10, 15, 20],
-        headings: {
-          id: "ID",
-          direction: "Dirección",
-          publicity: "Publicidad",
-          "ubication.name": "Ubicación",
-          tipo_mural: "Atractivo",
-          "type_attractive": "Atractivo"
-        },
-        sortable: ["id", "ubication_id", "type_attractive"],
-        filterable: ["type_attractive", "ubication.name", "artista"],
-        filterByColumn: true,
-        editableColumns: ["direction"]
-      }
-    };
-  },
-  methods: {
-    deleteMural: function deleteMural(id) {
-      console.log(id, "INTENTANDO");
-      axios["delete"]("/crud/delete/" + id).then(function (response) {
-        console.log("ELIMINADO: ", response.data);
-        window.location.href = "/crud/index/";
-      });
-    },
-    edit: function edit(row) {
-      console.log(row);
-    },
-    remove: function remove(row) {
-      console.log(row);
-    }
-  }
+  props: ["points", "artists"]
 });
 
 /***/ }),
@@ -8152,7 +8114,7 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "direction", $event.target.value);
       }
     }
-  })])])]), _vm._v(" "), _c("th", [_c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -8228,7 +8190,37 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "lon", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _c("div", {
+  })])])]), _vm._v(" "), _c("th", [_c("tr", [_c("td", [_vm._v("Artista:")]), _vm._v(" "), _c("td", [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.selectedArtista,
+      expression: "muralDatos.selectedArtista"
+    }],
+    attrs: {
+      multiple: "",
+      size: "12"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.muralDatos, "selectedArtista", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(this.artists, function (artist) {
+    return _c("option", {
+      key: artist.id,
+      domProps: {
+        value: artist.id
+      }
+    }, [_vm._v("\n                " + _vm._s(artist.name) + "\n              ")]);
+  }), 0), _vm._v(" "), _c("span", [_vm._v("Seleccionados: " + _vm._s(_vm.muralDatos.selectedArtista))])])]), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-col"
   }, [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
     directives: [{
@@ -9542,23 +9534,30 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm._m(0), _vm._v("\n\nDATOS\n  "), _c("div", {
-    staticClass: "flex flex-col"
-  }, _vm._l(_vm.artists, function (artista) {
-    return _c("div", {
-      key: artista.id
-    }, [_vm._v("\n     \n\n      " + _vm._s(artista.name) + " \n      \n      "), _vm._l(artista.hm_points, function (atractivo) {
-      return _c("span", {
-        key: atractivo.id
-      }, [_c("img", {
-        staticClass: "m-5",
-        attrs: {
-          src: "/storage/" + atractivo.image,
-          width: "100"
-        }
-      })]);
-    })], 2);
-  }), 0)]);
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "flex flex-row m-5 bg-primary-600"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.artists,
+      expression: "artists"
+    }],
+    attrs: {
+      multiple: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.artists = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }
+    }
+  }, [_vm._v("\n     \n\n      " + _vm._s(_vm.artista.name) + " \n\n      ")])])]);
 };
 
 var staticRenderFns = [function () {
