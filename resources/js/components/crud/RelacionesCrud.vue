@@ -127,34 +127,46 @@
     </div>
 
 
-  <div class="flex flex-row m-5 bg-primary-600" >
-    <select v-model="artists"  multiple>
-     
+  <table>
+    <th>
+        <tr>
+ 
+          <td> 
 
-      {{artista.name}} 
+      <select v-model="selectedArtist" multiple  size="12">
+              <option
+                v-for="artist in this.artists"
+                :key="artist.id"
+                :value="artist.name"
+              >
+                {{ artist.name }}
+              </option>
 
       </select>
 
+      {{ selectedArtist }}
+    </td>
+  </tr>
+  </th>
+    
+    </table> 
 
-<!--       
-      <span v-for="atractivo in artista.hm_points" :key="atractivo.id"  class="flex flex-col bg-primary-500">
 
-        {{atractivo.id}}
-
-      </span> -->
-    </div> 
-  </div> 
-
-   
-  </div>
+  </div>    
 </template>
 
 
 
 <script>
+export default {
+  props: ["points", "artists"],
 
-  export default {
-    props: ["points", "artists"],
+  data (){
+    return{
+      selectedArtist: []
+    }
+
   }
-  
+
+};
 </script>

@@ -6569,7 +6569,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["points", "artists"]
+  props: ["points", "artists"],
+  data: function data() {
+    return {
+      selectedArtist: []
+    };
+  }
 });
 
 /***/ }),
@@ -9534,17 +9539,16 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-row m-5 bg-primary-600"
-  }, [_c("select", {
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("table", [_c("th", [_c("tr", [_c("td", [_c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.artists,
-      expression: "artists"
+      value: _vm.selectedArtist,
+      expression: "selectedArtist"
     }],
     attrs: {
-      multiple: ""
+      multiple: "",
+      size: "12"
     },
     on: {
       change: function change($event) {
@@ -9554,10 +9558,17 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.artists = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+        _vm.selectedArtist = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
       }
     }
-  }, [_vm._v("\n     \n\n      " + _vm._s(_vm.artista.name) + " \n\n      ")])])]);
+  }, _vm._l(this.artists, function (artist) {
+    return _c("option", {
+      key: artist.id,
+      domProps: {
+        value: artist.name
+      }
+    }, [_vm._v("\n              " + _vm._s(artist.name) + "\n            ")]);
+  }), 0), _vm._v("\n\n    " + _vm._s(_vm.selectedArtist) + "\n  ")])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -9579,7 +9590,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n            R\n          ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n          R\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/view-create-point/"
     }
@@ -9588,7 +9599,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n            Agregar Punto\n          ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n          Agregar Punto\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-ubication/"
     }
@@ -9597,7 +9608,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n            Agregar Ubicacion\n          ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n          Agregar Ubicacion\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-type-point/"
     }
@@ -9606,7 +9617,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n            Agregar Tipo de atractivo\n          ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n          Agregar Tipo de atractivo\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/artista-view"
     }
@@ -9615,7 +9626,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n            Agregar Artista\n          ")])])])]);
+  }, [_vm._v("\n          Agregar Artista\n        ")])])])]);
 }];
 render._withStripped = true;
 
