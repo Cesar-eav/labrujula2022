@@ -15,7 +15,7 @@ class RenameUbicacionPointsTable extends Migration
     {
         Schema::table('points', function (Blueprint $table) {
 
-        $table->renameColumn('ubicacion', 'ubication');    
+        //$table->renameColumn('ubicacion', 'ubication');    
 
         });
     }
