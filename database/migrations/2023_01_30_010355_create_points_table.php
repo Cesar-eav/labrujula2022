@@ -17,8 +17,8 @@ class CreatePointsTable extends Migration
             $table->id();
             $table->string('direction');
             $table->string('image');
-            $table->decimal('lat');
-            $table->decimal('lon');
+            $table->string('lat');
+            $table->string('lon');
             $table->boolean('publicity')->default(false);
             $table->unsignedBigInteger('ubication_id');
             $table->foreign('ubication_id')->references('id')->on('ubications');
