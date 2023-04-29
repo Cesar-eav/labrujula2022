@@ -18,8 +18,8 @@ class AddFieldsToPointsTable extends Migration
             //$table->unsignedBigInteger('ubication_id')->nullable();
             //$table->foreign('ubication_id')->references('id')->on('ubications');
 
-            $table->unsignedBigInteger('artist_id')->nullable();
-            $table->foreign('artist_id')->references('id')->on('artistas');
+            //$table->unsignedBigInteger('artist_id')->nullable();
+            //$table->foreign('artist_id')->references('id')->on('artistas');
         
         });
     }
