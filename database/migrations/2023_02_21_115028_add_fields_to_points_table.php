@@ -14,8 +14,9 @@ class AddFieldsToPointsTable extends Migration
     public function up()
     {
         Schema::table('points', function (Blueprint $table) {
-            $table->unsignedBigInteger('ubication_id')->nullable();
-            $table->foreign('ubication_id')->references('id')->on('ubications');
+
+            //$table->unsignedBigInteger('ubication_id')->nullable();
+            //$table->foreign('ubication_id')->references('id')->on('ubications');
 
             $table->unsignedBigInteger('artist_id')->nullable();
             $table->foreign('artist_id')->references('id')->on('artistas');
