@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col justify-center m-3">
-    <h1 class="text-2xl text-center mb-3">AGREGAR PUNTO</h1>
+    <h1 class="text-2xl text-center mb-3">AGREGAR PUNTOs</h1>
 
 <!-- PUNTOS CRUD -->
 <div class="flex justify-center">
