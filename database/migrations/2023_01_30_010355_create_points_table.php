@@ -15,10 +15,12 @@ class CreatePointsTable extends Migration
     {
         Schema::create('points', function (Blueprint $table) {
             $table->id();
-            $table->string('direction');
-            $table->string('image');
-            $table->string('lat');
-            $table->string('lon');
+            $table->string('direction', 255);
+            $table->string('ubication', 255);
+            $table->string('image', 255);
+            $table->string('artista', 255);
+            $table->string('lat',255);
+            $table->string('lon',255);
             $table->boolean('publicity')->default(false);
             $table->unsignedBigInteger('ubication_id');
             $table->foreign('ubication_id')->references('id')->on('ubications');
