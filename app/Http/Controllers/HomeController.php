@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function inicio(){
 
             $ubications = Ubication::orderBy('name')->get();
+            return $ubications;
             return view('inicio', compact(
                 'ubications'
             ));
