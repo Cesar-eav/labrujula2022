@@ -26,9 +26,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        // $ubications = Ubication::all();
-
-        // View::share('ubications', $ubications);
+        $ubications = Ubication::all();
+        View::share('ubications', $ubications);
 
     }
 }
