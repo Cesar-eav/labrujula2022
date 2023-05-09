@@ -39,6 +39,10 @@ class CrudController extends Controller
 
        $ubicacion_real = Ubication::where('id', $request->selectedUbicationId )->first();
 
+       $validatedData = $request->validate([
+        'artista' => 'required'
+        ]);
+
        $point = new PointTest;
            $point->direction = $request->direction;
            $point->lat = $request->lat;                                                                                                                                                                                        
@@ -56,6 +60,7 @@ class CrudController extends Controller
            
            //EL BUENO
            $request->file('file')->storeAs('articles', $request->image_name, 'public');
+
 
        return response()->json([
            'db'=>$point->save()
