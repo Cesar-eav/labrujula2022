@@ -43,6 +43,7 @@ class CrudController extends Controller
            $point->direction = $request->direction;
            $point->lat = $request->lat;                                                                                                                                                                                        
            $point->lon = $request->lon;
+           $point->artista = $request->artista;
            $point->publicity = $request->publicity;
            $point->ubication_id = $request->selectedUbicationId;
            $point->ubication = $ubicacion_real->name;
