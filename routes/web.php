@@ -64,6 +64,10 @@ Route::get('/crud/edit-ascensor/{id}', [App\Http\Controllers\CrudController::cla
 Route::get('/crud/create-ubication', [App\Http\Controllers\UbicationController::class, 'createUbicationView']);
 Route::post('/crud-ubication/post', [App\Http\Controllers\UbicationController::class, 'createUbication']);
 Route::get('/crud-ubication/list-ubications', [App\Http\Controllers\UbicationController::class, 'selectUbication']);
+Route::get('/crud/show-edit-ubication/{id}', [App\Http\Controllers\CrudController::class, 'viewEditUbication']);
+Route::post('/crud/edit-ubication/', [App\Http\Controllers\CrudController::class, 'editUbication']);
+
+
 
 //ATRACTIVO
 Route::get('/crud/create-type-point', [App\Http\Controllers\TypePointController::class, 'pointTypeView']);

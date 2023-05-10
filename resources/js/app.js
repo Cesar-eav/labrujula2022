@@ -69,9 +69,12 @@ Vue.component('create-point-type-component', require('./components/crud/CreatePo
 Vue.component('artista-view-component', require('./components/crud/ArtistaView.vue').default);
 Vue.component('artista-edit-component', require('./components/crud/EditarArtista.vue').default);
 
-//CRUS ASCENSORES
+//CRUD ASCENSORES
 Vue.component('ascensores-view-component', require('./components/crud/AscensoresView.vue').default);
 Vue.component('ascensor-edit-component', require('./components/crud/EditarAscensor.vue').default);
+
+//CRUD UBICATION
+Vue.component('ubication-edit-component', require('./components/crud/EditarUbication.vue').default);
 
 
 

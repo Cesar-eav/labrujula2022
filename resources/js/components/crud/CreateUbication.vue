@@ -158,12 +158,27 @@
       </table>
     </div>
 
-<div class="flex flex-wrap ">
-    <div class="border-2 border-red-500 p-2 m-2"  
-      v-for="ubication in this.listUbications" :key="ubication.id">
-      {{ ubication.name }} id: {{ ubication.id }}
+
+
+<div id="datos-tabla" class="mx-8">
+      <v-client-table
+               
+        :data="this.listUbications"  
+        :columns="columns" 
+        :options="options">
+
+        <button type="button" slot="edit" slot-scope="props" @click="edit(props.row)">
+          <a :href="'/crud/show-edit-ubication/' + props.row.id">Editar</a>
+
+        </button>
+        <button type="button" slot="remove" slot-scope="props" @click="deleteMural(props.row.id)">Eliminar</button>
+        
+
+      </v-client-table>
+
+  
     </div>
-</div>
+
 
   </div>
 </template>
@@ -179,8 +194,29 @@ export default {
       },
       loading: false,
       listUbications: [],
+
+       //NOMBRE EXACTO COLUMNAS BD ¿O EL JSON?
+    columns: [
+         "id",
+        "name",
+        "edit",
+        "remove"
+      ],
+      //Objeto Options, son las cabeceras de la tabla
+      options: {
+        perPage: 30,
+        //perPagesValues: [10, 15, 20],
+        headings: {
+          id: "ID",
+          name: "Ubicación",
+          
+        },
+
+      },
     };
   },
+
+   
 
   methods: {
     upUbication() {

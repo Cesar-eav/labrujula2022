@@ -108,9 +108,21 @@ class CrudController extends Controller
 
 
 
+    public function viewEditUbication ($id){
+        
+        $ubication = Ubication::where('id', $id)->first();
+        return view ('crud/edit-ubication', compact(
+            'ubication',
+            'id'
+        ));
+    }
+
+
+
+
     public function editPoint(Request $request)
     {
-        
+    
         $murales = Atractivos::findOrFail($request->id);
         
         $murales->ubication =       $request->ubication;
@@ -158,6 +170,18 @@ class CrudController extends Controller
         $response = $ascensor->save();
         return $response;
     }
+
+
+    public function editUbication(Request $request)
+    {
+                
+        $ubication = Ubication::find($request->id);
+            $ubication->name=      $request->name;
+            $response = $ubication->save();
+        
+        return $response;
+    }
+
 
 
 
