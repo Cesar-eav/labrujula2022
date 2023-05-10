@@ -255,7 +255,7 @@ export default {
       axios
         .post("/crud/edit", {
           id:                   this.formEditMural.id,
-          ubication:            this.murales.ubication,
+          ubication:            this.formEditMural.ubication,
           ubication_id:         this.formEditMural.ubication_id, 
           direction:            this.formEditMural.direction,
           description:          this.formEditMural.description,
@@ -268,7 +268,7 @@ export default {
         })
         .then((response) => {
           //window.location.href = "/crud/index";
-          console.log("GUARDADO");
+          console.log("EJALE", response.data);
 
           if (response.data) {
           } else {
@@ -282,8 +282,9 @@ export default {
       axios
         .get("/crud-ubication/list-ubications")
         .then((response) => {
-          
           this.ubications = response.data;
+          console.log(response);
+
         })
         .catch((error) => console.log("Error", error));
     },

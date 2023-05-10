@@ -112,7 +112,7 @@ class CrudController extends Controller
     {
         
         $murales = Atractivos::findOrFail($request->id);
-        //return $murales;
+        
         $murales->ubication =       $request->ubication;
         $murales->ubication_id =    $request->ubication_id;
         $murales->artist_id =       $request->artist_id;

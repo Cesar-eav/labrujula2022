@@ -6289,7 +6289,7 @@ __webpack_require__.r(__webpack_exports__);
       //SE VA AL BACK(CONTROLADOR).
       axios.post("/crud/edit", {
         id: this.formEditMural.id,
-        ubication: this.murales.ubication,
+        ubication: this.formEditMural.ubication,
         ubication_id: this.formEditMural.ubication_id,
         direction: this.formEditMural.direction,
         description: this.formEditMural.description,
@@ -6301,7 +6301,7 @@ __webpack_require__.r(__webpack_exports__);
 
       }).then(function (response) {
         //window.location.href = "/crud/index";
-        console.log("GUARDADO");
+        console.log("EJALE", response.data);
 
         if (response.data) {} else {
           console.log("NO FUNIONA, DATA VACIO");
@@ -6313,6 +6313,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/crud-ubication/list-ubications").then(function (response) {
         _this.ubications = response.data;
+        console.log(response);
       })["catch"](function (error) {
         return console.log("Error", error);
       });
