@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="title" content="LaBrujula.tk">
-    <meta name="description" content="La Brújula, encuentra todos los tesoros de Valparaíso. Street art, escaleras, murales, ascensores, miradores y mucho más." >
+    <meta name="description" content="La Brújula, encuentra todos los tesoros de Valparaíso. Street art, escaleras, murales, ascensores, miradores y mucho más. Murales cerro alegre, valparaíso. Mon laferte. Ruta murales valparaiso. Valparaíso arte. Mural abuela valparaíso. " >
+    <meta name="keywords" content="Valparaiso, murales, mon laferte, rutas, ascensores, funiculares, eslacera calle 13, escalera de colores, valparaiso arte"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
 
