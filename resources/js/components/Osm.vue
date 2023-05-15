@@ -37,5 +37,11 @@ export default {
       markerLatLng: [this.lat, this.long],
     };
   },
+  created(){
+  window.history.pushState({page: 'about'}, 'Acerca de', '/mapa');
+
+  },
 };
+
+
 </script> 
