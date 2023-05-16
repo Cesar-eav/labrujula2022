@@ -298,7 +298,7 @@ export default {
         { nombre: "Ascensor" },
         { nombre: "Escalera" },
         { nombre: "Arquitectura" },
-        { nombre: "Miradores" },
+        { nombre: "Mirador" },
         { nombre: "Museo" },
         { nombre: "Otro" },
       ]

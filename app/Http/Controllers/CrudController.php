@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PointTest;
 use App\Models\Atractivos;
 use App\Models\Artista;
+use App\Models\Mirador;
 use App\Models\ArtistaPoint;
 use App\Models\Ubication;
 use App\Models\Ascensor;
@@ -93,6 +94,14 @@ class CrudController extends Controller
         $ascensores = Ascensor::get();
             return view('crud/ascensores-view', compact(
             'ascensores',
+        ));
+    }
+
+    public function miradoresView()
+    {
+        $miradores = Mirador::get();
+            return view('crud/miradores-view', compact(
+            'miradores',
         ));
     }
 

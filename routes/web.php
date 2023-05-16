@@ -60,6 +60,9 @@ Route::get('/crud/ascensores-view', [App\Http\Controllers\CrudController::class,
 Route::post('/crud/edit-ascensor', [App\Http\Controllers\CrudController::class, 'editAscensor']);
 Route::get('/crud/edit-ascensor/{id}', [App\Http\Controllers\CrudController::class, 'ViewEditAscensor']);
 
+// CRUD MIRADORES
+Route::get('/crud/miradores-view', [App\Http\Controllers\CrudController::class, 'miradoresView']);
+
 //UBICACION
 Route::get('/crud/create-ubication', [App\Http\Controllers\UbicationController::class, 'createUbicationView']);
 Route::post('/crud-ubication/post', [App\Http\Controllers\UbicationController::class, 'createUbication']);
@@ -70,6 +73,8 @@ Route::post('/crud/edit-ubication/', [App\Http\Controllers\CrudController::class
 //ATRACTIVO
 Route::get('/crud/create-type-point', [App\Http\Controllers\TypePointController::class, 'pointTypeView']);
 Route::post('/crud/type-point-post', [App\Http\Controllers\TypePointController::class, 'createTypePoint']);
+
+
 
 //RELACIONES
 Route::post('/crud/relaciones-post', [App\Http\Controllers\RelacionController::class, 'relacionesPointStore']);

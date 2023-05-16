@@ -76,6 +76,9 @@ Vue.component('ascensor-edit-component', require('./components/crud/EditarAscens
 //CRUD UBICATION
 Vue.component('ubication-edit-component', require('./components/crud/EditarUbication.vue').default);
 
+//CRUD MIRADORES
+Vue.component('miradores-view-component', require('./components/crud/MiradoresView.vue').default);
+
 
 
 
