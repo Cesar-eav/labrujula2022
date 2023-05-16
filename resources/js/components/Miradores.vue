@@ -1,5 +1,10 @@
 <template>
     <div class="justify-center">
+        <modal-component 
+      :modal="modal" 
+      :ubicacion="ubicacion"  
+      :atractivo_modal = "atractivo_modal"
+      @clicked="closeModal"/>
 
     <h1 class="text-2xl text-center py-2 uppercase font-bold">
       Miradores
@@ -7,11 +12,26 @@
 
 <div v-viewer class="flex flex-wrap justify-center">
 
-    <div class="w-96 mx-1 mb-2" v-for="miradores in arrayList" :key="miradores.id">
+    <div class="w-96 mx-1 mb-2 bg-red-800 " v-for="miradores in arrayList" :key="miradores.id">
         <img :src="'storage/'+miradores.image" /> 
-        <div class="bg-red-400 pl-2 text-lg font-bold">Mirador {{ miradores.cerro }} </div>    
-        <div class="border-2 border-red-400 text-end pr-2">
-        <a  :href="'osm/'+miradores.lat+'/'+ miradores.lon" target="blank">Ir al Mapa</a>
+
+
+        <div class="flex justify-between">
+          <button
+            @click="openModal(miradores)"
+            class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            type="button"
+          >
+            Más información
+          </button>
+
+          <a
+            class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            type="button"
+            :href="'/osm/' + miradores.lat + '/' + miradores.lon"
+            target="blank"
+            >Ir al mapa</a
+          >
         </div>
 
 
@@ -28,13 +48,22 @@
 <script>
 
 import axios from 'axios';
+import ModalComponent from "./Modal.vue";
+
 
 export default {
     data() {
         return {
-            arrayList:[]
+            arrayList:[],
+            page: 0,
+            cerro: "",
+            modal: false,
+            atractivo_modal: "",
         }
     },
+    components: {
+    ModalComponent,
+  },
 
     mounted() {
         this.listMiradores();
@@ -47,17 +76,16 @@ export default {
             //     console.log('arrayList', this.arrayList);
             // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
         },
-
-        deleteMural() {
-            axios.delete("mural.destroy")
-                 .then(response => {
-                    console.log(response);
-            
-                 });
-            //     .catch(error => {
-            //         console.log(error)
-            //     })
-        }
+        closeModal(value) {
+        //El parametro VALUE es el FALSE que se está emitiendo desde componente hijo MODAL.VUE
+        this.modal = value;
+        console.log("CLOSE MODAL");
+    },
+        openModal(data) {
+        this.modal = true;
+        this.atractivo_modal = data;
+        console.log("MODAL A TRUE");
+    },
     }
 }
 </script>

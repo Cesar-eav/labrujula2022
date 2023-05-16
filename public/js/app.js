@@ -5639,12 +5639,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modal.vue */ "./resources/js/components/Modal.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrayList: []
+      arrayList: [],
+      page: 0,
+      cerro: "",
+      modal: false,
+      atractivo_modal: ""
     };
+  },
+  components: {
+    ModalComponent: _Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
     this.listMiradores();
@@ -5659,12 +5668,15 @@ __webpack_require__.r(__webpack_exports__);
       }); //     console.log('arrayList', this.arrayList);
       // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     },
-    deleteMural: function deleteMural() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("mural.destroy").then(function (response) {
-        console.log(response);
-      }); //     .catch(error => {
-      //         console.log(error)
-      //     })
+    closeModal: function closeModal(value) {
+      //El parametro VALUE es el FALSE que se está emitiendo desde componente hijo MODAL.VUE
+      this.modal = value;
+      console.log("CLOSE MODAL");
+    },
+    openModal: function openModal(data) {
+      this.modal = true;
+      this.atractivo_modal = data;
+      console.log("MODAL A TRUE");
     }
   }
 });
@@ -7255,7 +7267,16 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "justify-center"
-  }, [_c("h1", {
+  }, [_c("modal-component", {
+    attrs: {
+      modal: _vm.modal,
+      ubicacion: _vm.ubicacion,
+      atractivo_modal: _vm.atractivo_modal
+    },
+    on: {
+      clicked: _vm.closeModal
+    }
+  }), _vm._v(" "), _c("h1", {
     staticClass: "text-2xl text-center py-2 uppercase font-bold"
   }, [_vm._v("\n      Miradores\n    ")]), _vm._v(" "), _c("div", {
     directives: [{
@@ -7266,22 +7287,32 @@ var render = function render() {
   }, _vm._l(_vm.arrayList, function (miradores) {
     return _c("div", {
       key: miradores.id,
-      staticClass: "w-96 mx-1 mb-2"
+      staticClass: "w-96 mx-1 mb-2 bg-red-800"
     }, [_c("img", {
       attrs: {
         src: "storage/" + miradores.image
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-400 pl-2 text-lg font-bold"
-    }, [_vm._v("Mirador " + _vm._s(miradores.cerro) + " ")]), _vm._v(" "), _c("div", {
-      staticClass: "border-2 border-red-400 text-end pr-2"
-    }, [_c("a", {
+      staticClass: "flex justify-between"
+    }, [_c("button", {
+      staticClass: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
       attrs: {
-        href: "osm/" + miradores.lat + "/" + miradores.lon,
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.openModal(miradores);
+        }
+      }
+    }, [_vm._v("\n            Más información\n          ")]), _vm._v(" "), _c("a", {
+      staticClass: "block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+      attrs: {
+        type: "button",
+        href: "/osm/" + miradores.lat + "/" + miradores.lon,
         target: "blank"
       }
-    }, [_vm._v("Ir al Mapa")])])]);
-  }), 0)]);
+    }, [_vm._v("Ir al mapa")])])]);
+  }), 0)], 1);
 };
 
 var staticRenderFns = [];
