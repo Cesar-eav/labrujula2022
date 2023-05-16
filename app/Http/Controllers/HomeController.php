@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Atractivos;
+use App\Models\Artista;
 use App\Models\Ubication;
 
 
@@ -69,8 +70,16 @@ class HomeController extends Controller
     public function arquitecturas(){
         return view('arquitecturas');
     }
+
     public function artistas(){
-        return view('artistas');
+
+            $points = Atractivos::orderBy('id')->get();;
+            
+            $artists = Artista::with('hm_points')->has('hm_points')->orderBy('id')->get();
+            //return $artists;
+    
+        return view('artistas', compact('points', 'artists'));
+        
     }
 
     public function create()

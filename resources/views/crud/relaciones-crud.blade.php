@@ -3,7 +3,7 @@
 @section('content')
     <div id="app">
 <relaciones-component 
-    :point="{{json_encode($point)}}" 
+    :points="{{json_encode($points)}}" 
     :artists="{{json_encode($artists)}}">
     
 </relaciones-component>

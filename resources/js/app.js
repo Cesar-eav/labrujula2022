@@ -58,7 +58,7 @@ Vue.component('index-component', require('./components/crud/IndexCrud.vue').defa
 Vue.component('create-point-component', require('./components/crud/Create.vue').default);
 Vue.component('edit-component', require('./components/crud/Editar.vue').default);
 Vue.component('relaciones-component', require('./components/crud/RelacionesCrud.vue').default);
-Vue.component('prueba-component', require('./components/crud/PruebaCrud.vue').default);
+Vue.component('menu-component', require('./components/crud/MenuCrud.vue').default);
 
 
 // CRUD TYPE POINT

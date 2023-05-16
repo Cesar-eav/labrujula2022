@@ -17,7 +17,7 @@ Route::get('/escaleras', [App\Http\Controllers\HomeController::class, 'escaleras
 Route::get('/miradores', [App\Http\Controllers\HomeController::class, 'miradores']);
 Route::get('/iglesias', [App\Http\Controllers\HomeController::class, 'iglesias']);
 Route::get('/arquitecturas', [App\Http\Controllers\HomeController::class, 'arquitecturas']);
-Route::get('/artistas',[App\Http\Controllers\RelacionController::class, 'relacion']);
+Route::get('/artistas',[App\Http\Controllers\HomeController::class, 'artistas']);
 
 Route::get('/api-murales/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'murales']);
 Route::get('/api-murales-modal/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'muralesModal']);
@@ -67,15 +67,9 @@ Route::get('/crud-ubication/list-ubications', [App\Http\Controllers\UbicationCon
 Route::get('/crud/show-edit-ubication/{id}', [App\Http\Controllers\CrudController::class, 'viewEditUbication']);
 Route::post('/crud/edit-ubication/', [App\Http\Controllers\CrudController::class, 'editUbication']);
 
-
-
 //ATRACTIVO
 Route::get('/crud/create-type-point', [App\Http\Controllers\TypePointController::class, 'pointTypeView']);
 Route::post('/crud/type-point-post', [App\Http\Controllers\TypePointController::class, 'createTypePoint']);
 
-
-
-
-
-
-
+//RELACIONES
+Route::post('/crud/relaciones-post', [App\Http\Controllers\RelacionController::class, 'relacionesPointStore']);
