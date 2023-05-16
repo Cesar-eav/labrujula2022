@@ -73,7 +73,7 @@ class MuralController extends Controller
     }
     public function miradores()
     {
-        $miradores = Mirador::all();
+        $miradores = Atractivos::where('type_attractive', 'Mirador')->get();
         return $miradores;
     }
     public function iglesias()
