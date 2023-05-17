@@ -50,7 +50,11 @@
                     {{ atractivo_modal.ubication }}
                 
                   <p><b>Calle:</b> {{ atractivo_modal.direction }}</p> 
-                  <p> <b>Artista: </b>{{ atractivo_modal.artista }}</p>
+
+                  
+                  <p v-if="atractivo_modal.artista == 'Sin artista'"> </p>
+                  <p v-else> <b>Artista: </b>{{ atractivo_modal.artista }}</p>
+                
                 
                   <img
                     :src="'/storage/' + atractivo_modal.image"
