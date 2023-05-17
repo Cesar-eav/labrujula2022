@@ -32,7 +32,7 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 15,
+      zoom: 20,
       center: [this.lat, this.long],
       markerLatLng: [this.lat, this.long],
     };
