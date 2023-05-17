@@ -5795,7 +5795,7 @@ leaflet__WEBPACK_IMPORTED_MODULE_0__.Icon.Default.mergeOptions({
     return {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 15,
+      zoom: 20,
       center: [this.lat, this["long"]],
       markerLatLng: [this.lat, this["long"]]
     };
@@ -6473,6 +6473,57 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarMural.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarMural.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["mirador"],
+  data: function data() {
+    return {
+      // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
+      // Los datos vienen del PROPS
+      // La LLAVE debe corresponderse con el V-MODEL
+      //this.murales[0],
+      formEditMirador: {
+        id: this.mirador.id,
+        ubication: this.mirador.ubication,
+        direction: this.mirador.direction,
+        description: this.mirador.description
+      }
+    };
+  },
+  methods: {
+    editmirador: function editmirador() {
+      //SE VA AL BACK(CONTROLADOR).
+      axios.post("/crud/edit-mirador", {
+        id: this.formEditMirador.id,
+        nombre: this.formEditMirador.nombre,
+        direccion: this.formEditMirador.direccion,
+        content: this.formEditMirador.content
+      }).then(function (response) {
+        console.log("RESPUESTA EDICION BACK: ", response.data);
+
+        if (response.data) {
+          console.log("DATOS BACK: ", response.data);
+          window.history.back();
+        } else {
+          console.log("NO FUNCIONA, DATA VACIO");
+        }
+      }); //window.location.href = "/crud/index";
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarUbication.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarUbication.vue?vue&type=script&lang=js& ***!
@@ -6593,13 +6644,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       artistaData: {
         name: "",
-        instagram_address: "",
-        description: "",
-        email: "",
-        web_direction: ""
+        description: ""
       },
       //NOMBRE EXACTO COLUMNAS BD ¿O EL JSON?
-      columns: ["id", "image", "nombre", "direccion", "content", "edit", "remove"],
+      columns: ["id", "image", "description", "direction", "edit", "remove"],
       //Objeto Options, son las cabeceras de la tabla
       options: {
         perPage: 20,
@@ -7380,7 +7428,7 @@ var render = function render() {
     staticClass: "p-2 space-y-2"
   }, [_c("p", {
     staticClass: "text-2xl font-bold"
-  }, [_vm._v("\n                  " + _vm._s(_vm.atractivo_modal.ubication) + "\n              \n                ")]), _c("p", [_c("b", [_vm._v("Calle:")]), _vm._v(" " + _vm._s(_vm.atractivo_modal.direction))]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Artista: ")]), _vm._v(_vm._s(_vm.atractivo_modal.artista))]), _vm._v(" "), _c("img", {
+  }, [_vm._v("\n                  " + _vm._s(_vm.atractivo_modal.ubication) + "\n              \n                ")]), _c("p", [_c("b", [_vm._v("Calle:")]), _vm._v(" " + _vm._s(_vm.atractivo_modal.direction))]), _vm._v(" "), _vm.atractivo_modal.artista == "Sin artista" ? _c("p") : _c("p", [_c("b", [_vm._v("Artista: ")]), _vm._v(_vm._s(_vm.atractivo_modal.artista))]), _vm._v(" "), _c("img", {
     attrs: {
       src: "/storage/" + _vm.atractivo_modal.image,
       alt: "imagen"
@@ -9422,6 +9470,161 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarMural.vue?vue&type=template&id=6497fad4&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarMural.vue?vue&type=template&id=6497fad4& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center flex-col my-3"
+  }, [_c("h1", {
+    staticClass: "text-2xl text-center mb-3"
+  }, [_vm._v("EDITAR MIRADOR")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
+    staticClass: "bg-red-400 mx-10"
+  }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Ubicación:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMirador.ubication,
+      expression: "formEditMirador.ubication"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMirador.ubication
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMirador, "ubication", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Dirección:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMirador.direction,
+      expression: "formEditMirador.direction"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMirador.direction
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMirador, "direction", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Descripción:")]), _vm._v(" "), _c("td", [_c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMirador.description,
+      expression: "formEditMirador.description"
+    }],
+    attrs: {
+      rows: "4",
+      cols: "40"
+    },
+    domProps: {
+      value: _vm.formEditMirador.description
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMirador, "description", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", {
+    attrs: {
+      colspan: "2"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_c("input", {
+    attrs: {
+      type: "submit",
+      value: "Guardar",
+      title: "Guardar"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.editmirador();
+      }
+    }
+  })])])])])])]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("a", {
+    attrs: {
+      href: "/crud/view-create-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Punto\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-ubication/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Ubicacion\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/create-type-point/"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Tipo de atractivo\n    ")])]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/crud/artista-view"
+    }
+  }, [_c("button", {
+    staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("\n      Agregar Artista\n    ")])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarUbication.vue?vue&type=template&id=251e2f66&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarUbication.vue?vue&type=template&id=251e2f66& ***!
@@ -9967,7 +10170,7 @@ var render = function render() {
           }
         }, [_c("a", {
           attrs: {
-            href: "/crud/edit-ascensor/" + props.row.id
+            href: "/crud/edit-mirador/" + props.row.id
           }
         }, [_vm._v("Editar")])]);
       }
@@ -10522,7 +10725,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('ascensor-edit-component',
 
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('ubication-edit-component', (__webpack_require__(/*! ./components/crud/EditarUbication.vue */ "./resources/js/components/crud/EditarUbication.vue")["default"])); //CRUD MIRADORES
 
-vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('miradores-view-component', (__webpack_require__(/*! ./components/crud/MiradoresView.vue */ "./resources/js/components/crud/MiradoresView.vue")["default"])); // VUE casi siempre se instancia al final
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('miradores-view-component', (__webpack_require__(/*! ./components/crud/MiradoresView.vue */ "./resources/js/components/crud/MiradoresView.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('mirador-edit-component', (__webpack_require__(/*! ./components/crud/EditarMural.vue */ "./resources/js/components/crud/EditarMural.vue")["default"])); // VUE casi siempre se instancia al final
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
   el: '#app'
@@ -54951,6 +55155,45 @@ component.options.__file = "resources/js/components/crud/EditarAscensor.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/crud/EditarMural.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/crud/EditarMural.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EditarMural_vue_vue_type_template_id_6497fad4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditarMural.vue?vue&type=template&id=6497fad4& */ "./resources/js/components/crud/EditarMural.vue?vue&type=template&id=6497fad4&");
+/* harmony import */ var _EditarMural_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditarMural.vue?vue&type=script&lang=js& */ "./resources/js/components/crud/EditarMural.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditarMural_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditarMural_vue_vue_type_template_id_6497fad4___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EditarMural_vue_vue_type_template_id_6497fad4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/crud/EditarMural.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/crud/EditarUbication.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/crud/EditarUbication.vue ***!
@@ -55530,6 +55773,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/crud/EditarMural.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/crud/EditarMural.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditarMural_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditarMural.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarMural.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditarMural_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/crud/EditarUbication.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/crud/EditarUbication.vue?vue&type=script&lang=js& ***!
@@ -55929,6 +56188,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditarAscensor_vue_vue_type_template_id_9b5bfb26___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditarAscensor_vue_vue_type_template_id_9b5bfb26___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditarAscensor.vue?vue&type=template&id=9b5bfb26& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarAscensor.vue?vue&type=template&id=9b5bfb26&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/crud/EditarMural.vue?vue&type=template&id=6497fad4&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/crud/EditarMural.vue?vue&type=template&id=6497fad4& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditarMural_vue_vue_type_template_id_6497fad4___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditarMural_vue_vue_type_template_id_6497fad4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditarMural_vue_vue_type_template_id_6497fad4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditarMural.vue?vue&type=template&id=6497fad4& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/crud/EditarMural.vue?vue&type=template&id=6497fad4&");
 
 
 /***/ }),
