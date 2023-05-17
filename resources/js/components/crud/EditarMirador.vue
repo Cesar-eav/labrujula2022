@@ -154,6 +154,7 @@ export default {
         ubication:            this.mirador.ubication,
         direction:            this.mirador.direction,
         description:          this.mirador.description,
+   
 
       },
     };
@@ -164,10 +165,12 @@ export default {
       //SE VA AL BACK(CONTROLADOR).
       axios
         .post("/crud/edit-mirador", {
-          id:                   this.formEditMirador.id,
-          nombre:               this.formEditMirador.nombre,
-          direccion:            this.formEditMirador.direccion,
-          content:              this.formEditMirador.content
+        id:                   this.formEditMirador.id,
+        ubication:            this.formEditMirador.ubication,
+        direction:            this.formEditMirador.direction,
+        description:          this.formEditMirador.description,
+        artista:              'Sin Artista',
+        type_attractive:      'Mirador'
         })
         .then((response) => {
           console.log("RESPUESTA EDICION BACK: ", response.data);
@@ -181,6 +184,8 @@ export default {
         });
       //window.location.href = "/crud/index";
     },
+
+
 
     
   },

@@ -97,14 +97,6 @@ class CrudController extends Controller
         ));
     }
 
-    public function miradoresView()
-    {
-        $miradores = Mirador::get();
-            return view('crud/miradores-view', compact(
-            'miradores',
-        ));
-    }
-
     public function ViewEditAscensor($id)
     {
         $ascensor = Ascensor::where('id', $id)->first();
@@ -113,6 +105,42 @@ class CrudController extends Controller
             'id'
         ));
     }
+
+
+    //MIRADORES
+
+    public function miradoresView()
+    {
+        $miradores = Atractivos::where('type_attractive', 'Mirador')->get();
+            return view('crud/miradores-view', compact(
+            'miradores',
+        ));
+    }
+
+    public function ViewEditMirador($id)
+    {
+        $mirador = Atractivos::where('id', $id)->first();
+            return view('crud/edit-mirador', compact(
+            'mirador',
+            'id'
+        ));
+    }
+
+    public function editMirador(Request $request)
+    {
+        //return "HOLA";
+        
+        $mirador = Atractivos::find($request->id);
+        $mirador->ubication=        $request->ubication;
+        $mirador->direction=        $request->direction;
+        $mirador->description=      $request->description;
+
+        $response = $mirador->save();
+        return $response;
+    }
+
+    //UBICACIONES
+
 
 
 

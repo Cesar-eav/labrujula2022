@@ -62,6 +62,8 @@ Route::get('/crud/edit-ascensor/{id}', [App\Http\Controllers\CrudController::cla
 
 // CRUD MIRADORES
 Route::get('/crud/miradores-view', [App\Http\Controllers\CrudController::class, 'miradoresView']);
+Route::post('/crud/edit-mirador', [App\Http\Controllers\CrudController::class, 'editMirador']);
+Route::get('/crud/edit-mirador/{id}', [App\Http\Controllers\CrudController::class, 'ViewEditMirador']);
 
 //UBICACION
 Route::get('/crud/create-ubication', [App\Http\Controllers\UbicationController::class, 'createUbicationView']);

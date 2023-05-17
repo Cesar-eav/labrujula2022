@@ -78,7 +78,7 @@ Vue.component('ubication-edit-component', require('./components/crud/EditarUbica
 
 //CRUD MIRADORES
 Vue.component('miradores-view-component', require('./components/crud/MiradoresView.vue').default);
-Vue.component('mirador-edit-component', require('./components/crud/EditarMural.vue').default);
+Vue.component('mirador-edit-component', require('./components/crud/EditarMirador.vue').default);
 
 
 
