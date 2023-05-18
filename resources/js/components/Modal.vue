@@ -46,13 +46,14 @@
                         sm:my-8 sm:w-full sm:max-w-lg"
               >
                 <div class="p-2 space-y-2" >
-                  <p class="text-2xl font-bold">
-                    {{ atractivo_modal.ubication }}
+                  
+                    {{ atractivo_modal.type_attractive }}
+                    
+                    <p class="text-2xl font-bold">{{ atractivo_modal.type_attractive == 'Mirador' ? "Cerro "+ atractivo_modal.ubication  : atractivo_modal.ubication  }}</p>
                 
                   <p><b>Calle:</b> {{ atractivo_modal.direction }}</p> 
-
                   
-                  <p v-if="atractivo_modal.artista == 'Sin artista'"> </p>
+                  <p v-if="atractivo_modal.artista == 'Sin Artista'"> </p>
                   <p v-else> <b>Artista: </b>{{ atractivo_modal.artista }}</p>
                 
                 
