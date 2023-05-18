@@ -7436,9 +7436,9 @@ var render = function render() {
     staticClass: "relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 mx-4 w-full sm:my-8 sm:w-full sm:max-w-lg"
   }, [_c("div", {
     staticClass: "p-2 space-y-2"
-  }, [_vm._v("\n                \n                  " + _vm._s(_vm.atractivo_modal.type_attractive) + "\n                  \n                  "), _c("p", {
+  }, [_c("p", {
     staticClass: "text-2xl font-bold"
-  }, [_vm._v(_vm._s(_vm.atractivo_modal.type_attractive == "Mirador" ? "Cerro " + _vm.atractivo_modal.ubication : _vm.atractivo_modal.ubication))]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Calle:")]), _vm._v(" " + _vm._s(_vm.atractivo_modal.direction))]), _vm._v(" "), _vm.atractivo_modal.artista == "Sin Artista" ? _c("p") : _c("p", [_c("b", [_vm._v("Artista: ")]), _vm._v(_vm._s(_vm.atractivo_modal.artista))]), _vm._v(" "), _c("img", {
+  }, [_vm._v(_vm._s(_vm.atractivo_modal.type_attractive == "Mirador" ? "Cerro " + _vm.atractivo_modal.ubication : _vm.atractivo_modal.ubication))]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Calle:")]), _vm._v(" " + _vm._s(_vm.atractivo_modal.direction))]), _vm._v(" "), _vm.atractivo_modal.artista == "Sin Artista" || _vm.atractivo_modal.artista == "Sin artista" ? _c("p") : _c("p", [_c("b", [_vm._v("Artista: ")]), _vm._v(_vm._s(_vm.atractivo_modal.artista))]), _vm._v(" "), _c("img", {
     attrs: {
       src: "/storage/" + _vm.atractivo_modal.image,
       alt: "imagen"
