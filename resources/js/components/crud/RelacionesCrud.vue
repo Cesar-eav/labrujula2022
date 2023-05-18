@@ -56,7 +56,7 @@
       <div>
         ID Atractivo
         <select
-          v-model="datos[0]"
+          v-model="datos.arrayMural"
           multiple
           size="10"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2."
@@ -69,12 +69,12 @@
             {{ point.id }} - {{ point.artista }}
           </option>
         </select>
-        {{ datos[0] }}
+        {{ datos.arrayMural }}
       </div>
       <div>
         ID Artista
         <select
-          v-model="datos[1]"
+          v-model="datos.arrayArtista"
           multiple
           size="10"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2."
@@ -87,7 +87,7 @@
             {{ artist.id }} - {{ artist.name }}
           </option>
         </select>
-        {{ datos[1] }}
+        {{ datos.arrayArtista }}
 
       </div>
     </div>
@@ -146,11 +146,10 @@ export default {
 
   data() {
     return {
-      datos : [ 
-        {'SelectedPoint_id' : []},
-        {'SelectedArtist_id': []}
-                
-              ],
+      datos : {
+        arrayMural:[],
+        arrayArtista:[]
+      },
       loading: false,
 
     };
@@ -167,10 +166,12 @@ export default {
         .post('/crud/relaciones-post', this.datos)
         .then((response) => {
           console.log("EXITO",response.data);
+          this.loading = false;
         })
-        .catch((error) => console.log("Error", error))
-
-
+        .catch((error) => {
+          console.log("Error", error)
+          this.loading = false;
+          })
 
     }
   }

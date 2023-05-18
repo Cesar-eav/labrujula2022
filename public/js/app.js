@@ -6724,22 +6724,25 @@ __webpack_require__.r(__webpack_exports__);
   props: ["points", "artists"],
   data: function data() {
     return {
-      datos: [{
-        'SelectedPoint_id': []
-      }, {
-        'SelectedArtist_id': []
-      }],
+      datos: {
+        arrayMural: [],
+        arrayArtista: []
+      },
       loading: false
     };
   },
   methods: {
     upPointWithArtis: function upPointWithArtis() {
+      var _this = this;
+
       this.loading = true; // artist_id: this.datos.selectedArtist;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/crud/relaciones-post', this.datos).then(function (response) {
         console.log("EXITO", response.data);
+        _this.loading = false;
       })["catch"](function (error) {
-        return console.log("Error", error);
+        console.log("Error", error);
+        _this.loading = false;
       });
     }
   }
@@ -10140,8 +10143,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.datos[0],
-      expression: "datos[0]"
+      value: _vm.datos.arrayMural,
+      expression: "datos.arrayMural"
     }],
     staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.",
     attrs: {
@@ -10157,7 +10160,7 @@ var render = function render() {
           return val;
         });
 
-        _vm.$set(_vm.datos, 0, $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.datos, "arrayMural", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, _vm._l(this.points, function (point) {
@@ -10167,12 +10170,12 @@ var render = function render() {
         value: point.id
       }
     }, [_vm._v("\n          " + _vm._s(point.id) + " - " + _vm._s(point.artista) + "\n        ")]);
-  }), 0), _vm._v("\n      " + _vm._s(_vm.datos[0]) + "\n    ")]), _vm._v(" "), _c("div", [_vm._v("\n      ID Artista\n      "), _c("select", {
+  }), 0), _vm._v("\n      " + _vm._s(_vm.datos.arrayMural) + "\n    ")]), _vm._v(" "), _c("div", [_vm._v("\n      ID Artista\n      "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.datos[1],
-      expression: "datos[1]"
+      value: _vm.datos.arrayArtista,
+      expression: "datos.arrayArtista"
     }],
     staticClass: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.",
     attrs: {
@@ -10188,7 +10191,7 @@ var render = function render() {
           return val;
         });
 
-        _vm.$set(_vm.datos, 1, $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.datos, "arrayArtista", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, _vm._l(this.artists, function (artist) {
@@ -10198,7 +10201,7 @@ var render = function render() {
         value: artist.id
       }
     }, [_vm._v("\n          " + _vm._s(artist.id) + " - " + _vm._s(artist.name) + "\n        ")]);
-  }), 0), _vm._v("\n      " + _vm._s(_vm.datos[1]) + "\n\n    ")])]), _vm._v(" "), _c("button", {
+  }), 0), _vm._v("\n      " + _vm._s(_vm.datos.arrayArtista) + "\n\n    ")])]), _vm._v(" "), _c("button", {
     staticClass: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center",
     attrs: {
       type: "button"

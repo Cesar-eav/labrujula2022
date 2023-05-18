@@ -24,26 +24,22 @@ class RelacionController extends Controller
 
     public function relacionesPointStore(Request $request){
 
-        //return $request;
- 
-        foreach ($request as $key){
-            echo $key;
 
+        foreach ($request->arrayMural as $point_id){
+
+            foreach ($request->arrayArtista as $artista_id){
             
+                ArtistaPoint::create([
+                    'artist_id' => $artista_id,
+                    'point_id' => $point_id,
+                    
+                ]); 
+            
+           }                     
+         
         }
+        return $request->all();
 
-        // //     return $a;
-
-            
-        //     $point_artist = new ArtistaPoint;
-
-        //     $point_artist->artist_id     = $request->artist_id;
-        //     $point_artist->point_id      = $request->point_id;
-
-        //     //return $point_artist;
-            
-        //     $response = $point_artist->save();
-        //     return $response;
-        }
     }
+}
 
