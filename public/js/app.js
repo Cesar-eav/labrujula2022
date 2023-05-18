@@ -6839,7 +6839,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "flex flex-col justify-center"
   }, [_c("h1", {
-    staticClass: "text-4xl text-center pt-5 pb-2 uppercase font-bold"
+    staticClass: "text-4xl text-red-600 text-center pt-5 pb-2 uppercase font-bold"
   }, [_vm._v("\n    ¡EN CONSTRUCCIÓN!\n  ")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "flex flex-col mx-2"
   }, _vm._l(_vm.artists, function (artista) {
@@ -6880,7 +6880,12 @@ var staticRenderFns = [function () {
 
   return _c("p", {
     staticClass: "text-red-600 text-2xl text-center pb-3"
-  }, [_vm._v("\n    Si quieres aparacer envíanos tus datos a "), _c("b", [_vm._v("contacto@labrujula.tk")])]);
+  }, [_vm._v("\n    Si quieres aparacer envíanos tus datos por interno a nuestro\n    "), _c("a", {
+    attrs: {
+      href: "https://www.instagram.com/labrujula.tk/",
+      target: "_blank"
+    }
+  }, [_c("b", [_vm._v("instagram.")])])]);
 }];
 render._withStripped = true;
 
