@@ -16,20 +16,19 @@
 
 
     <div v-viewer
-      class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center  "
+      class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center   "
     >
       <div
 
-        class="mx-0 md:mx-2 sm:mx-0 bg-red-800  "
+        class="mx-0 md:mx-2 sm:mx-0 bg-red-800 rounded-lg "
         v-for="atractivo in this.arrayList"
         :key="atractivo.id"
       >
-        <img :src="'/storage/' + atractivo.image" alt="imagen" class="w-full h-60" />
+        <img :src="'/storage/' + atractivo.image" alt="imagen" class="w-full h-60 rounded-lg " />
         
         
-<div class="flex justify-between	">
+<div class="flex justify-between mx-3">
         <button
-          
           @click="openModal(atractivo)" 
           class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           type="button"
@@ -37,9 +36,8 @@
           Más información
         </button>       
           
-
         <a
-          class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="block px-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           type="button"
           :href="'/osm/' + atractivo.lat + '/' + atractivo.lon"
           target="blank"

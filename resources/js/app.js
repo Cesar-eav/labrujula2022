@@ -21,7 +21,9 @@ Vue.use(Viewer, {
     zIndex: 9999,
     toolbar: true,
     zoomable: true,
-    scalable: true,
+    fullscreen: true,
+    scalable: false,
+    
   },
 });
 

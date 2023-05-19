@@ -7629,15 +7629,15 @@ var render = function render() {
   }, _vm._l(this.arrayList, function (atractivo) {
     return _c("div", {
       key: atractivo.id,
-      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800"
+      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800 rounded-lg"
     }, [_c("img", {
-      staticClass: "w-full h-60",
+      staticClass: "w-full h-60 rounded-lg",
       attrs: {
         src: "/storage/" + atractivo.image,
         alt: "imagen"
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "flex justify-between"
+      staticClass: "flex justify-between mx-3"
     }, [_c("button", {
       staticClass: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
       attrs: {
@@ -7649,7 +7649,7 @@ var render = function render() {
         }
       }
     }, [_vm._v("\n          Más información\n        ")]), _vm._v(" "), _c("a", {
-      staticClass: "block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+      staticClass: "block px-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
       attrs: {
         type: "button",
         href: "/osm/" + atractivo.lat + "/" + atractivo.lon,
@@ -10561,7 +10561,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use((v_viewer__WEBPACK_IMPORTED_MODU
     zIndex: 9999,
     toolbar: true,
     zoomable: true,
-    scalable: true
+    fullscreen: true,
+    scalable: false
   }
 }); // OPEN STREET MAP
 
