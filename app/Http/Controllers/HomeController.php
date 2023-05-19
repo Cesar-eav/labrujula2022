@@ -37,10 +37,10 @@ class HomeController extends Controller
     public function modalHome($ubicacion = ''){
 
         if ($ubicacion == '') {
-            $murales = Atractivos::paginate(10)->all();
+            $murales = Atractivos::paginate(10)->orderBy('name')->all();
         } else {
             //return $cerro;
-            $murales = Atractivos::where('ubication', $ubicacion)->get();
+            $murales = Atractivos::where('ubication', $ubicacion)->orderBy('name')->get();
         }
 
         return view('modal', compact(
