@@ -78,7 +78,7 @@ class MuralController extends Controller
     }
     public function iglesias()
     {
-        $iglesias = Iglesia::all();
+        $iglesias = Atractivos::where('type_attractive', 'Iglesia')->get();
         return $iglesias;
     }
     public function arquitecturas()
