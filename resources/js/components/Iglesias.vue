@@ -1,20 +1,49 @@
 <template>
     <div class="justify-center">
+
+        <modal-component 
+      :modal="modal" 
+      
+      :atractivo_modal = "atractivo_modal"
+      @clicked="closeModal"/>
+
         <h1 class="text-2xl text-center py-2 uppercase font-bold">
       Iglesias
     </h1>
 
-<div v-viewer class="flex flex-wrap justify-center">
+    <div v-viewer
+      class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
+    >
 
-    <div class="w-96 mx-1 mb-2" v-for="iglesias in arrayList" :key="iglesias.id">
-        <img :src="'storage/'+iglesias.image" /> 
-        <div class="bg-red-400 pl-2 text-lg font-bold"> Iglesia {{ iglesias.nombre }} </div>
-        <div class="border-2 border-red-400 text-end pr-2">
-        <a :href="'osm/'+iglesias.lat+'/'+ iglesias.lon" target="blank">Ir al mapa</a>
-            </div>
+    <div 
+    class="mx-0 md:mx-2 sm:mx-0 bg-red-800 rounded-lg"
+        v-for="iglesia in arrayList" :key="iglesia.id">
+        <img :src="'storage/'+iglesia.image" class="rounded-lg" /> 
+        <div class="flex justify-between mx-3">
+        <button
+          @click="openModal(iglesia)" 
+          class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button"
+        >
+          Más información
+        </button>       
+          
+        <a
+          class="block px-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button"
+          :href="'/osm/' + iglesia.lat + '/' + iglesia.lon"
+          target="blank"
+          >Ir al mapa</a
+        >
+
     </div>
 
-</div>
+        
+    
+    
+    </div>
+    </div>
+
 
     
 
@@ -25,12 +54,23 @@
 <script>
 
 import axios from 'axios';
+import ModalComponent from './Modal.vue';
 
 export default {
+
     data() {
         return {
-            arrayList:[]
+            arrayList:[],
+            modal: false,
+            page: 0,
+            cerro: "",
+            modal: false,
+            atractivo_modal:"",
+
         }
+    },
+    components: {
+        ModalComponent
     },
 
     mounted() {
@@ -54,7 +94,16 @@ export default {
             //     .catch(error => {
             //         console.log(error)
             //     })
-        }
+        },
+        closeModal(value){ //El parametro VALUE es el FALSE que se está emitiendo desde componente hijo MODAL.VUE
+      this.modal = value;
+      console.log("CLOSE MODAL")
+    },
+    openModal(data) {
+      this.modal = true
+      this.atractivo_modal = data
+      
+    },
     }
 }
 </script>
