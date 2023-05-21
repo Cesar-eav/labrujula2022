@@ -9,7 +9,7 @@
       <h1
         class="text-uppercase text-2xl text-center font-bold text-red-400 p-2"
       >
-        En Construcción
+        Inscríbete
       </h1>
       <div class="flex justify-center">
         <p
@@ -24,7 +24,7 @@
         </p>
       </div>
 
-      <p class="p-5 text-center text-red-400">
+      <p class="p-5 text-lg text-center text-red-400">
         Si quieres aparecer en <b>LaBrujula.tk</b> puedes solicitar <b>gratuitamente</b> la
         inscripción en este
         <a

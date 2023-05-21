@@ -7143,12 +7143,12 @@ var staticRenderFns = [function () {
     staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 p-2"
   }, [_vm._v("\n      Centros Culturales\n    ")]), _vm._v(" "), _c("h1", {
     staticClass: "text-uppercase text-2xl text-center font-bold text-red-400 p-2"
-  }, [_vm._v("\n      En Construcción\n    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n      Inscríbete\n    ")]), _vm._v(" "), _c("div", {
     staticClass: "flex justify-center"
   }, [_c("p", {
     staticClass: "text-lg w-3/4 md:w-1/2 rounded-lg text-center text-red-800 bg-primary-400 p-2"
   }, [_vm._v("\n        Si diriges un centro cultural como\n        un museo, sala de teatro, biblioteca u otro tipo de espacio, regístrate en nuestra plataforma\n        y conecta con nuevas audencias. Al hacerlo, permitirás que\n        más personas accedan a tus servicios y descubran el maravilloso mundo\n        de la cultura. \n        \n      ")])]), _vm._v(" "), _c("p", {
-    staticClass: "p-5 text-center text-red-400"
+    staticClass: "p-5 text-lg text-center text-red-400"
   }, [_vm._v("\n      Si quieres aparecer en "), _c("b", [_vm._v("LaBrujula.tk")]), _vm._v(" puedes solicitar "), _c("b", [_vm._v("gratuitamente")]), _vm._v(" la\n      inscripción en este\n      "), _c("a", {
     staticClass: "underline hover:text-red-100",
     attrs: {
