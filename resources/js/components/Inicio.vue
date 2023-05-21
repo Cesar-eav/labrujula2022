@@ -118,8 +118,8 @@
     <div class="flex flex-col justify-center text-center mb-5 mt-2">
       <p class="text-3xl mb-4"><strong>¿Qué es La Brújula?</strong></p>
       <p class="mb-5 lead text-xl">
-        La Brújula es la guía <span class="text-red-600 font-bold">indefinitiva</span> que te ayudará a encontrar todos los
-        tesoros de Valparaíso.
+        La Brújula es la <span class="text-red-600 font-bold">guía digital</span> que te ayudará a encontrar todos los
+        tesoros de Valparaíso y pronto de muchas ciudades más.
       </p>
     </div>
 
