@@ -58,6 +58,11 @@ class HomeController extends Controller
     public function ascensores(){
         return view('ascensores');
     }
+
+    public function centrosCulturales(){
+        return view('centros-culturales');
+    }
+
     public function escaleras(){
         return view('escaleras');
     }

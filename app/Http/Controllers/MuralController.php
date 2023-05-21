@@ -83,8 +83,8 @@ class MuralController extends Controller
     }
     public function arquitecturas()
     {
-        $arquitecturas = Arquitectura::all();
-        return $arquitecturas;
+        $arquitectura = Atractivos::where('type_attractive', 'Arquitectura')->get();
+        return $arquitectura;
     }
 
 

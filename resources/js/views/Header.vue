@@ -56,6 +56,9 @@
           <a href="/miradores" class="menuPrincipal">Miradores</a>
         </li>
         <li>
+          <a href="/centros-culturales" class="menuPrincipal">Centros Culturales</a>
+        </li>
+        <li>
           <a href="/iglesias#" class="menuPrincipal  block py-2 ">Iglesias</a>
         </li>
         <li>

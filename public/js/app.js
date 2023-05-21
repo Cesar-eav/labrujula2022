@@ -5403,18 +5403,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modal.vue */ "./resources/js/components/Modal.vue");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {
-      arrayList: []
-    };
+    var _ref;
+
+    return _ref = {
+      arrayList: [],
+      modal: false,
+      page: 0,
+      cerro: ""
+    }, _defineProperty(_ref, "modal", false), _defineProperty(_ref, "atractivo_modal", ""), _ref;
+  },
+  components: {
+    ModalComponent: _Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    this.listArquitecturas();
+    this.listarquitecturas();
   },
   methods: {
-    listArquitecturas: function listArquitecturas() {
+    listarquitecturas: function listarquitecturas() {
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('api-arquitecturas') // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
@@ -5429,6 +5441,15 @@ __webpack_require__.r(__webpack_exports__);
       }); //     .catch(error => {
       //         console.log(error)
       //     })
+    },
+    closeModal: function closeModal(value) {
+      //El parametro VALUE es el FALSE que se está emitiendo desde componente hijo MODAL.VUE
+      this.modal = value;
+      console.log("CLOSE MODAL");
+    },
+    openModal: function openModal(data) {
+      this.modal = true;
+      this.atractivo_modal = data;
     }
   }
 });
@@ -5508,6 +5529,53 @@ __webpack_require__.r(__webpack_exports__);
       this.modal = true;
       this.atractivo_modal = data;
       console.log("MODAL A TRUE");
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CentrosCulturales.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CentrosCulturales.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ModalCentrosCulturales_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalCentrosCulturales.vue */ "./resources/js/components/ModalCentrosCulturales.vue");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      arrayList: [],
+      page: 0,
+      cerro: "",
+      modal: false,
+      atractivo_modal: ""
+    };
+  },
+  components: {
+    ModalComponent: _ModalCentrosCulturales_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  mounted: function mounted() {
+    this.listEscaleras();
+  },
+  methods: {
+    listEscaleras: function listEscaleras() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("api-escaleras") // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      .then(function (respuesta) {
+        return _this.arrayList = respuesta.data;
+      }); //     console.log('arrayList', this.arrayList);
+      // }).catch(error => { console.log('error en LISTTAR SHOW', error) })
     }
   }
 });
@@ -5746,6 +5814,44 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalAscensores.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["modal", "ubicacion", "atractivo_modal"],
+  data: function data() {
+    return {
+      arrayList: [],
+      page: 0,
+      cerro: ""
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    clicked: function clicked() {
+      this.$emit("clicked", false);
+      console.log("clicked");
+    } // listAtractivos() {
+    //     const url = "/api-murales-modal/" + this.ubicacion;
+    //     axios.get(url).then((response)=>{
+    //         console.log(response);
+    //         this.arrayList = response.data
+    //     })
+    // },
+
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalCentrosCulturales.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalCentrosCulturales.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6808,33 +6914,52 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "justify-center"
-  }, [_c("h1", {
+  }, [_c("modal-component", {
+    attrs: {
+      modal: _vm.modal,
+      atractivo_modal: _vm.atractivo_modal
+    },
+    on: {
+      clicked: _vm.closeModal
+    }
+  }), _vm._v(" "), _c("h1", {
     staticClass: "text-2xl text-center py-2 uppercase font-bold"
-  }, [_vm._v("\n        ARQUITECTURA DE VALPARAÍSO\n    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n  arquitectura\n")]), _vm._v(" "), _c("div", {
     directives: [{
       name: "viewer",
       rawName: "v-viewer"
     }],
-    staticClass: "flex flex-wrap justify-center"
-  }, _vm._l(_vm.arrayList, function (arquitecturas) {
+    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
+  }, _vm._l(_vm.arrayList, function (arquitectura) {
     return _c("div", {
-      key: arquitecturas.id,
-      staticClass: "w-96 mx-1 mb-2"
+      key: arquitectura.id,
+      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800 rounded-lg"
     }, [_c("img", {
+      staticClass: "rounded-lg",
       attrs: {
-        src: "storage/" + arquitecturas.image
+        src: "storage/" + arquitectura.image
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "bg-red-400 pl-2 text-lg font-bold"
-    }, [_vm._v(" " + _vm._s(arquitecturas.descripcion) + " ")]), _vm._v(" "), _c("div", {
-      staticClass: "border-2 border-red-400 text-end pr-2"
-    }, [_c("a", {
+      staticClass: "flex justify-between mx-3"
+    }, [_c("button", {
+      staticClass: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
       attrs: {
-        href: "osm/" + arquitecturas.lat + "/" + arquitecturas.lon,
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.openModal(arquitectura);
+        }
+      }
+    }, [_vm._v("\n      Más información\n    ")]), _vm._v(" "), _c("a", {
+      staticClass: "block px-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+      attrs: {
+        type: "button",
+        href: "/osm/" + arquitectura.lat + "/" + arquitectura.lon,
         target: "blank"
       }
     }, [_vm._v("Ir al mapa")])])]);
-  }), 0)]);
+  }), 0)], 1);
 };
 
 var staticRenderFns = [];
@@ -6984,6 +7109,54 @@ var render = function render() {
 };
 
 var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CentrosCulturales.vue?vue&type=template&id=dfc387ba&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CentrosCulturales.vue?vue&type=template&id=dfc387ba& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _vm._m(0);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", [_c("div", {
+    staticClass: "flex flex-col bg-primary-800 p-2 mx-auto"
+  }, [_c("h1", {
+    staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 p-2"
+  }, [_vm._v("\n      Centros Culturales\n    ")]), _vm._v(" "), _c("h1", {
+    staticClass: "text-uppercase text-2xl text-center font-bold text-red-400 p-2"
+  }, [_vm._v("\n      En Construcción\n    ")]), _vm._v(" "), _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("p", {
+    staticClass: "text-lg w-3/4 md:w-1/2 rounded-lg text-center text-red-800 bg-primary-400 p-2"
+  }, [_vm._v("\n        Si diriges un centro cultural como\n        un museo, sala de teatro, biblioteca u otro tipo de espacio, regístrate en nuestra plataforma\n        y conecta con nuevas audencias. Al hacerlo, permitirás que\n        más personas accedan a tus servicios y descubran el maravilloso mundo\n        de la cultura. \n        \n      ")])]), _vm._v(" "), _c("p", {
+    staticClass: "p-5 text-center text-red-400"
+  }, [_vm._v("\n      Si quieres aparecer en "), _c("b", [_vm._v("LaBrujula.tk")]), _vm._v(" puedes solicitar "), _c("b", [_vm._v("gratuitamente")]), _vm._v(" la\n      inscripción en este\n      "), _c("a", {
+    staticClass: "underline hover:text-red-100",
+    attrs: {
+      href: "https://forms.gle/QEEZSEbQGmVpKtHTA",
+      target: "blank"
+    }
+  }, [_vm._v("\n        formulario")]), _vm._v(".\n    ")])])]);
+}];
 render._withStripped = true;
 
 
@@ -7260,9 +7433,9 @@ var staticRenderFns = [function () {
     staticClass: "text-3xl mb-4"
   }, [_c("strong", [_vm._v("¿Qué es La Brújula?")])]), _vm._v(" "), _c("p", {
     staticClass: "mb-5 lead text-xl"
-  }, [_vm._v("\n      La Brújula es la guía "), _c("span", {
+  }, [_vm._v("\n      La Brújula es la "), _c("span", {
     staticClass: "text-red-600 font-bold"
-  }, [_vm._v("indefinitiva")]), _vm._v(" que te ayudará a encontrar todos los\n      tesoros de Valparaíso.\n    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("guía digital")]), _vm._v(" que te ayudará a encontrar todos los\n      tesoros de Valparaíso y pronto de muchas ciudades más.\n    ")])]), _vm._v(" "), _c("div", {
     staticClass: "flex justify-center flex-wrap"
   }, [_c("div", {
     staticClass: "max-w-sm rounded overflow-hidden shadow-lg"
@@ -7508,6 +7681,89 @@ render._withStripped = true;
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalAscensores.vue?vue&type=template&id=73d6419c& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", [_c("div", {
+    directives: [{
+      name: "viewer",
+      rawName: "v-viewer"
+    }],
+    staticClass: "mx-0 md:mx-2 sm:mx-0"
+  }, [_c("transition", {
+    attrs: {
+      "enter-active-class": "ease-out duration-300",
+      "enter-class": "opacity-0",
+      "enter-to-class": "opacity-100",
+      "leave-active-class": "ease-in duration-200",
+      "leave-class": "opacity-100 ",
+      "leave-to-class": "opacity-0"
+    }
+  }, [_vm.modal ? _c("div", {
+    staticClass: "relative z-10",
+    attrs: {
+      "aria-labelledby": "modal-title",
+      role: "dialog",
+      "aria-modal": "true"
+    }
+  }, [_c("div", {
+    staticClass: "fixed inset-0 bg-gray-500 bg-opacity-50 transition-opacity"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "fixed inset-0 z-10 overflow-y-auto"
+  }, [_c("div", {
+    staticClass: "MODAL-SCREEN flex min-h-0 sm:min-h-screen md:min-h-full py-2 sm:py-3 sm:px-3 sm:p-0 items-end justify-center text-center sm:items-center"
+  }, [_c("transition", {
+    attrs: {
+      "enter-active-class": "ease-out duration-300",
+      "enter-class": "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+      "enter-to-class": "opacity-100 translate-y-0 sm:scale-100",
+      "leave-active-class": "ease-in duration-200",
+      "leave-class": "opacity-100 translate-y-0 sm:scale-100",
+      "leave-to-class": "opacity-5 translate-y-4 sm:translate-y-0 sm:scale-95"
+    }
+  }), _vm._v(" "), _vm.modal ? _c("div", {
+    staticClass: "relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 mx-4 w-full sm:my-8 sm:w-full sm:max-w-lg"
+  }, [_c("div", {
+    staticClass: "p-2 space-y-2"
+  }, [_c("p", {
+    staticClass: "text-3xl font-bold"
+  }, [_vm._v("\n                  Ascensor " + _vm._s(_vm.atractivo_modal.nombre) + "\n                  ")]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Dirección:")]), _vm._v(" " + _vm._s(_vm.atractivo_modal.direccion))]), _vm._v(" "), _c("img", {
+    attrs: {
+      src: "/storage/" + _vm.atractivo_modal.image,
+      alt: "imagen"
+    }
+  }), _vm._v(" "), _c("p", [_c("b", [_vm._v("Reseña: ")]), _vm._v(_vm._s(_vm.atractivo_modal.content))])]), _vm._v(" "), _c("div", {
+    staticClass: "bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+  }, [_c("button", {
+    staticClass: "inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: _vm.clicked
+    }
+  }, [_vm._v("\n                  Cerrar\n                ")])])]) : _vm._e()], 1)])]) : _vm._e()])], 1)]);
+};
+
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalCentrosCulturales.vue?vue&type=template&id=8b0b6b08&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalCentrosCulturales.vue?vue&type=template&id=8b0b6b08& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10483,7 +10739,7 @@ var render = function render() {
         href: "/murales/" + ubication.name
       }
     }, [_vm._v(_vm._s(ubication.name))])]);
-  }), 0)])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "),  false ? 0 : _vm._e()])])])])]);
+  }), 0)])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "),  false ? 0 : _vm._e()])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -10553,6 +10809,16 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("li", [_c("a", {
+    staticClass: "menuPrincipal",
+    attrs: {
+      href: "/centros-culturales"
+    }
+  }, [_vm._v("Centros Culturales")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("li", [_c("a", {
     staticClass: "menuPrincipal block py-2",
     attrs: {
       href: "/iglesias#"
@@ -10614,9 +10880,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('InfiniteLoading', __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js"));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('ModalComponent', __webpack_require__(/*! ./components/Modal.vue */ "./resources/js/components/Modal.vue"));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('ModalAscensores', __webpack_require__(/*! ./components/ModalAscensores.vue */ "./resources/js/components/ModalAscensores.vue"));
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('ModalMuseos', __webpack_require__(/*! ./components/ModalCentrosCulturales.vue */ "./resources/js/components/ModalCentrosCulturales.vue"));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('show-murales', (__webpack_require__(/*! ./components/Show.vue */ "./resources/js/components/Show.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('mapa-osm', (__webpack_require__(/*! ./components/Osm.vue */ "./resources/js/components/Osm.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('ascensores', (__webpack_require__(/*! ./components/Ascensores.vue */ "./resources/js/components/Ascensores.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('centros-culturales-component', (__webpack_require__(/*! ./components/CentrosCulturales.vue */ "./resources/js/components/CentrosCulturales.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('escaleras', (__webpack_require__(/*! ./components/Escaleras.vue */ "./resources/js/components/Escaleras.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('miradores', (__webpack_require__(/*! ./components/Miradores.vue */ "./resources/js/components/Miradores.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('iglesias', (__webpack_require__(/*! ./components/Iglesias.vue */ "./resources/js/components/Iglesias.vue")["default"]));
@@ -54444,6 +54712,45 @@ component.options.__file = "resources/js/components/Ascensores.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/CentrosCulturales.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/CentrosCulturales.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CentrosCulturales_vue_vue_type_template_id_dfc387ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CentrosCulturales.vue?vue&type=template&id=dfc387ba& */ "./resources/js/components/CentrosCulturales.vue?vue&type=template&id=dfc387ba&");
+/* harmony import */ var _CentrosCulturales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CentrosCulturales.vue?vue&type=script&lang=js& */ "./resources/js/components/CentrosCulturales.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CentrosCulturales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CentrosCulturales_vue_vue_type_template_id_dfc387ba___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CentrosCulturales_vue_vue_type_template_id_dfc387ba___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CentrosCulturales.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Escaleras.vue":
 /*!***********************************************!*\
   !*** ./resources/js/components/Escaleras.vue ***!
@@ -54677,6 +54984,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/ModalAscensores.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ModalCentrosCulturales.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/ModalCentrosCulturales.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ModalCentrosCulturales_vue_vue_type_template_id_8b0b6b08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalCentrosCulturales.vue?vue&type=template&id=8b0b6b08& */ "./resources/js/components/ModalCentrosCulturales.vue?vue&type=template&id=8b0b6b08&");
+/* harmony import */ var _ModalCentrosCulturales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalCentrosCulturales.vue?vue&type=script&lang=js& */ "./resources/js/components/ModalCentrosCulturales.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ModalCentrosCulturales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ModalCentrosCulturales_vue_vue_type_template_id_8b0b6b08___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ModalCentrosCulturales_vue_vue_type_template_id_8b0b6b08___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ModalCentrosCulturales.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -55431,6 +55777,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/CentrosCulturales.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/CentrosCulturales.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CentrosCulturales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CentrosCulturales.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CentrosCulturales.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CentrosCulturales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Escaleras.vue?vue&type=script&lang=js&":
 /*!************************************************************************!*\
   !*** ./resources/js/components/Escaleras.vue?vue&type=script&lang=js& ***!
@@ -55528,6 +55890,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAscensores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ModalAscensores.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalAscensores.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAscensores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ModalCentrosCulturales.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/ModalCentrosCulturales.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCentrosCulturales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ModalCentrosCulturales.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalCentrosCulturales.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCentrosCulturales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -55838,6 +56216,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/CentrosCulturales.vue?vue&type=template&id=dfc387ba&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/CentrosCulturales.vue?vue&type=template&id=dfc387ba& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CentrosCulturales_vue_vue_type_template_id_dfc387ba___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CentrosCulturales_vue_vue_type_template_id_dfc387ba___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CentrosCulturales_vue_vue_type_template_id_dfc387ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CentrosCulturales.vue?vue&type=template&id=dfc387ba& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CentrosCulturales.vue?vue&type=template&id=dfc387ba&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Escaleras.vue?vue&type=template&id=b885deb8&":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/Escaleras.vue?vue&type=template&id=b885deb8& ***!
@@ -55936,6 +56331,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAscensores_vue_vue_type_template_id_73d6419c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAscensores_vue_vue_type_template_id_73d6419c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ModalAscensores.vue?vue&type=template&id=73d6419c& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalAscensores.vue?vue&type=template&id=73d6419c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ModalCentrosCulturales.vue?vue&type=template&id=8b0b6b08&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/ModalCentrosCulturales.vue?vue&type=template&id=8b0b6b08& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCentrosCulturales_vue_vue_type_template_id_8b0b6b08___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCentrosCulturales_vue_vue_type_template_id_8b0b6b08___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCentrosCulturales_vue_vue_type_template_id_8b0b6b08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ModalCentrosCulturales.vue?vue&type=template&id=8b0b6b08& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ModalCentrosCulturales.vue?vue&type=template&id=8b0b6b08&");
 
 
 /***/ }),

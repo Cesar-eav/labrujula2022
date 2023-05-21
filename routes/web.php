@@ -18,6 +18,7 @@ Route::get('/miradores', [App\Http\Controllers\HomeController::class, 'miradores
 Route::get('/iglesias', [App\Http\Controllers\HomeController::class, 'iglesias']);
 Route::get('/arquitecturas', [App\Http\Controllers\HomeController::class, 'arquitecturas']);
 Route::get('/artistas',[App\Http\Controllers\HomeController::class, 'artistas']);
+Route::get('/centros-culturales',[App\Http\Controllers\HomeController::class, 'centrosCulturales']);
 
 Route::get('/api-murales/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'murales']);
 Route::get('/api-murales-modal/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'muralesModal']);

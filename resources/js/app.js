@@ -40,11 +40,13 @@ Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 
 Vue.component('ModalComponent', require('./components/Modal.vue'));
 Vue.component('ModalAscensores', require('./components/ModalAscensores.vue'));
+Vue.component('ModalMuseos', require('./components/ModalCentrosCulturales.vue'));
 
 Vue.component('show-murales', require('./components/Show.vue').default);
 Vue.component('mapa-osm', require('./components/Osm.vue').default);
 
 Vue.component('ascensores', require('./components/Ascensores.vue').default);
+Vue.component('centros-culturales-component', require('./components/CentrosCulturales.vue').default);
 Vue.component('escaleras', require('./components/Escaleras.vue').default);
 Vue.component('miradores', require('./components/Miradores.vue').default);
 Vue.component('iglesias', require('./components/Iglesias.vue').default);
