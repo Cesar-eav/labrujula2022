@@ -6922,9 +6922,9 @@ var render = function render() {
     on: {
       clicked: _vm.closeModal
     }
-  }), _vm._v(" "), _c("h1", {
-    staticClass: "text-2xl text-center py-2 uppercase font-bold"
-  }, [_vm._v("\n  arquitectura\n")]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
+    staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3"
+  }, [_vm._v("Arquitectura")]), _vm._v(" "), _c("div", {
     directives: [{
       name: "viewer",
       rawName: "v-viewer"
@@ -6988,7 +6988,7 @@ var render = function render() {
     staticClass: "flex flex-col justify-center"
   }, [_c("h1", {
     staticClass: "text-4xl text-red-600 text-center pt-5 pb-2 uppercase font-bold"
-  }, [_vm._v("\n    ¡EN CONSTRUCCIÓN!\n  ")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n    Artistas.\n  ")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "flex flex-col mx-2"
   }, _vm._l(_vm.artists, function (artista) {
     return _c("div", {
@@ -7011,9 +7011,9 @@ var render = function render() {
     }, _vm._l(artista.hm_points, function (atractivo) {
       return _c("div", {
         key: atractivo.id,
-        staticClass: "w-80 h-50"
+        staticClass: "w-80 h-50 p-1"
       }, [_c("img", {
-        staticClass: "object-cover h-40 w-80",
+        staticClass: "object-cover h-40 w-80 rounded-lg",
         attrs: {
           src: "/storage/" + atractivo.image
         }
@@ -7188,8 +7188,8 @@ var render = function render() {
     on: {
       clicked: _vm.closeModal
     }
-  }), _vm._v(" "), _c("h1", {
-    staticClass: "text-2xl text-center py-2 uppercase font-bold"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3"
   }, [_vm._v("Escaleras")]), _vm._v(" "), _c("div", {
     directives: [{
       name: "viewer",
@@ -7260,9 +7260,9 @@ var render = function render() {
     on: {
       clicked: _vm.closeModal
     }
-  }), _vm._v(" "), _c("h1", {
-    staticClass: "text-2xl text-center py-2 uppercase font-bold"
-  }, [_vm._v("\n  Iglesias\n")]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
+    staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3"
+  }, [_vm._v("Iglesias")]), _vm._v(" "), _c("div", {
     directives: [{
       name: "viewer",
       rawName: "v-viewer"
@@ -7548,9 +7548,9 @@ var render = function render() {
     on: {
       clicked: _vm.closeModal
     }
-  }), _vm._v(" "), _c("h1", {
-    staticClass: "text-2xl text-center py-2 uppercase font-bold"
-  }, [_vm._v("\n      Miradores\n    ")]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
+    staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3"
+  }, [_vm._v("Miradores")]), _vm._v(" "), _c("div", {
     directives: [{
       name: "viewer",
       rawName: "v-viewer"

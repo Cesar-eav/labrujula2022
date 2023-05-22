@@ -6,9 +6,9 @@
       :atractivo_modal = "atractivo_modal"
       @clicked="closeModal"/>
 
-    <h1 class="text-2xl text-center py-2 uppercase font-bold">
-      Miradores
-    </h1>
+      
+      <div class="text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3">Miradores</div>
+
 
 <div v-viewer class="flex flex-wrap justify-center md:px-0 px-2 ">
 

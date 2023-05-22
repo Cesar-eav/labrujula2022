@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col justify-center">
     <h1 class="text-4xl text-red-600 text-center pt-5 pb-2 uppercase font-bold">
-      ¡EN CONSTRUCCIÓN!
+      Artistas.
     </h1>
     <p class="text-red-600 text-2xl text-center pb-3">
       Si quieres aparacer envíanos tus datos por interno a nuestro
@@ -26,13 +26,13 @@
           <div
             v-for="atractivo in artista.hm_points"
             :key="atractivo.id"
-            class="w-80 h-50"
+            class="w-80 h-50 p-1"
           >
 
 
             <img
               :src="'/storage/' + atractivo.image"
-              class="object-cover h-40 w-80"
+              class="object-cover h-40 w-80 rounded-lg"
             />
             </div>
           </div>

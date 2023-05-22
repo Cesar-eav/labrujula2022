@@ -7,9 +7,8 @@
       :atractivo_modal = "atractivo_modal"
       @clicked="closeModal"/>
 
-        <h1 class="text-2xl text-center py-2 uppercase font-bold">
-      arquitectura
-    </h1>
+      <div class="text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3">Arquitectura</div>
+
 
     <div v-viewer
       class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center md:px-0 px-2"
