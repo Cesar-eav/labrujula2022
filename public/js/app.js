@@ -7561,6 +7561,7 @@ var render = function render() {
       key: miradores.id,
       staticClass: "w-96 mx-1 mb-2 bg-red-800 rounded-lg"
     }, [_c("img", {
+      staticClass: "rounded-lg",
       attrs: {
         src: "storage/" + miradores.image
       }

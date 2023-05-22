@@ -10,10 +10,10 @@
       Miradores
     </h1>
 
-<div v-viewer class="flex flex-wrap justify-center md:px-0 px-2">
+<div v-viewer class="flex flex-wrap justify-center md:px-0 px-2 ">
 
     <div class="w-96 mx-1 mb-2 bg-red-800 rounded-lg " v-for="miradores in arrayList" :key="miradores.id">
-        <img :src="'storage/'+miradores.image" /> 
+        <img :src="'storage/'+miradores.image" class="rounded-lg" /> 
 
 
         <div class="flex justify-between">
