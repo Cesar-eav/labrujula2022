@@ -6929,7 +6929,7 @@ var render = function render() {
       name: "viewer",
       rawName: "v-viewer"
     }],
-    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
+    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center md:px-0 px-2"
   }, _vm._l(_vm.arrayList, function (arquitectura) {
     return _c("div", {
       key: arquitectura.id,
@@ -7061,7 +7061,6 @@ var render = function render() {
   }, [_c("modal-component", {
     attrs: {
       modal: _vm.modal,
-      ubicacion: _vm.ubicacion,
       atractivo_modal: _vm.atractivo_modal
     },
     on: {
@@ -7074,7 +7073,7 @@ var render = function render() {
       name: "viewer",
       rawName: "v-viewer"
     }],
-    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
+    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center md:px-0 px-2"
   }, _vm._l(_vm.arrayList, function (ascensores) {
     return _c("div", {
       key: ascensores.id,
@@ -7196,7 +7195,7 @@ var render = function render() {
       name: "viewer",
       rawName: "v-viewer"
     }],
-    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
+    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center md:px-0 px-2"
   }, _vm._l(_vm.arrayList, function (atractivo) {
     return _c("div", {
       key: atractivo.id,
@@ -7268,7 +7267,7 @@ var render = function render() {
       name: "viewer",
       rawName: "v-viewer"
     }],
-    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
+    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center md:px-0 px-2"
   }, _vm._l(_vm.arrayList, function (iglesia) {
     return _c("div", {
       key: iglesia.id,
@@ -7556,7 +7555,7 @@ var render = function render() {
       name: "viewer",
       rawName: "v-viewer"
     }],
-    staticClass: "flex flex-wrap justify-center"
+    staticClass: "flex flex-wrap justify-center md:px-0 px-2"
   }, _vm._l(_vm.arrayList, function (miradores) {
     return _c("div", {
       key: miradores.id,
@@ -7923,7 +7922,7 @@ var render = function render() {
       name: "viewer",
       rawName: "v-viewer"
     }],
-    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center"
+    staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center md:px-0 px-2"
   }, _vm._l(this.arrayList, function (atractivo) {
     return _c("div", {
       key: atractivo.id,

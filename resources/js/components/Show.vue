@@ -16,7 +16,7 @@
 
 
     <div v-viewer
-      class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center   "
+      class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center  md:px-0 px-2 "
     >
       <div 
         class="mx-0 md:mx-2 sm:mx-0 bg-red-800 rounded-lg "
