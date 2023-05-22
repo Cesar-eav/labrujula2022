@@ -8,6 +8,8 @@
     <meta name="keywords" content="Valparaiso, murales, mon laferte, rutas, ascensores, funiculares, eslacera calle 13, escalera de colores, valparaiso arte"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 
 
     <!-- Google tag (gtag.js) -->

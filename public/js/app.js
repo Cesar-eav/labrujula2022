@@ -10621,19 +10621,35 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("footer", {
+  return _c("div", {
+    staticClass: "py-3"
+  }, [_c("footer", {
     staticClass: "bg-danger text-center text-white"
-  }, [_vm._v("\n  \n  Bienvenida/e/i/o/u\n\n\n  "), _c("div", {
-    staticClass: "text-center p-3",
+  }, [_vm._v("\n    WELCOME TO LABRUJULA.TK\n\n    "), _c("div", {
+    staticClass: "flex justify-between text-center p-3 mx-5",
     staticStyle: {
       "background-color": "rgba(0, 0, 0, 0.2)"
     }
-  }, [_vm._v("\n    © 2021 Copyright:\n    "), _c("a", {
+  }, [_c("div", [_vm._v("\n        © 2021 Copyright:\n        "), _c("a", {
     staticClass: "text-white",
     attrs: {
       href: "https://www.labrujula.tk"
     }
-  }, [_vm._v("www.labrujula.tk")])])])]);
+  }, [_vm._v("www.labrujula.tk")]), _vm._v(" "), _c("p", [_vm._v("Valparaíso, Chile")])]), _vm._v(" "), _c("div", [_c("a", {
+    attrs: {
+      href: "https://www.facebook.com/labrujula814",
+      target: "_blank"
+    }
+  }, [_c("i", {
+    staticClass: "fab fa-facebook fa-3x"
+  })]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "https://www.instagram.com/labrujula.tk/",
+      target: "_blank"
+    }
+  }, [_c("i", {
+    staticClass: "fab fa-instagram fa-3x"
+  })])])])])]);
 }];
 render._withStripped = true;
 

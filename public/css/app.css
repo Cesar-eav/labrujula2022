@@ -12050,6 +12050,10 @@ input:checked + .toggle-bg {
   margin-left: 12rem;
   margin-right: 12rem;
 }
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
 .mr-3 {
   margin-right: 0.75rem;
 }
@@ -12497,6 +12501,10 @@ input:checked + .toggle-bg {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
 .pt-5 {
   padding-top: 1.25rem;
 }
@@ -12520,6 +12528,9 @@ input:checked + .toggle-bg {
 }
 .pt-2 {
   padding-top: 0.5rem;
+}
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 .text-left {
   text-align: left;

@@ -1,18 +1,25 @@
 <template>
-    <div>
+  <div class="py-3">
+    <footer class="bg-danger text-center text-white">
+      WELCOME TO LABRUJULA.TK
 
-        <footer class="bg-danger text-center text-white">
-  
-  Bienvenida/e/i/o/u
-
-
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2021 Copyright:
-    <a class="text-white" href="https://www.labrujula.tk">www.labrujula.tk</a>
+      <div
+        class="flex justify-between text-center p-3 mx-5 "
+        style="background-color: rgba(0, 0, 0, 0.2)"
+      >
+        <div>
+          © 2021 Copyright:
+          <a class="text-white" href="https://www.labrujula.tk"
+            >www.labrujula.tk</a
+          >
+          <p>Valparaíso, Chile</p>
+        </div>
+        <div>
+        <a href="https://www.facebook.com/labrujula814" target="_blank" >  <i class="fab fa-facebook fa-3x"></i></a>
+        <a href="https://www.instagram.com/labrujula.tk/" target="_blank"><i class="fab fa-instagram fa-3x"></i></a>
+        </div>
+      </div>
+    </footer>
   </div>
-
-</footer>
-
-    </div>
 </template>
 
