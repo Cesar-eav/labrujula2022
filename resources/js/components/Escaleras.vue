@@ -10,12 +10,12 @@
 
     <div  v-viewer class="grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center">
       <div
-         class="mx-0 md:mx-2 sm:mx-0 bg-red-800 " 
+         class="mx-0 md:mx-2 sm:mx-0 bg-red-800  rounded-lg" 
       
         v-for="atractivo in arrayList"
         :key="atractivo.id"
       >
-        <img :src="'storage/' + atractivo.image" class="md:h-60 w-full"  />
+        <img :src="'storage/' + atractivo.image" class="md:h-60 w-full rounded-lg"  />
 
         <div class="flex justify-between">
           <button

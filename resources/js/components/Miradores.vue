@@ -12,7 +12,7 @@
 
 <div v-viewer class="flex flex-wrap justify-center">
 
-    <div class="w-96 mx-1 mb-2 bg-red-800 " v-for="miradores in arrayList" :key="miradores.id">
+    <div class="w-96 mx-1 mb-2 bg-red-800 rounded-lg " v-for="miradores in arrayList" :key="miradores.id">
         <img :src="'storage/'+miradores.image" /> 
 
 

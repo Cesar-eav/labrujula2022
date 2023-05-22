@@ -7067,7 +7067,7 @@ var render = function render() {
     on: {
       clicked: _vm.closeModal
     }
-  }), _vm._v(" "), _c("h1", {
+  }), _vm._v(" "), _c("div", {
     staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3"
   }, [_vm._v("Ascensores")]), _vm._v(" "), _c("div", {
     directives: [{
@@ -7078,7 +7078,7 @@ var render = function render() {
   }, _vm._l(_vm.arrayList, function (ascensores) {
     return _c("div", {
       key: ascensores.id,
-      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800"
+      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800 rounded-lg"
     }, [_c("p", {
       staticClass: "text-xl text-red-200 text-center py-2 uppercase font-bold"
     }, [_vm._v("Ascensor " + _vm._s(ascensores.nombre))]), _vm._v(" "), _c("img", {
@@ -7200,9 +7200,9 @@ var render = function render() {
   }, _vm._l(_vm.arrayList, function (atractivo) {
     return _c("div", {
       key: atractivo.id,
-      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800"
+      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800 rounded-lg"
     }, [_c("img", {
-      staticClass: "md:h-60 w-full",
+      staticClass: "md:h-60 w-full rounded-lg",
       attrs: {
         src: "storage/" + atractivo.image
       }
@@ -7560,7 +7560,7 @@ var render = function render() {
   }, _vm._l(_vm.arrayList, function (miradores) {
     return _c("div", {
       key: miradores.id,
-      staticClass: "w-96 mx-1 mb-2 bg-red-800"
+      staticClass: "w-96 mx-1 mb-2 bg-red-800 rounded-lg"
     }, [_c("img", {
       attrs: {
         src: "storage/" + miradores.image
