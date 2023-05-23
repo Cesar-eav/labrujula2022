@@ -56,6 +56,14 @@ class CrudController extends Controller
            $point->artist_id = $request->selectedArtista;         
            $point->type_attractive = $request->selectedAtractivoName;
 
+           $point->nombre_institucion	 = $request->nombre_institucion;         
+           $point->correo	 = $request->correo;         
+           $point->sitio_web	 = $request->sitio_web;         
+           $point->facebook	 = $request->facebook;         
+           $point->instagram	 = $request->instagram;        
+           $point->twitter	 = $request->twitter;        
+           $point->tiktok	 = $request->tiktok;        
+
            $point->image = 'articles/'.$request->image_name;
            $point->save();
            

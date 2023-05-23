@@ -81,6 +81,14 @@ class MuralController extends Controller
         $iglesias = Atractivos::where('type_attractive', 'Iglesia')->get();
         return $iglesias;
     }
+
+        public function centrosCulturales()
+        
+        {
+            $centros_culturales = Atractivos::where('type_attractive', 'Centro Cultural')->get();
+            return $centros_culturales;
+
+    }
     public function arquitecturas()
     {
         $arquitectura = Atractivos::where('type_attractive', 'Arquitectura')->get();
@@ -92,6 +100,8 @@ class MuralController extends Controller
     {
 
         $murales = Point::create([
+
+
             'publicidad' => $request->has('publicidad'),
             'title' => $request->title,
             'artista' => $request->artista,
@@ -99,6 +109,13 @@ class MuralController extends Controller
             'lon' => $request->lon,
             'direccion' => $request->direccion,
             'imagen' => $request->imagen,
+            'nombre_institucion' => $request->nombre_institucion,
+            'correo' => $request->correo,
+            'sitio_web' => $request->sitio_web,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'twitter' => $request->twitter,
+            'tiktok' => $request->tiktok
 
         ]);
 

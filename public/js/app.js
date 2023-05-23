@@ -5571,7 +5571,7 @@ __webpack_require__.r(__webpack_exports__);
     listEscaleras: function listEscaleras() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("api-escaleras") // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("api-centros-culturales") // Va a web.php por defecto y busca el nombre de la ruta que arroja el JSON
       .then(function (respuesta) {
         return _this.arrayList = respuesta.data;
       }); //     console.log('arrayList', this.arrayList);
@@ -6191,11 +6191,16 @@ __webpack_require__.r(__webpack_exports__);
         lat: 0,
         publicity: 0,
         lon: 0,
-        //selectedArtista: null,
         artista: '',
         selectedUbicationId: null,
-        selectedAtractivoName: null //ubication: ""
-
+        selectedAtractivoName: null,
+        nombre_institucion: '',
+        sitio_web: '',
+        correo: '',
+        facebook: '',
+        instagram: '',
+        twitter: '',
+        tiktok: ''
       },
       loading: false,
       ubications: [],
@@ -6214,6 +6219,8 @@ __webpack_require__.r(__webpack_exports__);
         nombre: "Iglesia"
       }, {
         nombre: "Museo"
+      }, {
+        nombre: "Centro Cultural"
       }, {
         nombre: "Otro"
       }] //file: "",
@@ -6240,10 +6247,17 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("image_name", this.muralDatos.image_name);
       formData.append("lat", this.muralDatos.lat);
       formData.append("lon", this.muralDatos.lon);
-      formData.append("publicity", this.muralDatos.publicity); //formData.append("selectedArtista",        this.muralDatos.selectedArtista);
+      formData.append("publicity", this.muralDatos.publicity); //formData.append("selectedArtista",        this.muralDatos.selectedArtista);nombre_institucion
 
       formData.append("selectedUbicationId", this.muralDatos.selectedUbicationId);
       formData.append("selectedAtractivoName", this.muralDatos.selectedAtractivoName);
+      formData.append("nombre_institucion", this.muralDatos.nombre_institucion);
+      formData.append("sitio_web", this.muralDatos.sitio_web);
+      formData.append("correo", this.muralDatos.correo);
+      formData.append("facebook", this.muralDatos.facebook);
+      formData.append("instagram", this.muralDatos.instagram);
+      formData.append("twitter", this.muralDatos.twitter);
+      formData.append("tiktok", this.muralDatos.tiktok);
       axios.post("/crud/post-point", formData).then(function (response) {
         console.log(response.data);
 
@@ -7129,14 +7143,49 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "grid grid-cols-1 md:grid-cols-2 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center my-2"
+  }, _vm._l(_vm.arrayList, function (atractivo) {
+    return _c("div", {
+      key: atractivo.id,
+      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-gray-300 rounded-lg p-2 flex justify-between"
+    }, [_c("img", {
+      staticClass: "max-h-32 w-32 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-lg",
+      attrs: {
+        src: "storage/" + atractivo.image
+      }
+    }), _vm._v(" "), _c("span", [_c("p", {
+      staticClass: "font-bold text-lg"
+    }, [_vm._v(_vm._s(atractivo.nombre_institucion))]), _vm._v(" "), _c("p", {
+      staticClass: "italic pb-2"
+    }, [_vm._v(_vm._s(atractivo.description))]), _vm._v(" "), _c("div", [_c("a", {
+      attrs: {
+        href: "https:/" + atractivo.sitio_web,
+        target: "_blank"
+      }
+    }, [_vm._v(_vm._s(atractivo.sitio_web))])]), _vm._v(" "), _c("a", {
+      attrs: {
+        href: "https://www.facebook.com/" + atractivo.facebook,
+        target: "_blank"
+      }
+    }, [_c("i", {
+      staticClass: "fab fa-facebook fa-2x"
+    })]), _vm._v(" "), _c("a", {
+      attrs: {
+        href: "https://www.instagram.com/" + atractivo.instagram,
+        target: "_blank"
+      }
+    }, [_c("i", {
+      staticClass: "fab fa-instagram fa-2x"
+    })])])]);
+  }), 0)]);
 };
 
 var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
+  return _c("div", {
     staticClass: "flex flex-col bg-primary-800 p-2 mx-auto"
   }, [_c("h1", {
     staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 p-2"
@@ -7154,7 +7203,7 @@ var staticRenderFns = [function () {
       href: "https://forms.gle/QEEZSEbQGmVpKtHTA",
       target: "blank"
     }
-  }, [_vm._v("\n        formulario")]), _vm._v(".\n    ")])])]);
+  }, [_vm._v("\n        formulario")]), _vm._v(".\n    ")])]);
 }];
 render._withStripped = true;
 
@@ -8612,7 +8661,7 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "direction", $event.target.value);
       }
     }
-  })])])]), _vm._v(" "), _c("th", [_c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Publicidad:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -8667,7 +8716,7 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "lat", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("td", [_vm._v(" ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("lonitud:")]), _vm._v(" "), _c("td", [_c("input", {
+  })]), _vm._v(" "), _c("td", [_vm._v(" ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Longitud:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -8688,9 +8737,151 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "lon", $event.target.value);
       }
     }
+  })])])]), _vm._v(" "), _c("th", [_c("tr", [_c("td", [_vm._v("Nombre Institución:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.nombre_institucion,
+      expression: "muralDatos.nombre_institucion"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.muralDatos.nombre_institucion
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.muralDatos, "nombre_institucion", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Sitio Web:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.sitio_web,
+      expression: "muralDatos.sitio_web"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.muralDatos.sitio_web
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.muralDatos, "sitio_web", $event.target.value);
+      }
+    }
+  })])]), _c("tr", [_c("td", [_vm._v("Correo:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.correo,
+      expression: "muralDatos.correo"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.muralDatos.correo
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.muralDatos, "correo", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Facebook:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.facebook,
+      expression: "muralDatos.facebook"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.muralDatos.facebook
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.muralDatos, "facebook", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Instraman:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.instagram,
+      expression: "muralDatos.instagram"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.muralDatos.instagram
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.muralDatos, "instagram", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Twitter:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.twitter,
+      expression: "muralDatos.twitter"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.muralDatos.twitter
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.muralDatos, "twitter", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tiktok:")]), _vm._v(" "), _c("td", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.muralDatos.tiktok,
+      expression: "muralDatos.tiktok"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.muralDatos.tiktok
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.muralDatos, "tiktok", $event.target.value);
+      }
+    }
   })])]), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _c("div", {
     staticClass: "flex flex-col"
-  }, [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
+  }, [_c("p", {
+    staticClass: "text-lg"
+  }, [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
     directives: [{
       name: "model",
       rawName: "v-model",

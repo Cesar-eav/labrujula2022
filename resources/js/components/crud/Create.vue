@@ -183,8 +183,6 @@
           <td>Dirección:</td>
           <td><input type="text" v-model="muralDatos.direction" /></td>
         </tr>
-      </th>
-      <th>
         <tr>
           <td>Publicidad:</td>
           <td><input type="checkbox" v-model="muralDatos.publicity" :true-value="1" :false-value="0" /></td>
@@ -195,12 +193,76 @@
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td>lonitud:</td>
+          <td>Longitud:</td>
           <td>
             <input
               type="text"
               v-model="muralDatos.lon"
               placeholder="edit me"
+            />
+          </td>
+        </tr>
+      </th>
+      <th>
+        <tr>
+          <td>Nombre Institución:</td>
+          <td>
+            <input
+              type="text"
+              v-model="muralDatos.nombre_institucion"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Sitio Web:</td>
+          <td>
+            <input
+              type="text"
+              v-model="muralDatos.sitio_web"
+            />
+          </td>
+          <tr>
+          <td>Correo:</td>
+          <td>
+            <input
+              type="text"
+              v-model="muralDatos.correo"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Facebook:</td>
+          <td>
+            <input
+              type="text"
+              v-model="muralDatos.facebook"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Instraman:</td>
+          <td>
+            <input
+              type="text"
+              v-model="muralDatos.instagram"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Twitter:</td>
+          <td>
+            <input
+              type="text"
+              v-model="muralDatos.twitter"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Tiktok:</td>
+          <td>
+            <input
+              type="text"
+              v-model="muralDatos.tiktok"
             />
           </td>
         </tr>
@@ -213,7 +275,7 @@
     </table>
 
     <div class="flex flex-col">
-      <p>Descripción</p>
+      <p class="text-lg">Descripción</p>
       <textarea cols="40" rows="5" v-model="muralDatos.description"> </textarea>
 
       <input
@@ -284,11 +346,17 @@ export default {
         lat: 0,
         publicity: 0,
         lon: 0,
-        //selectedArtista: null,
         artista:'',
         selectedUbicationId: null,
         selectedAtractivoName: null,
-        //ubication: ""
+        nombre_institucion:'',
+        sitio_web:'',
+        correo:'',
+        facebook:'',
+        instagram:'',
+        twitter:'',
+        tiktok:''
+        
       },
       loading: false,
       ubications: [],
@@ -301,6 +369,7 @@ export default {
         { nombre: "Mirador" },
         { nombre: "Iglesia" },
         { nombre: "Museo" },
+        { nombre: "Centro Cultural" },
         { nombre: "Otro" },
       ]
       //file: "",
@@ -328,9 +397,18 @@ export default {
       formData.append("lat",                    this.muralDatos.lat);
       formData.append("lon",                    this.muralDatos.lon);
       formData.append("publicity",              this.muralDatos.publicity);
-      //formData.append("selectedArtista",        this.muralDatos.selectedArtista);
+      //formData.append("selectedArtista",        this.muralDatos.selectedArtista);nombre_institucion
       formData.append("selectedUbicationId",    this.muralDatos.selectedUbicationId);
       formData.append("selectedAtractivoName",  this.muralDatos.selectedAtractivoName);
+      formData.append("nombre_institucion",     this.muralDatos.nombre_institucion);
+      formData.append("sitio_web",              this.muralDatos.sitio_web);
+      formData.append("correo",                 this.muralDatos.correo);
+      formData.append("facebook",               this.muralDatos.facebook);
+      formData.append("instagram",              this.muralDatos.instagram);
+      formData.append("twitter",                this.muralDatos.twitter);
+      formData.append("tiktok",                 this.muralDatos.tiktok);
+
+
       
       axios
         .post("/crud/post-point", formData)

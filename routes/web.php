@@ -28,6 +28,7 @@ Route::get('/api-ascensores', [App\Http\Controllers\MuralController::class, 'asc
 Route::get('/api-escaleras', [App\Http\Controllers\MuralController::class, 'escaleras']);
 Route::get('/api-miradores', [App\Http\Controllers\MuralController::class, 'miradores']);
 Route::get('/api-iglesias', [App\Http\Controllers\MuralController::class, 'iglesias']);
+Route::get('/api-centros-culturales', [App\Http\Controllers\MuralController::class, 'centrosCulturales']);
 Route::get('/api-arquitecturas', [App\Http\Controllers\MuralController::class, 'arquitecturas']);
 
 
