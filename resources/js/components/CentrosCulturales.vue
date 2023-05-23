@@ -53,7 +53,7 @@
       <span>
         <p class="font-bold text-lg">{{ atractivo.nombre_institucion }}</p>
         <p class="italic pb-2">{{ atractivo.description }}</p>
-        <div>
+        <div class="pb-3 pt-1">
           <a :href="url + atractivo.sitio_web"   target="_blank" >{{ atractivo.sitio_web }}</a>
         </div>
         

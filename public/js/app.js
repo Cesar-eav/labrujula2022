@@ -7159,7 +7159,9 @@ var render = function render() {
       staticClass: "font-bold text-lg"
     }, [_vm._v(_vm._s(atractivo.nombre_institucion))]), _vm._v(" "), _c("p", {
       staticClass: "italic pb-2"
-    }, [_vm._v(_vm._s(atractivo.description))]), _vm._v(" "), _c("div", [_c("a", {
+    }, [_vm._v(_vm._s(atractivo.description))]), _vm._v(" "), _c("div", {
+      staticClass: "pb-3 pt-1"
+    }, [_c("a", {
       attrs: {
         href: _vm.url + atractivo.sitio_web,
         target: "_blank"
