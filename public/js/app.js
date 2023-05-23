@@ -5554,6 +5554,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      url: "https://",
       arrayList: [],
       page: 0,
       cerro: "",
@@ -7144,7 +7145,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "grid grid-cols-1 md:grid-cols-2 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center my-2 mx-2"
+    staticClass: "grid grid-cols-1 md:grid-cols-2 md:mx-10 px-4 md:gap-5 gap-y-5 justify-center my-2"
   }, _vm._l(_vm.arrayList, function (atractivo) {
     return _c("div", {
       key: atractivo.id,
@@ -7160,7 +7161,7 @@ var render = function render() {
       staticClass: "italic pb-2"
     }, [_vm._v(_vm._s(atractivo.description))]), _vm._v(" "), _c("div", [_c("a", {
       attrs: {
-        href: "https:/" + atractivo.sitio_web,
+        href: _vm.url + atractivo.sitio_web,
         target: "_blank"
       }
     }, [_vm._v(_vm._s(atractivo.sitio_web))])]), _vm._v(" "), _c("a", {

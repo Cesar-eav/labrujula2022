@@ -38,7 +38,7 @@
    
     </div>
 
-    <div  class="grid grid-cols-1 md:grid-cols-2 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center my-2 mx-2">
+    <div  class="grid grid-cols-1 md:grid-cols-2 md:mx-10 px-4 md:gap-5 gap-y-5 justify-center my-2">
       
       <div
          class="mx-0 md:mx-2 sm:mx-0 bg-gray-300 rounded-lg p-2 flex justify-between" 
@@ -54,7 +54,7 @@
         <p class="font-bold text-lg">{{ atractivo.nombre_institucion }}</p>
         <p class="italic pb-2">{{ atractivo.description }}</p>
         <div>
-          <a :href="'https:/' + atractivo.sitio_web "   target="_blank" >{{ atractivo.sitio_web }}</a>
+          <a :href="url + atractivo.sitio_web"   target="_blank" >{{ atractivo.sitio_web }}</a>
         </div>
         
         <a :href="'https://www.facebook.com/' + atractivo.facebook "   target="_blank" > <i class="fab fa-facebook fa-2x"></i></a>
@@ -76,6 +76,7 @@ import ModalComponent from "./ModalCentrosCulturales.vue";
 export default {
   data() {
     return {
+      url: "https://",
       arrayList: [],
       page: 0,
       cerro: "",
