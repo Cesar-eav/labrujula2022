@@ -7144,7 +7144,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "grid grid-cols-1 md:grid-cols-2 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center my-2"
+    staticClass: "grid grid-cols-1 md:grid-cols-2 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center my-2 mx-2"
   }, _vm._l(_vm.arrayList, function (atractivo) {
     return _c("div", {
       key: atractivo.id,

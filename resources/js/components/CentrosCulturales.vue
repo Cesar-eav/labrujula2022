@@ -38,7 +38,7 @@
    
     </div>
 
-    <div  class="grid grid-cols-1 md:grid-cols-2 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center my-2">
+    <div  class="grid grid-cols-1 md:grid-cols-2 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center my-2 mx-2">
       
       <div
          class="mx-0 md:mx-2 sm:mx-0 bg-gray-300 rounded-lg p-2 flex justify-between" 
