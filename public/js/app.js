@@ -8022,7 +8022,7 @@ var render = function render() {
       slot: "spinner"
     },
     slot: "spinner"
-  }, [_vm._v("Loading...")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Cargando...")]), _vm._v(" "), _c("div", {
     attrs: {
       slot: "no-more"
     },

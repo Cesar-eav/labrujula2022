@@ -49,7 +49,7 @@
 
     <infinite-loading @infinite="infiniteHandler">
     
-      <div slot="spinner">Loading...</div>
+      <div slot="spinner">Cargando...</div>
       <div slot="no-more">No more message</div>
       <div slot="no-results">Hemos llegado al final</div>
     </infinite-loading>
