@@ -37,7 +37,7 @@ Route::get('/traspasar', [App\Http\Controllers\CrudController::class, 'traspasar
 
 //CRUD *******************************
 
-Route::get('/crud/index', [App\Http\Controllers\CrudController::class, 'index']);
+Route::get('/crud', [App\Http\Controllers\CrudController::class, 'index']);
 Route::get('/crud/relaciones-crud', [App\Http\Controllers\RelacionController::class, 'relacion']);
 
 //POINT
