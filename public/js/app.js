@@ -5951,6 +5951,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modal.vue */ "./resources/js/components/Modal.vue");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5965,10 +5968,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    ModalComponent: _Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ModalComponent: _Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    InfiniteLoading: (vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2___default())
   },
-  mounted: function mounted() {//this.listMurales();
-    //this.infiniteHandler();
+  mounted: function mounted() {
+    //this.listMurales();
+    this.infiniteHandler();
   },
   methods: {
     infiniteHandler: function infiniteHandler($state) {
@@ -5986,12 +5991,14 @@ __webpack_require__.r(__webpack_exports__);
         //console.log(response.data.murales.data);
         var posts = response.data.murales.data;
 
-        if (posts) {
+        if (posts.length) {
+          // Si hay datos en la variable post
           _this.arrayList = _this.arrayList.concat(posts);
           setTimeout(function () {
             $state.loaded();
-          }, 10);
+          }, 20);
         } else {
+          // Si NO hay datos, ya finalizó
           $state.complete();
         }
       });
@@ -8010,7 +8017,22 @@ var render = function render() {
     on: {
       infinite: _vm.infiniteHandler
     }
-  })], 1);
+  }, [_c("div", {
+    attrs: {
+      slot: "spinner"
+    },
+    slot: "spinner"
+  }, [_vm._v("Loading...")]), _vm._v(" "), _c("div", {
+    attrs: {
+      slot: "no-more"
+    },
+    slot: "no-more"
+  }, [_vm._v("No more message")]), _vm._v(" "), _c("div", {
+    attrs: {
+      slot: "no-results"
+    },
+    slot: "no-results"
+  }, [_vm._v("Hemos llegado al final")])])], 1);
 };
 
 var staticRenderFns = [];

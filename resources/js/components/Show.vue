@@ -47,7 +47,12 @@
       </div>
     </div>
 
-    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+    <infinite-loading @infinite="infiniteHandler">
+    
+      <div slot="spinner">Loading...</div>
+      <div slot="no-more">No more message</div>
+      <div slot="no-results">Hemos llegado al final</div>
+    </infinite-loading>
     
     <!-- @clicked="closeModal" -->
 
@@ -65,6 +70,8 @@
 <script>
 import axios from "axios";
 import ModalComponent from './Modal.vue';
+import InfiniteLoading from 'vue-infinite-loading';
+
 
 export default {
   props: ["ubicacion"],
@@ -80,31 +87,33 @@ export default {
   },
 
   components: {
-        ModalComponent
+        ModalComponent,
+        InfiniteLoading,
+
     },
 
   mounted() {
     //this.listMurales();
-    //this.infiniteHandler();
+    this.infiniteHandler();
   },
 
   methods: {
     infiniteHandler($state) {
       this.page++;
       //http://127.0.0.1:8000/api-murales/alegre?page=2
-      let url = "/api-murales/" + this.ubicacion + "?page=" + this.page;
+      const url = "/api-murales/" + this.ubicacion + "?page=" + this.page;
 
       let limit = this.arrayList.length + 1;
       axios.get(url, { params: { limit: limit } }).then((response) => {
         //console.log(response.data.murales.data);
-        let posts = response.data.murales.data;
+        const posts = response.data.murales.data;
 
-        if (posts) {
+        if (posts.length) { // Si hay datos en la variable post
           this.arrayList = this.arrayList.concat(posts);
-          setTimeout(() => {
+            setTimeout(() => {
             $state.loaded();
-          }, 10);
-        } else {
+            }, 20);
+        } else { // Si NO hay datos, ya finalizó
           $state.complete();
         }
       });
