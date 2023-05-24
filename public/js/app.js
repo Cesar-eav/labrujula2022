@@ -10657,8 +10657,10 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "flex mx-48 bg-red-400"
-  }, [_c("div", [_vm._v("\n      ID Atractivo\n      "), _c("select", {
+    staticClass: "flex mx-16 bg-red-400"
+  }, [_c("div", {
+    staticClass: "w-1/4"
+  }, [_vm._v("\n      ID Atractivo\n      "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -10689,7 +10691,9 @@ var render = function render() {
         value: point.id
       }
     }, [_vm._v("\n          " + _vm._s(point.id) + " - " + _vm._s(point.artista) + "\n        ")]);
-  }), 0), _vm._v("\n      " + _vm._s(_vm.datos.arrayMural) + "\n    ")]), _vm._v(" "), _c("div", [_vm._v("\n      ID Artista\n      "), _c("select", {
+  }), 0), _vm._v("\n      " + _vm._s(_vm.datos.arrayMural) + "\n    ")]), _vm._v(" "), _c("div", {
+    staticClass: "w-3/4"
+  }, [_vm._v("\n      ID Artista\n      "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -10719,7 +10723,7 @@ var render = function render() {
       domProps: {
         value: artist.id
       }
-    }, [_vm._v("\n          " + _vm._s(artist.id) + " - " + _vm._s(artist.name) + "\n        ")]);
+    }, [_vm._v("\n          " + _vm._s(artist.id) + " - " + _vm._s(artist.instagram_address) + " - " + _vm._s(artist.name) + "\n        ")]);
   }), 0), _vm._v("\n      " + _vm._s(_vm.datos.arrayArtista) + "\n\n    ")])]), _vm._v(" "), _c("button", {
     staticClass: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center",
     attrs: {

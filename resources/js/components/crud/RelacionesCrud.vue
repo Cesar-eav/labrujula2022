@@ -52,8 +52,8 @@
       </div>
     </div>
 
-    <div class="flex mx-48 bg-red-400">
-      <div>
+    <div class="flex mx-16 bg-red-400">
+      <div class="w-1/4">
         ID Atractivo
         <select
           v-model="datos.arrayMural"
@@ -71,7 +71,7 @@
         </select>
         {{ datos.arrayMural }}
       </div>
-      <div>
+      <div class="w-3/4">
         ID Artista
         <select
           v-model="datos.arrayArtista"
@@ -84,7 +84,7 @@
             :key="artist.id"
             :value="artist.id"
           >
-            {{ artist.id }} - {{ artist.name }}
+            {{ artist.id }} - {{ artist.instagram_address }} - {{ artist.name }}
           </option>
         </select>
         {{ datos.arrayArtista }}

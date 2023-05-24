@@ -12058,6 +12058,14 @@ input:checked + .toggle-bg {
   margin-left: 3rem;
   margin-right: 3rem;
 }
+.mx-32 {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+.mx-16 {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
 .mr-3 {
   margin-right: 0.75rem;
 }
@@ -12176,6 +12184,9 @@ input:checked + .toggle-bg {
 }
 .w-64 {
   width: 16rem;
+}
+.w-1\/4 {
+  width: 25%;
 }
 .max-w-sm {
   max-width: 24rem;
@@ -12518,6 +12529,10 @@ input:checked + .toggle-bg {
 .py-2\.5 {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
+}
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 .pt-4 {
   padding-top: 1rem;

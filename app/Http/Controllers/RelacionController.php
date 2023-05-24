@@ -15,7 +15,7 @@ class RelacionController extends Controller
 
         $points = Atractivos::orderBy('id')->get();;
         
-        $artists = Artista::with('hm_points')->has('hm_points')->orderBy('id')->get();
+        $artists = Artista::with('hm_points')->has('hm_points')->orderBy('instagram_address')->get();
         //return $artists;
 
     return view('crud/relaciones-crud', compact('points', 'artists'));
