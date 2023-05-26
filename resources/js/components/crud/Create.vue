@@ -2,161 +2,86 @@
   <div class="flex flex-col justify-center m-3">
     <h1 class="text-2xl text-center mb-3">AGREGAR PUNTO</h1>
 
-<!-- PUNTOS CRUD -->
-<div class="flex justify-center">
-  <a href="/crud/view-create-point/">
-    <button
-      type="button"
-      class="
-        focus:outline-none
-        text-white
-        bg-red-700
-        hover:bg-red-800
-        focus:ring-4 focus:ring-red-300
-        font-medium
-        rounded-lg
-        text-sm
-        px-5
-        py-2.5
-        mr-2
-        mb-2
-        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
-      "
-    >
-      Agregar Punto
-    </button>
-  </a>
+    <!-- PUNTOS CRUD -->
+    <div class="flex justify-center">
+      <a href="/crud/view-create-point/">
+        <button
+          type="button"
+          class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        >
+          Agregar Punto
+        </button>
+      </a>
 
-  <a href="/crud/create-ubication/">
-    <button
-      type="button"
-      class="
-        focus:outline-none
-        text-white
-        bg-red-700
-        hover:bg-red-800
-        focus:ring-4 focus:ring-red-300
-        font-medium
-        rounded-lg
-        text-sm
-        px-5
-        py-2.5
-        mr-2
-        mb-2
-        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
-      "
-    >
-      Agregar Ubicacion
-    </button>
-  </a>
+      <a href="/crud/create-ubication/">
+        <button
+          type="button"
+          class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        >
+          Agregar Ubicacion
+        </button>
+      </a>
 
-  <a href="/crud/create-type-point/">
-    <button
-      type="button"
-      class="
-        focus:outline-none
-        text-white
-        bg-red-700
-        hover:bg-red-800
-        focus:ring-4 focus:ring-red-300
-        font-medium
-        rounded-lg
-        text-sm
-        px-5
-        py-2.5
-        mr-2
-        mb-2
-        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
-      "
-    >
-      Agregar Tipo de atractivo
-    </button>
-  </a>
+      <a href="/crud/create-type-point/">
+        <button
+          type="button"
+          class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        >
+          Agregar Tipo de atractivo
+        </button>
+      </a>
 
-  <a href="/crud/artista-view">
-    <button
-      type="button"
-      class="
-        focus:outline-none
-        text-white
-        bg-red-700
-        hover:bg-red-800
-        focus:ring-4 focus:ring-red-300
-        font-medium
-        rounded-lg
-        text-sm
-        px-5
-        py-2.5
-        mr-2
-        mb-2
-        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
-      "
-    >
-      Agregar Artista
-    </button>
-  </a>
-</div>
-
-
+      <a href="/crud/artista-view">
+        <button
+          type="button"
+          class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        >
+          Agregar Artista
+        </button>
+      </a>
+    </div>
 
     <table class="bg-red-400">
       <tbody>
         <th>
-        <tr>
-          <td>Selecciona ubicación:</td>
-          <td>
-            <select
-              v-model="muralDatos.selectedUbicationId"
-              class="
-                bg-gray-50
-                border border-gray-300
-                text-gray-900 text-sm
-                rounded-lg
-                focus:ring-blue-500 focus:border-blue-500
-                block
-                w-full
-                p-2.5
-                dark:bg-gray-700
-                dark:border-gray-600
-                dark:placeholder-gray-400
-                dark:text-white
-                dark:focus:ring-blue-500
-                dark:focus:border-blue-500
-              "
-            >
-              <option
-                v-for="ubication in this.ubications"
-                :key="ubication.id"
-                :value="ubication.id"
-                
+          <tr>
+            <td>Selecciona ubicación:</td>
+            <td>
+              <select
+                v-model="muralDatos.selectedUbicationId"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                {{ ubication.name }}
-              </option>
-            </select>
-          </td>
-        </tr>
+                <option
+                  v-for="ubication in this.ubications"
+                  :key="ubication.id"
+                  :value="ubication.id"
+                >
+                  {{ ubication.name }}
+                </option>
+              </select>
+            </td>
+          </tr>
 
-        <tr>
-          <td>Artista:</td>
-          <td><input type="text" v-model="muralDatos.artista" />
-          </td>
-        </tr>
-        <tr>
-          <td>Tipo atractivo:</td>
-          <td>
-            <!-- <input type="text" v-model="muralDatos.tipo_atractivo" /> -->
-            <select v-model="muralDatos.selectedAtractivoName">
-              <option
-                v-for="atractivo in this.tipo_atractivos"
-                :key="atractivo.id"
-                :value="atractivo.nombre"
-              >
-                {{ atractivo.nombre }}
-              </option>
-            </select>
-          </td>
-        </tr>
-<!-- 
+          <tr>
+            <td>Artista:</td>
+            <td><input type="text" v-model="muralDatos.artista" /></td>
+          </tr>
+          <tr>
+            <td>Tipo atractivo:</td>
+            <td>
+              <!-- <input type="text" v-model="muralDatos.tipo_atractivo" /> -->
+              <select v-model="muralDatos.selectedAtractivoName">
+                <option
+                  v-for="atractivo in this.tipo_atractivos"
+                  :key="atractivo.id"
+                  :value="atractivo.nombre"
+                >
+                  {{ atractivo.nombre }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <!-- 
         <tr>
           <td>Artista:</td>
           <td> 
@@ -179,98 +104,86 @@
             <span>Seleccionados: {{ muralDatos.selectedArtista }}</span>
             </td>
         </tr>     -->
-        <tr>
-          <td>Dirección:</td>
-          <td><input type="text" v-model="muralDatos.direction" /></td>
-        </tr>
-        <tr>
-          <td>Publicidad:</td>
-          <td><input type="checkbox" v-model="muralDatos.publicity" :true-value="1" :false-value="0" /></td>
-        </tr>
-        <tr>
-          <td>Latitud:</td>
-          <td><input type="text" v-model="muralDatos.lat" /></td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>Longitud:</td>
-          <td>
-            <input
-              type="text"
-              v-model="muralDatos.lon"
-              placeholder="edit me"
-            />
-          </td>
-        </tr>
-      </th>
-      <th>
-        <tr>
-          <td>Nombre Institución:</td>
-          <td>
-            <input
-              type="text"
-              v-model="muralDatos.nombre_institucion"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Sitio Web:</td>
-          <td>
-            <input
-              type="text"
-              v-model="muralDatos.sitio_web"
-            />
-          </td>
           <tr>
-          <td>Correo:</td>
-          <td>
-            <input
-              type="text"
-              v-model="muralDatos.correo"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Facebook:</td>
-          <td>
-            <input
-              type="text"
-              v-model="muralDatos.facebook"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Instraman:</td>
-          <td>
-            <input
-              type="text"
-              v-model="muralDatos.instagram"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Twitter:</td>
-          <td>
-            <input
-              type="text"
-              v-model="muralDatos.twitter"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Tiktok:</td>
-          <td>
-            <input
-              type="text"
-              v-model="muralDatos.tiktok"
-            />
-          </td>
-        </tr>
+            <td>Dirección:</td>
+            <td><input type="text" v-model="muralDatos.direction" /></td>
+          </tr>
+          <tr>
+            <td>Publicidad:</td>
+            <td>
+              <input
+                type="checkbox"
+                v-model="muralDatos.publicity"
+                :true-value="1"
+                :false-value="0"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Latitud:</td>
+            <td><input type="text" v-model="muralDatos.lat" /></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Longitud:</td>
+            <td>
+              <input
+                type="text"
+                v-model="muralDatos.lon"
+                placeholder="edit me"
+              />
+            </td>
+          </tr>
+        </th>
+        <th>
+          <tr>
+            <td>Nombre Institución:</td>
+            <td>
+              <input type="text" v-model="muralDatos.nombre_institucion" />
+            </td>
+          </tr>
+          <tr>
+            <td>Sitio Web:</td>
+            <td>
+              <input type="text" v-model="muralDatos.sitio_web" />
+            </td>
+          </tr>
 
-        <tr>
-          <td colspan="2"></td>
-        </tr>
-      </th>
+          <tr>
+            <td>Correo:</td>
+            <td>
+              <input type="text" v-model="muralDatos.correo" />
+            </td>
+          </tr>
+          <tr>
+            <td>Facebook:</td>
+            <td>
+              <input type="text" v-model="muralDatos.facebook" />
+            </td>
+          </tr>
+          <tr>
+            <td>Instraman:</td>
+            <td>
+              <input type="text" v-model="muralDatos.instagram" />
+            </td>
+          </tr>
+          <tr>
+            <td>Twitter:</td>
+            <td>
+              <input type="text" v-model="muralDatos.twitter" />
+            </td>
+          </tr>
+          <tr>
+            <td>Tiktok:</td>
+            <td>
+              <input type="text" v-model="muralDatos.tiktok" />
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+          </tr>
+        </th>
       </tbody>
     </table>
 
@@ -290,22 +203,7 @@
     <button
       @click="upMural()"
       type="button"
-      class="
-        text-white
-        bg-blue-700
-        hover:bg-blue-800
-        focus:ring-4 focus:outline-none focus:ring-blue-300
-        font-medium
-        rounded-lg
-        text-sm
-        px-5
-        py-2.5
-        text-center
-        mr-2
-        dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
-        inline-flex
-        items-center
-      "
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
     >
       <svg
         v-if="loading"
@@ -332,31 +230,30 @@
 
 
 <script>
+import Swal from "sweetalert2";
 export default {
   data() {
     return {
+      // La LLAVE debe corresponderse con el V-MODEL
 
-    // La LLAVE debe corresponderse con el V-MODEL
-    
       muralDatos: {
         direction: "",
         description: "",
         image_name: "",
-        file:"",
+        file: "",
         lat: 0,
         publicity: 0,
         lon: 0,
-        artista:'',
+        artista: "",
         selectedUbicationId: null,
         selectedAtractivoName: null,
-        nombre_institucion:'',
-        sitio_web:'',
-        correo:'',
-        facebook:'',
-        instagram:'',
-        twitter:'',
-        tiktok:''
-        
+        nombre_institucion: "",
+        sitio_web: "",
+        correo: "",
+        facebook: "",
+        instagram: "",
+        twitter: "",
+        tiktok: "",
       },
       loading: false,
       ubications: [],
@@ -371,15 +268,15 @@ export default {
         { nombre: "Museo" },
         { nombre: "Centro Cultural" },
         { nombre: "Otro" },
-      ]
+      ],
       //file: "",
     };
   },
 
   methods: {
     handleFileUpload(event) {
-      this.muralDatos.file= event.target.files[0];
-      this.muralDatos.image_name= event.target.files[0].name;
+      this.muralDatos.file = event.target.files[0];
+      this.muralDatos.image_name = event.target.files[0].name;
     },
 
     upMural() {
@@ -388,43 +285,58 @@ export default {
       let formData = new FormData();
       // 1er Parámetro, nombre del campo del formulario.
       // 2do parámetro, de dónde vienen los datos.
-      formData.append("file",                   this.muralDatos.file);
+      formData.append("file", this.muralDatos.file);
       //formData.append("ubication",              this.muralDatos.selectedUbicationId);
-      formData.append("direction",              this.muralDatos.direction);
-      formData.append("description",            this.muralDatos.description);
-      formData.append("artista",                this.muralDatos.artista);
-      formData.append("image_name",             this.muralDatos.image_name);
-      formData.append("lat",                    this.muralDatos.lat);
-      formData.append("lon",                    this.muralDatos.lon);
-      formData.append("publicity",              this.muralDatos.publicity);
+      formData.append("direction", this.muralDatos.direction);
+      formData.append("description", this.muralDatos.description);
+      formData.append("artista", this.muralDatos.artista);
+      formData.append("image_name", this.muralDatos.image_name);
+      formData.append("lat", this.muralDatos.lat);
+      formData.append("lon", this.muralDatos.lon);
+      formData.append("publicity", this.muralDatos.publicity);
       //formData.append("selectedArtista",        this.muralDatos.selectedArtista);nombre_institucion
-      formData.append("selectedUbicationId",    this.muralDatos.selectedUbicationId);
-      formData.append("selectedAtractivoName",  this.muralDatos.selectedAtractivoName);
-      formData.append("nombre_institucion",     this.muralDatos.nombre_institucion);
-      formData.append("sitio_web",              this.muralDatos.sitio_web);
-      formData.append("correo",                 this.muralDatos.correo);
-      formData.append("facebook",               this.muralDatos.facebook);
-      formData.append("instagram",              this.muralDatos.instagram);
-      formData.append("twitter",                this.muralDatos.twitter);
-      formData.append("tiktok",                 this.muralDatos.tiktok);
+      formData.append(
+        "selectedUbicationId",
+        this.muralDatos.selectedUbicationId
+      );
+      formData.append(
+        "selectedAtractivoName",
+        this.muralDatos.selectedAtractivoName
+      );
+      formData.append("nombre_institucion", this.muralDatos.nombre_institucion);
+      formData.append("sitio_web", this.muralDatos.sitio_web);
+      formData.append("correo", this.muralDatos.correo);
+      formData.append("facebook", this.muralDatos.facebook);
+      formData.append("instagram", this.muralDatos.instagram);
+      formData.append("twitter", this.muralDatos.twitter);
+      formData.append("tiktok", this.muralDatos.tiktok);
 
-
-      
       axios
-        .post("/crud/post-point", formData)
-        .then((response) => {
-          console.log(response.data);
+  .post("/crud/post-point", formData)
+  .then((response) => {
+    console.log(response.data);
 
-          if (response.data.db === true) {
-            this.loading = false;
-            window.location.href = "/crud/view-create-point";
-            console.log("Cargado con éxito", response.data);
-          } else {
-            this.loading = false;
-            console.log("FRACASO", response.data);
-          }
-        })
-        .catch((error) => console.log("Error", error));
+    if (response.data.db === true) {
+      this.loading = false;
+
+      Swal.fire({
+        title: "Cargado con éxito",
+
+        showCloseButton: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {
+          window.location.href = "/crud/view-create-point";
+ // El alert se ejecutará después de cerrar SweetAlert
+        },
+      });
+    } else {
+      this.loading = false;
+      console.log("FRACASO", response.data);
+    }
+  })
+  .catch((error) => console.log("Error", error));
     },
 
     selectUbication() {
@@ -455,5 +367,4 @@ export default {
     //this.selectArtist();
   },
 };
-
 </script>

@@ -159,6 +159,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   props: ["artista"],
 
@@ -198,8 +200,21 @@ export default {
           console.log("RESPUESTA EDICION BACK: ", response.data);
 
           if (response.data) {
-            console.log("DATOS BACK: ", response.data);
-            window.history.back()
+            
+            Swal.fire({
+            title: "Editado con éxito",
+
+            showCloseButton: true,
+            onBeforeOpen: () => {
+              Swal.showLoading();
+            },
+            willClose: () => {
+              window.history.back()
+              // El alert se ejecutará después de cerrar SweetAlert
+            },
+          });
+
+            
           } else {
             console.log("NO FUNIONA, DATA VACIO");
           }

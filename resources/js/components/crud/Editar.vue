@@ -218,6 +218,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   props: ["murales"],
 
@@ -267,8 +269,22 @@ export default {
           //estado:               this.formEditMural.estado
         })
         .then((response) => {
-          //window.location.href = "/crud/index";
-          console.log("EJALE", response.data);
+
+          Swal.fire({
+        title: "Editado con éxito",
+
+        showCloseButton: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {
+          window.location.href = "/crud";
+ // El alert se ejecutará después de cerrar SweetAlert
+        },
+      });
+
+
+
 
           if (response.data) {
           } else {
