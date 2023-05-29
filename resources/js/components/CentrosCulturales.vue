@@ -6,34 +6,26 @@
       >
         Centros Culturales
       </h1>
-      <h1
-        class="text-uppercase text-2xl text-center font-bold text-red-400 p-2"
-      >
-        Inscríbete
-      </h1>
+
       <div class="flex justify-center">
         <p
           class="text-lg w-3/4 md:w-1/2 rounded-lg text-center text-red-800 bg-primary-400 p-2"
         >
           Si diriges un centro cultural como
           un museo, sala de teatro, biblioteca u otro tipo de espacio, regístrate en nuestra plataforma
-          y conecta con nuevas audencias. Al hacerlo, permitirás que
-          más personas accedan a tus servicios y descubran el maravilloso mundo
-          de la cultura. 
-          
+          y conecta con nuevas audencias.
         </p>
       </div>
 
-      <p class="p-5 text-lg text-center text-red-400">
-        Si quieres aparecer en <b>LaBrujula.tk</b> puedes solicitar <b>gratuitamente</b> la
-        inscripción en este
+      <p class="pt-3 pb-3 text-lg text-center text-red-400">
+        
         <a
           href="https://forms.gle/QEEZSEbQGmVpKtHTA"
           target="blank"
           class="underline hover:text-red-100"
         >
-          formulario</a
-        >.
+        Regístrate gratuitamente </a
+        >
       </p>
    
     </div>
