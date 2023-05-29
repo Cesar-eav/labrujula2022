@@ -131,6 +131,8 @@
 
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   props: ["artistas", "mezcla"],
 
@@ -183,7 +185,18 @@ export default {
           console.log("Archivo", response.data);
           if (response.data.artista === true) {
             this.loading = false;
-            window.location.href = "/crud/artista-view";
+            Swal.fire({
+        title: "Artista agregado",
+
+        showCloseButton: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {            
+          window.location.href = "/crud/artista-view";
+          },
+      });
+
           } else {
             this.loading = false;
             //alert("FRACASO");

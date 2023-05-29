@@ -6028,6 +6028,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["artistas", "mezcla"],
   data: function data() {
@@ -6071,7 +6074,16 @@ __webpack_require__.r(__webpack_exports__);
 
         if (response.data.artista === true) {
           _this.loading = false;
-          window.location.href = "/crud/artista-view";
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            title: "Artista agregado",
+            showCloseButton: true,
+            onBeforeOpen: function onBeforeOpen() {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().showLoading();
+            },
+            willClose: function willClose() {
+              window.location.href = "/crud/artista-view";
+            }
+          });
         } else {
           _this.loading = false; //alert("FRACASO");
         }
@@ -6108,6 +6120,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["ascensores"],
   data: function data() {
@@ -6150,9 +6165,19 @@ __webpack_require__.r(__webpack_exports__);
 
         if (response.data.artista === true) {
           _this.loading = false;
-          window.location.href = "/crud/artista-view";
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            title: "Ascensor agregado",
+            showCloseButton: true,
+            onBeforeOpen: function onBeforeOpen() {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().showLoading();
+            },
+            willClose: function willClose() {
+              window.location.href = "/crud/ascensores-view";
+            }
+          });
         } else {
-          _this.loading = false; //alert("FRACASO");
+          _this.loading = false;
+          alert("FRACASO");
         }
       })["catch"](function (error) {
         return console.log("Error", error);
@@ -6376,8 +6401,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6405,14 +6433,24 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/crud-ubication/post", this.ubicationData).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/crud-ubication/post", this.ubicationData).then(function (response) {
         console.log("Archivo", response.data);
 
         if (response.data.ubication_db === true) {
           _this.loading = false;
-          window.location.href = "/crud/create-ubication";
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            title: "Ubicación creada",
+            showCloseButton: true,
+            onBeforeOpen: function onBeforeOpen() {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().showLoading();
+            },
+            willClose: function willClose() {
+              window.location.href = "/crud/create-ubication";
+            }
+          });
         } else {
-          _this.loading = false; //alert("FRACASO");
+          _this.loading = false;
+          alert("FRACASO");
         }
       })["catch"](function (error) {
         return console.log("Error", error);
@@ -6421,10 +6459,8 @@ __webpack_require__.r(__webpack_exports__);
     listarUbications: function listarUbications() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/crud-ubication/list-ubications", this.listUbications).then(function (response) {
-        // const {response} = respuesta
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/crud-ubication/list-ubications", this.listUbications).then(function (response) {
         _this2.listUbications = response.data;
-        console.log("UBICACIONES", response.data);
       });
     }
   },
@@ -6617,6 +6653,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["ascensor"],
   data: function data() {
@@ -6645,8 +6684,16 @@ __webpack_require__.r(__webpack_exports__);
         console.log("RESPUESTA EDICION BACK: ", response.data);
 
         if (response.data) {
-          console.log("DATOS BACK: ", response.data);
-          window.history.back();
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            title: "Editado",
+            showCloseButton: true,
+            onBeforeOpen: function onBeforeOpen() {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().showLoading();
+            },
+            willClose: function willClose() {
+              window.location.href = "/crud/ascensores-view";
+            }
+          });
         } else {
           console.log("NO FUNCIONA, DATA VACIO");
         }
@@ -8357,7 +8404,7 @@ var render = function render() {
     staticClass: "flex flex-col justify-center m-3"
   }, [_c("h1", {
     staticClass: "text-2xl text-center mb-3"
-  }, [_vm._v("AGREGAR ARTISTA")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  }, [_vm._v("ASCENSORES")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "flex justify-center"
   }, [_c("div", {
     staticClass: "grid grid-cols-2 gap-4 w-max justify-center"

@@ -144,6 +144,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   props: ["ascensor"],
 
@@ -178,8 +180,21 @@ export default {
           console.log("RESPUESTA EDICION BACK: ", response.data);
 
           if (response.data) {
-            console.log("DATOS BACK: ", response.data);
-            window.history.back()
+
+            Swal.fire({
+        title: "Editado",
+
+        showCloseButton: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {            
+          window.location.href = "/crud/ascensores-view";
+          },
+      });
+
+
+
           } else {
             console.log("NO FUNCIONA, DATA VACIO");
           }

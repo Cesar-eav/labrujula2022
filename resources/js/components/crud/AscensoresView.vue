@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col justify-center m-3">
-    <h1 class="text-2xl text-center mb-3">AGREGAR ARTISTA</h1>
+    <h1 class="text-2xl text-center mb-3">ASCENSORES</h1>
 
     <!-- PUNTOS CRUD -->
     <div class="flex justify-center">
@@ -131,6 +131,8 @@
 
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   props: ["ascensores"],
 
@@ -183,10 +185,23 @@ export default {
           console.log("Archivo", response.data);
           if (response.data.artista === true) {
             this.loading = false;
-            window.location.href = "/crud/artista-view";
+            Swal.fire({
+        title: "Ascensor agregado",
+
+        showCloseButton: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {            
+          window.location.href = "/crud/ascensores-view";
+          },
+      });
+
+
+
           } else {
             this.loading = false;
-            //alert("FRACASO");
+            alert("FRACASO");
           }
         })
         .catch((error) => console.log("Error", error));

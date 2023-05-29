@@ -185,7 +185,9 @@
 
 
 <script>
+import Swal from "sweetalert2";
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -227,10 +229,22 @@ export default {
           console.log("Archivo", response.data);
           if (response.data.ubication_db === true) {
             this.loading = false;
+
+      Swal.fire({
+        title: "Ubicación creada",
+
+        showCloseButton: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {            
             window.location.href = "/crud/create-ubication";
+          },
+      });
+
           } else {
             this.loading = false;
-            //alert("FRACASO");
+            alert("FRACASO");
           }
         })
         .catch((error) => console.log("Error", error));
@@ -240,9 +254,8 @@ export default {
       axios
         .get("/crud-ubication/list-ubications", this.listUbications)
         .then((response) => {
-          // const {response} = respuesta
           this.listUbications = response.data;
-          console.log("UBICACIONES", response.data);
+
         });
     },
   },
