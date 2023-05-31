@@ -6275,16 +6275,14 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData(); // 1er Parámetro, nombre del campo del formulario.
       // 2do parámetro, de dónde vienen los datos.
 
-      formData.append("file", this.muralDatos.file); //formData.append("ubication",              this.muralDatos.selectedUbicationId);
-
+      formData.append("file", this.muralDatos.file);
       formData.append("direction", this.muralDatos.direction);
       formData.append("description", this.muralDatos.description);
       formData.append("artista", this.muralDatos.artista);
       formData.append("image_name", this.muralDatos.image_name);
       formData.append("lat", this.muralDatos.lat);
       formData.append("lon", this.muralDatos.lon);
-      formData.append("publicity", this.muralDatos.publicity); //formData.append("selectedArtista",        this.muralDatos.selectedArtista);nombre_institucion
-
+      formData.append("publicity", this.muralDatos.publicity);
       formData.append("selectedUbicationId", this.muralDatos.selectedUbicationId);
       formData.append("selectedAtractivoName", this.muralDatos.selectedAtractivoName);
       formData.append("nombre_institucion", this.muralDatos.nombre_institucion);
@@ -6506,37 +6504,59 @@ __webpack_require__.r(__webpack_exports__);
         img: this.murales.image,
         artista: this.murales.artista,
         artist_id: this.murales.artist_id,
-        selectArtist: null //estado:               this.murales.estado
-
+        selectArtist: null,
+        nombre_institucion: this.murales.nombre_institucion,
+        sitio_web: this.murales.sitio_web,
+        correo: this.murales.correo,
+        facebook: this.murales.facebook,
+        instagram: this.murales.instagram,
+        twitter: this.murales.twitter,
+        tiktok: this.murales.tiktok
       },
       ubications: [],
       artists: []
     };
   },
   methods: {
+    handleFileUpload: function handleFileUpload(event) {
+      this.formEditMural.file = event.target.files[0];
+      this.formEditMural.image_name = event.target.files[0].name;
+    },
     editMural: function editMural() {
-      //SE VA AL BACK(CONTROLADOR).
-      axios.post("/crud/edit", {
-        id: this.formEditMural.id,
-        ubication: this.formEditMural.ubication,
-        ubication_id: this.formEditMural.ubication_id,
-        direction: this.formEditMural.direction,
-        description: this.formEditMural.description,
-        artist_id: this.formEditMural.artist_id,
-        artista: this.formEditMural.artista,
-        lat: this.formEditMural.lat,
-        lon: this.formEditMural.lon,
-        type_attractive: this.formEditMural.type_attractive //estado:               this.formEditMural.estado
+      var formData = new FormData(); // 1er Parámetro, nombre del campo en la BD.
+      // 2do parámetro, de dónde vienen los datos.
 
-      }).then(function (response) {
+      formData.append("id", this.formEditMural.id);
+      formData.append("file", this.formEditMural.file);
+      formData.append("image_name", this.formEditMural.image_name);
+      formData.append("ubication", this.formEditMural.ubication);
+      formData.append("ubication_id", this.formEditMural.ubication_id);
+      formData.append("type_attractive", this.formEditMural.type_attractive);
+      formData.append("description", this.formEditMural.description);
+      formData.append("artista", this.formEditMural.artista);
+      formData.append("direction", this.formEditMural.direction);
+      formData.append("lat", this.formEditMural.lat);
+      formData.append("lon", this.formEditMural.lon);
+      formData.append("publicity", this.formEditMural.publicity);
+      formData.append("selectedUbicationId", this.formEditMural.selectedUbicationId);
+      formData.append("selectedAtractivoName", this.formEditMural.selectedAtractivoName);
+      formData.append("nombre_institucion", this.formEditMural.nombre_institucion);
+      formData.append("sitio_web", this.formEditMural.sitio_web);
+      formData.append("correo", this.formEditMural.correo);
+      formData.append("facebook", this.formEditMural.facebook);
+      formData.append("instagram", this.formEditMural.instagram);
+      formData.append("twitter", this.formEditMural.twitter);
+      formData.append("tiktok", this.formEditMural.tiktok);
+      axios.post("/crud/edit", formData).then(function (response) {
+        //console.log("RESPUESTA", response);
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
           title: "Editado con éxito",
           showCloseButton: true,
           onBeforeOpen: function onBeforeOpen() {
             sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().showLoading();
           },
-          willClose: function willClose() {
-            window.location.href = "/crud"; // El alert se ejecutará después de cerrar SweetAlert
+          willClose: function willClose() {//window.location.href = "/crud";
+            // El alert se ejecutará después de cerrar SweetAlert
           }
         });
 
@@ -6550,7 +6570,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/crud-ubication/list-ubications").then(function (response) {
         _this.ubications = response.data;
-        console.log(response);
       })["catch"](function (error) {
         return console.log("Error", error);
       });
@@ -8920,7 +8939,7 @@ var render = function render() {
         _vm.$set(_vm.muralDatos, "facebook", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Instraman:")]), _vm._v(" "), _c("td", [_c("input", {
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Instagraman:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9425,7 +9444,11 @@ var render = function render() {
     staticClass: "text-2xl text-center mb-3"
   }, [_vm._v("EDITAR PUNTO d")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
     staticClass: "bg-red-400 mx-10"
-  }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Ubicación/Cerro:")]), _vm._v(" "), _c("td", [_c("input", {
+  }, [_c("tbody", [_c("tr", {
+    staticClass: "align-top"
+  }, [_c("td", {
+    staticClass: "w-1/3 p-3"
+  }, [_c("p", [_vm._v("Ubicación/Cerro:")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9445,39 +9468,7 @@ var render = function render() {
         _vm.$set(_vm.formEditMural, "ubication", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("td", {
-    staticClass: "align-top",
-    attrs: {
-      rowspan: "7"
-    }
-  }, [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.formEditMural.description,
-      expression: "formEditMural.description"
-    }],
-    attrs: {
-      cols: "40",
-      rows: "5"
-    },
-    domProps: {
-      value: _vm.formEditMural.description
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.formEditMural, "description", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "mt-2",
-    attrs: {
-      src: "/storage/" + _vm.formEditMural.img,
-      width: "500"
-    }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Selecciona ubicación:")]), _vm._v(" "), _c("td", [_c("select", {
+  }), _vm._v(" "), _c("p", [_vm._v("Selecciona ubicación:")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9503,8 +9494,8 @@ var render = function render() {
       domProps: {
         value: ubication.id
       }
-    }, [_vm._v("\n                  " + _vm._s(ubication.name) + "\n                ")]);
-  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("td", [_c("input", {
+    }, [_vm._v(_vm._s(ubication.name))]);
+  }), 0), _vm._v(" "), _c("p", [_vm._v("Tipo atractivo:")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9524,7 +9515,7 @@ var render = function render() {
         _vm.$set(_vm.formEditMural, "type_attractive", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Selecciona artista:")]), _vm._v(" "), _c("td", [_c("select", {
+  }), _vm._v(" "), _c("p", [_vm._v("Selecciona artista:")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9550,8 +9541,8 @@ var render = function render() {
       domProps: {
         value: artist.id
       }
-    }, [_vm._v("\n                  " + _vm._s(artist.name) + "\n                ")]);
-  }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Campo TEXT Artista:")]), _vm._v(" "), _c("td", [_c("input", {
+    }, [_vm._v(_vm._s(artist.name))]);
+  }), 0), _vm._v(" "), _c("p", [_vm._v("Campo TEXT Artista:")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9571,7 +9562,9 @@ var render = function render() {
         _vm.$set(_vm.formEditMural, "artista", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("td", [_vm._v(" ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Dirección:")]), _vm._v(" "), _c("td", [_c("input", {
+  })]), _vm._v(" "), _c("td", {
+    staticClass: "w-1/3 p-3"
+  }, [_c("p", [_vm._v("Dirección:")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9591,7 +9584,7 @@ var render = function render() {
         _vm.$set(_vm.formEditMural, "direction", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("td", [_vm._v(" ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Latitud:")]), _vm._v(" "), _c("td", [_c("input", {
+  }), _vm._v(" "), _c("p", [_vm._v("Latitud:")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9611,7 +9604,7 @@ var render = function render() {
         _vm.$set(_vm.formEditMural, "lat", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("td", [_vm._v(" ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Longitud:")]), _vm._v(" "), _c("td", [_c("input", {
+  }), _vm._v(" "), _c("p", [_vm._v("Longitud:")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -9631,11 +9624,192 @@ var render = function render() {
         _vm.$set(_vm.formEditMural, "lon", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", {
+  }), _vm._v(" "), _c("p", [_vm._v("Nombre Institución:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.nombre_institucion,
+      expression: "formEditMural.nombre_institucion"
+    }],
     attrs: {
-      colspan: "2"
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.nombre_institucion
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "nombre_institucion", $event.target.value);
+      }
     }
-  }, [_c("button", {
+  }), _vm._v(" "), _c("p", [_vm._v("Sitio Web:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.sitio_web,
+      expression: "formEditMural.sitio_web"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.sitio_web
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "sitio_web", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("td", {
+    staticClass: "w-1/3 p-3"
+  }, [_c("p", [_vm._v("Correo:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.correo,
+      expression: "formEditMural.correo"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.correo
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "correo", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", [_vm._v("Facebook:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.facebook,
+      expression: "formEditMural.facebook"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.facebook
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "facebook", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", [_vm._v("Instagram:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.instagram,
+      expression: "formEditMural.instagram"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.instagram
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "instagram", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", [_vm._v("Twitter:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.twitter,
+      expression: "formEditMural.twitter"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.twitter
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "twitter", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", [_vm._v("TikTok:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.tiktok,
+      expression: "formEditMural.tiktok"
+    }],
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.formEditMural.tiktok
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "tiktok", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "w-1/3 p-3"
+  }, [_c("img", {
+    staticClass: "mt-2",
+    attrs: {
+      src: "/storage/" + _vm.formEditMural.img,
+      width: "500"
+    }
+  }), _vm._v(" "), _c("input", {
+    attrs: {
+      accept: "image/png,image/jpeg",
+      type: "file",
+      name: "image",
+      value: "image"
+    },
+    on: {
+      change: function change($event) {
+        return _vm.handleFileUpload($event);
+      }
+    }
+  })]), _vm._v(" "), _c("td", {
+    staticClass: "w-1/3 p-3"
+  }, [_c("p", [_vm._v("Descripción")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formEditMural.description,
+      expression: "formEditMural.description"
+    }],
+    attrs: {
+      cols: "40",
+      rows: "5"
+    },
+    domProps: {
+      value: _vm.formEditMural.description
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.formEditMural, "description", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("button", {
     staticClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
     attrs: {
       type: "button"
@@ -9669,7 +9843,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Punto\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n          Agregar Punto\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-ubication/"
     }
@@ -9678,7 +9852,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Ubicacion\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n          Agregar Ubicacion\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-type-point/"
     }
@@ -9687,7 +9861,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Tipo de atractivo\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n          Agregar Tipo de atractivo\n        ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/artista-view"
     }
@@ -9696,7 +9870,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Artista\n    ")])])]);
+  }, [_vm._v("\n          Agregar Artista\n        ")])])]);
 }];
 render._withStripped = true;
 

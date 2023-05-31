@@ -45,24 +45,23 @@ class CrudController extends Controller
         ]);
 
        $point = new PointTest;
-           $point->direction = $request->direction;
-           $point->lat = $request->lat;                                                                                                                                                                                        
-           $point->lon = $request->lon;
-           $point->artista = $request->artista;
-           $point->publicity = $request->publicity;
-           $point->ubication_id = $request->selectedUbicationId;
-           $point->ubication = $ubicacion_real->name;
-           $point->description = $request->description;
-           $point->artist_id = $request->selectedArtista;         
+           $point->direction =      $request->direction;
+           $point->lat =            $request->lat;                                                                                                                                                                                        
+           $point->lon =            $request->lon;
+           $point->artista =        $request->artista;
+           $point->publicity =      $request->publicity;
+           $point->ubication_id =   $request->selectedUbicationId;
+           $point->ubication =      $ubicacion_real->name;
+           $point->description =    $request->description;
+           $point->artist_id =      $request->selectedArtista;         
            $point->type_attractive = $request->selectedAtractivoName;
-
            $point->nombre_institucion	 = $request->nombre_institucion;         
-           $point->correo	 = $request->correo;         
-           $point->sitio_web	 = $request->sitio_web;         
-           $point->facebook	 = $request->facebook;         
-           $point->instagram	 = $request->instagram;        
-           $point->twitter	 = $request->twitter;        
-           $point->tiktok	 = $request->tiktok;        
+           $point->correo=          $request->correo;         
+           $point->sitio_web=       $request->sitio_web;         
+           $point->facebook	 =      $request->facebook;         
+           $point->instagram =      $request->instagram;        
+           $point->twitter	 =      $request->twitter;        
+           $point->tiktok	 =      $request->tiktok;        
 
            $point->image = 'articles/'.$request->image_name;
            $point->save();
@@ -76,6 +75,47 @@ class CrudController extends Controller
        ]);
     }
 
+
+    public function editPoint(Request $request)
+    {
+        $murales = Atractivos::findOrFail($request->id);
+    
+        $murales->ubication = $request->ubication;
+        $murales->ubication_id = $request->ubication_id;
+        $murales->artist_id = $request->artist_id;
+        $murales->artista = $request->artista;
+        $murales->direction = $request->direction;
+        $murales->description = $request->description;
+        $murales->lat = $request->lat;
+        $murales->lon = $request->lon;
+        $murales->type_attractive = $request->type_attractive;
+        $murales->nombre_institucion = $request->nombre_institucion;
+        $murales->correo = $request->correo;
+        $murales->sitio_web = $request->sitio_web;
+        $murales->facebook = $request->facebook;
+        $murales->instagram = $request->instagram;
+        $murales->twitter = $request->twitter;
+        $murales->tiktok = $request->tiktok;
+    
+        $currentImage = $murales->image; // Almacenar el nombre actual del archivo
+    
+        if ($request->hasFile('file')) {
+            // Si se envió un nuevo archivo, almacenarlo y actualizar la propiedad 'image'
+            $request->file('file')->storeAs('articles', $request->image_name, 'public');
+            $murales->image = 'articles/' . $request->image_name;
+        } else {
+            // Si no se envió un nuevo archivo, mantener el archivo actual
+            $murales->image = $currentImage;
+        }
+    
+        $murales->save();
+    
+        return response()->json([
+            'db' => $murales->save()
+        ]);
+    }
+    
+    
 
 
 
@@ -164,26 +204,6 @@ class CrudController extends Controller
 
 
 
-
-    public function editPoint(Request $request)
-    {
-    
-        $murales = Atractivos::findOrFail($request->id);
-        
-        $murales->ubication =       $request->ubication;
-        $murales->ubication_id =    $request->ubication_id;
-        $murales->artist_id =       $request->artist_id;
-        $murales->artista =         $request->artista;
-        $murales->direction =       $request->direction;
-        $murales->description =     $request->description;
-        $murales->lat =             $request->lat;
-        $murales->lon =             $request->lon;
-        $murales->type_attractive = $request->type_attractive;
-        //$murales->estado=           $request->estado;
-
-        $response = $murales->save();
-        return $response;
-    }
 
     public function editArtist(Request $request)
     {

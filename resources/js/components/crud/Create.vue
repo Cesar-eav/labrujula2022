@@ -162,7 +162,7 @@
             </td>
           </tr>
           <tr>
-            <td>Instraman:</td>
+            <td>Instagraman:</td>
             <td>
               <input type="text" v-model="muralDatos.instagram" />
             </td>
@@ -286,7 +286,6 @@ export default {
       // 1er Parámetro, nombre del campo del formulario.
       // 2do parámetro, de dónde vienen los datos.
       formData.append("file", this.muralDatos.file);
-      //formData.append("ubication",              this.muralDatos.selectedUbicationId);
       formData.append("direction", this.muralDatos.direction);
       formData.append("description", this.muralDatos.description);
       formData.append("artista", this.muralDatos.artista);
@@ -294,15 +293,8 @@ export default {
       formData.append("lat", this.muralDatos.lat);
       formData.append("lon", this.muralDatos.lon);
       formData.append("publicity", this.muralDatos.publicity);
-      //formData.append("selectedArtista",        this.muralDatos.selectedArtista);nombre_institucion
-      formData.append(
-        "selectedUbicationId",
-        this.muralDatos.selectedUbicationId
-      );
-      formData.append(
-        "selectedAtractivoName",
-        this.muralDatos.selectedAtractivoName
-      );
+      formData.append("selectedUbicationId", this.muralDatos.selectedUbicationId);
+      formData.append("selectedAtractivoName",this.muralDatos.selectedAtractivoName);
       formData.append("nombre_institucion", this.muralDatos.nombre_institucion);
       formData.append("sitio_web", this.muralDatos.sitio_web);
       formData.append("correo", this.muralDatos.correo);
