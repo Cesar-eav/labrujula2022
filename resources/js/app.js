@@ -14,11 +14,14 @@ import "viewerjs/dist/viewer.css";
 //SWET ALERT
 import VueSweetalert2 from 'vue-sweetalert2';
 
-
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css';
-
 Vue.use(VueSweetalert2);
+
+//VUE 2 EDITOR
+import Vue2Editor from "vue2-editor";
+Vue.use(Vue2Editor);
+
 
 
 window.Vue = require('vue').default;

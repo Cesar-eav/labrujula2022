@@ -79,23 +79,24 @@ class CrudController extends Controller
     public function editPoint(Request $request)
     {
         $murales = Atractivos::findOrFail($request->id);
-    
-        $murales->ubication = $request->ubication;
-        $murales->ubication_id = $request->ubication_id;
-        $murales->artist_id = $request->artist_id;
-        $murales->artista = $request->artista;
-        $murales->direction = $request->direction;
-        $murales->description = $request->description;
-        $murales->lat = $request->lat;
-        $murales->lon = $request->lon;
+        
+     // Atractivo de a BD           Valores nuevos
+        $murales->ubication =       $request->ubication;
+        $murales->ubication_id =    $request->ubication_id;
+        $murales->artist_id =       $request->artist_id;
+        $murales->artista =         $request->artista;
+        $murales->direction =       $request->direction;
+        $murales->description =     $request->description;
+        $murales->lon =             $request->lon;
+        $murales->lat =             $request->lat;
         $murales->type_attractive = $request->type_attractive;
         $murales->nombre_institucion = $request->nombre_institucion;
-        $murales->correo = $request->correo;
-        $murales->sitio_web = $request->sitio_web;
-        $murales->facebook = $request->facebook;
-        $murales->instagram = $request->instagram;
-        $murales->twitter = $request->twitter;
-        $murales->tiktok = $request->tiktok;
+        $murales->correo =          $request->correo;
+        $murales->sitio_web =       $request->sitio_web;
+        $murales->facebook =        $request->facebook;
+        $murales->instagram =       $request->instagram;
+        $murales->twitter =         $request->twitter;
+        $murales->tiktok =          $request->tiktok;
     
         $currentImage = $murales->image; // Almacenar el nombre actual del archivo
     

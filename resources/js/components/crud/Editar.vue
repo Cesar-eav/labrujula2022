@@ -1,5 +1,8 @@
 <template>
+ 
   <div class="flex justify-center flex-col my-3">
+    {{ this.content }}
+
     <h1 class="text-2xl text-center mb-3">EDITAR PUNTO d</h1>
 
     <!-- PUNTOS CRUD -->
@@ -103,10 +106,10 @@
         value="image"
       />
         </td>
-        <td class="w-1/3 p-3 ">
+        <td  colspan="3" class=" p-3 ">
 
         <p>Descripción</p>
-        <textarea v-model="formEditMural.description" cols="40" rows="5"></textarea>
+        <vue-editor v-model="formEditMural.description" class="bg-white" />
         <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
           <input type="submit" value="Guardar" title="Guardar" @click="editMural()" />
         </button>
@@ -116,21 +119,31 @@
 
   </tbody>
 </table>
+
+
   </div>
 </template>
 
 <script>
 import Swal from "sweetalert2";
+import { VueEditor } from "vue2-editor";
+
 
 export default {
   props: ["murales"],
+  components: { VueEditor },
+
 
   data() {
+
     return {
+      content: "<h1>Some initial content</h1>",
+
       // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
       // Los datos vienen del PROPS
       // La LLAVE debe corresponderse con el V-MODEL
       //this.murales[0],
+
 
       formEditMural: {
         id:                   this.murales.id,

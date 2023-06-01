@@ -60,7 +60,8 @@
                     :src="'/storage/' + atractivo_modal.image"
                     alt="imagen"
                   />
-                  {{ atractivo_modal.description }}
+                  <div v-html="atractivo_modal.description"></div>
+                  
                 </div>
 
                 <div

@@ -34,6 +34,7 @@
         "vue-infinite-loading": "^2.4.5",
         "vue-sweetalert2": "^5.0.5",
         "vue-tables-2-premium": "^2.3.6",
+        "vue2-editor": "^2.10.3",
         "vue2-leaflet": "^2.7.1"
     }
 }
