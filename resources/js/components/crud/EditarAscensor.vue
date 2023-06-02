@@ -114,7 +114,7 @@
           </tr>
           <tr>
             <td>Descripción:</td>
-            <td><textarea v-model="formEditAscensor.content" rows="4" cols="40"/></td>
+            <td><vue-editor v-model="formEditAscensor.content" class="bg-primary-50 pr-3"/></td>
           </tr>
           <tr>
             <td colspan="2">
@@ -145,9 +145,11 @@
 
 <script>
 import Swal from "sweetalert2";
+import { VueEditor } from "vue2-editor";
 
 export default {
   props: ["ascensor"],
+  components: { VueEditor },
 
   data() {
     return {

@@ -56,8 +56,9 @@
                   <img
                     :src="'/storage/' + atractivo_modal.image"
                     alt="imagen"
+                    class="rounded-lg"
                   />
-                  <p> <b>Reseña: </b>{{ atractivo_modal.content }}</p>
+                  <p v-html="atractivo_modal.content"> </p>
                 </div>
 
                 <div

@@ -1,7 +1,6 @@
 <template>
  
   <div class="flex justify-center flex-col my-3">
-    {{ this.content }}
 
     <h1 class="text-2xl text-center mb-3">EDITAR PUNTO d</h1>
 
@@ -95,8 +94,7 @@
     </tr>
     <tr>
       <td class="w-1/3 p-3 ">
-
-    
+        
         <img :src="'/storage/' + formEditMural.img" width="500" class="mt-2" />
         <input
         accept="image/png,image/jpeg"

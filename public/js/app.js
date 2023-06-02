@@ -6692,9 +6692,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["ascensor"],
+  components: {
+    VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_1__.VueEditor
+  },
   data: function data() {
     return {
       // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
@@ -7915,11 +7920,16 @@ var render = function render() {
   }, [_c("p", {
     staticClass: "text-3xl font-bold"
   }, [_vm._v("\n                  Ascensor " + _vm._s(_vm.atractivo_modal.nombre) + "\n                  ")]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Dirección:")]), _vm._v(" " + _vm._s(_vm.atractivo_modal.direccion))]), _vm._v(" "), _c("img", {
+    staticClass: "rounded-lg",
     attrs: {
       src: "/storage/" + _vm.atractivo_modal.image,
       alt: "imagen"
     }
-  }), _vm._v(" "), _c("p", [_c("b", [_vm._v("Reseña: ")]), _vm._v(_vm._s(_vm.atractivo_modal.content))])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("p", {
+    domProps: {
+      innerHTML: _vm._s(_vm.atractivo_modal.content)
+    }
+  })]), _vm._v(" "), _c("div", {
     staticClass: "bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
   }, [_c("button", {
     staticClass: "inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto",
@@ -9462,7 +9472,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "flex justify-center flex-col my-3"
-  }, [_vm._v("\n    " + _vm._s(this.content) + "\n\n    "), _c("h1", {
+  }, [_c("h1", {
     staticClass: "text-2xl text-center mb-3"
   }, [_vm._v("EDITAR PUNTO d")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
     staticClass: "bg-red-400 mx-10"
@@ -10166,28 +10176,16 @@ var render = function render() {
         _vm.$set(_vm.formEditAscensor, "direccion", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Descripción:")]), _vm._v(" "), _c("td", [_c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Descripción:")]), _vm._v(" "), _c("td", [_c("vue-editor", {
+    staticClass: "bg-primary-50 pr-3",
+    model: {
       value: _vm.formEditAscensor.content,
+      callback: function callback($$v) {
+        _vm.$set(_vm.formEditAscensor, "content", $$v);
+      },
       expression: "formEditAscensor.content"
-    }],
-    attrs: {
-      rows: "4",
-      cols: "40"
-    },
-    domProps: {
-      value: _vm.formEditAscensor.content
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.formEditAscensor, "content", $event.target.value);
-      }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", {
+  })], 1)]), _vm._v(" "), _c("tr", [_c("td", {
     attrs: {
       colspan: "2"
     }
