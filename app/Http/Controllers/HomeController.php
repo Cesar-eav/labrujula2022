@@ -13,7 +13,7 @@ class HomeController extends Controller
 
     public function inicio(){
 
-            $ubications = Ubication::orderBy('name')->get();
+        $ubications = Ubication::select('*')->whereNotIn('name',['Almendral'])->orderBy('name')->get();
 
             return view('inicio', compact(
                 'ubications'

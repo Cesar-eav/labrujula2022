@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $ubications = Ubication::all();
+        $ubications = Ubication::select('*')->whereNotIn('name',['Almendral'])->orderBy('name')->get();
         View::share('ubications', $ubications);
 
     }
