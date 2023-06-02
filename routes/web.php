@@ -61,13 +61,15 @@ Route::delete('/crud/delete-artista/{id}', [App\Http\Controllers\CrudController:
 Route::get('/crud/ascensores-view', [App\Http\Controllers\CrudController::class, 'ascensoresView']);
 Route::post('/crud/edit-ascensor', [App\Http\Controllers\CrudController::class, 'editAscensor']);
 Route::get('/crud/edit-ascensor/{id}', [App\Http\Controllers\CrudController::class, 'ViewEditAscensor']);
+Route::delete('/crud/delete-ubication/{id}', [App\Http\Controllers\CrudController::class, 'deleteUbication']);
+
 
 // CRUD MIRADORES
 Route::get('/crud/miradores-view', [App\Http\Controllers\CrudController::class, 'miradoresView']);
 Route::post('/crud/edit-mirador', [App\Http\Controllers\CrudController::class, 'editMirador']);
 Route::get('/crud/edit-mirador/{id}', [App\Http\Controllers\CrudController::class, 'ViewEditMirador']);
 
-//UBICACION
+//CRUD UBICACION
 Route::get('/crud/create-ubication', [App\Http\Controllers\UbicationController::class, 'createUbicationView']);
 Route::post('/crud-ubication/post', [App\Http\Controllers\UbicationController::class, 'createUbication']);
 Route::get('/crud-ubication/list-ubications', [App\Http\Controllers\UbicationController::class, 'selectUbication']);

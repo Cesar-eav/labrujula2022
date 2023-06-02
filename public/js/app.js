@@ -6460,6 +6460,18 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/crud-ubication/list-ubications", this.listUbications).then(function (response) {
         _this2.listUbications = response.data;
       });
+    },
+    deleteMural: function deleteMural(id) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/crud/delete-ubication/" + id).then(function (response) {
+        console.log("ELIMINADO: ", response.data);
+        window.location.href = "/crud/create-ubication";
+      });
+    },
+    edit: function edit(row) {
+      console.log(row);
+    },
+    remove: function remove(row) {
+      console.log(row);
     }
   },
   mounted: function mounted() {
@@ -6868,10 +6880,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteMural: function deleteMural(id) {
-      console.log(id, "INTENTANDO");
       axios["delete"]("/crud/delete/" + id).then(function (response) {
         console.log("ELIMINADO: ", response.data);
-        window.location.href = "/crud/index/";
+        window.location.href = "/crud";
       });
     },
     edit: function edit(row) {

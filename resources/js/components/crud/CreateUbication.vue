@@ -218,8 +218,6 @@ export default {
     };
   },
 
-   
-
   methods: {
     upUbication() {
       this.loading = true;
@@ -258,6 +256,19 @@ export default {
 
         });
     },
+    deleteMural(id) {
+      axios.delete("/crud/delete-ubication/" + id).then((response) => {
+        console.log("ELIMINADO: ", response.data);
+        window.location.href = "/crud/create-ubication";
+      });
+    },
+
+    edit(row) {
+      console.log(row);
+    },
+    remove(row) {
+      console.log(row);
+    }
   },
 
   mounted() {

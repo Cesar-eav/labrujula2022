@@ -249,10 +249,9 @@ export default {
 
   methods: {
     deleteMural(id) {
-      console.log(id, "INTENTANDO");
       axios.delete("/crud/delete/" + id).then((response) => {
         console.log("ELIMINADO: ", response.data);
-        window.location.href = "/crud/index/";
+        window.location.href = "/crud";
       });
     },
     edit(row) {

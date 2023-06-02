@@ -188,11 +188,7 @@ class CrudController extends Controller
         return $response;
     }
 
-    //UBICACIONES
-
-
-
-
+//UBICACIONES
 
     public function viewEditUbication ($id){
         
@@ -201,6 +197,12 @@ class CrudController extends Controller
             'ubication',
             'id'
         ));
+    }
+
+    public function deleteUbication ($id) {
+        $ubication = Ubication::find($id);
+        $response = $ubication->delete();
+        return $response;
     }
 
 
@@ -232,7 +234,6 @@ class CrudController extends Controller
         $ascensor->nombre=      $request->nombre;
         $ascensor->direccion=   $request->direccion;
         $ascensor->content=     $request->content;
-
         $response = $ascensor->save();
         return $response;
     }
@@ -250,59 +251,17 @@ class CrudController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public function createView()
-    // {
-    //     $murales = new PointTest();
-    //     return view('crud.create', compact('murales'));
-    // }
-
     public function pointsView()
     {
        return view('crud.create-point');
     }
 
 
-   
-
-
-
-
-
-    // public function createMural(Request $request)
-    // {
-    //         $mural = new PointTest;
-    //         $mural->ubicacion =         $request->ubicacion;
-    //         $mural->artista =           $request->artista;
-    //         $mural->calle =             $request->calle;
-    //         $mural->descripcion =       $request->descripcion;
-    //         $mural->lat =               $request->lat;
-    //         $mural->lon =               $request->lon;
-    //         $mural->ubication_id =      $request->selectedUbication;
-    //         $mural->save();
-    //         return response()->json([
-    //             'db'=>$mural->save()
-    //         ]);
-    // }
 
     public function deleteMural ($id) {
         $mural = PointTest::find($id);
         $response = $mural->delete();
-
         return $response;
-
     }
 
     public function deleteArtista ($id) {
