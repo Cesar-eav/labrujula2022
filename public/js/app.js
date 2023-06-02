@@ -7821,6 +7821,7 @@ var render = function render() {
       alt: "imagen"
     }
   }), _vm._v(" "), _c("div", {
+    staticClass: "text-justify",
     domProps: {
       innerHTML: _vm._s(_vm.atractivo_modal.description)
     }
