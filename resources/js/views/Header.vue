@@ -56,6 +56,12 @@
           <a href="/miradores" class="menuPrincipal">Miradores</a>
         </li>
         <li>
+          <a href="/bares" class="menuPrincipal">Bares</a>
+        </li>
+        <li>
+          <a href="/plazas" class="menuPrincipal">Parques y Plazas</a>
+        </li>
+        <li>
           <a href="/centros-culturales" class="menuPrincipal">Centros Culturales</a>
         </li>
         <li>

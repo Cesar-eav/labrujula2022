@@ -39,7 +39,7 @@
         :key="atractivo.id"
       >
       
-      <img :src="'storage/' + atractivo.image" class="max-h-32 w-32 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-lg"   />
+      <img :src="'storage/' + atractivo.image" class="max-h-32 w-32 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-full"   />
 
 
       <span>

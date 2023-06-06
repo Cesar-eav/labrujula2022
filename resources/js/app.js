@@ -60,6 +60,8 @@ Vue.component('mapa-osm', require('./components/Osm.vue').default);
 Vue.component('ascensores', require('./components/Ascensores.vue').default);
 Vue.component('centros-culturales-component', require('./components/CentrosCulturales.vue').default);
 Vue.component('escaleras', require('./components/Escaleras.vue').default);
+Vue.component('bares', require('./components/Bares.vue').default);
+Vue.component('plazas', require('./components/Plazas.vue').default);
 Vue.component('miradores', require('./components/Miradores.vue').default);
 Vue.component('iglesias', require('./components/Iglesias.vue').default);
 Vue.component('arquitecturas', require('./components/Arquitectura.vue').default);

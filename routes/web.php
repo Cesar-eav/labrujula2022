@@ -15,6 +15,8 @@ Route::get('/osm/{lat?}/{long?}', [App\Http\Controllers\HomeController::class, '
 Route::get('/ascensores', [App\Http\Controllers\HomeController::class, 'ascensores']);
 Route::get('/escaleras', [App\Http\Controllers\HomeController::class, 'escaleras']);
 Route::get('/miradores', [App\Http\Controllers\HomeController::class, 'miradores']);
+Route::get('/bares', [App\Http\Controllers\HomeController::class, 'bares']);
+Route::get('/plazas', [App\Http\Controllers\HomeController::class, 'plazas']);
 Route::get('/iglesias', [App\Http\Controllers\HomeController::class, 'iglesias']);
 Route::get('/arquitecturas', [App\Http\Controllers\HomeController::class, 'arquitecturas']);
 Route::get('/artistas',[App\Http\Controllers\HomeController::class, 'artistas']);

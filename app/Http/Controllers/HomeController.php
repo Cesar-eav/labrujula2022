@@ -69,6 +69,14 @@ class HomeController extends Controller
     public function miradores(){
         return view('miradores');
     }
+    public function bares(){
+        return view('bares');
+    }
+
+    public function plazas(){
+        return view('plazas');
+    }
+
     public function iglesias(){
         return view('iglesias');
     }
