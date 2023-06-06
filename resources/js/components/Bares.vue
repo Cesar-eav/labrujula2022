@@ -8,9 +8,14 @@
 
       
       <div class="text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3">Bares</div>
+      <div class="text-uppercase text-xl text-center font-bold text-red-400 pt-4 pb-3">En construcción</div>
+      <a href="https://www.instagram.com/barlibertyvalpo/" target="blank">
+      <div class="text-center text-3xl font-bold text-red-400 pt-4 pb-3">El primero en apoyar la causa: Bar Liberty.<br> Pronto toda la información.</div></a>
+
+      
 
 
-<div v-viewer class="flex flex-wrap justify-center md:px-0 px-2 ">
+<!-- <div v-viewer class="flex flex-wrap justify-center md:px-0 px-2 ">
 
     <div class="w-96 mx-1 mb-2 bg-red-800 rounded-lg " v-for="miradores in arrayList" :key="miradores.id">
         <img :src="'storage/'+miradores.image" class="rounded-lg" /> 
@@ -37,7 +42,7 @@
 
     </div>
 
-</div>
+</div> -->
 
     
 

@@ -7,12 +7,28 @@
       @clicked="closeModal"/>
 
       
-      <div class="text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3">Parques y plazas</div>
+      <div class="text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3">Parques y Plazas</div>
+
+      <div class="text-uppercase text-xl text-center font-bold text-red-400 pt-4 pb-3">En construcción</div>
+
+      <div class="flex flex-row">
+      <div class="text-uppercase text-xl text-center font-bold text-red-400 w-60">
+           O` Higgins,  de La Victoria,  Anibal Pinto,  Sotomayor,  Echaurren,  Waddington,  Bismarck,
+           Eleuterio Ramirez,  Cívica, Mena,  Simon Bolivar, Playa Yungay,  Carlos von Moltke,  San Francisco de Asis,
+           Pajaritos,  Esmeralda,  Wheelwright,  Rubén Darío,  El Descanso.
+      </div>
+
+      <div class="text-uppercase text-xl text-center font-bold text-red-400 w-60">
+  Parque El Litre, Quintil, Parque Escuela 36, Parque Quebrada Verde,
+      </div>
+      </div>
+
+
 
 
 <div v-viewer class="flex flex-wrap justify-center md:px-0 px-2 ">
 
-    <div class="w-96 mx-1 mb-2 bg-red-800 rounded-lg " v-for="miradores in arrayList" :key="miradores.id">
+    <!-- <div class="w-96 mx-1 mb-2 bg-red-800 rounded-lg " v-for="miradores in arrayList" :key="miradores.id">
         <img :src="'storage/'+miradores.image" class="rounded-lg" /> 
 
 
@@ -32,7 +48,7 @@
             target="blank"
             >Ir al mapa</a
           >
-        </div>
+        </div> -->
 
 
     </div>

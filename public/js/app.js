@@ -7423,44 +7423,23 @@ var render = function render() {
   }), _vm._v(" "), _c("div", {
     staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3"
   }, [_vm._v("Bares")]), _vm._v(" "), _c("div", {
-    directives: [{
-      name: "viewer",
-      rawName: "v-viewer"
-    }],
-    staticClass: "flex flex-wrap justify-center md:px-0 px-2"
-  }, _vm._l(_vm.arrayList, function (miradores) {
-    return _c("div", {
-      key: miradores.id,
-      staticClass: "w-96 mx-1 mb-2 bg-red-800 rounded-lg"
-    }, [_c("img", {
-      staticClass: "rounded-lg",
-      attrs: {
-        src: "storage/" + miradores.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "flex justify-between"
-    }, [_c("button", {
-      staticClass: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
-      attrs: {
-        type: "button"
-      },
-      on: {
-        click: function click($event) {
-          return _vm.openModal(miradores);
-        }
-      }
-    }, [_vm._v("\n            Más información\n          ")]), _vm._v(" "), _c("a", {
-      staticClass: "block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
-      attrs: {
-        type: "button",
-        href: "/osm/" + miradores.lat + "/" + miradores.lon,
-        target: "blank"
-      }
-    }, [_vm._v("Ir al mapa")])])]);
-  }), 0)], 1);
+    staticClass: "text-uppercase text-xl text-center font-bold text-red-400 pt-4 pb-3"
+  }, [_vm._v("En construcción")]), _vm._v(" "), _vm._m(0)], 1);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("a", {
+    attrs: {
+      href: "https://www.instagram.com/barlibertyvalpo/",
+      target: "blank"
+    }
+  }, [_c("div", {
+    staticClass: "text-center text-3xl font-bold text-red-400 pt-4 pb-3"
+  }, [_vm._v("El primero en apoyar la causa: Bar Liberty."), _c("br"), _vm._v(" Pronto toda la información.")])]);
+}];
 render._withStripped = true;
 
 
@@ -8312,45 +8291,29 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3"
-  }, [_vm._v("Parques y plazas")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Parques y Plazas")]), _vm._v(" "), _c("div", {
+    staticClass: "text-uppercase text-xl text-center font-bold text-red-400 pt-4 pb-3"
+  }, [_vm._v("En construcción")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
     directives: [{
       name: "viewer",
       rawName: "v-viewer"
     }],
     staticClass: "flex flex-wrap justify-center md:px-0 px-2"
-  }, _vm._l(_vm.arrayList, function (miradores) {
-    return _c("div", {
-      key: miradores.id,
-      staticClass: "w-96 mx-1 mb-2 bg-red-800 rounded-lg"
-    }, [_c("img", {
-      staticClass: "rounded-lg",
-      attrs: {
-        src: "storage/" + miradores.image
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "flex justify-between"
-    }, [_c("button", {
-      staticClass: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
-      attrs: {
-        type: "button"
-      },
-      on: {
-        click: function click($event) {
-          return _vm.openModal(miradores);
-        }
-      }
-    }, [_vm._v("\n            Más información\n          ")]), _vm._v(" "), _c("a", {
-      staticClass: "block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
-      attrs: {
-        type: "button",
-        href: "/osm/" + miradores.lat + "/" + miradores.lon,
-        target: "blank"
-      }
-    }, [_vm._v("Ir al mapa")])])]);
-  }), 0)], 1);
+  })], 1);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "flex flex-row"
+  }, [_c("div", {
+    staticClass: "text-uppercase text-xl text-center font-bold text-red-400 w-60"
+  }, [_vm._v("\n           O` Higgins,  de La Victoria,  Anibal Pinto,  Sotomayor,  Echaurren,  Waddington,  Bismarck,\n           Eleuterio Ramirez,  Cívica, Mena,  Simon Bolivar, Playa Yungay,  Carlos von Moltke,  San Francisco de Asis,\n           Pajaritos,  Esmeralda,  Wheelwright,  Rubén Darío,  El Descanso.\n      ")]), _vm._v(" "), _c("div", {
+    staticClass: "text-uppercase text-xl text-center font-bold text-red-400 w-60"
+  }, [_vm._v("\n  Parque El Litre, Quintil, Parque Escuela 36, Parque Quebrada Verde,\n      ")])]);
+}];
 render._withStripped = true;
 
 
@@ -11577,26 +11540,6 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal",
     attrs: {
-      href: "/bares"
-    }
-  }, [_vm._v("Bares")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("li", [_c("a", {
-    staticClass: "menuPrincipal",
-    attrs: {
-      href: "/plazas"
-    }
-  }, [_vm._v("Parques y Plazas")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("li", [_c("a", {
-    staticClass: "menuPrincipal",
-    attrs: {
       href: "/centros-culturales"
     }
   }, [_vm._v("Centros Culturales")])]);
@@ -11620,6 +11563,26 @@ var staticRenderFns = [function () {
       href: "/arquitecturas"
     }
   }, [_vm._v("Arquitectura")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("li", [_c("a", {
+    staticClass: "menuPrincipal",
+    attrs: {
+      href: "/bares"
+    }
+  }, [_vm._v("Bares")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("li", [_c("a", {
+    staticClass: "menuPrincipal",
+    attrs: {
+      href: "/plazas"
+    }
+  }, [_vm._v("Parques y Plazas")])]);
 }];
 render._withStripped = true;
 
