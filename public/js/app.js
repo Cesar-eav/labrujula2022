@@ -6089,6 +6089,12 @@ __webpack_require__.r(__webpack_exports__);
     //this.listMurales();
     this.infiniteHandler();
   },
+  computed: {
+    isMobileAgent: function isMobileAgent() {
+      var userAgent = navigator.userAgent;
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+    }
+  },
   methods: {
     infiniteHandler: function infiniteHandler($state) {
       var _this = this;
@@ -8350,25 +8356,36 @@ var render = function render() {
     staticClass: "flex justify-between my-4 mx-10"
   }, [_c("p", {
     staticClass: "font-bold text-2xl text-red-600"
-  }, [_vm._v(" Atractivos")]), _vm._v(" "), _c("p", {
+  }, [_vm._v("Atractivos")]), _vm._v(" "), _c("p", {
     staticClass: "text-uppercase text-3xl font-bold text-red-400"
-  }, [_vm._v(" " + _vm._s(_vm.ubicacion))])]), _vm._v(" "), _c("div", {
-    directives: [{
-      name: "viewer",
-      rawName: "v-viewer"
-    }],
+  }, [_vm._v("\n      " + _vm._s(_vm.ubicacion) + "\n    ")])]), _vm._v(" "), _c("div", {
     staticClass: "grid grid-cols-1 md:grid-cols-3 md:mx-10 sm:mx-0 md:gap-5 gap-y-5 justify-center md:px-0 px-2"
-  }, _vm._l(this.arrayList, function (atractivo) {
+  }, _vm._l(_vm.arrayList, function (atractivo) {
     return _c("div", {
       key: atractivo.id,
       staticClass: "mx-0 md:mx-2 sm:mx-0 bg-red-800 rounded-lg"
-    }, [_c("img", {
+    }, [_vm.isMobileAgent ? _c("div", [_c("img", {
       staticClass: "w-full h-60 rounded-lg",
       attrs: {
         src: "/storage/" + atractivo.image,
         alt: "imagen"
       }
     }), _vm._v(" "), _c("div", {
+      domProps: {
+        innerHTML: _vm._s(atractivo.content)
+      }
+    })]) : _c("div", [_c("div", {
+      directives: [{
+        name: "viewer",
+        rawName: "v-viewer"
+      }]
+    }, [_c("img", {
+      staticClass: "w-full h-60 rounded-lg",
+      attrs: {
+        src: "/storage/" + atractivo.image,
+        alt: "imagen"
+      }
+    })])]), _vm._v(" "), _c("div", {
       staticClass: "flex justify-between mx-3"
     }, [_c("button", {
       staticClass: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm py-2 px-2 mr-3 my-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
@@ -8385,9 +8402,9 @@ var render = function render() {
       attrs: {
         type: "button",
         href: "/osm/" + atractivo.lat + "/" + atractivo.lon,
-        target: "blank"
+        target: "_blank"
       }
-    }, [_vm._v("Ir al mapa")])])]);
+    }, [_vm._v("\n          Ir al mapa\n        ")])])]);
   }), 0), _vm._v(" "), _c("infinite-loading", {
     on: {
       infinite: _vm.infiniteHandler
