@@ -65,11 +65,12 @@
           <a href="/arquitecturas" class="menuPrincipal block py-2">Arquitectura</a>
         </li>
         <li>
-          <a href="/bares" class="menuPrincipal">Bares</a>
+          <a href="/plazas-parques-huertos" class="menuPrincipal">Parques y Plazas</a>
         </li>
         <li>
-          <a href="/plazas" class="menuPrincipal">Parques y Plazas</a>
+          <a href="/bares" class="menuPrincipal">Bares</a>
         </li>
+
 
         <li v-if="false">
           <a href="/crud/index" class="menuPrincipal block py-2">CRUD</a>

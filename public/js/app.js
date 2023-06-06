@@ -11609,9 +11609,9 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal",
     attrs: {
-      href: "/bares"
+      href: "/plazas-parques-huertos"
     }
-  }, [_vm._v("Bares")])]);
+  }, [_vm._v("Parques y Plazas")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -11619,9 +11619,9 @@ var staticRenderFns = [function () {
   return _c("li", [_c("a", {
     staticClass: "menuPrincipal",
     attrs: {
-      href: "/plazas"
+      href: "/bares"
     }
-  }, [_vm._v("Parques y Plazas")])]);
+  }, [_vm._v("Bares")])]);
 }];
 render._withStripped = true;
 
