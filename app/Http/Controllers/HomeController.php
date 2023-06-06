@@ -80,7 +80,7 @@ class HomeController extends Controller
 
             $points = Atractivos::orderBy('id')->get();;
             
-            $artists = Artista::with('hm_points')->has('hm_points')->orderBy('id')->get();
+            $artists = Artista::with('hm_points')->has('hm_points')->orderBy('name')->get();
             //return $artists;
     
         return view('artistas', compact('points', 'artists'));
