@@ -45,7 +45,6 @@
 
     <div id="datos-tabla" class="mx-8">
       <v-client-table
-        v-viewer
         :data="miradores"
         :columns="columns"
         :options="options"

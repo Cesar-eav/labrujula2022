@@ -114,7 +114,7 @@
           </tr>
           <tr>
             <td>Descripción:</td>
-            <td><textarea v-model="formEditMirador.description" rows="4" cols="40"/></td>
+            <td><vue-editor v-model="formEditMirador.description" class="bg-white mr-2"/></td>
           </tr>
           <tr>
             <td colspan="2">
@@ -138,9 +138,14 @@
   </div>
 </template>
 
-<script>
+<script>  
+import Swal from "sweetalert2";
+import { VueEditor } from "vue2-editor";
+
 export default {
   props: ["mirador"],
+  components: { VueEditor },
+
 
   data() {
     return {
@@ -173,11 +178,19 @@ export default {
         type_attractive:      'Mirador'
         })
         .then((response) => {
-          console.log("RESPUESTA EDICION BACK: ", response.data);
 
           if (response.data) {
-            console.log("DATOS BACK: ", response.data);
-            window.history.back()
+            Swal.fire({
+            title: "Editado con éxito",
+            showCloseButton: true,
+            onBeforeOpen: () => {
+              Swal.showLoading();
+            },
+            willClose: () => {
+              window.location.href = "/crud/miradores-view";
+              // El alert se ejecutará después de cerrar SweetAlert
+            },
+          });
           } else {
             console.log("NO FUNCIONA, DATA VACIO");
           }

@@ -6757,8 +6757,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["mirador"],
+  components: {
+    VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_1__.VueEditor
+  },
   data: function data() {
     return {
       // PONGO EN DATA LOS DATOS QUE VOY A EDITAR
@@ -6784,11 +6792,17 @@ __webpack_require__.r(__webpack_exports__);
         artista: 'Sin Artista',
         type_attractive: 'Mirador'
       }).then(function (response) {
-        console.log("RESPUESTA EDICION BACK: ", response.data);
-
         if (response.data) {
-          console.log("DATOS BACK: ", response.data);
-          window.history.back();
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            title: "Editado con éxito",
+            showCloseButton: true,
+            onBeforeOpen: function onBeforeOpen() {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().showLoading();
+            },
+            willClose: function willClose() {
+              window.location.href = "/crud/miradores-view"; // El alert se ejecutará después de cerrar SweetAlert
+            }
+          });
         } else {
           console.log("NO FUNCIONA, DATA VACIO");
         }
@@ -6810,6 +6824,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["ubication"],
   data: function data() {
@@ -6831,11 +6848,17 @@ __webpack_require__.r(__webpack_exports__);
         id: this.formEditUbication.id,
         name: this.formEditUbication.name
       }).then(function (response) {
-        console.log("RESPUESTA EDICION BACK: ", response.data);
-
         if (response.data) {
-          console.log("DATOS BACK: ", response.data);
-          window.history.back();
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            title: "Editado con éxito",
+            showCloseButton: true,
+            onBeforeOpen: function onBeforeOpen() {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().showLoading();
+            },
+            willClose: function willClose() {
+              window.location.href = "/crud/create-ubication"; // El alert se ejecutará después de cerrar SweetAlert
+            }
+          });
         } else {
           console.log("NO FUNCIONA, DATA VACIO");
         }
@@ -10223,7 +10246,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Punto\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n        Agregar Punto\n      ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-ubication/"
     }
@@ -10232,7 +10255,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Ubicacion\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n        Agregar Ubicacion\n      ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-type-point/"
     }
@@ -10241,7 +10264,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Tipo de atractivo\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n        Agregar Tipo de atractivo\n      ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/artista-view"
     }
@@ -10250,7 +10273,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Artista\n    ")])])]);
+  }, [_vm._v("\n        Agregar Artista\n      ")])])]);
 }];
 render._withStripped = true;
 
@@ -10319,28 +10342,16 @@ var render = function render() {
         _vm.$set(_vm.formEditMirador, "direction", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Descripción:")]), _vm._v(" "), _c("td", [_c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
+  })])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Descripción:")]), _vm._v(" "), _c("td", [_c("vue-editor", {
+    staticClass: "bg-white mr-2",
+    model: {
       value: _vm.formEditMirador.description,
+      callback: function callback($$v) {
+        _vm.$set(_vm.formEditMirador, "description", $$v);
+      },
       expression: "formEditMirador.description"
-    }],
-    attrs: {
-      rows: "4",
-      cols: "40"
-    },
-    domProps: {
-      value: _vm.formEditMirador.description
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.formEditMirador, "description", $event.target.value);
-      }
     }
-  })])]), _vm._v(" "), _c("tr", [_c("td", {
+  })], 1)]), _vm._v(" "), _c("tr", [_c("td", {
     attrs: {
       colspan: "2"
     }
@@ -10799,10 +10810,6 @@ var render = function render() {
       id: "datos-tabla"
     }
   }, [_c("v-client-table", {
-    directives: [{
-      name: "viewer",
-      rawName: "v-viewer"
-    }],
     attrs: {
       data: _vm.miradores,
       columns: _vm.columns,
