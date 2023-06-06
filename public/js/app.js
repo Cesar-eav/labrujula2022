@@ -8297,9 +8297,9 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3"
-  }, [_vm._v("Parques y Plazas")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Parques, Plazas y Huertos Ubanos")]), _vm._v(" "), _c("div", {
     staticClass: "text-uppercase text-xl text-center font-bold text-red-400 pt-4 pb-3"
-  }, [_vm._v("En construcción")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  }, [_vm._v("En construcción")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("div", {
     directives: [{
       name: "viewer",
       rawName: "v-viewer"
@@ -8313,11 +8313,33 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
+    staticClass: "flex justify-center"
+  }, [_c("p", {
+    staticClass: "text-lg w-3/4 md:w-1/2 rounded-lg text-center text-red-800 bg-primary-400 p-2"
+  }, [_vm._v("\n          Si estás a cargo una plaza, huerto, parque comunitario o cualquier espacio al aire libre que pudiera entrar en estas categorias te \n          invitamos a registrarte en LaBrujula.Tk\n        ")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("p", {
+    staticClass: "pt-3 pb-3 text-lg text-center text-red-400"
+  }, [_c("a", {
+    staticClass: "underline hover:text-red-100",
+    attrs: {
+      href: "https://forms.gle/5aMR2ZhyaLapoF4h8\n",
+      target: "blank"
+    }
+  }, [_vm._v("\n        Regístrate gratuitamente ")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "flex flex-row"
   }, [_c("div", {
-    staticClass: "text-uppercase text-xl text-center font-bold text-red-400 w-60"
+    staticClass: "hidden text-uppercase text-xl text-center font-bold text-red-400 w-60"
   }, [_vm._v("\n           O` Higgins,  de La Victoria,  Anibal Pinto,  Sotomayor,  Echaurren,  Waddington,  Bismarck,\n           Eleuterio Ramirez,  Cívica, Mena,  Simon Bolivar, Playa Yungay,  Carlos von Moltke,  San Francisco de Asis,\n           Pajaritos,  Esmeralda,  Wheelwright,  Rubén Darío,  El Descanso.\n      ")]), _vm._v(" "), _c("div", {
-    staticClass: "text-uppercase text-xl text-center font-bold text-red-400 w-60"
+    staticClass: "hidden text-uppercase text-xl text-center font-bold text-red-400 w-60"
   }, [_vm._v("\n  Parque El Litre, Quintil, Parque Escuela 36, Parque Quebrada Verde,\n      ")])]);
 }];
 render._withStripped = true;

@@ -7,18 +7,40 @@
       @clicked="closeModal"/>
 
       
-      <div class="text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3">Parques y Plazas</div>
+      <div class="text-uppercase text-3xl text-center font-bold text-red-400 pt-4 pb-3">Parques, Plazas y Huertos Ubanos</div>
 
       <div class="text-uppercase text-xl text-center font-bold text-red-400 pt-4 pb-3">En construcción</div>
 
+      <div class="flex justify-center">
+        <p
+          class="text-lg w-3/4 md:w-1/2 rounded-lg text-center text-red-800 bg-primary-400 p-2"
+        >
+          Si estás a cargo una plaza, huerto, parque comunitario o cualquier espacio al aire libre que pudiera entrar en estas categorias te 
+          invitamos a registrarte en LaBrujula.Tk
+        </p>
+      </div>
+
+      <p class="pt-3 pb-3 text-lg text-center text-red-400">
+        
+        <a
+          href="https://forms.gle/5aMR2ZhyaLapoF4h8
+"
+          target="blank"
+          class="underline hover:text-red-100"
+        >
+        Regístrate gratuitamente </a
+        >
+      </p>
+
+
       <div class="flex flex-row">
-      <div class="text-uppercase text-xl text-center font-bold text-red-400 w-60">
+      <div class="hidden text-uppercase text-xl text-center font-bold text-red-400 w-60">
            O` Higgins,  de La Victoria,  Anibal Pinto,  Sotomayor,  Echaurren,  Waddington,  Bismarck,
            Eleuterio Ramirez,  Cívica, Mena,  Simon Bolivar, Playa Yungay,  Carlos von Moltke,  San Francisco de Asis,
            Pajaritos,  Esmeralda,  Wheelwright,  Rubén Darío,  El Descanso.
       </div>
 
-      <div class="text-uppercase text-xl text-center font-bold text-red-400 w-60">
+      <div class="hidden text-uppercase text-xl text-center font-bold text-red-400 w-60">
   Parque El Litre, Quintil, Parque Escuela 36, Parque Quebrada Verde,
       </div>
       </div>
