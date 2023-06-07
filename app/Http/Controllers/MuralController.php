@@ -74,7 +74,8 @@ class MuralController extends Controller
     public function miradores()
     {
         $miradores = Atractivos::where('type_attractive', 'Mirador')->get();
-        return $miradores;
+        return response()->json($miradores)
+        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
     }
     public function iglesias()
     {
