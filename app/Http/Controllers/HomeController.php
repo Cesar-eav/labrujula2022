@@ -14,10 +14,9 @@ class HomeController extends Controller
     public function inicio(){
 
         $ubications = Ubication::select('*')->whereNotIn('name',['Almendral'])->orderBy('name')->get();
-
-            return view('inicio', compact(
-                'ubications'
-            ));
+        return response()->json($ubications)
+        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+            
     }
 
     public function muralesHome($ubicacion = ''){
@@ -91,7 +90,8 @@ class HomeController extends Controller
             $artists = Artista::with('hm_points')->has('hm_points')->orderBy('name')->get();
             //return $artists;
     
-        return view('artistas', compact('points', 'artists'));
+            return response()->json($artists)
+            ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
         
     }
 

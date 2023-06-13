@@ -26,19 +26,8 @@ class MuralController extends Controller
             $murales = Atractivos::where('ubication', $cerro)->paginate(10);
         }
 
-        return [
-            'pagination'  => [
-                'total'         => $murales->total(),
-                'current_page'  => $murales->currentPage(),
-                'per_page'      => $murales->perPage(),
-                'last_page'     => $murales->lastPage(),
-                'from'          => $murales->firstItem(),
-                'to'            => $murales->lastPage()
-            ],
-            
-            'cerro'     => $cerro,
-            'murales'   => $murales
-        ];
+        return response()->json([$cerro, $murales])
+        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
         
     }
 
@@ -52,24 +41,23 @@ class MuralController extends Controller
             //return $cerro;
             $murales = Atractivos::where('ubication', $ubicacion)->paginate(10);
         }
-        //return $murales;
-        return [
-           
-            'ubicacion' => $ubicacion,
-            'murales'   => $murales
-        ];
+        
+        return response()->json([$ubicacion, $murales])
+        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
         
     }
 
     public function ascensores()
     {
         $ascensores = Ascensor::all();
-        return $ascensores;
+        return response()->json($ascensores)
+        ->header('Access-Control-Allow-Origin','http://localhost:3000' );
     }
     public function escaleras()
     {
         $escaleras = Atractivos::where('type_attractive', 'Escalera')->get();
-        return $escaleras;
+        return response()->json($escaleras)
+        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
     }
     public function miradores()
     {
@@ -80,20 +68,23 @@ class MuralController extends Controller
     public function iglesias()
     {
         $iglesias = Atractivos::where('type_attractive', 'Iglesia')->get();
-        return $iglesias;
+        return response()->json($iglesias)
+        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
     }
 
-        public function centrosCulturales()
-        
-        {
-            $centros_culturales = Atractivos::where('type_attractive', 'Centro Cultural')->get();
-            return $centros_culturales;
+    public function centrosCulturales()
+    
+    {
+        $centros_culturales = Atractivos::where('type_attractive', 'Centro Cultural')->get();
+        return response()->json($centros_culturales)
+        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
 
     }
     public function arquitecturas()
     {
         $arquitectura = Atractivos::where('type_attractive', 'Arquitectura')->get();
-        return $arquitectura;
+        return response()->json($arquitectura)
+        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
     }
 
 

@@ -16,8 +16,7 @@ class ArtistaController extends Controller
         $mezcla = ArtistaPoint::with('artista:id,name')->with('points:id')
         ->get()->groupBy('artist_id');
         
-        //return $artistas;
-        
+
         return view('/crud/artista-view', compact(
             'artistas','mezcla'
         )

@@ -101,14 +101,6 @@ export default {
       this.$emit("clicked", false);
       console.log("clicked");
     },
-    // listAtractivos() {
-    //     const url = "/api-murales-modal/" + this.ubicacion;
-
-    //     axios.get(url).then((response)=>{
-    //         console.log(response);
-    //         this.arrayList = response.data
-    //     })
-    // },
   },
 };
 </script>
