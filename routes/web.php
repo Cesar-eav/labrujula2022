@@ -65,7 +65,6 @@ Route::post('/crud/edit-ascensor', [App\Http\Controllers\CrudController::class, 
 Route::get('/crud/edit-ascensor/{id}', [App\Http\Controllers\CrudController::class, 'ViewEditAscensor']);
 Route::delete('/crud/delete-ubication/{id}', [App\Http\Controllers\CrudController::class, 'deleteUbication']);
 
-
 // CRUD MIRADORES
 Route::get('/crud/miradores-view', [App\Http\Controllers\CrudController::class, 'miradoresView']);
 Route::post('/crud/edit-mirador', [App\Http\Controllers\CrudController::class, 'editMirador']);
@@ -79,9 +78,10 @@ Route::get('/crud/show-edit-ubication/{id}', [App\Http\Controllers\CrudControlle
 Route::post('/crud/edit-ubication/', [App\Http\Controllers\CrudController::class, 'editUbication']);
 
 //ATRACTIVO
-Route::get('/crud/create-type-point', [App\Http\Controllers\TypePointController::class, 'pointTypeView']);
-Route::post('/crud/type-point-post', [App\Http\Controllers\TypePointController::class, 'createTypePoint']);
-
+Route::get('/crud/create-type-point', [App\Http\Controllers\CrudController::class, 'pointTypeView']);
+Route::post('/crud/type-point-post', [App\Http\Controllers\CrudController::class, 'createTypePoint']);
+Route::get('/list-type-points', [App\Http\Controllers\CrudController::class, 'selectTypePoints']);
+Route::delete('/delete-type-point/{id}', [App\Http\Controllers\CrudController::class, 'deleteTypeAtraction']);
 
 
 //RELACIONES

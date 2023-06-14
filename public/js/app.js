@@ -6476,13 +6476,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       typeData: {
         type_point: ""
       },
-      loading: false
+      loading: false,
+      listTypes: [],
+      //NOMBRE EXACTO COLUMNAS BD ¿O EL JSON?
+      columns: ["id", "type_point", "edit", "remove"],
+      //Objeto Options, son las cabeceras de la tabla
+      options: {
+        perPage: 10,
+        //perPagesValues: [10, 15, 20],
+        headings: {
+          id: "ID",
+          type_point: "type_point"
+        }
+      }
     };
   },
   methods: {
@@ -6490,19 +6508,52 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      axios.post("/crud/type-point-post", this.typeData).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/crud/type-point-post", this.typeData).then(function (response) {
         console.log("Archivo", response.data);
 
-        if (response.data.point_type_db === true) {
+        if (response.data.response_db === true) {
           _this.loading = false;
-          window.location.href = "/crud/index";
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            title: "Type creado",
+            showCloseButton: true,
+            onBeforeOpen: function onBeforeOpen() {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().showLoading();
+            },
+            willClose: function willClose() {
+              window.location.href = "/crud/create-type-point/";
+            }
+          });
         } else {
-          _this.loading = false; //alert("FRACASO");
+          _this.loading = false;
+          alert("FRACASO");
         }
       })["catch"](function (error) {
         return console.log("Error", error);
       });
+    },
+    listTypesAtractivos: function listTypesAtractivos() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/list-type-points", this.listTypes).then(function (response) {
+        console.log(response);
+        _this2.listTypes = response.data;
+      });
+    },
+    deleteMural: function deleteMural(id) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/delete-type-point/" + id).then(function (response) {
+        console.log("ELIMINADO: ", response.data);
+        window.location.href = "/crud/create-type-point";
+      });
+    },
+    edit: function edit(row) {
+      console.log(row);
+    },
+    remove: function remove(row) {
+      console.log(row);
     }
+  },
+  mounted: function mounted() {
+    this.listTypesAtractivos();
   }
 });
 
@@ -9463,7 +9514,7 @@ var render = function render() {
     staticClass: "flex flex-col justify-center m-3"
   }, [_c("h1", {
     staticClass: "text-2xl text-center mb-3"
-  }, [_vm._v("AGREGAR NUEVO TIPO DE ATRACTIVO")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
+  }, [_vm._v("\n        AGREGAR NUEVO TIPO DE ATRACTIVO\n    ")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("table", {
     staticClass: "border-2 border-red-500 ml-56 w-96"
   }, [_c("tbody", [_c("tr", [_c("td", [_vm._v("Nuevo atractivo:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
@@ -9514,7 +9565,51 @@ var render = function render() {
       d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
       fill: "currentColor"
     }
-  })]) : _vm._e(), _vm._v("\n            Guardar\n          ")])])])])])]);
+  })]) : _vm._e(), _vm._v("\n                        Guardar\n                    ")])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "mx-8",
+    attrs: {
+      id: "datos-tabla"
+    }
+  }, [_c("v-client-table", {
+    attrs: {
+      data: this.listTypes,
+      columns: _vm.columns,
+      options: _vm.options
+    },
+    scopedSlots: _vm._u([{
+      key: "edit",
+      fn: function fn(props) {
+        return _c("button", {
+          attrs: {
+            type: "button"
+          },
+          on: {
+            click: function click($event) {
+              return _vm.edit(props.row);
+            }
+          }
+        }, [_c("a", {
+          attrs: {
+            href: "/crud/show-edit-ubication/" + props.row.id
+          }
+        }, [_vm._v("Editar")])]);
+      }
+    }, {
+      key: "remove",
+      fn: function fn(props) {
+        return _c("button", {
+          attrs: {
+            type: "button"
+          },
+          on: {
+            click: function click($event) {
+              return _vm.deleteMural(props.row.id);
+            }
+          }
+        }, [_vm._v("\n                Eliminar\n            ")]);
+      }
+    }])
+  })], 1)]);
 };
 
 var staticRenderFns = [function () {
@@ -9532,7 +9627,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n        Agregar Punto\n      ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                Agregar Punto\n            ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-ubication/"
     }
@@ -9541,7 +9636,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n        Agregar Ubicacion\n      ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                Agregar Ubicacion\n            ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-type-point/"
     }
@@ -9550,7 +9645,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n        Agregar Tipo de atractivo\n      ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                Agregar Tipo de atractivo\n            ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/artista-view"
     }
@@ -9559,7 +9654,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n        Agregar Artista\n      ")])])]);
+  }, [_vm._v("\n                Agregar Artista\n            ")])])]);
 }];
 render._withStripped = true;
 
@@ -9643,7 +9738,7 @@ var render = function render() {
       d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
       fill: "currentColor"
     }
-  })]) : _vm._e(), _vm._v("\n        Guardar\n      ")])])])])])]), _vm._v(" "), _c("div", {
+  })]) : _vm._e(), _vm._v("\n                            Guardar\n                        ")])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "mx-8",
     attrs: {
       id: "datos-tabla"
@@ -9684,7 +9779,7 @@ var render = function render() {
               return _vm.deleteMural(props.row.id);
             }
           }
-        }, [_vm._v("Eliminar")]);
+        }, [_vm._v("\n                Eliminar\n            ")]);
       }
     }])
   })], 1)]);
@@ -9705,7 +9800,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Punto\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                Agregar Punto\n            ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-ubication/"
     }
@@ -9714,7 +9809,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Ubicacion\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                Agregar Ubicacion\n            ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/create-type-point/"
     }
@@ -9723,7 +9818,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Tipo de atractivo\n    ")])]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                Agregar Tipo de atractivo\n            ")])]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/crud/artista-view"
     }
@@ -9732,7 +9827,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button"
     }
-  }, [_vm._v("\n      Agregar Artista\n    ")])])]);
+  }, [_vm._v("\n                Agregar Artista\n            ")])])]);
 }];
 render._withStripped = true;
 
