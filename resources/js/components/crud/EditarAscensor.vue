@@ -135,7 +135,6 @@ export default {
             console.log("NO FUNCIONA, DATA VACIO");
           }
         });
-      //window.location.href = "/crud/index";
     },
   },
 };

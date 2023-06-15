@@ -74,36 +74,13 @@
                 <option
                   v-for="atractivo in this.tipo_atractivos"
                   :key="atractivo.id"
-                  :value="atractivo.nombre"
+                  :value="atractivo.type_point"
                 >
-                  {{ atractivo.nombre }}
+                  {{ atractivo.type_point }}
                 </option>
               </select>
             </td>
           </tr>
-          <!-- 
-        <tr>
-          <td>Artista:</td>
-          <td> 
-            
-              V-MODEL -> Comunicacion del INPUT al DATA( )
-              Con V-MODEL pasamos datos al objeto muraldatos que iran a BD
-              Con :value enviamos el valor a guardar, que será artist.name en ete caso
-            
-            
-            <select v-model="muralDatos.selectedArtista" multiple>
-              <option
-                v-for="artist in this.artists"
-                :key="artist.id"
-                :value="artist.id"
-              >
-                {{ artist.name }}
-              </option>
-
-            </select>
-            <span>Seleccionados: {{ muralDatos.selectedArtista }}</span>
-            </td>
-        </tr>     -->
           <tr>
             <td>Dirección:</td>
             <td><input type="text" v-model="muralDatos.direction" /></td>
@@ -258,18 +235,8 @@ export default {
       loading: false,
       ubications: [],
       artists: [],
-      tipo_atractivos: [
-        { nombre: "Mural" },
-        { nombre: "Ascensor" },
-        { nombre: "Escalera" },
-        { nombre: "Arquitectura" },
-        { nombre: "Mirador" },
-        { nombre: "Iglesia" },
-        { nombre: "Museo" },
-        { nombre: "Centro Cultural" },
-        { nombre: "Otro" },
-      ],
-      //file: "",
+      tipo_atractivos: [],
+      
     };
   },
 
@@ -351,12 +318,20 @@ export default {
         })
         .catch((error) => console.log("Error", error));
     },
+    listTypeAtractivos () {
+      axios
+        .get("/api-list-type-atractivos", this.tipo_atractivos)
+        .then((response) => {
+          console.log(response);
+          this.tipo_atractivos = response.data;
+        })
+    }
   },
 
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted() {
     this.selectUbication();
-    //this.selectArtist();
+    this.listTypeAtractivos ();
   },
 };
 </script>

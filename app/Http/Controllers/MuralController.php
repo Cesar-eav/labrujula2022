@@ -9,6 +9,7 @@ use App\Models\Mirador;
 use App\Models\Iglesia;
 use App\Models\Arquitectura;
 use App\Models\Atractivos;
+use App\Models\TypePoint;
 
 use Illuminate\Http\Request;
 
@@ -93,6 +94,11 @@ class MuralController extends Controller
     {
         $arquitectura = Atractivos::where('type_attractive', 'Arquitectura')->get();
         return $arquitectura;
+    }
+
+    public function listTypeAtractivos(){
+        $listTypeAtractivos = TypePoint::get();
+        return $listTypeAtractivos;
     }
 
 

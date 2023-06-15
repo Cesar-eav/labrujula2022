@@ -6361,26 +6361,7 @@ __webpack_require__.r(__webpack_exports__);
       loading: false,
       ubications: [],
       artists: [],
-      tipo_atractivos: [{
-        nombre: "Mural"
-      }, {
-        nombre: "Ascensor"
-      }, {
-        nombre: "Escalera"
-      }, {
-        nombre: "Arquitectura"
-      }, {
-        nombre: "Mirador"
-      }, {
-        nombre: "Iglesia"
-      }, {
-        nombre: "Museo"
-      }, {
-        nombre: "Centro Cultural"
-      }, {
-        nombre: "Otro"
-      }] //file: "",
-
+      tipo_atractivos: []
     };
   },
   methods: {
@@ -6455,11 +6436,20 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log("Error", error);
       });
+    },
+    listTypeAtractivos: function listTypeAtractivos() {
+      var _this4 = this;
+
+      axios.get("/api-list-type-atractivos", this.tipo_atractivos).then(function (response) {
+        console.log(response);
+        _this4.tipo_atractivos = response.data;
+      });
     }
   },
   //MOUNTED SIGNIFICA Q FUNCION SE EJECUTA AL CARGAR LA PAGINA
   mounted: function mounted() {
-    this.selectUbication(); //this.selectArtist();
+    this.selectUbication();
+    this.listTypeAtractivos();
   }
 });
 
@@ -6910,7 +6900,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           console.log("NO FUNCIONA, DATA VACIO");
         }
-      }); //window.location.href = "/crud/index";
+      });
     }
   }
 });
@@ -9128,9 +9118,9 @@ var render = function render() {
     return _c("option", {
       key: atractivo.id,
       domProps: {
-        value: atractivo.nombre
+        value: atractivo.type_point
       }
-    }, [_vm._v("\n                " + _vm._s(atractivo.nombre) + "\n              ")]);
+    }, [_vm._v("\n                " + _vm._s(atractivo.type_point) + "\n              ")]);
   }), 0)])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v("Dirección:")]), _vm._v(" "), _c("td", [_c("input", {
     directives: [{
       name: "model",
