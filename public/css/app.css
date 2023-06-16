@@ -12132,6 +12132,9 @@ input:checked + .toggle-bg {
 .max-h-32 {
   max-height: 8rem;
 }
+.max-h-28 {
+  max-height: 7rem;
+}
 .min-h-0 {
   min-height: 0px;
 }
@@ -12181,6 +12184,9 @@ input:checked + .toggle-bg {
 }
 .w-64 {
   width: 16rem;
+}
+.w-28 {
+  width: 7rem;
 }
 .max-w-sm {
   max-width: 24rem;
@@ -12621,9 +12627,6 @@ input:checked + .toggle-bg {
 }
 .uppercase {
   text-transform: uppercase;
-}
-.italic {
-  font-style: italic;
 }
 .leading-9 {
   line-height: 2.25rem;

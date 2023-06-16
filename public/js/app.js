@@ -7515,15 +7515,17 @@ var render = function render() {
       key: atractivo.id,
       staticClass: "mx-0 md:mx-2 sm:mx-0 bg-gray-300 rounded-lg p-2 flex justify-between"
     }, [_c("img", {
-      staticClass: "max-h-32 w-32 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-full",
+      staticClass: "max-h-28 w-28 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-full",
       attrs: {
         src: "storage/" + atractivo.image
       }
     }), _vm._v(" "), _c("span", [_c("p", {
       staticClass: "font-bold text-lg"
-    }, [_vm._v(_vm._s(atractivo.nombre_institucion))]), _vm._v(" "), _c("p", {
-      staticClass: "italic pb-2"
-    }, [_vm._v(_vm._s(atractivo.description))]), _vm._v(" "), _c("div", {
+    }, [_vm._v(_vm._s(atractivo.nombre_institucion))]), _vm._v(" "), _c("div", {
+      domProps: {
+        innerHTML: _vm._s(atractivo.description)
+      }
+    }), _vm._v(" "), _c("div", {
       staticClass: "pb-3 pt-1"
     }, [_c("a", {
       attrs: {

@@ -39,12 +39,12 @@
         :key="atractivo.id"
       >
       
-      <img :src="'storage/' + atractivo.image" class="max-h-32 w-32 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-full"   />
+      <img :src="'storage/' + atractivo.image" class="max-h-28 w-28 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-full"   />
 
 
       <span>
         <p class="font-bold text-lg">{{ atractivo.nombre_institucion }}</p>
-        <p class="italic pb-2">{{ atractivo.description }}</p>
+        <div v-html="atractivo.description"></div>
         <div class="pb-3 pt-1">
           <a :href="url + atractivo.sitio_web"   target="_blank" >{{ atractivo.sitio_web }}</a>
         </div>
