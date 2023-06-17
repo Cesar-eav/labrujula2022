@@ -51,7 +51,7 @@ class MuralController extends Controller
     {
         $ascensores = Ascensor::all();
         return response()->json($ascensores)
-        ->header('Access-Control-Allow-Origin',env('API_URL') );
+        ->header('Access-Control-Allow-Origin', env('API_URL') );
     }
     public function escaleras()
     {
