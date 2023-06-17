@@ -7513,26 +7513,38 @@ var render = function render() {
   }, _vm._l(_vm.arrayList, function (atractivo) {
     return _c("div", {
       key: atractivo.id,
-      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-gray-300 rounded-lg p-2 flex justify-between"
+      staticClass: "mx-0 md:mx-2 sm:mx-0 bg-gray-300 rounded-lg p-2 flex flex-col"
+    }, [_c("div", {
+      staticClass: "md:flex md:flex-col sm:flex-row"
+    }, [_c("div", {
+      staticClass: "2ELEMENTOS flex"
     }, [_c("img", {
-      staticClass: "max-h-28 w-28 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-full",
+      staticClass: "max-h-32 w-32 pr-2 md:pr-2 md:max-h-48 md:w-48 object-contain rounded-lg",
       attrs: {
         src: "storage/" + atractivo.image
       }
-    }), _vm._v(" "), _c("span", [_c("p", {
-      staticClass: "font-bold text-lg"
+    }), _vm._v(" "), _c("div", {
+      staticClass: "md:pl-2"
+    }, [_c("p", {
+      staticClass: "font-bold text-lg md:py-5"
     }, [_vm._v(_vm._s(atractivo.nombre_institucion))]), _vm._v(" "), _c("div", {
+      staticClass: "DESCRIPCION",
       domProps: {
         innerHTML: _vm._s(atractivo.description)
       }
-    }), _vm._v(" "), _c("div", {
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "flex justify-end"
+    }, [_c("div", {
       staticClass: "pb-3 pt-1"
     }, [_c("a", {
       attrs: {
         href: _vm.url + atractivo.sitio_web,
         target: "_blank"
       }
-    }, [_vm._v(_vm._s(atractivo.sitio_web))])]), _vm._v(" "), _c("a", {
+    }, [_vm._v(_vm._s(atractivo.sitio_web))])]), _vm._v(" "), _c("div", {
+      staticClass: "flex px-2"
+    }, [_c("a", {
+      staticClass: "px-2",
       attrs: {
         href: "https://www.facebook.com/" + atractivo.facebook,
         target: "_blank"
@@ -7546,7 +7558,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fab fa-instagram fa-2x"
-    })])])]);
+    })])])])])]);
   }), 0)]);
 };
 
@@ -7558,11 +7570,11 @@ var staticRenderFns = [function () {
     staticClass: "flex flex-col bg-primary-800 p-2 mx-auto"
   }, [_c("h1", {
     staticClass: "text-uppercase text-3xl text-center font-bold text-red-400 p-2"
-  }, [_vm._v("\n      Centros Culturales\n    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n        Centros Culturales\n      ")]), _vm._v(" "), _c("div", {
     staticClass: "flex justify-center"
   }, [_c("p", {
     staticClass: "text-lg w-3/4 md:w-1/2 rounded-lg text-center text-red-800 bg-primary-400 p-2"
-  }, [_vm._v("\n        Si diriges un centro cultural como\n        un museo, sala de teatro, biblioteca u otro tipo de espacio, regístrate en nuestra plataforma\n        y conecta con nuevas audencias.\n      ")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n          Si diriges un centro cultural como\n          un museo, sala de teatro, biblioteca u otro tipo de espacio, regístrate en nuestra plataforma\n          y conecta con nuevas audencias.\n        ")])]), _vm._v(" "), _c("p", {
     staticClass: "pt-3 pb-3 text-lg text-center text-red-400"
   }, [_c("a", {
     staticClass: "underline hover:text-red-100",
@@ -7570,7 +7582,7 @@ var staticRenderFns = [function () {
       href: "https://forms.gle/QEEZSEbQGmVpKtHTA",
       target: "blank"
     }
-  }, [_vm._v("\n      Regístrate gratuitamente ")])])]);
+  }, [_vm._v("\n        Regístrate gratuitamente ")])])]);
 }];
 render._withStripped = true;
 

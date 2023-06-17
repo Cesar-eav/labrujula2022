@@ -30,32 +30,31 @@
    
     </div>
 
-    <div  class="grid grid-cols-1 md:grid-cols-2 md:mx-10 px-4 md:gap-5 gap-y-5 justify-center my-2">
-      
-      <div
-         class="mx-0 md:mx-2 sm:mx-0 bg-gray-300 rounded-lg p-2 flex justify-between" 
-      
-        v-for="atractivo in arrayList"
-        :key="atractivo.id"
-      >
-      
-      <img :src="'storage/' + atractivo.image" class="max-h-28 w-28 pr-2 md:pr-2 md:max-h-60 md:w-60 object-contain rounded-full"   />
-
-
-      <span>
-        <p class="font-bold text-lg">{{ atractivo.nombre_institucion }}</p>
-        <div v-html="atractivo.description"></div>
-        <div class="pb-3 pt-1">
-          <a :href="url + atractivo.sitio_web"   target="_blank" >{{ atractivo.sitio_web }}</a>
-        </div>
-        
-        <a :href="'https://www.facebook.com/' + atractivo.facebook "   target="_blank" > <i class="fab fa-facebook fa-2x"></i></a>
-        <a :href="'https://www.instagram.com/' + atractivo.instagram "   target="_blank" >  <i class="fab fa-instagram fa-2x"></i></a>
-      </span>
-
-
+<div class="grid grid-cols-1 md:grid-cols-2 md:mx-10 px-4 md:gap-5 gap-y-5 justify-center my-2">
+  <div v-for="atractivo in arrayList" :key="atractivo.id" class="mx-0 md:mx-2 sm:mx-0 bg-gray-300 rounded-lg p-2 flex flex-col">
+    <div class="md:flex md:flex-col sm:flex-row ">
+<div class="2ELEMENTOS flex ">
+      <img :src="'storage/' + atractivo.image" class="max-h-32 w-32 pr-2 md:pr-2 md:max-h-48 md:w-48 object-contain rounded-lg" />
+      <div class="md:pl-2">
+        <p class="font-bold text-lg md:py-5">{{ atractivo.nombre_institucion }}</p>
+        <div v-html="atractivo.description" class="DESCRIPCION"></div>
       </div>
+
     </div>
+    <div class="flex justify-end">
+      <div class="pb-3 pt-1">
+        <a :href="url + atractivo.sitio_web" target="_blank">{{ atractivo.sitio_web }}</a>
+      </div>
+      <div class="flex px-2 ">
+        <a :href="'https://www.facebook.com/' + atractivo.facebook" target="_blank" class="px-2"><i class="fab fa-facebook fa-2x"></i></a>
+        <a :href="'https://www.instagram.com/' + atractivo.instagram" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+      </div>
+
+
+    </div>
+    </div>
+  </div>
+</div>
 
   </div>
 </template>
