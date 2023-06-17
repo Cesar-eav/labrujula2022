@@ -15,7 +15,7 @@ class HomeController extends Controller
 
         $ubications = Ubication::select('*')->whereNotIn('name',['Almendral'])->orderBy('name')->get();
         return response()->json($ubications)
-        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
             
     }
 
@@ -91,7 +91,7 @@ class HomeController extends Controller
             //return $artists;
     
             return response()->json($artists)
-            ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+            ->header('Access-Control-Allow-Origin', env('API_URL'));
         
     }
 

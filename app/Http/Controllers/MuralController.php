@@ -27,7 +27,7 @@ class MuralController extends Controller
         }
 
         return response()->json([$cerro, $murales])
-        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
         
     }
 
@@ -43,7 +43,7 @@ class MuralController extends Controller
         }
         
         return response()->json([$ubicacion, $murales])
-        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
         
     }
 
@@ -51,25 +51,25 @@ class MuralController extends Controller
     {
         $ascensores = Ascensor::all();
         return response()->json($ascensores)
-        ->header('Access-Control-Allow-Origin','http://localhost:3000' );
+        ->header('Access-Control-Allow-Origin',env('API_URL') );
     }
     public function escaleras()
     {
         $escaleras = Atractivos::where('type_attractive', 'Escalera')->get();
         return response()->json($escaleras)
-        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
     }
     public function miradores()
     {
         $miradores = Atractivos::where('type_attractive', 'Mirador')->get();
         return response()->json($miradores)
-        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
     }
     public function iglesias()
     {
         $iglesias = Atractivos::where('type_attractive', 'Iglesia')->get();
         return response()->json($iglesias)
-        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
     }
 
     public function centrosCulturales()
@@ -77,14 +77,14 @@ class MuralController extends Controller
     {
         $centros_culturales = Atractivos::where('type_attractive', 'Centro Cultural')->get();
         return response()->json($centros_culturales)
-        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
 
     }
     public function arquitecturas()
     {
         $arquitectura = Atractivos::where('type_attractive', 'Arquitectura')->get();
         return response()->json($arquitectura)
-        ->header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
     }
 
 
