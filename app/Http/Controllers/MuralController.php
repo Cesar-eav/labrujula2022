@@ -23,11 +23,11 @@ class MuralController extends Controller
             //return view('murales', compact('murales'));
         } else {
             //return $cerro;
-            $murales = Atractivos::where('ubication', $cerro)->paginate(10);
+            $murales = Atractivos::where('ubication', $cerro)->paginate(100);
         }
 
-        return response()->json([$cerro, $murales])
-        ->header('Access-Control-Allow-Origin', env('API_URL'));
+        return response()->json($murales)
+        ->header('Access-Control-Allow-Origin', env('allowed_origins'));
         
     }
 

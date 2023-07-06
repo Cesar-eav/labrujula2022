@@ -25,7 +25,6 @@ Route::get('/centros-culturales',[App\Http\Controllers\HomeController::class, 'c
 Route::get('/api-murales/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'murales']);
 Route::get('/api-murales-modal/{ubicacion?}', [App\Http\Controllers\MuralController::class, 'muralesModal']);
 
-Route::get('/api-atractivos/{ubication?}', [App\Http\Controllers\MuralController::class, 'atractivos']);
 Route::get('/api-ascensores', [App\Http\Controllers\MuralController::class, 'ascensores']);
 Route::get('/api-escaleras', [App\Http\Controllers\MuralController::class, 'escaleras']);
 Route::get('/api-miradores', [App\Http\Controllers\MuralController::class, 'miradores']);

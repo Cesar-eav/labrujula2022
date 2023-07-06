@@ -12,17 +12,6 @@
 
 
 
-    <!-- Google tag (gtag.js) -->
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCZ6EYBXLP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RCZ6EYBXLP');
-</script>
-
-
     <script src="https://unpkg.com/flowbite@1.6.3/dist/flowbite.js"></script>
 
     
