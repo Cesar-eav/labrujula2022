@@ -36,9 +36,10 @@ Route::get('/api-arquitecturas', [App\Http\Controllers\MuralController::class, '
 Route::get('/traspasar', [App\Http\Controllers\CrudController::class, 'traspasarUbicacion']);
 
 
-//CRUD *******************************
+//*********************************CRUD *******************************
 
 Route::get('/crud', [App\Http\Controllers\CrudController::class, 'index']);
+Route::get('/celu', [App\Http\Controllers\CrudController::class, 'celu']);
 Route::get('/crud/relaciones-crud', [App\Http\Controllers\RelacionController::class, 'relacion']);
 
 //POINT

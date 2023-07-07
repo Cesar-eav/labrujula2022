@@ -24,6 +24,15 @@ class CrudController extends Controller
         ));
     }
 
+    public function celu()
+    {
+        $murales = Atractivos::with('ubication')->with('artist')->get();
+        
+        return view('crud.celu', compact(
+            'murales'
+        ));
+    }
+
 
     public function mezcla(){
 

@@ -41,7 +41,6 @@ Vue.use(Viewer, {
 
 // OPEN STREET MAP
 import Vue from 'vue';
-
 import 'leaflet/dist/leaflet.css';
 
 
@@ -72,6 +71,7 @@ Vue.component('header-component', require('./views/Header.vue').default);
 Vue.component('footer-component', require('./views/Footer.vue').default);
 
 //  CRUD
+Vue.component('celu-component', require('./components/crud/Celu.vue').default);
 Vue.component('index-component', require('./components/crud/IndexCrud.vue').default);
 Vue.component('create-point-component', require('./components/crud/Create.vue').default);
 Vue.component('edit-component', require('./components/crud/Editar.vue').default);
