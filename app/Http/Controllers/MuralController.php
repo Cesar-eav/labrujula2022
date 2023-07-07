@@ -27,7 +27,7 @@ class MuralController extends Controller
         }
 
         return response()->json($murales)
-        ->header('Access-Control-Allow-Origin', env('allowed_origins'));
+        ->header('Access-Control-Allow-Origin', env('API_URL'));
         
     }
 
