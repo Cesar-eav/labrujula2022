@@ -27,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
 
         $ubications = Ubication::all();
-
         View::share('ubications', $ubications);
 
     }

@@ -40,7 +40,6 @@ class ArtistaController extends Controller
 
     public function selectArtist(){
         $artist = Artista::orderBy('name', 'asc')->get();
-        
         return $artist;
      }
 

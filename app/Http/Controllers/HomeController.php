@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function muralesHome($ubicacion = ''){
 
         if ($ubicacion == '') {
-            $murales = Atractivos::paginate(1)->all();
+            $murales = Atractivos::paginate(10)->all();
         } else {
             $murales = Atractivos::where('ubication', $ubicacion)->get();
         }
